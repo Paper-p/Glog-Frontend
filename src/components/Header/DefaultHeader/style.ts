@@ -18,14 +18,7 @@ export const Inner = styled.div`
 `;
 
 export const Logo = styled.div`
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   display: inline-block;
-  width: 173px;
-  height: 25px;
-  margin: auto;
-  cursor: pointer;
 `;
 
 export const Login = styled.div`

@@ -2,8 +2,8 @@ import "./App.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Home from "./components/Home/index";
-// import SignIn from "./components/Login/SignIn/index";
-// import SignUp from "./components/Login/SignUp/index";
+import SignIn from "./components/Login/SignIn/index";
+import SignUp from "./components/Login/SignUp/index";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,8 +18,8 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} /> */}
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </>
