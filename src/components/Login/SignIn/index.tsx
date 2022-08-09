@@ -12,7 +12,7 @@ async function signin(user: RequestSignInModel) {
       `${reqAuth.signin()}`,
       user
     );
-    console.log(`${data.accessToken}`);
+    console.log(JSON.stringify(data, null, 4));
   } catch (error) {
     if (axios.isAxiosError(error)) {
       return error.message;
