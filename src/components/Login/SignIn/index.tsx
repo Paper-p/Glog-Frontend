@@ -1,6 +1,30 @@
+import axios from "axios";
 import React from "react";
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "../SignIn/style";
+import { SignInReqType } from "../../../type/request/login";
+import { SignInResType } from "../../../type/response/login";
+import { BASE_URL } from "../../../shared/config";
+
+async function signin(id: string, pw: string) {
+  try {
+    const { data } = await axios.post<SignInResType>(
+      `${BASE_URL}/auth/signin`,
+      {
+        userId: `${id}`,
+        password: `${pw}`,
+      }
+    );
+
+    console.log(`${data.accessToken}`);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return error.message;
+    } else {
+      return "An unexpected error occurred";
+    }
+  }
+}
 
 const SignIn: React.FC = () => {
   return (
