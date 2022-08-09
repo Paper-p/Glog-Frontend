@@ -20,12 +20,15 @@ const Header: React.FC<props> = ({ isLogined }) => {
           </Link>
           {isLogined === false ? (
             <S.Login>
+              <S.HamburgerBtn>
+                <I.HamburgerButton />
+              </S.HamburgerBtn>
               <ul>
                 <Link to="/signin">
                   <li>login</li>
                 </Link>
                 <Link to="/signup">
-                  <li>sign up</li>
+                  <li className="signup">sign up</li>
                 </Link>
               </ul>
             </S.Login>

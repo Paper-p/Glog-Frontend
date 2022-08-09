@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Inner = styled.div`
   display: block;
-  width: 1080px;
+  width: 88%;
   height: 70px;
   margin: auto;
   line-height: 70px;
@@ -19,6 +19,11 @@ export const Inner = styled.div`
 
 export const Logo = styled.div`
   display: inline-block;
+  margin-left: 120px;
+
+  @media ( max-width: 767px) {
+    margin-left: 15px;
+  }
 `;
 
 export const Login = styled.div`
@@ -33,6 +38,10 @@ export const Login = styled.div`
     padding: 0;
     margin: 0;
     cursor: pointer;
+
+    @media ( max-width: 767px) {
+      display: none;
+    }
   }
   li {
     margin-right: 18px;
@@ -41,6 +50,9 @@ export const Login = styled.div`
   a {
     text-decoration: none;
   }
+  .signup {
+    margin-right: 120px;
+  }
 `;
 
 export const BottomLine = styled.div`
@@ -48,4 +60,14 @@ export const BottomLine = styled.div`
   width: 100%;
   bottom: 10%;
   border-bottom: 1px solid #000000;
+`;
+
+export const HamburgerBtn = styled.div`
+  display: none;
+
+  @media ( max-width: 767px) {
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 50px;
+  }
 `;
