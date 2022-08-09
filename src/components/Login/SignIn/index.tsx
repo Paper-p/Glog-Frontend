@@ -2,20 +2,16 @@ import axios from "axios";
 import React from "react";
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "../SignIn/style";
-import { SignInReqType } from "../../../type/request/login";
-import { SignInResType } from "../../../type/response/login";
-import { BASE_URL } from "../../../shared/config";
+import { RequestSignInModel } from "../../../type/request/auth";
+import { ResponseSignInModel } from "../../../type/response/auth";
+import { reqAuth } from "../../../Utils/reqUrl";
 
-async function signin(id: string, pw: string) {
+async function signin(user: RequestSignInModel) {
   try {
-    const { data } = await axios.post<SignInResType>(
-      `${BASE_URL}/auth/signin`,
-      {
-        userId: `${id}`,
-        password: `${pw}`,
-      }
+    const { data } = await axios.post<ResponseSignInModel>(
+      `${reqAuth.signin()}`,
+      user
     );
-
     console.log(`${data.accessToken}`);
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -25,6 +21,11 @@ async function signin(id: string, pw: string) {
     }
   }
 }
+
+signin({
+  userId: "jongjin",
+  password: "12345678d",
+});
 
 const SignIn: React.FC = () => {
   return (
