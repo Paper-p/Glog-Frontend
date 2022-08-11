@@ -1,8 +1,8 @@
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "../SignIn/style";
 import useInputs from "../../../hooks/useInputs";
-import { RequestSignInModel } from "../../../type/request/auth";
-import { ResponseSignInModel } from "../../../type/response/auth";
+import { RequestSignInModel } from "../../../type/auth/request";
+import { ResponseSignInModel } from "../../../type/auth/response";
 import axios from "axios";
 import { getAuth } from "../../../Utils/getEndPoints";
 
