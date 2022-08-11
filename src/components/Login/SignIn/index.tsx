@@ -1,23 +1,25 @@
-import React, { useState } from "react";
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "../SignIn/style";
-import AuthService from "../../../hooks/AuthService";
+import useAuth from "../../../hooks/useAuth";
+import { RequestSignInModel } from "../../../type/request/auth";
+import { ResponseSignInModel } from "../../../type/response/auth";
+import axios from "axios";
+import { reqAuth } from "../../../Utils/reqUrl";
+
+async function login(loginData: RequestSignInModel) {
+  return axios
+    .post<ResponseSignInModel>(`${reqAuth.signin()}`, loginData)
+    .then((response) => {
+      console.log(response.data);
+      return response;
+    });
+}
 
 const SignInPage: React.FC = () => {
-  const [inputs, setInputs] = useState({
+  const [{ userId, password }, onChange, reset] = useAuth({
     userId: "",
     password: "",
   });
-
-  const { userId, password } = inputs;
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
 
   const onClick = () => {
     const user = {
@@ -25,11 +27,9 @@ const SignInPage: React.FC = () => {
       password,
     };
 
-    AuthService.login(user);
-
-    setInputs({
-      userId: "",
-      password: "",
+    login(user).then((response) => {
+      console.log(response.status);
+      reset();
     });
   };
 
