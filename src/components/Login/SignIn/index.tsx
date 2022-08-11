@@ -1,14 +1,14 @@
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "../SignIn/style";
-import useAuth from "../../../hooks/useAuth";
+import useInputs from "../../../hooks/useInputs";
 import { RequestSignInModel } from "../../../type/request/auth";
 import { ResponseSignInModel } from "../../../type/response/auth";
 import axios from "axios";
-import { reqAuth } from "../../../Utils/reqUrl";
+import { getAuth } from "../../../Utils/getEndPoints";
 
 async function login(loginData: RequestSignInModel) {
   return axios
-    .post<ResponseSignInModel>(`${reqAuth.signin()}`, loginData)
+    .post<ResponseSignInModel>(`${getAuth.signin()}`, loginData)
     .then((response) => {
       console.log(response.data);
       return response;
@@ -16,7 +16,7 @@ async function login(loginData: RequestSignInModel) {
 }
 
 const SignInPage: React.FC = () => {
-  const [{ userId, password }, onChange, reset] = useAuth({
+  const [{ userId, password }, onChange, reset] = useInputs({
     userId: "",
     password: "",
   });

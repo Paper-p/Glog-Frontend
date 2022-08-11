@@ -1,6 +1,6 @@
 import { BASE_URL } from "../shared/config";
 
-export const reqAuth = {
+export const getAuth = {
   signin: () => {
     return `${BASE_URL}/auth/signin`;
   },

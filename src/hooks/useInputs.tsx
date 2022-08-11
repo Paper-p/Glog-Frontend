@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const useAuth = (initialForm: any) => {
+const useInputs = (initialForm: any) => {
   const [form, setForm] = useState(initialForm);
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,4 +11,4 @@ const useAuth = (initialForm: any) => {
   return [form, onChange, reset];
 };
 
-export default useAuth;
+export default useInputs;
