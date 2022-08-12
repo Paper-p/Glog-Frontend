@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import useInputs from "../../../hooks/useInputs";
 import auth from "../../../request/auth";
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
 
 const SignUpPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const [{ nickname, userId, password }, onChange, reset] = useInputs({
     nickname: "",
     userId: "",
@@ -19,7 +22,9 @@ const SignUpPage: React.FC = () => {
     };
     try {
       const res: any = await auth.signup(user);
-      console.log(res.status);
+      if (res.status === 201) {
+        navigate("/", { replace: true });
+      }
     } catch (e: any) {
       console.log(e);
     }
