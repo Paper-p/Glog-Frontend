@@ -9,7 +9,11 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
-  const notify = () => toast("Wow so easy !");
+  const notify = () =>
+    toast.success("회원가입에 성공했어요", {
+      autoClose: 1250,
+      position: "top-right",
+    });
 
   const [{ nickname, userId, password }, onChange, reset] = useInputs({
     nickname: "",
