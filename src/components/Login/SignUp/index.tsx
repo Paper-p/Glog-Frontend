@@ -1,8 +1,31 @@
 import React from "react";
+import useInputs from "../../../hooks/useInputs";
+import auth from "../../../request/auth";
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
 
-const SignUp: React.FC = () => {
+const SignUpPage: React.FC = () => {
+  const [{ nickname, userId, password }, onChange, reset] = useInputs({
+    nickname: "",
+    userId: "",
+    password: "",
+  });
+
+  const onClick = async () => {
+    const user = {
+      nickname,
+      userId,
+      password,
+    };
+    try {
+      const res: any = await auth.signup(user);
+      console.log(res.status);
+    } catch (e: any) {
+      console.log(e);
+    }
+    reset();
+  };
+
   return (
     <>
       <Header isLogined={false} />
@@ -15,6 +38,9 @@ const SignUp: React.FC = () => {
           <S.InputName
             type="text"
             placeholder="사용하실 닉네임을 입력해주세요."
+            onChange={onChange}
+            name={"nickname"}
+            value={nickname}
           />
         </S.InputNameBorder>
         <S.IdTxt>아이디</S.IdTxt>
@@ -23,20 +49,26 @@ const SignUp: React.FC = () => {
           <S.InputId
             type="text"
             placeholder="사용하실 아이디를 입력해주세요."
+            onChange={onChange}
+            name={"userId"}
+            value={userId}
           />
         </S.InputIdBorder>
         <S.PwTxt>비밀번호</S.PwTxt>
         <S.InputPwBorder>
           <S.InputPw
-            type="text"
+            type="password"
             placeholder="사용하실 비밀번호를 입력해주세요."
+            onChange={onChange}
+            name={"password"}
+            value={password}
           />
         </S.InputPwBorder>
-        <S.SignUpBtn>가입</S.SignUpBtn>
+        <S.SignUpBtn onClick={onClick}>가입</S.SignUpBtn>
         <S.FindPassword>이미 가입하신 계정이 있으신가요?</S.FindPassword>
       </S.Modal>
     </>
   );
 };
 
-export default SignUp;
+export default SignUpPage;

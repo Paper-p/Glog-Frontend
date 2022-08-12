@@ -1,4 +1,4 @@
-import { RequestSignInModel } from "../type/auth/request";
+import { RequestSignInModel, RequestSignUpModel } from "../type/auth/request";
 import basicApiForm from "../Utils/basicApiForm";
 import { getAuth } from "../Utils/getEndPoints";
 
@@ -15,6 +15,23 @@ class Auth {
         url: getAuth.signin(),
         data: data,
         withCredentials: true
+      })
+    } catch (error){
+      return error;
+    }
+  }
+
+   /**
+   * @param data 
+   */
+  
+  signup(data: RequestSignUpModel) {
+    try {
+      return basicApiForm({
+        method: 'POST',
+        url: getAuth.signup(),
+        data: data,
+        withCredentials: true,
       })
     } catch (error){
       return error;
