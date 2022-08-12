@@ -1,25 +1,19 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  position: relative;
-  display: block;
-  height: 451px;
-  top: 225px;
-
-  @media (min-width: 768px) {
-    top: 180px;
-  }
-`;
-
 export const Modal = styled.div`
   position: absolute;
   display: block;
+  top: 225px;
   width: 500px;
   height: 451px;
   background-color: black;
   left: 50%;
   margin: 0 0 0 -250px;
   box-shadow: 2px 2px 2px 2px #999;
+
+  @media (min-width: 768px) {
+    top: 170px;
+  }
 `;
 
 export const ModalText1 = styled.div`
