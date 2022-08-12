@@ -43,7 +43,7 @@ const SignInPage: React.FC = () => {
           <S.PwTxt>비밀번호</S.PwTxt>
           <S.InputPwBorder>
             <S.InputPw
-              type="text"
+              type="password"
               placeholder="비밀번호를 입력해주세요."
               onChange={onChange}
               name={"password"}
