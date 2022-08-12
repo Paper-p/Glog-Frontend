@@ -23,7 +23,7 @@ const SignUpPage: React.FC = () => {
     try {
       const res: any = await auth.signup(user);
       if (res.status === 201) {
-        navigate("/", { replace: true });
+        navigate("/");
       }
     } catch (e: any) {
       console.log(e);
