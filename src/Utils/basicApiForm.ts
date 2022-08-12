@@ -19,7 +19,6 @@ const basicApiForm = (userData: AxiosRequestConfig, token?: string) => {
           baseURL: BASE_URL,
           url: userData.url,
           data: userData.data,
-          withCredentials: true,
         });
     return res;
   } catch (error) {
