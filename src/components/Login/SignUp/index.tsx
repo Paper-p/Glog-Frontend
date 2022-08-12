@@ -4,9 +4,12 @@ import useInputs from "../../../hooks/useInputs";
 import auth from "../../../request/auth";
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
+import { ToastContainer, toast } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
+  const notify = () => toast("Wow so easy !");
 
   const [{ nickname, userId, password }, onChange, reset] = useInputs({
     nickname: "",
@@ -69,9 +72,17 @@ const SignUpPage: React.FC = () => {
             value={password}
           />
         </S.InputPwBorder>
-        <S.SignUpBtn onClick={onClick}>가입</S.SignUpBtn>
+        <S.SignUpBtn
+          onClick={() => {
+            onClick();
+            notify();
+          }}
+        >
+          가입
+        </S.SignUpBtn>
         <S.FindPassword>이미 가입하신 계정이 있으신가요?</S.FindPassword>
       </S.Modal>
+      <ToastContainer />
     </>
   );
 };

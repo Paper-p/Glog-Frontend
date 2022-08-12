@@ -12,7 +12,7 @@ export const Modal = styled.div`
   box-shadow: 2px 2px 2px 2px #999;
 
   @media (min-width: 768px) {
-    top: 180px;
+    top: 140px;
   }
 `;
 
