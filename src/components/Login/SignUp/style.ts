@@ -10,6 +10,10 @@ export const Modal = styled.div`
   left: 50%;
   margin: 0 0 0 -250px;
   box-shadow: 2px 2px 2px 2px #999;
+
+  @media (min-width: 768px) {
+    top: 180px;
+  }
 `;
 
 export const ModalText1 = styled.div`

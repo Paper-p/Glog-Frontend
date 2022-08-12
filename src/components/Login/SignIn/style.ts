@@ -5,6 +5,10 @@ export const Container = styled.div`
   display: block;
   height: 451px;
   top: 225px;
+
+  @media (min-width: 768px) {
+    top: 180px;
+  }
 `;
 
 export const Modal = styled.div`
