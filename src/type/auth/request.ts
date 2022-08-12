@@ -1,10 +1,10 @@
 export type RequestSignInModel = {
-  userId: String,
-  password: String
+  userId: string,
+  password: string
 };
 
 export type RequestSignUpModel = {
   nickname: string,
-  userId: String,
-  password: String
+  userId: string,
+  password: string
 };

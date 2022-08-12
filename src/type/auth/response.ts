@@ -1,5 +1,5 @@
 export type ResponseSignInModel = {
-  accessToken: String,
-  refreshToken: String,
+  accessToken: string,
+  refreshToken: string,
   expiredAt: Date 
 }
