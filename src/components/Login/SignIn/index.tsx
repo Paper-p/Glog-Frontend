@@ -2,6 +2,7 @@ import Header from "../../Header/DefaultHeader/index";
 import * as S from "../SignIn/style";
 import useInputs from "../../../hooks/useInputs";
 import auth from "../../../request/auth";
+import { ToastContainer } from "material-react-toastify";
 
 const SignInPage: React.FC = () => {
   const [{ userId, password }, onChange, reset] = useInputs({
@@ -55,6 +56,7 @@ const SignInPage: React.FC = () => {
         <S.LoginBtn onClick={onClick}>로그인</S.LoginBtn>
         <S.FindPassword>for got password?</S.FindPassword>
       </S.Modal>
+      <ToastContainer />
     </>
   );
 };

@@ -4,16 +4,11 @@ import useInputs from "../../../hooks/useInputs";
 import auth from "../../../request/auth";
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
-import { ToastContainer, toast } from "material-react-toastify";
+import { toast, ToastContainer } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
-  const notify = () =>
-    toast.success("회원가입에 성공했어요", {
-      autoClose: 1250,
-      position: "top-right",
-    });
 
   const [{ nickname, userId, password }, onChange, reset] = useInputs({
     nickname: "",
@@ -27,10 +22,18 @@ const SignUpPage: React.FC = () => {
       userId,
       password,
     };
+
     try {
       const res: any = await auth.signup(user);
       if (res.status === 201) {
-        navigate("/");
+        toast.success("회원가입에 성공했어요", {
+          autoClose: 1500,
+          position: "top-right",
+          closeOnClick: false,
+        });
+        setTimeout(function () {
+          navigate("/");
+        }, 1500);
       }
     } catch (e: any) {
       console.log(e);
@@ -79,7 +82,6 @@ const SignUpPage: React.FC = () => {
         <S.SignUpBtn
           onClick={() => {
             onClick();
-            notify();
           }}
         >
           가입
