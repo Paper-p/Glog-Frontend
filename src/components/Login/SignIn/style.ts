@@ -11,8 +11,8 @@ export const Modal = styled.div`
   margin: 0 0 0 -250px;
   box-shadow: 2px 2px 2px 2px #999;
 
-  @media (max-width: 768px) {
-    top: 170px;
+  @media (max-height: 1023px) {
+    top: 165px;
   }
 `;
 
@@ -53,7 +53,7 @@ export const IdTxt = styled.div`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 20px;
   z-index: 3;
 `;
@@ -68,7 +68,7 @@ export const PwTxt = styled.div`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 20px;
   z-index: 3;
 `;
@@ -81,7 +81,7 @@ export const InputIdBorder = styled.div`
   left: 50%;
   margin: 0 0 0 -213px;
   box-sizing: border-box;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
 `;
 
 export const InputPwBorder = styled.div`
@@ -92,7 +92,7 @@ export const InputPwBorder = styled.div`
   left: 50%;
   margin: 0 0 0 -213px;
   box-sizing: border-box;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
 `;
 
 export const InputId = styled.input`
@@ -129,27 +129,27 @@ export const LoginBtn = styled.div`
   bottom: 90px;
   left: 50%;
   margin: 0 0 0 -213px;
-  color: #2C2A2A;
+  color: #2c2a2a;
   font-weight: 700;
   font-size: 18px;
   text-align: center;
   line-height: 55px;
-  background-color: #3AD413;
+  background-color: #3ad413;
   &:hover {
-    color: #3AD413;
-    background-color: rgba( 255, 255, 255, 1);
-    border: 2px solid #3AD413;
+    color: #3ad413;
+    background-color: rgba(255, 255, 255, 1);
+    border: 2px solid #3ad413;
     box-sizing: border-box;
     line-height: 51px;
     transition: 0.1s;
-  };
+  }
 `;
 
 export const FindPassword = styled.div`
   position: absolute;
   font-size: 16px;
   font-weight: 400;
-  color: #CACACA;
+  color: #cacaca;
   cursor: pointer;
   bottom: 50px;
   left: 50%;

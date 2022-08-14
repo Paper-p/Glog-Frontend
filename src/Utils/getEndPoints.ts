@@ -6,5 +6,8 @@ export const getAuth = {
   },
   signup: () => {
     return `${BASE_URL}/auth/signup`;
-  }
-} 
+  },
+  checkid: () => {
+    return `${BASE_URL}/auth/valid-id`;
+  },
+};

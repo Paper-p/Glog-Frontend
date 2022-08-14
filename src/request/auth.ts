@@ -3,37 +3,55 @@ import basicApiForm from "../Utils/basicApiForm";
 import { getAuth } from "../Utils/getEndPoints";
 
 class Auth {
-  
   /**
-   * @param data 
+   * @param data
    */
 
   signin(data: RequestSignInModel) {
     try {
       return basicApiForm({
-        method: 'POST',
+        method: "POST",
         url: getAuth.signin(),
         data: data,
-        withCredentials: true
-      })
-    } catch (error){
+        withCredentials: true,
+      });
+    } catch (error) {
       return error;
     }
   }
 
-   /**
-   * @param data 
+  /**
+   * @param data
    */
-  
+
   signup(data: RequestSignUpModel) {
     try {
       return basicApiForm({
-        method: 'POST',
+        method: "POST",
         url: getAuth.signup(),
         data: data,
         withCredentials: true,
-      })
-    } catch (error){
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  /**
+   * @param data
+   */
+
+  checkid(data: string) {
+    try {
+      return basicApiForm({
+        method: "HEAD",
+        url: getAuth.checkid(),
+        params: {
+          userId: data,
+        },
+        withCredentials: true,
+      });
+    } catch (error) {
       return error;
     }
   }
