@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useInputs from "../../../hooks/useInputs";
 import auth from "../../../request/auth";
@@ -6,9 +6,14 @@ import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
 import { toast, ToastContainer } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
+import { LanguageServiceMode } from "typescript";
+import { log } from "console";
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
+
+  const [isCheckName, setIsCheckName] = useState(false);
+  const [isCheckId, setIsCheckId] = useState(false);
 
   const [{ nickname, userId, password }, onChange, reset] = useInputs({
     nickname: "",
@@ -20,6 +25,7 @@ const SignUpPage: React.FC = () => {
     try {
       const res: any = await auth.checkname(nickname);
       console.log(res.status);
+      setIsCheckName((check: boolean) => !check);
     } catch (e: any) {
       console.log(e);
     }
@@ -29,9 +35,14 @@ const SignUpPage: React.FC = () => {
     try {
       const res: any = await auth.checkid(userId);
       console.log(res.status);
+      setIsCheckId((check: boolean) => !check);
     } catch (e: any) {
       console.log(e);
     }
+  };
+
+  const yet = () => {
+    console.log("u cant signup");
   };
 
   const onClick = async () => {
@@ -97,13 +108,11 @@ const SignUpPage: React.FC = () => {
             value={password}
           />
         </S.InputPwBorder>
-        <S.SignUpBtn
-          onClick={() => {
-            onClick();
-          }}
-        >
-          가입
-        </S.SignUpBtn>
+        {isCheckId && isCheckName ? (
+          <S.SignUpBtn onClick={onClick}>가입</S.SignUpBtn>
+        ) : (
+          <S.SignUpBtn onClick={yet}>가입</S.SignUpBtn>
+        )}
         <S.FindPassword>이미 가입하신 계정이 있으신가요?</S.FindPassword>
       </S.Modal>
       <ToastContainer />
