@@ -20,6 +20,7 @@ const SignInPage: React.FC = () => {
       if (res.data.accessToken) {
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
+        console.log("isSuceess");
       }
     } catch (e: any) {
       console.log(e);

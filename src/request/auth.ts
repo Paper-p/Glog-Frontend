@@ -1,4 +1,8 @@
-import { RequestSignInModel, RequestSignUpModel } from "../type/auth/request";
+import {
+  RequestSignInModel,
+  RequestSignUpModel,
+  RequestValidIdModel,
+} from "../type/auth/request";
 import basicApiForm from "../Utils/basicApiForm";
 import { getAuth } from "../Utils/getEndPoints";
 
@@ -41,14 +45,11 @@ class Auth {
    * @param data
    */
 
-  checkid(data: string) {
+  checkid(data: RequestValidIdModel) {
     try {
       return basicApiForm({
         method: "HEAD",
-        url: getAuth.checkid(),
-        params: {
-          userId: data,
-        },
+        url: `${getAuth.checkid()}?userId=${data}`,
         withCredentials: true,
       });
     } catch (error) {
