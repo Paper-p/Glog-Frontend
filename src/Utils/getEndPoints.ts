@@ -10,4 +10,7 @@ export const getAuth = {
   checkid: () => {
     return `${BASE_URL}/auth/valid-id`;
   },
+  checkname: () => {
+    return `${BASE_URL}/auth/valid-name`;
+  },
 };

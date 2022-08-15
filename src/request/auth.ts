@@ -1,7 +1,7 @@
 import {
   RequestSignInModel,
   RequestSignUpModel,
-  RequestValidIdModel,
+  RequestValidModel,
 } from "../type/auth/request";
 import basicApiForm from "../Utils/basicApiForm";
 import { getAuth } from "../Utils/getEndPoints";
@@ -45,7 +45,23 @@ class Auth {
    * @param data
    */
 
-  checkid(data: RequestValidIdModel) {
+  checkname(data: RequestValidModel) {
+    try {
+      return basicApiForm({
+        method: "HEAD",
+        url: `${getAuth.checkname()}?nickname=${data}`,
+        withCredentials: true,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  /**
+   * @param data
+   */
+
+  checkid(data: RequestValidModel) {
     try {
       return basicApiForm({
         method: "HEAD",

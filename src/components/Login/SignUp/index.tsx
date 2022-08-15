@@ -16,6 +16,15 @@ const SignUpPage: React.FC = () => {
     password: "",
   });
 
+  const checkName = async () => {
+    try {
+      const res: any = await auth.checkname(nickname);
+      console.log(res.status);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
   const checkId = async () => {
     try {
       const res: any = await auth.checkid(userId);
@@ -57,7 +66,7 @@ const SignUpPage: React.FC = () => {
         <S.ModalText1>sign up</S.ModalText1>
         <S.ModalText2>신규 이용자시군요! 반가워요</S.ModalText2>
         <S.NameTxt>닉네임</S.NameTxt>
-        <S.CheckNameBtn>중복확인</S.CheckNameBtn>
+        <S.CheckNameBtn onClick={checkName}>중복확인</S.CheckNameBtn>
         <S.InputNameBorder>
           <S.InputName
             type="text"

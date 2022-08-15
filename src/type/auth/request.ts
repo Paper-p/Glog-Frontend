@@ -9,6 +9,6 @@ export type RequestSignUpModel = {
   password: string;
 };
 
-export type RequestValidIdModel = {
-  userId: string;
+export type RequestValidModel = {
+  data: string;
 };
