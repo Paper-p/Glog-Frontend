@@ -41,10 +41,6 @@ class Auth {
     }
   }
 
-  /**
-   * @param data
-   */
-
   checkname(data: RequestValidModel) {
     try {
       return basicApiForm({
@@ -56,10 +52,6 @@ class Auth {
       return error;
     }
   }
-
-  /**
-   * @param data
-   */
 
   checkid(data: RequestValidModel) {
     try {
