@@ -40,8 +40,8 @@ const SignInPage: React.FC = () => {
       <S.Modal>
         <S.ModalText1>login</S.ModalText1>
         <S.ModalText2>오신것을 환영해요!</S.ModalText2>
-        <S.IdTxt result={isFailed}>아이디</S.IdTxt>
-        <S.InputIdBorder result={isFailed}>
+        <S.IdTxt result={String(isFailed)}>아이디</S.IdTxt>
+        <S.InputIdBorder result={String(isFailed)}>
           <S.InputId
             type="text"
             placeholder="아이디를 입력해주세요."
@@ -50,8 +50,8 @@ const SignInPage: React.FC = () => {
             value={userId}
           />
         </S.InputIdBorder>
-        <S.PwTxt result={isFailed}>비밀번호</S.PwTxt>
-        <S.InputPwBorder result={isFailed}>
+        <S.PwTxt result={String(isFailed)}>비밀번호</S.PwTxt>
+        <S.InputPwBorder result={String(isFailed)}>
           <S.InputPw
             type="password"
             placeholder="비밀번호를 입력해주세요."

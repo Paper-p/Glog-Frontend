@@ -39,7 +39,7 @@ export const ModalText2 = styled.div`
   text-align: center;
 `;
 
-export const IdTxt = styled.div<{ result: boolean }>`
+export const IdTxt = styled.div<{ result: string }>`
   position: absolute;
   width: 60px;
   height: 17px;
@@ -54,7 +54,7 @@ export const IdTxt = styled.div<{ result: boolean }>`
   z-index: 3;
 `;
 
-export const PwTxt = styled.div<{ result: boolean }>`
+export const PwTxt = styled.div<{ result: string }>`
   position: absolute;
   width: 70px;
   height: 17px;
@@ -69,7 +69,7 @@ export const PwTxt = styled.div<{ result: boolean }>`
   z-index: 3;
 `;
 
-export const InputIdBorder = styled.div<{ result: boolean }>`
+export const InputIdBorder = styled.div<{ result: string }>`
   position: absolute;
   width: 426px;
   height: 45px;
@@ -81,7 +81,7 @@ export const InputIdBorder = styled.div<{ result: boolean }>`
     props.result ? "1px solid #DC3D32" : "1px solid #ffffff"};
 `;
 
-export const InputPwBorder = styled.div<{ result: boolean }>`
+export const InputPwBorder = styled.div<{ result: string }>`
   position: absolute;
   width: 426px;
   height: 45px;
@@ -120,14 +120,13 @@ export const InputPw = styled.input`
 `;
 
 export const FailedIcon = styled.input`
+  display: block;
   position: absolute;
-  width: 10px;
-  height: 10px;
   top: 120px;
 `;
+
 export const LoginBtn = styled.div`
   position: absolute;
-  cursor: pointer;
   width: 426px;
   height: 55px;
   bottom: 90px;
@@ -139,6 +138,8 @@ export const LoginBtn = styled.div`
   text-align: center;
   line-height: 55px;
   background-color: #3ad413;
+  cursor: pointer;
+
   &:hover {
     color: #3ad413;
     background-color: rgba(255, 255, 255, 1);
