@@ -49,7 +49,7 @@ export const IdTxt = styled.div<{ result: string }>`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  color: ${(props) => (props.result ? "#DC3D32" : "#ffffff")};
+  color: ${(props) => (props.result === "true" ? "#DC3D32" : "#ffffff")};
   line-height: 20px;
   z-index: 3;
 `;
@@ -64,7 +64,7 @@ export const PwTxt = styled.div<{ result: string }>`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  color: ${(props) => (props.result ? "#DC3D32" : "#ffffff")};
+  color: ${(props) => (props.result === "true" ? "#DC3D32" : "#ffffff")};
   line-height: 20px;
   z-index: 3;
 `;
@@ -78,7 +78,7 @@ export const InputIdBorder = styled.div<{ result: string }>`
   margin: 0 0 0 -213px;
   box-sizing: border-box;
   border: ${(props) =>
-    props.result ? "1px solid #DC3D32" : "1px solid #ffffff"};
+    props.result === "true" ? "1px solid #DC3D32" : "1px solid #ffffff"};
 `;
 
 export const InputPwBorder = styled.div<{ result: string }>`
@@ -90,7 +90,7 @@ export const InputPwBorder = styled.div<{ result: string }>`
   margin: 0 0 0 -213px;
   box-sizing: border-box;
   border: ${(props) =>
-    props.result ? "1px solid #DC3D32" : "1px solid #ffffff"};
+    props.result === "true" ? "1px solid #DC3D32" : "1px solid #ffffff"};
 `;
 
 export const InputId = styled.input`
