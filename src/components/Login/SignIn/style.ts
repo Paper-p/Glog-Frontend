@@ -3,17 +3,13 @@ import styled from "styled-components";
 export const Modal = styled.div`
   position: absolute;
   display: block;
-  top: 225px;
+  top: 27vh;
   width: 500px;
   height: 451px;
   background-color: black;
   left: 50%;
   margin: 0 0 0 -250px;
   box-shadow: 2px 2px 2px 2px #999;
-
-  @media (max-height: 1023px) {
-    top: 165px;
-  }
 `;
 
 export const ModalText1 = styled.div`
@@ -43,7 +39,7 @@ export const ModalText2 = styled.div`
   text-align: center;
 `;
 
-export const IdTxt = styled.div`
+export const IdTxt = styled.div<{ result: boolean }>`
   position: absolute;
   width: 60px;
   height: 17px;
@@ -53,12 +49,12 @@ export const IdTxt = styled.div`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  color: #ffffff;
+  color: ${(props) => (props.result ? "#DC3D32" : "#ffffff")};
   line-height: 20px;
   z-index: 3;
 `;
 
-export const PwTxt = styled.div`
+export const PwTxt = styled.div<{ result: boolean }>`
   position: absolute;
   width: 70px;
   height: 17px;
@@ -68,12 +64,12 @@ export const PwTxt = styled.div`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  color: #ffffff;
+  color: ${(props) => (props.result ? "#DC3D32" : "#ffffff")};
   line-height: 20px;
   z-index: 3;
 `;
 
-export const InputIdBorder = styled.div`
+export const InputIdBorder = styled.div<{ result: boolean }>`
   position: absolute;
   width: 426px;
   height: 45px;
@@ -81,10 +77,11 @@ export const InputIdBorder = styled.div`
   left: 50%;
   margin: 0 0 0 -213px;
   box-sizing: border-box;
-  border: 1px solid #ffffff;
+  border: ${(props) =>
+    props.result ? "1px solid #DC3D32" : "1px solid #ffffff"};
 `;
 
-export const InputPwBorder = styled.div`
+export const InputPwBorder = styled.div<{ result: boolean }>`
   position: absolute;
   width: 426px;
   height: 45px;
@@ -92,7 +89,8 @@ export const InputPwBorder = styled.div`
   left: 50%;
   margin: 0 0 0 -213px;
   box-sizing: border-box;
-  border: 1px solid #ffffff;
+  border: ${(props) =>
+    props.result ? "1px solid #DC3D32" : "1px solid #ffffff"};
 `;
 
 export const InputId = styled.input`
@@ -121,6 +119,12 @@ export const InputPw = styled.input`
   border: 0px solid;
 `;
 
+export const FailedIcon = styled.input`
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 120px;
+`;
 export const LoginBtn = styled.div`
   position: absolute;
   cursor: pointer;

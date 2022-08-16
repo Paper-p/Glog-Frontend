@@ -6,14 +6,10 @@ export const Modal = styled.div`
   width: 500px;
   height: 516px;
   background-color: black;
-  top: 220px;
+  top: 27vh;
   left: 50%;
   margin: 0 0 0 -250px;
   box-shadow: 2px 2px 2px 2px #999;
-
-  @media (max-height: 1023px) {
-    top: 160px;
-  }
 `;
 
 export const ModalText1 = styled.div`

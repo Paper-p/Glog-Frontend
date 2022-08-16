@@ -6,8 +6,6 @@ import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
 import { toast, ToastContainer } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
-import { LanguageServiceMode } from "typescript";
-import { log } from "console";
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
