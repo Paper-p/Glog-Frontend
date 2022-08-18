@@ -6,6 +6,7 @@ import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
 import { toast, ToastContainer } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
@@ -111,7 +112,9 @@ const SignUpPage: React.FC = () => {
         ) : (
           <S.SignUpBtn onClick={yet}>가입</S.SignUpBtn>
         )}
-        <S.FindPassword>이미 가입하신 계정이 있으신가요?</S.FindPassword>
+        <Link to="/signin">
+          <S.FindPassword>이미 가입하신 계정이 있으신가요?</S.FindPassword>
+        </Link>
       </S.Modal>
       <ToastContainer />
     </>
