@@ -60,9 +60,12 @@ const SignInPage: React.FC = () => {
             value={password}
           />
         </S.InputPwBorder>
-        <S.FailedIcon>
+        <S.FailedIcon result={String(isFailed)}>
           <I.FailedIcon />
         </S.FailedIcon>
+        <S.FailedTxt result={String(isFailed)}>
+          아이디 혹은 비밀번호를 확인해주세요
+        </S.FailedTxt>
         <S.LoginBtn onClick={onClick}>로그인</S.LoginBtn>
         <S.FindPassword>for got password?</S.FindPassword>
       </S.Modal>

@@ -119,10 +119,20 @@ export const InputPw = styled.input`
   border: 0px solid;
 `;
 
-export const FailedIcon = styled.div`
-  display: none;
+export const FailedIcon = styled.div<{ result: string }>`
   position: absolute;
-  top: 120px;
+  top: 258px;
+  left: 38px;
+  display: ${(props) => (props.result === "true" ? "block" : "none")};
+`;
+
+export const FailedTxt = styled.div<{ result: string }>`
+  color: #dc3d32;
+  position: absolute;
+  font-size: 15px;
+  top: 256px;
+  left: 63px;
+  display: ${(props) => (props.result === "true" ? "block" : "none")};
 `;
 
 export const LoginBtn = styled.div`
