@@ -119,8 +119,8 @@ export const InputPw = styled.input`
   border: 0px solid;
 `;
 
-export const FailedIcon = styled.input`
-  display: block;
+export const FailedIcon = styled.div`
+  display: none;
   position: absolute;
   top: 120px;
 `;
