@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
-import auth from "../../../request/auth";
 import axios from "axios";
 import { getMyInfo } from "../../../Utils/getEndPoints";
 
