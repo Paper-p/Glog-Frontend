@@ -4,13 +4,9 @@ import {
   RequestValidModel,
 } from "../type/auth/request";
 import basicApiForm from "../Utils/basicApiForm";
-import { getAuth } from "../Utils/getEndPoints";
+import { getAuth, getMyInfo } from "../Utils/getEndPoints";
 
 class Auth {
-  /**
-   * @param data
-   */
-
   signin(data: RequestSignInModel) {
     try {
       return basicApiForm({
@@ -23,10 +19,6 @@ class Auth {
       return error;
     }
   }
-
-  /**
-   * @param data
-   */
 
   signup(data: RequestSignUpModel) {
     try {
@@ -59,6 +51,21 @@ class Auth {
         method: "HEAD",
         url: `${getAuth.checkid()}?userId=${data}`,
         withCredentials: true,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  getMiniProfile(data: string, token: string) {
+    try {
+      return basicApiForm({
+        method: "GET",
+        url: `${getMyInfo.getminiprofile()}`,
+        withCredentials: true,
+        headers: {
+          Authorization: token,
+        },
       });
     } catch (error) {
       return error;

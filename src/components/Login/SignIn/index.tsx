@@ -3,10 +3,13 @@ import * as S from "../SignIn/style";
 import * as I from "../../../Assets/svg";
 import useInputs from "../../../hooks/useInputs";
 import auth from "../../../request/auth";
-import { ToastContainer } from "material-react-toastify";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 
 const SignInPage: React.FC = () => {
+  const navigate = useNavigate();
   const [isFailed, setIsFailed] = useState(false);
 
   const [{ userId, password }, onChange, reset] = useInputs({
@@ -24,8 +27,16 @@ const SignInPage: React.FC = () => {
       if (res.data.accessToken) {
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
-        console.log("isSuccess");
+        console.log(res.data);
         setIsFailed((success: boolean) => (success = false));
+        toast.success("로그인에 성공했어요", {
+          autoClose: 1500,
+          position: "top-right",
+          closeOnClick: false,
+        });
+        setTimeout(function () {
+          navigate("/");
+        }, 1500);
       }
     } catch (e: any) {
       setIsFailed((success: boolean) => (success = true));
@@ -36,7 +47,7 @@ const SignInPage: React.FC = () => {
 
   return (
     <>
-      <Header isLogined={false} />
+      <Header />
       <S.Modal>
         <S.ModalText1>login</S.ModalText1>
         <S.ModalText2>오신것을 환영해요!</S.ModalText2>

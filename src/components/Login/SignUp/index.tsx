@@ -71,7 +71,7 @@ const SignUpPage: React.FC = () => {
 
   return (
     <>
-      <Header isLogined={false} />
+      <Header />
       <S.Modal>
         <S.ModalText1>sign up</S.ModalText1>
         <S.ModalText2>신규 이용자시군요! 반가워요</S.ModalText2>

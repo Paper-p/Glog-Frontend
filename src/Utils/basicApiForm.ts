@@ -1,5 +1,5 @@
-import { BASE_URL } from '../shared/config';
-import axios, { AxiosRequestConfig } from 'axios';
+import { BASE_URL } from "../shared/config";
+import axios, { AxiosRequestConfig } from "axios";
 
 const basicApiForm = (userData: AxiosRequestConfig, token?: string) => {
   try {
@@ -11,7 +11,7 @@ const basicApiForm = (userData: AxiosRequestConfig, token?: string) => {
           data: userData.data,
           withCredentials: true,
           headers: {
-            cookie: token,
+            Authorization: token,
           },
         })
       : axios({

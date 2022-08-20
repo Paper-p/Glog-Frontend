@@ -4,11 +4,7 @@ import { Link } from "react-router-dom";
 import * as S from "./style";
 import * as I from "../../../Assets/svg";
 
-interface props {
-  isLogined: boolean;
-}
-
-const Header: React.FC<props> = ({ isLogined }) => {
+const Header: React.FC = () => {
   return (
     <>
       <S.Container>
@@ -18,7 +14,7 @@ const Header: React.FC<props> = ({ isLogined }) => {
               <I.MainLogo />
             </S.Logo>
           </Link>
-          {isLogined === false ? (
+          {!localStorage.getItem("login-token") ? (
             <S.Login>
               <S.HamburgerBtn>
                 <I.HamburgerButton />

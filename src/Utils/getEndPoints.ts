@@ -14,3 +14,9 @@ export const getAuth = {
     return `${BASE_URL}/auth/valid-name`;
   },
 };
+
+export const getMyInfo = {
+  getminiprofile: () => {
+    return `${BASE_URL}/user/profile`;
+  },
+};

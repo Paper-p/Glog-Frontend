@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   position: fixed;
@@ -21,7 +21,7 @@ export const Logo = styled.div`
   display: inline-block;
   margin-left: 120px;
 
-  @media ( max-width: 767px) {
+  @media (max-width: 767px) {
     margin-left: 15px;
   }
 `;
@@ -39,9 +39,9 @@ export const Login = styled.div`
     margin: 0;
     cursor: pointer;
 
-    @media ( max-width: 767px) {
+    /* @media ( max-width: 767px) {
       display: none;
-    }
+    } */
   }
   li {
     margin-right: 18px;
@@ -65,9 +65,9 @@ export const BottomLine = styled.div`
 export const HamburgerBtn = styled.div`
   display: none;
 
-  @media ( max-width: 767px) {
+  /* @media ( max-width: 767px) {
     display: inline-block;
     cursor: pointer;
     margin-right: 50px;
-  }
+  } */
 `;

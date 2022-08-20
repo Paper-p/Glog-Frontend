@@ -14,7 +14,7 @@ export const Login = styled.div`
     cursor: pointer;
   }
   li:nth-last-child(1) {
-    margin-right: 18px;
+    margin-right: 120px;
   }
   li:nth-last-child(2) {
     line-height: 78px;
