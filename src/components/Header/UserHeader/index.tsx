@@ -6,14 +6,13 @@ const UserHeader: React.FC = () => {
   const [userName, setUserName] = useState("Unknown");
   const getMiniData = async () => {
     try {
-      console.log(String(localStorage.getItem("login-token")));
-      const res: any = await auth.getMiniProfile(
-        "",
-        "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb25namluIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTY2MDk3MzY2NiwiZXhwIjoxNjYwOTc0NTY2fQ.be4cuO1U_QzeLnscBdGUtVBITuE061K9pYY_NjeowCs"
-      );
+      const token = String(localStorage.getItem("login-token"));
+      const res: any = await auth.getMiniProfile(token);
+      console.log(res.status);
 
       if (res.status === 200) {
-        setUserName(res.data.nickname);
+        console.log(res.data);
+        setUserName(`${res.data.nickname}`);
       }
     } catch (e: any) {
       console.log(e);

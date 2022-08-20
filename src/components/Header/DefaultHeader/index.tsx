@@ -14,7 +14,9 @@ const Header: React.FC = () => {
               <I.MainLogo />
             </S.Logo>
           </Link>
-          {!localStorage.getItem("login-token") ? (
+          {localStorage.getItem("login-token") ? (
+            <AfterLoginHeader />
+          ) : (
             <S.Login>
               <S.HamburgerBtn>
                 <I.HamburgerButton />
@@ -28,8 +30,6 @@ const Header: React.FC = () => {
                 </Link>
               </ul>
             </S.Login>
-          ) : (
-            <AfterLoginHeader />
           )}
         </S.Inner>
         <S.BottomLine />

@@ -57,16 +57,16 @@ class Auth {
     }
   }
 
-  getMiniProfile(data: string, token: string) {
+  getMiniProfile(token: string) {
     try {
-      return basicApiForm({
-        method: "GET",
-        url: `${getMyInfo.getminiprofile()}`,
-        withCredentials: true,
-        headers: {
-          Authorization: token,
+      return basicApiForm(
+        {
+          method: "GET",
+          url: getMyInfo.getminiprofile(),
+          withCredentials: true,
         },
-      });
+        token
+      );
     } catch (error) {
       return error;
     }
