@@ -15,11 +15,18 @@ const UserHeader: React.FC = () => {
             Authorization: "Bearer " + token,
           },
         });
-        console.log(res.status);
 
-        if (res.status === 200) {
-          console.log(res.data);
-          setUserName(`${res.data.nickname}`);
+        switch (res.status) {
+          case 200:
+            setUserName(`${res.data.nickname}`);
+            break;
+          case 401:
+            // token refresh
+            break;
+          case 404:
+            localStorage.removeItem("login-token");
+            localStorage.removeItem("refresh-token");
+            break;
         }
       } catch (e: any) {
         console.log(e);
