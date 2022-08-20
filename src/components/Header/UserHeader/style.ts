@@ -14,7 +14,7 @@ export const Login = styled.div`
     cursor: pointer;
   }
   li:nth-last-child(1) {
-    margin-right: 120px;
+    margin-right: 125px;
   }
   li:nth-last-child(2) {
     line-height: 78px;
@@ -30,5 +30,6 @@ export const ProfileCircle = styled.div`
   height: 30px;
   background-color: black;
   border-radius: 50px;
-  margin-right: 7px;
+  margin-right: 10px;
+  margin-top: 18px;
 `;

@@ -63,7 +63,6 @@ class Auth {
         {
           method: "GET",
           url: getMyInfo.getminiprofile(),
-          withCredentials: true,
         },
         token
       );
