@@ -37,7 +37,7 @@ class Auth {
     try {
       return basicApiForm({
         method: "HEAD",
-        url: `${getAuth.checkname()}?nickname=${data}`,
+        url: getAuth.checkname() + `?nickname=${data}`,
         withCredentials: true,
       });
     } catch (error) {
@@ -49,7 +49,7 @@ class Auth {
     try {
       return basicApiForm({
         method: "HEAD",
-        url: `${getAuth.checkid()}?userId=${data}`,
+        url: getAuth.checkid() + `?userId=${data}`,
         withCredentials: true,
       });
     } catch (error) {
