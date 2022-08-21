@@ -6,9 +6,9 @@ import { getAuth, getMyInfo } from "../../../Utils/getEndPoints";
 const UserHeader: React.FC = () => {
   const [userName, setUserName] = useState("Unknown");
 
-  const getRefresh = async (data: any) => {
+  const reissuingTokens = async (data: any) => {
     try {
-      const res: any = await axios.put(getAuth.getrefresh(), {
+      const res: any = await axios.put(getAuth.reissuingTokens(), {
         headers: {
           "Refresh-Token": data,
         },
@@ -24,14 +24,17 @@ const UserHeader: React.FC = () => {
     }
   };
   useEffect(() => {
-    const getMiniData = async () => {
+    const getMiniProfile = async () => {
       try {
         const token = String(localStorage.getItem("login-token"));
+
         const res: any = await axios.get(getMyInfo.getminiprofile(), {
           headers: {
             Authorization: "Bearer " + token,
           },
         });
+
+        console.log(res.status);
 
         switch (res.status) {
           case 200:
@@ -39,13 +42,14 @@ const UserHeader: React.FC = () => {
             break;
           case 401:
             if (localStorage.getItem("refresh-token")) {
-              getRefresh(localStorage.getItem("refresh-token"));
+              reissuingTokens(localStorage.getItem("refresh-token"));
             } else {
               localStorage.removeItem("login-token");
               window.location.reload();
             }
             break;
-          case 404:
+
+          default:
             localStorage.removeItem("login-token");
             localStorage.removeItem("refresh-token");
             window.location.reload();
@@ -55,7 +59,7 @@ const UserHeader: React.FC = () => {
         console.log(e);
       }
     };
-    getMiniData();
+    getMiniProfile();
   }, []);
 
   return (
@@ -65,7 +69,7 @@ const UserHeader: React.FC = () => {
           <li>
             <S.ProfileCircle />
           </li>
-          <li>{userName}님</li>
+          <li>{userName} 님</li>
         </ul>
       </S.Login>
     </>

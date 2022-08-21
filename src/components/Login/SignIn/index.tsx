@@ -28,6 +28,7 @@ const SignInPage: React.FC = () => {
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
         setIsFailed((success: boolean) => (success = false));
+        console.log(res.data);
         toast.success("로그인에 성공했어요", {
           autoClose: 1500,
           position: "top-right",

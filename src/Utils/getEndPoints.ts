@@ -13,8 +13,8 @@ export const getAuth = {
   checkname: () => {
     return BASE_URL + "auth/valid-name";
   },
-  getrefresh: () => {
-    return BASE_URL + "auth/";
+  reissuingTokens: () => {
+    return BASE_URL + "auth";
   },
 };
 
