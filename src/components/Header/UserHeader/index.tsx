@@ -51,8 +51,6 @@ const UserHeader: React.FC = () => {
         console.log(e);
 
         if (localStorage.getItem("refresh-token")) {
-          console.log(localStorage.getItem("refresh-token"));
-
           reissuingTokens();
         } else {
           localStorage.removeItem("login-token");
@@ -62,8 +60,6 @@ const UserHeader: React.FC = () => {
     };
     getMiniProfile();
   }, []);
-
-  reissuingTokens();
 
   return (
     <>
