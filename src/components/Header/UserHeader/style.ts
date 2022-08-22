@@ -26,8 +26,8 @@ export const Login = styled.div`
 
 export const ProfileCircle = styled.div`
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background-color: black;
   border-radius: 50px;
   margin-right: 10px;

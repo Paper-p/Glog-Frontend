@@ -4,7 +4,7 @@ import {
   RequestValidModel,
 } from "../type/auth/request";
 import basicApiForm from "../Utils/basicApiForm";
-import { getAuth, getMyInfo } from "../Utils/getEndPoints";
+import { getAuth } from "../Utils/getEndPoints";
 
 class Auth {
   signin(data: RequestSignInModel) {
@@ -52,20 +52,6 @@ class Auth {
         url: getAuth.checkid() + `?userId=${data}`,
         withCredentials: true,
       });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  getMiniProfile(token: string) {
-    try {
-      return basicApiForm(
-        {
-          method: "GET",
-          url: getMyInfo.getminiprofile(),
-        },
-        token
-      );
     } catch (error) {
       return error;
     }

@@ -4,25 +4,27 @@ import axios from "axios";
 import { getAuth, getMyInfo } from "../../../Utils/getEndPoints";
 
 const UserHeader: React.FC = () => {
-  const [userName, setUserName] = useState("Unknown");
+  const [userName, setUserName] = useState("");
 
-  const reissuingTokens = async (data: any) => {
+  const reissuingTokens = async () => {
     try {
+      const token = String(localStorage.getItem("refresh-token"));
       const res: any = await axios.put(getAuth.reissuingTokens(), {
         headers: {
-          "Refresh-Token": data,
+          RefreshToken: token,
         },
       });
       if (res.status === 200) {
-        console.log("success");
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
         window.location.reload();
+      } else {
       }
     } catch (e: any) {
       console.log(e);
     }
   };
+
   useEffect(() => {
     const getMiniProfile = async () => {
       try {
@@ -33,30 +35,24 @@ const UserHeader: React.FC = () => {
             Authorization: "Bearer " + token,
           },
         });
-
         console.log(res.status);
 
-        switch (res.status) {
-          case 200:
-            setUserName(`${res.data.nickname}`);
-            break;
-          case 401:
-            if (localStorage.getItem("refresh-token")) {
-              reissuingTokens(localStorage.getItem("refresh-token"));
-            } else {
-              localStorage.removeItem("login-token");
-              window.location.reload();
-            }
-            break;
-
-          default:
-            localStorage.removeItem("login-token");
-            localStorage.removeItem("refresh-token");
-            window.location.reload();
-            break;
+        if (res.status === 200) {
+          setUserName(`${res.data.nickname}`);
+        } else {
+          localStorage.removeItem("login-token");
+          localStorage.removeItem("refresh-token");
+          window.location.reload();
         }
       } catch (e: any) {
         console.log(e);
+
+        if (localStorage.getItem("refresh-token")) {
+          reissuingTokens();
+        } else {
+          localStorage.removeItem("login-token");
+          window.location.reload();
+        }
       }
     };
     getMiniProfile();
@@ -69,7 +65,7 @@ const UserHeader: React.FC = () => {
           <li>
             <S.ProfileCircle />
           </li>
-          <li>{userName} 님</li>
+          <li>{userName}님</li>
         </ul>
       </S.Login>
     </>
