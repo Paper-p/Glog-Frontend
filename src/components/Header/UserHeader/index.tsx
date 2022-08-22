@@ -32,7 +32,6 @@ const UserHeader: React.FC = () => {
     const getMiniProfile = async () => {
       try {
         const token = String(localStorage.getItem("login-token"));
-
         const res: any = await axios.get(getMyInfo.getminiprofile(), {
           headers: {
             Authorization: "Bearer " + token,
