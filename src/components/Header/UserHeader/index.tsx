@@ -14,7 +14,10 @@ const UserHeader: React.FC = () => {
           RefreshToken: token,
         },
       });
+
       if (res.status === 200) {
+        localStorage.removeItem("refresh-token");
+        localStorage.removeItem("login-token");
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
         window.location.reload();
@@ -48,6 +51,8 @@ const UserHeader: React.FC = () => {
         console.log(e);
 
         if (localStorage.getItem("refresh-token")) {
+          console.log(localStorage.getItem("refresh-token"));
+
           reissuingTokens();
         } else {
           localStorage.removeItem("login-token");
@@ -57,6 +62,8 @@ const UserHeader: React.FC = () => {
     };
     getMiniProfile();
   }, []);
+
+  reissuingTokens();
 
   return (
     <>
@@ -72,4 +79,4 @@ const UserHeader: React.FC = () => {
   );
 };
 
-export default UserHeader;
+export default React.memo(UserHeader);
