@@ -8,11 +8,13 @@ const UserHeader: React.FC = () => {
 
   const reissuingTokens = async () => {
     try {
-      const token = String(localStorage.getItem("refresh-token"));
-      const res: any = await axios.put(getAuth.reissuingTokens(), {
+      const refreshToken = String(localStorage.getItem("refresh-token"));
+      const res: any = await axios({
+        method: "patch",
         headers: {
-          RefreshToken: token,
+          RefreshToken: refreshToken,
         },
+        url: getAuth.reissuingTokens(),
       });
 
       if (res.status === 200) {
@@ -20,7 +22,7 @@ const UserHeader: React.FC = () => {
         localStorage.removeItem("login-token");
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
-        window.location.reload();
+        console.log("success");
       } else {
       }
     } catch (e: any) {
@@ -38,7 +40,6 @@ const UserHeader: React.FC = () => {
             Authorization: "Bearer " + token,
           },
         });
-        console.log(res.status);
 
         if (res.status === 200) {
           setUserName(`${res.data.nickname}`);
@@ -49,16 +50,17 @@ const UserHeader: React.FC = () => {
         }
       } catch (e: any) {
         console.log(e);
-
+        /** status 401 일때*/
         if (localStorage.getItem("refresh-token")) {
           reissuingTokens();
         } else {
           localStorage.removeItem("login-token");
-          window.location.reload();
+          localStorage.removeItem("refresh-token");
         }
       }
     };
     getMiniProfile();
+    reissuingTokens();
   }, []);
 
   return (

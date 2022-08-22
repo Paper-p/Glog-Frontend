@@ -11,7 +11,7 @@ const basicApiForm = (userData: AxiosRequestConfig, token?: string) => {
           data: userData.data,
           withCredentials: true,
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: token,
           },
         })
       : axios({

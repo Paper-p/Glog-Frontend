@@ -24,6 +24,8 @@ const SignInPage: React.FC = () => {
     };
     try {
       const res: any = await auth.signin(user);
+      console.log(res.data.refreshToken);
+
       if (res.data.accessToken) {
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
