@@ -18,15 +18,13 @@ const UserHeader: React.FC = () => {
       });
 
       if (res.status === 200) {
-        localStorage.removeItem("refresh-token");
-        localStorage.removeItem("login-token");
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
-        console.log("success");
-      } else {
       }
     } catch (e: any) {
       console.log(e);
+      localStorage.removeItem("login-token");
+      localStorage.removeItem("refresh-token");
     }
   };
 
@@ -43,14 +41,10 @@ const UserHeader: React.FC = () => {
 
         if (res.status === 200) {
           setUserName(`${res.data.nickname}`);
-        } else {
-          localStorage.removeItem("login-token");
-          localStorage.removeItem("refresh-token");
-          window.location.reload();
         }
       } catch (e: any) {
         console.log(e);
-        /** status 401 일때*/
+
         if (localStorage.getItem("refresh-token")) {
           reissuingTokens();
         } else {
@@ -60,7 +54,6 @@ const UserHeader: React.FC = () => {
       }
     };
     getMiniProfile();
-    reissuingTokens();
   }, []);
 
   return (
