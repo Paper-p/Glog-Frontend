@@ -18,7 +18,13 @@ export const getAuth = {
   },
 };
 
-export const getMyInfo = {
+export const getFeed = {
+  getList: () => {
+    return BASE_URL + "feed/list";
+  },
+};
+
+export const getUser = {
   getminiprofile: () => {
     return BASE_URL + "user/profile";
   },

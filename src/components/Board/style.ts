@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
-  position: absolute;
-  width: 202px;
+  padding: 1rem 0.5rem;
   background-color: #000;
+  border-radius: 0.5rem;
 `;
 
 export const Title = styled.div`
@@ -19,8 +19,9 @@ export const Date = styled.div`
 export const Container = styled.div`
   position: relative;
   width: 823px;
-  height: 3000px;
   top: 200px;
-  left: 50%;
-  margin: 0 0 0 -35%;
+  margin: 0 auto;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(4, 1fr);
 `;

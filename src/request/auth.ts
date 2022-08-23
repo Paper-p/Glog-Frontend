@@ -4,7 +4,7 @@ import {
   RequestValidModel,
 } from "../type/auth/request";
 import basicApiForm from "../Utils/basicApiForm";
-import { getAuth } from "../Utils/getEndPoints";
+import { getAuth, getFeed } from "../Utils/getEndPoints";
 
 class Auth {
   signin(data: RequestSignInModel) {
@@ -50,6 +50,18 @@ class Auth {
       return basicApiForm({
         method: "HEAD",
         url: getAuth.checkid() + `?userId=${data}`,
+        withCredentials: true,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  getList(page: number, size: number) {
+    try {
+      return basicApiForm({
+        method: "GET",
+        url: getFeed.getList() + `?page=${page}&size=${size}`,
         withCredentials: true,
       });
     } catch (error) {

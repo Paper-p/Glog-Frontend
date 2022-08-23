@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import axios from "axios";
-import { getAuth, getMyInfo } from "../../../Utils/getEndPoints";
+import { getAuth, getUser } from "../../../Utils/getEndPoints";
 
 const UserHeader: React.FC = () => {
   const [userName, setUserName] = useState("");
@@ -32,7 +32,7 @@ const UserHeader: React.FC = () => {
     const getMiniProfile = async () => {
       try {
         const token = String(localStorage.getItem("login-token"));
-        const res: any = await axios.get(getMyInfo.getminiprofile(), {
+        const res: any = await axios.get(getUser.getminiprofile(), {
           headers: {
             Authorization: "Bearer " + token,
           },
