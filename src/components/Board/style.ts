@@ -4,6 +4,12 @@ export const Box = styled.div`
   padding: 1rem 0.5rem;
   background-color: #000;
   border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.4s;
+
+  :hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const Title = styled.div`

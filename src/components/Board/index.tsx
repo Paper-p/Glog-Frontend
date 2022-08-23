@@ -18,8 +18,6 @@ const BoardPage: React.FC = () => {
     getBox();
   }, []);
 
-  console.log(list);
-
   const getDate = (data: Date): string => {
     const month = data.getMonth() + 1;
     return `${data.getFullYear()}-${
