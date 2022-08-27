@@ -4,9 +4,12 @@ import {
   RequestValidModel,
 } from "../type/auth/request";
 import basicApiForm from "../Utils/basicApiForm";
-import { getAuth, getFeed } from "../Utils/getEndPoints";
+import { getAuth } from "../Utils/getEndPoints";
 
 class Auth {
+  getList(arg0: number, arg1: number): any {
+    throw new Error("Method not implemented.");
+  }
   signin(data: RequestSignInModel) {
     try {
       return basicApiForm({
@@ -50,18 +53,6 @@ class Auth {
       return basicApiForm({
         method: "HEAD",
         url: getAuth.checkid() + `?userId=${data}`,
-        withCredentials: true,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  getList(page: number, size: number) {
-    try {
-      return basicApiForm({
-        method: "GET",
-        url: getFeed.getList() + `?page=${page}&size=${size}`,
         withCredentials: true,
       });
     } catch (error) {
