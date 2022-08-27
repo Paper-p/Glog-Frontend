@@ -4,8 +4,7 @@ import useInputs from "../../../hooks/useInputs";
 import auth from "../../../request/auth";
 import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
-import { toast, ToastContainer } from "material-react-toastify";
-import "material-react-toastify/dist/ReactToastify.css";
+import { toast } from "material-react-toastify";
 import { Link } from "react-router-dom";
 
 const SignUpPage: React.FC = () => {
@@ -55,13 +54,11 @@ const SignUpPage: React.FC = () => {
       const res: any = await auth.signup(user);
       if (res.status === 201) {
         toast.success("회원가입에 성공했어요", {
-          autoClose: 1500,
+          autoClose: 2500,
           position: "top-right",
           closeOnClick: false,
         });
-        setTimeout(function () {
-          navigate("/");
-        }, 1500);
+        navigate("/");
       }
     } catch (e: any) {
       console.log(e);
@@ -116,7 +113,6 @@ const SignUpPage: React.FC = () => {
           <S.FindPassword>이미 가입하신 계정이 있으신가요?</S.FindPassword>
         </Link>
       </S.Modal>
-      <ToastContainer />
     </>
   );
 };

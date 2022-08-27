@@ -5,7 +5,7 @@ import useInputs from "../../../hooks/useInputs";
 import auth from "../../../request/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "material-react-toastify";
+import { toast } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
 
 const SignInPage: React.FC = () => {
@@ -29,15 +29,12 @@ const SignInPage: React.FC = () => {
       if (res.data.accessToken) {
         localStorage.setItem("refresh-token", res.data.refreshToken);
         localStorage.setItem("login-token", res.data.accessToken);
-        setIsFailed((success: boolean) => (success = false));
         toast.success("로그인에 성공했어요", {
-          autoClose: 1500,
+          autoClose: 2500,
           position: "top-right",
           closeOnClick: false,
         });
-        setTimeout(function () {
-          navigate("/");
-        }, 1500);
+        navigate("/");
       }
     } catch (e: any) {
       setIsFailed((success: boolean) => (success = true));
@@ -81,7 +78,6 @@ const SignInPage: React.FC = () => {
         <S.LoginBtn onClick={onClick}>로그인</S.LoginBtn>
         <S.FindPassword>for got password?</S.FindPassword>
       </S.Modal>
-      <ToastContainer />
     </>
   );
 };

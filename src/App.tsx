@@ -4,6 +4,8 @@ import { createGlobalStyle } from "styled-components";
 import Home from "./components/Home/index";
 import SignIn from "./components/Login/SignIn/index";
 import SignUp from "./components/Login/SignUp/index";
+import { ToastContainer } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -14,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 const App: React.FC = () => {
   return (
     <>
+      <ToastContainer />
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
