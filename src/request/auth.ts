@@ -7,9 +7,6 @@ import basicApiForm from "../Utils/basicApiForm";
 import { getAuth } from "../Utils/getEndPoints";
 
 class Auth {
-  getList(arg0: number, arg1: number): any {
-    throw new Error("Method not implemented.");
-  }
   signin(data: RequestSignInModel) {
     try {
       return basicApiForm({
