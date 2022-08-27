@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import auth from "../../request/auth";
+import feed from "../../request/feed";
 import * as S from "./style";
 
 const BoardPage: React.FC = () => {
@@ -9,7 +9,7 @@ const BoardPage: React.FC = () => {
   useEffect(() => {
     const getBox = async () => {
       try {
-        const res: any = await auth.getList(0, 5);
+        const res: any = await feed.getList(2, 5);
         setList(res.data.list);
       } catch (e: any) {
         console.log(e);
