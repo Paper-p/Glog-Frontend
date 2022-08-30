@@ -3,8 +3,16 @@ import * as S from "./style";
 import axios from "axios";
 import { getAuth, getUser } from "../../../Utils/getEndPoints";
 
+type User = {
+  name: string;
+  url: string;
+};
+
 const UserHeader: React.FC = () => {
-  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState<User>({
+    name: "",
+    url: "",
+  });
 
   const reissuingTokens = async () => {
     try {
@@ -42,7 +50,7 @@ const UserHeader: React.FC = () => {
         });
 
         if (res.status === 200) {
-          setUserName(`${res.data.nickname}`);
+          setUser({ name: res.data.nickname, url: res.data.profileImageUrl });
         }
       } catch (e: any) {
         console.log(e);
@@ -65,7 +73,7 @@ const UserHeader: React.FC = () => {
           <li>
             <S.ProfileCircle />
           </li>
-          <li>{userName}님</li>
+          <li>{user.name}님</li>
         </ul>
       </S.Login>
     </>
