@@ -9,13 +9,12 @@ const BoardPage: React.FC = () => {
   useEffect(() => {
     const getBox = async () => {
       try {
-        const res: any = await feed.getList(2, 5);
+        const res: any = await feed.getList(0, 5);
         setList(res.data.list);
       } catch (e: any) {
         console.log(e);
       }
     };
-    getBox();
   }, []);
 
   const getDate = (data: Date): string => {

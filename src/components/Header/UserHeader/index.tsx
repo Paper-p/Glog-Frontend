@@ -23,6 +23,7 @@ const UserHeader: React.FC = () => {
       }
     } catch (e: any) {
       console.log(e);
+
       localStorage.removeItem("login-token");
       localStorage.removeItem("refresh-token");
     }
@@ -32,10 +33,12 @@ const UserHeader: React.FC = () => {
     const getMiniProfile = async () => {
       try {
         const token = String(localStorage.getItem("login-token"));
-        const res: any = await axios.get(getUser.getminiprofile(), {
+        const res: any = await axios({
+          method: "get",
           headers: {
             Authorization: "Bearer " + token,
           },
+          url: getUser.getminiprofile(),
         });
 
         if (res.status === 200) {
