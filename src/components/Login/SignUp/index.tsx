@@ -45,7 +45,7 @@ const SignUpPage: React.FC = () => {
       console.log(res.status);
       setCheckUserData({
         checkName: !checkUserData.checkName,
-        checkId: false,
+        checkId: checkUserData.checkId,
       });
     } catch (e: any) {
       console.log(e);
