@@ -204,6 +204,19 @@ export const InputPw = styled.input`
   border: 0px solid;
 `;
 
+export const FailedIcon = styled.div`
+  position: absolute;
+  top: 326px;
+  left: 38px;
+`;
+
+export const errorInName = styled.div`
+  color: red;
+  position: absolute;
+  top: 325px;
+  left: 60px;
+`;
+
 export const SignUpBtn = styled.div`
   position: absolute;
   cursor: pointer;

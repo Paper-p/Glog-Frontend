@@ -6,6 +6,7 @@ import Header from "../../Header/DefaultHeader/index";
 import * as S from "./style";
 import { toast } from "material-react-toastify";
 import { Link } from "react-router-dom";
+import * as I from "../../../Assets/svg";
 
 type UserData = {
   checkName: boolean;
@@ -117,6 +118,10 @@ const SignUpPage: React.FC = () => {
             value={password}
           />
         </S.InputPwBorder>
+        <S.errorInName>asdasd</S.errorInName>
+        <S.FailedIcon>
+          <I.FailedIcon />
+        </S.FailedIcon>
         {checkUserData.checkName && checkUserData.checkId ? (
           <S.SignUpBtn onClick={onClick}>가입</S.SignUpBtn>
         ) : (
