@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import axios from "axios";
 import { getAuth, getUser } from "../../../Utils/getEndPoints";
+import saveTokens from "../../../hooks/saveTokens";
 
 type User = {
   name: string;
@@ -26,8 +27,9 @@ const UserHeader: React.FC = () => {
       });
 
       if (res.status === 200) {
-        localStorage.setItem("refresh-token", res.data.refreshToken);
-        localStorage.setItem("login-token", res.data.accessToken);
+        const data = res.data;
+        saveTokens("refresh-token", data.refreshToken);
+        saveTokens("login-token", data.accessToken);
       }
     } catch (e: any) {
       console.log(e);

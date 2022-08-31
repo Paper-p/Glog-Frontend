@@ -58,7 +58,7 @@ export const NameTxt = styled.div<{ result: string }>`
 
 export const IdTxt = styled.div<{ result: string }>`
   position: absolute;
-  width: 70px;
+  width: 60px;
   height: 17px;
   background-color: black;
   top: 185px;

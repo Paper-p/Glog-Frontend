@@ -10,7 +10,10 @@ import * as I from "../../../Assets/svg";
 
 type UserData = {
   isSuccess: boolean;
-  isDone: boolean;
+  isDone: {
+    name: boolean;
+    id: boolean;
+  };
   checkName: boolean;
   checkId: boolean;
   setErrorText: string;
@@ -21,7 +24,10 @@ const SignUpPage: React.FC = () => {
 
   const [checkUserData, setCheckUserData] = useState<UserData>({
     isSuccess: false,
-    isDone: false,
+    isDone: {
+      name: false,
+      id: false,
+    },
     checkName: true,
     checkId: true,
     setErrorText: "",
@@ -54,6 +60,10 @@ const SignUpPage: React.FC = () => {
       ? setCheckUserData({
           ...checkUserData,
           isSuccess: false,
+          isDone: {
+            name: false,
+            id: true,
+          },
         })
       : setCheckUserData({
           ...checkUserData,

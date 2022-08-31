@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
+import saveTokens from "../../../hooks/saveTokens";
 
 const SignInPage: React.FC = () => {
   const navigate = useNavigate();
@@ -27,8 +28,9 @@ const SignInPage: React.FC = () => {
       console.log(res.data.refreshToken);
 
       if (res.data.accessToken) {
-        localStorage.setItem("refresh-token", res.data.refreshToken);
-        localStorage.setItem("login-token", res.data.accessToken);
+        const data = res.data;
+        saveTokens("login-token", data.acessToken);
+        saveTokens("refresh-token", data.refreshToken);
         toast.success("로그인에 성공했어요", {
           autoClose: 2500,
           position: "top-right",
