@@ -39,7 +39,7 @@ export const ModalText2 = styled.div`
   text-align: center;
 `;
 
-export const NameTxt = styled.div`
+export const NameTxt = styled.div<{ result: string }>`
   position: absolute;
   width: 60px;
   height: 17px;
@@ -52,9 +52,11 @@ export const NameTxt = styled.div`
   color: #ffffff;
   line-height: 20px;
   z-index: 3;
+
+  color: ${(props) => (props.result === "false" ? "#DC3D32" : "#ffffff")};
 `;
 
-export const IdTxt = styled.div`
+export const IdTxt = styled.div<{ result: string }>`
   position: absolute;
   width: 70px;
   height: 17px;
@@ -67,6 +69,8 @@ export const IdTxt = styled.div`
   color: #ffffff;
   line-height: 20px;
   z-index: 3;
+
+  color: ${(props) => (props.result === "false" ? "#DC3D32" : "#ffffff")};
 `;
 
 export const PwTxt = styled.div`
@@ -132,7 +136,7 @@ export const CheckIdBtn = styled.div`
   }
 `;
 
-export const InputNameBorder = styled.div`
+export const InputNameBorder = styled.div<{ result: string }>`
   position: absolute;
   width: 426px;
   height: 45px;
@@ -141,9 +145,12 @@ export const InputNameBorder = styled.div`
   margin: 0 0 0 -213px;
   box-sizing: border-box;
   border: 1px solid #ffffff;
+
+  border: ${(props) =>
+    props.result === "false" ? "1px solid #DC3D32" : "1px solid #ffffff"};
 `;
 
-export const InputIdBorder = styled.div`
+export const InputIdBorder = styled.div<{ result: string }>`
   position: absolute;
   width: 426px;
   height: 45px;
@@ -152,6 +159,9 @@ export const InputIdBorder = styled.div`
   margin: 0 0 0 -213px;
   box-sizing: border-box;
   border: 1px solid #ffffff;
+
+  border: ${(props) =>
+    props.result === "false" ? "1px solid #DC3D32" : "1px solid #ffffff"};
 `;
 
 export const InputPwBorder = styled.div`
@@ -204,17 +214,19 @@ export const InputPw = styled.input`
   border: 0px solid;
 `;
 
-export const FailedIcon = styled.div`
+export const FailedIcon = styled.div<{ result: string }>`
   position: absolute;
   top: 326px;
   left: 38px;
+  display: ${(props) => (props.result === "false" ? "block" : "none")};
 `;
 
-export const errorInName = styled.div`
+export const ErrorText = styled.div<{ result: string }>`
   color: red;
   position: absolute;
   top: 325px;
   left: 60px;
+  display: ${(props) => (props.result === "false" ? "block" : "none")};
 `;
 
 export const SignUpBtn = styled.div`

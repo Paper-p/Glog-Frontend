@@ -9,17 +9,25 @@ import { Link } from "react-router-dom";
 import * as I from "../../../Assets/svg";
 
 type UserData = {
+  isSuccess: boolean;
+  isDone: boolean;
   checkName: boolean;
   checkId: boolean;
+  setErrorText: string;
 };
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
 
   const [checkUserData, setCheckUserData] = useState<UserData>({
-    checkName: false,
-    checkId: false,
+    isSuccess: false,
+    isDone: false,
+    checkName: true,
+    checkId: true,
+    setErrorText: "",
   });
+
+  const checkData = String(checkUserData.checkId && checkUserData.checkName);
 
   const [{ nickname, userId, password }, onChange, reset] = useInputs({
     nickname: "",
@@ -31,26 +39,55 @@ const SignUpPage: React.FC = () => {
     try {
       const res: any = await auth.checkname(nickname);
       console.log(res.status);
-      setCheckUserData({
-        checkName: checkUserData.checkName,
-        checkId: !checkUserData.checkId,
-      });
+
+      if (res.status === 200) {
+        setCheckUserData({
+          ...checkUserData,
+          isSuccess: true,
+        });
+      }
     } catch (e: any) {
       console.log(e);
     }
+
+    checkUserData.isSuccess
+      ? setCheckUserData({
+          ...checkUserData,
+          isSuccess: false,
+        })
+      : setCheckUserData({
+          ...checkUserData,
+          setErrorText: "닉네임",
+          checkName: false,
+        });
   };
 
   const checkId = async () => {
     try {
       const res: any = await auth.checkid(userId);
       console.log(res.status);
-      setCheckUserData({
-        checkName: !checkUserData.checkName,
-        checkId: checkUserData.checkId,
-      });
+
+      if (res.status === 200) {
+        setCheckUserData({
+          ...checkUserData,
+          isSuccess: true,
+        });
+      }
     } catch (e: any) {
       console.log(e);
     }
+
+    checkUserData.isSuccess
+      ? setCheckUserData({
+          ...checkUserData,
+          checkId: !checkUserData.checkId,
+          isSuccess: false,
+        })
+      : setCheckUserData({
+          ...checkUserData,
+          setErrorText: "아이디",
+          checkId: false,
+        });
   };
 
   const yet = () => {
@@ -86,9 +123,9 @@ const SignUpPage: React.FC = () => {
       <S.Modal>
         <S.ModalText1>sign up</S.ModalText1>
         <S.ModalText2>신규 이용자시군요! 반가워요</S.ModalText2>
-        <S.NameTxt>닉네임</S.NameTxt>
+        <S.NameTxt result={String(checkUserData.checkName)}>닉네임</S.NameTxt>
         <S.CheckNameBtn onClick={checkName}>중복확인</S.CheckNameBtn>
-        <S.InputNameBorder>
+        <S.InputNameBorder result={String(checkUserData.checkName)}>
           <S.InputName
             type="text"
             placeholder="사용하실 닉네임을 입력해주세요."
@@ -97,9 +134,9 @@ const SignUpPage: React.FC = () => {
             value={nickname}
           />
         </S.InputNameBorder>
-        <S.IdTxt>아이디</S.IdTxt>
+        <S.IdTxt result={String(checkUserData.checkId)}>아이디</S.IdTxt>
         <S.CheckIdBtn onClick={checkId}>중복확인</S.CheckIdBtn>
-        <S.InputIdBorder>
+        <S.InputIdBorder result={String(checkUserData.checkId)}>
           <S.InputId
             type="text"
             placeholder="사용하실 아이디를 입력해주세요."
@@ -108,6 +145,7 @@ const SignUpPage: React.FC = () => {
             value={userId}
           />
         </S.InputIdBorder>
+
         <S.PwTxt>비밀번호</S.PwTxt>
         <S.InputPwBorder>
           <S.InputPw
@@ -118,11 +156,16 @@ const SignUpPage: React.FC = () => {
             value={password}
           />
         </S.InputPwBorder>
-        <S.errorInName>asdasd</S.errorInName>
-        <S.FailedIcon>
+
+        <S.ErrorText result={checkData}>
+          이미 사용중인 {checkUserData.setErrorText}입니다.
+        </S.ErrorText>
+        <S.FailedIcon result={checkData}>
           <I.FailedIcon />
         </S.FailedIcon>
-        {checkUserData.checkName && checkUserData.checkId ? (
+
+        {/* 여기조건 추후수정 */}
+        {checkData === "true" ? (
           <S.SignUpBtn onClick={onClick}>가입</S.SignUpBtn>
         ) : (
           <S.SignUpBtn onClick={yet}>가입</S.SignUpBtn>
