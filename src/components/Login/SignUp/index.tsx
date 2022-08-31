@@ -7,11 +7,18 @@ import * as S from "./style";
 import { toast } from "material-react-toastify";
 import { Link } from "react-router-dom";
 
+type UserData = {
+  checkName: boolean;
+  checkId: boolean;
+};
+
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const [isCheckName, setIsCheckName] = useState(false);
-  const [isCheckId, setIsCheckId] = useState(false);
+  const [checkUserData, setCheckUserData] = useState<UserData>({
+    checkName: false,
+    checkId: false,
+  });
 
   const [{ nickname, userId, password }, onChange, reset] = useInputs({
     nickname: "",
@@ -23,7 +30,10 @@ const SignUpPage: React.FC = () => {
     try {
       const res: any = await auth.checkname(nickname);
       console.log(res.status);
-      setIsCheckName((check: boolean) => !check);
+      setCheckUserData({
+        checkName: checkUserData.checkName,
+        checkId: !checkUserData.checkId,
+      });
     } catch (e: any) {
       console.log(e);
     }
@@ -33,7 +43,10 @@ const SignUpPage: React.FC = () => {
     try {
       const res: any = await auth.checkid(userId);
       console.log(res.status);
-      setIsCheckId((check: boolean) => !check);
+      setCheckUserData({
+        checkName: !checkUserData.checkName,
+        checkId: false,
+      });
     } catch (e: any) {
       console.log(e);
     }
@@ -104,7 +117,7 @@ const SignUpPage: React.FC = () => {
             value={password}
           />
         </S.InputPwBorder>
-        {isCheckId && isCheckName ? (
+        {checkUserData.checkName && checkUserData.checkId ? (
           <S.SignUpBtn onClick={onClick}>가입</S.SignUpBtn>
         ) : (
           <S.SignUpBtn onClick={yet}>가입</S.SignUpBtn>

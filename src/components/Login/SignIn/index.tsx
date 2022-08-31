@@ -10,7 +10,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 const SignInPage: React.FC = () => {
   const navigate = useNavigate();
-  const [isFailed, setIsFailed] = useState(false);
+  const [isFailed, setIsFailed] = useState<Boolean>(false);
 
   const [{ userId, password }, onChange, reset] = useInputs({
     userId: "",
@@ -37,7 +37,7 @@ const SignInPage: React.FC = () => {
         navigate("/");
       }
     } catch (e: any) {
-      setIsFailed((success: boolean) => (success = true));
+      setIsFailed(true);
       console.log(e);
     }
     reset();
