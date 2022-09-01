@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
-import saveTokens from "../../../hooks/saveTokens";
+import { saveTokens } from "../../../hooks/useTokens";
 
 const SignInPage: React.FC = () => {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import axios from "axios";
 import { getAuth, getUser } from "../../../Utils/getEndPoints";
-import saveTokens from "../../../hooks/saveTokens";
+import { saveTokens, getTokens } from "../../../hooks/useTokens";
 
 type User = {
   name: string;
@@ -17,7 +17,7 @@ const UserHeader: React.FC = () => {
 
   const reissuingTokens = async () => {
     try {
-      const refreshToken = String(localStorage.getItem("refresh-token"));
+      const refreshToken = String(getTokens("refresh-token"));
       const res: any = await axios({
         method: "patch",
         headers: {
@@ -42,7 +42,7 @@ const UserHeader: React.FC = () => {
   useEffect(() => {
     const getMiniProfile = async () => {
       try {
-        const token = String(localStorage.getItem("login-token"));
+        const token = String(getTokens("login-token"));
         const res: any = await axios({
           method: "get",
           headers: {
@@ -57,7 +57,7 @@ const UserHeader: React.FC = () => {
       } catch (e: any) {
         console.log(e);
 
-        if (localStorage.getItem("refresh-token")) {
+        if (getTokens("refresh-token")) {
           reissuingTokens();
         } else {
           localStorage.removeItem("login-token");

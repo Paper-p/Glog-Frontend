@@ -3,6 +3,7 @@ import AfterLoginHeader from "../UserHeader/";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import * as I from "../../../Assets/svg";
+import { getTokens } from "../../../hooks/useTokens";
 
 const Header: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const Header: React.FC = () => {
               <I.MainLogo />
             </S.Logo>
           </Link>
-          {localStorage.getItem("login-token") ? (
+          {getTokens("login-token") ? (
             <AfterLoginHeader />
           ) : (
             <S.Login>
