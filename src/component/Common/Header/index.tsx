@@ -7,7 +7,7 @@ import { css } from "@emotion/react";
 
 const Header: React.FC = () => {
   const { pathname } = useLocation();
-  const selectHeadItem = (currentPath: string) =>
+  const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
 
   return (
@@ -18,10 +18,10 @@ const Header: React.FC = () => {
             <I.GlogLogo />
           </S.HeaderElements>
           <Link to={"/"}>
-            <S.HeaderElements css={selectHeadItem("/")}>홈</S.HeaderElements>
+            <S.HeaderElements css={select("/")}>홈</S.HeaderElements>
           </Link>
           <Link to={"/feed"}>
-            <S.HeaderElements css={selectHeadItem("/feed")}>
+            <S.HeaderElements css={select("/feed")}>
               게시물 작성
             </S.HeaderElements>
           </Link>
@@ -30,12 +30,10 @@ const Header: React.FC = () => {
       <S.Header className="right-part">
         <S.HeaderElementsList>
           <Link to={"/signin"}>
-            <S.HeaderElements css={selectHeadItem("/signin")}>
-              로그인
-            </S.HeaderElements>
+            <S.HeaderElements css={select("/signin")}>로그인</S.HeaderElements>
           </Link>
           <Link to={"/signup"}>
-            <S.HeaderElements css={selectHeadItem("/signup")}>
+            <S.HeaderElements css={select("/signup")}>
               회원가입
             </S.HeaderElements>
           </Link>
