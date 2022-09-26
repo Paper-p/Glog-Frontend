@@ -1,10 +1,10 @@
 import * as S from "./style";
-import NotLoggedHeader from "../Common/Header/isNotLogged";
+import Header from "../Common/Header";
 
 const Main: React.FC = () => {
   return (
     <S.Background>
-      <NotLoggedHeader />
+      <Header />
     </S.Background>
   );
 };

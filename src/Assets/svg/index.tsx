@@ -1,0 +1,1 @@
+export { GlogLogo } from "./GlogLogo";
