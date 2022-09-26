@@ -9,6 +9,7 @@ const GlobalStyle = () => {
           padding: 0;
           margin: 0;
           box-sizing: border-box;
+          background: #1a1b1e;
         }
         * {
           padding: 0;
