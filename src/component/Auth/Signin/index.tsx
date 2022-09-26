@@ -1,4 +1,4 @@
-import Header from "../../Common/Header";
+import Header from "../../Default/Header";
 
 const Signin: React.FC = () => {
   return <Header />;

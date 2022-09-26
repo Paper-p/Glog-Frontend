@@ -1,5 +1,5 @@
 import * as S from "./style";
-import Header from "../Common/Header";
+import Header from "../Default/Header";
 
 const Main: React.FC = () => {
   return (
