@@ -1,9 +1,9 @@
 import * as S from "./style";
-import * as I from "../../../Assets/svg/index";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import Logo from "../Logo";
 
 const Header: React.FC = () => {
   const { pathname } = useLocation();
@@ -15,7 +15,7 @@ const Header: React.FC = () => {
       <S.Header>
         <S.HeaderElementsList>
           <S.HeaderElements>
-            <I.GlogLogo />
+            <Logo width={90} height={25} />
           </S.HeaderElements>
           <Link to={"/"}>
             <S.HeaderElements css={select("/")}>홈</S.HeaderElements>

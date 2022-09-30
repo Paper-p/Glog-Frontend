@@ -11,18 +11,11 @@ export const SigninBox = styled.div`
   width: 366px;
   height: 410px;
   margin-bottom: 170px;
-  background-color: white;
 `;
 
 export const LogoWrapper = styled.div`
   width: 333px;
   height: 96px;
-
-  & > svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export const HighlightText = styled.div`
@@ -30,6 +23,7 @@ export const HighlightText = styled.div`
   font-weight: 600;
   font-size: 20px;
   padding-top: 20px;
+  color: white;
 `;
 
 export const InputWrapper = styled.div`
@@ -49,8 +43,18 @@ export const StyledInputBase = styled.input`
   width: 90%;
   height: 40px;
   border: none;
+  margin: 6px;
+  background: #252727;
+  font-size: 16px;
+  color: #ffffff7a;
+  &:focus {
+    outline: none;
+  }
 `;
 
+export const SortInput = styled.div`
+  text-align: center;
+`;
 export const InputID = styled(StyledInputBase)``;
 
 export const InputPassword = styled(StyledInputBase)``;
@@ -65,4 +69,28 @@ export const LoginButton = styled.button`
   font-size: 18px;
   color: #1c1c1c;
   cursor: pointer;
+  margin-top: 32px;
+
+  &:hover {
+    background: #119e6d;
+  }
+`;
+
+export const TextBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+`;
+
+export const TextUl = styled.ul`
+  display: flex;
+  list-style: none;
+  align-items: center;
+`;
+
+export const Text = styled.li`
+  color: white;
+  &:first-child {
+    color: #39c078;
+  }
 `;

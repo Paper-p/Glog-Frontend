@@ -1,6 +1,6 @@
 import Header from "../../Default/Header";
-import * as I from "../../../Assets/svg";
 import * as S from "./style";
+import Logo from "../../Default/Logo";
 
 const Signin: React.FC = () => {
   return (
@@ -8,13 +8,25 @@ const Signin: React.FC = () => {
       <Header />
       <S.SigninWrapper>
         <S.SigninBox>
-          <S.LogoWrapper>
-            <I.GlogLogo />
-          </S.LogoWrapper>
+          <Logo width={335} height={96} />
           <S.HighlightText>다시 온걸 환영해!</S.HighlightText>
-          <S.InputWrapper className="id"></S.InputWrapper>
-          <S.InputWrapper className="password"></S.InputWrapper>
+          <S.InputWrapper className="id">
+            <S.SortInput>
+              <S.InputID />
+            </S.SortInput>
+          </S.InputWrapper>
+          <S.InputWrapper className="password">
+            <S.SortInput>
+              <S.InputPassword />
+            </S.SortInput>
+          </S.InputWrapper>
           <S.LoginButton>로그인</S.LoginButton>
+          <S.TextBox>
+            <S.TextUl>
+              <S.Text>비밀번호</S.Text>
+              <S.Text>를 잊어 버리셨나요?</S.Text>
+            </S.TextUl>
+          </S.TextBox>
         </S.SigninBox>
       </S.SigninWrapper>
     </>
