@@ -1,6 +1,7 @@
 import Header from "../../Default/Header";
 import * as S from "./style";
 import Logo from "../../Default/Logo";
+import AuthButton from "../Button";
 
 const Signin: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const Signin: React.FC = () => {
               <S.InputPassword />
             </S.SortInput>
           </S.InputWrapper>
-          <S.LoginButton>로그인</S.LoginButton>
+          <AuthButton buttonText="로그인" />
           <S.TextBox>
             <S.TextUl>
               <S.Text>비밀번호</S.Text>
