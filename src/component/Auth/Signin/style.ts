@@ -47,6 +47,7 @@ export const StyledInputBase = styled.input`
   background: #252727;
   font-size: 16px;
   color: #ffffff7a;
+
   &:focus {
     outline: none;
   }
@@ -90,7 +91,9 @@ export const TextUl = styled.ul`
 
 export const Text = styled.li`
   color: white;
+
   &:first-child {
     color: #39c078;
+    cursor: pointer;
   }
 `;
