@@ -1,9 +1,13 @@
 import Header from "../../Default/Header";
 import * as S from "./style";
 import Logo from "../../Default/Logo";
-import AuthButton from "../Button";
-
+import useInputs from "../../../hooks/useInputs";
 const Signin: React.FC = () => {
+  const [{ id, password }, onChange, reset] = useInputs({
+    id: "",
+    password: "",
+  });
+
   return (
     <>
       <Header />
@@ -13,15 +17,19 @@ const Signin: React.FC = () => {
           <S.HighlightText>다시 온걸 환영해!</S.HighlightText>
           <S.InputWrapper className="id">
             <S.SortInput>
-              <S.InputID />
+              <S.InputID onChange={onChange} value={id} />
             </S.SortInput>
           </S.InputWrapper>
           <S.InputWrapper className="password">
             <S.SortInput>
-              <S.InputPassword />
+              <S.InputPassword
+                type="password"
+                onChange={onChange}
+                value={password}
+              />
             </S.SortInput>
           </S.InputWrapper>
-          <AuthButton buttonText="로그인" />
+          <S.LoginButton>로그인</S.LoginButton>
           <S.TextBox>
             <S.TextUl>
               <S.Text>비밀번호</S.Text>
