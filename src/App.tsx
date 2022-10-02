@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { MainPage, SigninPage, SignupPage } from "./pages";
+import { MainPage, SigninPage, SetNamePage } from "./pages";
 import GlobalStyle from "./shared/GlobalStyles";
 
 const App: React.FC = () => {
@@ -10,7 +10,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/signin" element={<SigninPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/signup" element={<SetNamePage />} />
         </Routes>
       </BrowserRouter>
     </>
