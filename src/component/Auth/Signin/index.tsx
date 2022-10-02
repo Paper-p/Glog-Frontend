@@ -1,5 +1,6 @@
 import Header from "../../Default/Header";
 import * as S from "./style";
+import * as I from "../../../Assets/svg";
 import Logo from "../../Default/Logo";
 import useInputs from "../../../hooks/useInputs";
 const Signin: React.FC = () => {
@@ -17,15 +18,20 @@ const Signin: React.FC = () => {
           <S.HighlightText>다시 온걸 환영해!</S.HighlightText>
           <S.InputWrapper className="id">
             <S.SortInput>
-              <S.InputID onChange={onChange} value={id} />
+              <S.StyledSvg>
+                <I.IdAndName />
+              </S.StyledSvg>
+              <S.InputID placeholder="아이디를 입력해주세요" />
             </S.SortInput>
           </S.InputWrapper>
           <S.InputWrapper className="password">
             <S.SortInput>
+              <S.StyledSvg>
+                <I.Password />
+              </S.StyledSvg>
               <S.InputPassword
                 type="password"
-                onChange={onChange}
-                value={password}
+                placeholder="비밀번호를 입력해주세요"
               />
             </S.SortInput>
           </S.InputWrapper>

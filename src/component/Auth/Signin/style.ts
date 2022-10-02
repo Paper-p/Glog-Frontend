@@ -52,11 +52,29 @@ export const StyledInputBase = styled.input`
   &:focus {
     outline: none;
   }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #252727 inset !important;
+  }
 `;
 
 export const SortInput = styled.div`
+  display: flex;
   text-align: center;
+  margin-left: 10px;
 `;
+
+export const StyledSvg = styled.div`
+  margin: auto;
+
+  & > svg {
+    margin-top: 1.5px;
+  }
+`;
+
 export const InputID = styled(StyledInputBase)``;
 
 export const InputPassword = styled(StyledInputBase)``;
@@ -73,7 +91,7 @@ export const LoginButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: #119e6d;
+    border: 1px solid linear-gradient(91.86deg, #17d46f 7.02%, #119e6d 105.05%);
   }
 `;
 

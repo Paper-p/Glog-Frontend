@@ -1,4 +1,4 @@
-export const SetName = () => {
+export const IdAndName = () => {
   return (
     <svg
       width="20"

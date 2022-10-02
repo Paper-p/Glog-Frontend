@@ -47,9 +47,13 @@ export const SortInput = styled.div`
 `;
 
 export const StyledSvg = styled.div`
-  display: block;
   margin: auto;
+
+  & > svg {
+    margin-top: 1.5px;
+  }
 `;
+
 export const InputName = styled(StyledInputBase)``;
 
 export const SignupButton = styled.button`

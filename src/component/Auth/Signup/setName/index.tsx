@@ -11,7 +11,7 @@ const SetName: React.FC = () => {
           <S.InputWrapper>
             <S.SortInput>
               <S.StyledSvg>
-                <I.SetName />
+                <I.IdAndName />
               </S.StyledSvg>
               <S.InputName placeholder="사용하실 닉네임을 입력해주세요" />
             </S.SortInput>
