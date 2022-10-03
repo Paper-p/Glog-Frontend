@@ -111,7 +111,7 @@ export const TextUl = styled.ul`
 export const Text = styled.li`
   color: white;
 
-  &:first-child {
+  &:first-of-type {
     color: #39c078;
     cursor: pointer;
   }
