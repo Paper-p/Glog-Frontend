@@ -24,6 +24,7 @@ export const HighlightText = styled.div`
   font-size: 20px;
   padding-top: 20px;
   color: white;
+  margin-bottom: 8px;
 `;
 
 export const InputWrapper = styled.div`
@@ -36,7 +37,7 @@ export const InputWrapper = styled.div`
 
   &.password {
     margin-top: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
   }
 `;
 
