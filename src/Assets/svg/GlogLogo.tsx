@@ -62,8 +62,8 @@ export const GlogLogo = () => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(17.7772 12.6523) rotate(90) scale(12.6523 12.6493)"
         >
-          <stop stop-color="#0F9864" />
-          <stop offset="1" stop-color="#00FF75" stop-opacity="0" />
+          <stop stopColor="#0F9864" />
+          <stop offset="1" stopColor="#00FF75" stop-opacity="0" />
         </radialGradient>
         <radialGradient
           id="paint1_angular_1034_1667"
@@ -73,8 +73,8 @@ export const GlogLogo = () => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(6.83743 18.2946) rotate(90) scale(6.6681 6.83743)"
         >
-          <stop stop-color="#0F9864" />
-          <stop offset="1" stop-color="#00FF75" stop-opacity="0" />
+          <stop stopColor="#0F9864" />
+          <stop offset="1" stopColor="#00FF75" stop-opacity="0" />
         </radialGradient>
         <linearGradient
           id="paint2_linear_1034_1667"
@@ -84,8 +84,8 @@ export const GlogLogo = () => {
           y2="25.3066"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#119E6D" />
-          <stop offset="1" stop-color="#00FF75" />
+          <stop stopColor="#119E6D" />
+          <stop offset="1" stopColor="#00FF75" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_1034_1667"
@@ -95,8 +95,8 @@ export const GlogLogo = () => {
           y2="25.3066"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#119E6D" />
-          <stop offset="1" stop-color="#00FF75" />
+          <stop stopColor="#119E6D" />
+          <stop offset="1" stopColor="#00FF75" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_1034_1667"
@@ -106,8 +106,8 @@ export const GlogLogo = () => {
           y2="25.3066"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#119E6D" />
-          <stop offset="1" stop-color="#00FF75" />
+          <stop stopColor="#119E6D" />
+          <stop offset="1" stopColor="#00FF75" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_1034_1667"
@@ -117,8 +117,8 @@ export const GlogLogo = () => {
           y2="25.3066"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#119E6D" />
-          <stop offset="1" stop-color="#00FF75" />
+          <stop stopColor="#119E6D" />
+          <stop offset="1" stopColor="#00FF75" />
         </linearGradient>
       </defs>
     </svg>

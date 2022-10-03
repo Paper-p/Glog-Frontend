@@ -32,8 +32,8 @@ export const Glog = () => {
           y2="25.3066"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#119E6D" />
-          <stop offset="1" stop-color="#00FF75" />
+          <stop stopColor="#119E6D" />
+          <stop offset="1" stopColor="#00FF75" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1039_1537"
@@ -43,8 +43,8 @@ export const Glog = () => {
           y2="25.3066"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#119E6D" />
-          <stop offset="1" stop-color="#00FF75" />
+          <stop stopColor="#119E6D" />
+          <stop offset="1" stopColor="#00FF75" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_1039_1537"
@@ -54,8 +54,8 @@ export const Glog = () => {
           y2="25.3066"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#119E6D" />
-          <stop offset="1" stop-color="#00FF75" />
+          <stop stopColor="#119E6D" />
+          <stop offset="1" stopColor="#00FF75" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_1039_1537"
@@ -65,8 +65,8 @@ export const Glog = () => {
           y2="25.3066"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#119E6D" />
-          <stop offset="1" stop-color="#00FF75" />
+          <stop stopColor="#119E6D" />
+          <stop offset="1" stopColor="#00FF75" />
         </linearGradient>
       </defs>
     </svg>
