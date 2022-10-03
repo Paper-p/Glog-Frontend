@@ -1,20 +1,17 @@
-import Header from "../../Default/Header";
 import * as S from "./style";
-import * as I from "../../../Assets/svg";
-import Logo from "../../Default/Logo";
+import Header from "../../../Default/Header";
+import * as I from "../../../../Assets/svg";
 import { useState } from "react";
 
-const Signin: React.FC = () => {
+const SetMain: React.FC = () => {
   const [Focused, setFocused] = useState(false);
 
   return (
     <>
       <Header />
-      <S.SigninWrapper>
-        <S.SigninBox>
-          <Logo width={335} height={96} />
-          <S.HighlightText>다시 온걸 환영해!</S.HighlightText>
-          <S.InputWrapper className="id">
+      <S.SignupWrapper>
+        <S.SignupBox>
+          <S.InputWrapper className="createId">
             <S.SortInput>
               <S.StyledSvg>
                 <I.IdAndName />
@@ -27,7 +24,7 @@ const Signin: React.FC = () => {
               />
             </S.SortInput>
           </S.InputWrapper>
-          <S.InputWrapper className="password">
+          <S.InputWrapper className="createPassword">
             <S.SortInput>
               <S.StyledSvg>
                 <I.Password />
@@ -41,17 +38,24 @@ const Signin: React.FC = () => {
               />
             </S.SortInput>
           </S.InputWrapper>
-          <S.LoginButton isFocused={Focused}>로그인</S.LoginButton>
-          <S.TextBox>
-            <S.TextUl>
-              <S.Text>비밀번호</S.Text>
-              <S.Text>를 잊어 버리셨나요?</S.Text>
-            </S.TextUl>
-          </S.TextBox>
-        </S.SigninBox>
-      </S.SigninWrapper>
+          <S.InputWrapper className="checkPassword">
+            <S.SortInput>
+              <S.StyledSvg>
+                <I.Password />
+              </S.StyledSvg>
+              <S.InputPassword
+                type="password"
+                placeholder="비밀번호를 다시 입력해주세요"
+                onFocus={() => {
+                  setFocused(true);
+                }}
+              />
+            </S.SortInput>
+          </S.InputWrapper>
+        </S.SignupBox>
+      </S.SignupWrapper>
     </>
   );
 };
 
-export default Signin;
+export default SetMain;

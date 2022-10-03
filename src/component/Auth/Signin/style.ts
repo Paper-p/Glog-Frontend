@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+type ButtonPropsType = {
+  isFocused: boolean;
+};
+
 export const SigninWrapper = styled.div`
   display: flex;
   height: calc(100vh - 170px);
@@ -80,10 +84,14 @@ export const InputID = styled(StyledInputBase)``;
 
 export const InputPassword = styled(StyledInputBase)``;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled.button<ButtonPropsType>`
   width: 366px;
   height: 60px;
-  background: linear-gradient(95.2deg, #17d56f 45.83%, #119e6d 93.3%);
+  background: ${(e) => {
+    return e.isFocused
+      ? "linear-gradient(95.2deg, #17D56F 45.83%, #119E6D 93.3%)"
+      : "#505151";
+  }};
   border-radius: 10px;
   border: none;
   font-weight: 800;
