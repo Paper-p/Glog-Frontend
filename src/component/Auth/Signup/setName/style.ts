@@ -87,6 +87,10 @@ export const SignupButton = styled.button<ButtonPropsType>`
   margin-top: 20px;
 
   &:hover {
-    background: #119e6d;
+    ${(e) => {
+      return e.isFocused
+        ? "box-sizing: border-box; background: #f5f5f5; border: 2px solid #17d46f; color: #17d46f;"
+        : "";
+    }};
   }
 `;

@@ -99,10 +99,16 @@ export const LoginButton = styled.button<ButtonPropsType>`
   color: ${(e) => {
     return e.isFocused ? "#1C1C1C" : "#9E9E9E";
   }};
-  cursor: pointer;
+  cursor: ${(e) => {
+    return e.isFocused ? "pointer" : "";
+  }};
 
   &:hover {
-    border: 1px solid linear-gradient(91.86deg, #17d46f 7.02%, #119e6d 105.05%);
+    ${(e) => {
+      return e.isFocused
+        ? "box-sizing: border-box; background: #f5f5f5; border: 2px solid #17d46f; color: #17d46f;"
+        : "";
+    }};
   }
 `;
 
