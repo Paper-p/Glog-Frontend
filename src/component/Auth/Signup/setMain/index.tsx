@@ -11,6 +11,9 @@ const SetMain: React.FC = () => {
       <Header />
       <S.SignupWrapper>
         <S.SignupBox>
+          <S.GifBox>
+            <S.StyledGif src="/images/Signup.gif" alt="gif" />
+          </S.GifBox>
           <S.InputWrapper className="createId">
             <S.SortInput>
               <S.StyledSvg>
@@ -52,6 +55,8 @@ const SetMain: React.FC = () => {
               />
             </S.SortInput>
           </S.InputWrapper>
+          <S.SignupButton isFocused={Focused}>다음</S.SignupButton>
+          <S.TextBox>비밀번호는 8자리 이상 및 기호를 포함해주세요.</S.TextBox>
         </S.SignupBox>
       </S.SignupWrapper>
     </>

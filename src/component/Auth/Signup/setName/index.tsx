@@ -11,7 +11,9 @@ const SetName: React.FC = () => {
       <Header />
       <S.SignupWrapper>
         <S.SignupBox>
-          <S.GifBox src="" />
+          <S.GifBox>
+            <S.StyledGif src="/images/Signup.gif" alt="gif" />
+          </S.GifBox>
           <S.InputWrapper>
             <S.SortInput>
               <S.StyledSvg>

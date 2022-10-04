@@ -13,13 +13,16 @@ export const SignupWrapper = styled.div`
 
 export const SignupBox = styled.div`
   width: 366px;
-  height: 324px;
-  margin-bottom: 170px;
+  margin-bottom: 300px;
 `;
 
-export const GifBox = styled.img`
-  width: 100px;
-  height: 100px;
+export const GifBox = styled.div`
+  text-align: center;
+`;
+
+export const StyledGif = styled.img`
+  width: 180px;
+  height: 140px;
 `;
 
 export const InputWrapper = styled.div`
@@ -77,7 +80,9 @@ export const SignupButton = styled.button<ButtonPropsType>`
   border: none;
   font-weight: 800;
   font-size: 18px;
-  color: #1c1c1c;
+  color: ${(e) => {
+    return e.isFocused ? "#1C1C1C" : "#9E9E9E";
+  }};
   cursor: pointer;
   margin-top: 20px;
 

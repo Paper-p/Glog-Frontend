@@ -96,7 +96,9 @@ export const LoginButton = styled.button<ButtonPropsType>`
   border: none;
   font-weight: 800;
   font-size: 18px;
-  color: #1c1c1c;
+  color: ${(e) => {
+    return e.isFocused ? "#1C1C1C" : "#9E9E9E";
+  }};
   cursor: pointer;
 
   &:hover {

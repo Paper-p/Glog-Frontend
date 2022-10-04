@@ -13,7 +13,7 @@ const Signin: React.FC = () => {
       <S.SigninWrapper>
         <S.SigninBox>
           <Logo width={335} height={96} />
-          <S.HighlightText>다시 온걸 환영해!</S.HighlightText>
+          <S.HighlightText>다시 온걸 환영해요!</S.HighlightText>
           <S.InputWrapper className="id">
             <S.SortInput>
               <S.StyledSvg>
