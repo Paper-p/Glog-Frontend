@@ -1,19 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import { MainPage, SigninPage, SetNamePage, SetMainPage } from "./pages";
 import GlobalStyle from "./shared/GlobalStyles";
 
 const App: React.FC = () => {
   return (
     <>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/signin" element={<SigninPage />} />
-          <Route path="/first-signup" element={<SetNamePage />} />
-          <Route path="/second-signup" element={<SetMainPage />} />
-        </Routes>
-      </BrowserRouter>
+      <RecoilRoot>
+        <GlobalStyle />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/signin" element={<SigninPage />} />
+            <Route path="/first-signup" element={<SetMainPage />} />
+            <Route path="/second-signup" element={<SetNamePage />} />
+          </Routes>
+        </BrowserRouter>
+      </RecoilRoot>
     </>
   );
 };

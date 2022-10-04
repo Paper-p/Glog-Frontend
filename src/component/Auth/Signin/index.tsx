@@ -6,11 +6,14 @@ import { useState } from "react";
 import useInputs from "../../../hooks/useInputs";
 import auth from "../../../data/request/auth";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { loggedAtom } from "../../../Atoms";
 
 const Signin: React.FC = () => {
   const navigate = useNavigate();
   const [Focused, setFocused] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [logged, setLogged] = useRecoilState(loggedAtom);
   const [{ id, password }, onChange, reset] = useInputs({
     id: "",
     password: "",
@@ -20,7 +23,10 @@ const Signin: React.FC = () => {
     try {
       const res: any = await auth.signin(id, password);
       console.log(res.status);
-      navigate("/");
+      if (res.status === 200) {
+        setLogged(true);
+        navigate("/");
+      }
     } catch (e: any) {
       setIsError(true);
     }

@@ -5,9 +5,12 @@ import { useLocation } from "react-router-dom";
 import { css } from "@emotion/react";
 import Logo from "../Logo";
 import React from "react";
+import { useRecoilState } from "recoil";
+import { loggedAtom } from "../../../Atoms";
 
 const Header: React.FC = () => {
   const { pathname } = useLocation();
+  const [logged, setLogged] = useRecoilState(loggedAtom);
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
 
@@ -28,18 +31,24 @@ const Header: React.FC = () => {
           </Link>
         </S.HeaderElementsList>
       </S.Header>
-      <S.Header className="right-part">
-        <S.HeaderElementsList>
-          <Link to={"/signin"}>
-            <S.HeaderElements css={select("/signin")}>로그인</S.HeaderElements>
-          </Link>
-          <Link to={"/signup"}>
-            <S.HeaderElements css={select("/signup")}>
-              회원가입
-            </S.HeaderElements>
-          </Link>
-        </S.HeaderElementsList>
-      </S.Header>
+      {logged ? (
+        <></>
+      ) : (
+        <S.Header className="right-part">
+          <S.HeaderElementsList>
+            <Link to={"/signin"}>
+              <S.HeaderElements css={select("/signin")}>
+                로그인
+              </S.HeaderElements>
+            </Link>
+            <Link to={"/first-signup"}>
+              <S.HeaderElements css={select("/first-signup")}>
+                회원가입
+              </S.HeaderElements>
+            </Link>
+          </S.HeaderElementsList>
+        </S.Header>
+      )}
     </S.HeaderBox>
   );
 };

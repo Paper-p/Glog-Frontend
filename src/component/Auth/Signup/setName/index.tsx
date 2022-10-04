@@ -19,7 +19,7 @@ const SetName: React.FC = () => {
       const result: any = await auth.checkName(name);
       console.log(result.status);
       if (result.status === 200) {
-        navigate("/setMain");
+        navigate("/");
       }
     } catch (e: any) {
       setIsError(true);
