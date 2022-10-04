@@ -88,7 +88,9 @@ export const SignupButton = styled.button<ButtonPropsType>`
   color: ${(e) => {
     return e.isFocused ? "#1C1C1C" : "#9E9E9E";
   }};
-  cursor: pointer;
+  cursor: ${(e) => {
+    return e.isFocused ? "pointer" : "";
+  }};
   margin-top: 16px;
   margin-bottom: 20px;
 
