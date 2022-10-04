@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { BASE_URL } from "../../shared/config";
 
-const Request = (p: AxiosRequestConfig, token?: string) => {
+const RequestForm = (p: AxiosRequestConfig, token?: string) => {
   try {
     const res = token
       ? axios({
@@ -27,4 +27,4 @@ const Request = (p: AxiosRequestConfig, token?: string) => {
   }
 };
 
-export default Request;
+export default RequestForm;

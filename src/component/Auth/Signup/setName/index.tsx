@@ -3,12 +3,29 @@ import * as S from "./style";
 import * as I from "../../../../Assets/svg";
 import { useState } from "react";
 import useInputs from "../../../../hooks/useInputs";
+import auth from "../../../../data/request/auth";
+import { useNavigate } from "react-router-dom";
 
 const SetName: React.FC = () => {
-  const [Focused, setFocused] = useState(false);
+  const [Focused, setFocused] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const navigate = useNavigate();
   const [{ name }, onChange, reset] = useInputs({
     name: "",
   });
+
+  const checkUserName = async () => {
+    try {
+      const result: any = await auth.checkName(name);
+      console.log(result.status);
+      if (result.status === 200) {
+        navigate("/setMain");
+      }
+    } catch (e: any) {
+      setIsError(true);
+    }
+    reset();
+  };
 
   return (
     <>
@@ -34,7 +51,7 @@ const SetName: React.FC = () => {
               />
             </S.SortInput>
           </S.InputWrapper>
-          <S.SignupButton isFocused={Focused} onClick={reset}>
+          <S.SignupButton isFocused={Focused} onClick={checkUserName}>
             완료
           </S.SignupButton>
         </S.SignupBox>
