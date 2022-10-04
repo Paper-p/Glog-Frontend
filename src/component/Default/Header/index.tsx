@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Logo from "../Logo";
+import React from "react";
 
 const Header: React.FC = () => {
   const { pathname } = useLocation();
@@ -43,4 +44,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
