@@ -31,13 +31,16 @@ export const HighlightText = styled.div`
   margin-bottom: 8px;
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div<{ isError: boolean }>`
   width: 100%;
   height: 52px;
   background: #252727;
   border-radius: 10px;
   margin-top: 20px;
   align-items: center;
+  ${(e) => {
+    return e.isError ? "filter: drop-shadow(0px 2px 13px #E45B3C);" : "";
+  }}
 
   &.password {
     margin-top: 12px;
@@ -66,6 +69,10 @@ export const StyledInputBase = styled.input`
   }
 `;
 
+export const InputID = styled(StyledInputBase)``;
+
+export const InputPassword = styled(StyledInputBase)``;
+
 export const SortInput = styled.div`
   display: flex;
   text-align: center;
@@ -79,10 +86,6 @@ export const StyledSvg = styled.div`
     margin-top: 1.5px;
   }
 `;
-
-export const InputID = styled(StyledInputBase)``;
-
-export const InputPassword = styled(StyledInputBase)``;
 
 export const LoginButton = styled.button<ButtonPropsType>`
   width: 366px;
@@ -131,4 +134,14 @@ export const Text = styled.li`
     color: #39c078;
     cursor: pointer;
   }
+`;
+
+export const ErrorText = styled.div<{ isError: boolean }>`
+  display: ${(e) => {
+    return e.isError ? "block" : "none";
+  }};
+  text-align: center;
+  color: #e83f28;
+  font-size: 14px;
+  margin-top: 72px;
 `;

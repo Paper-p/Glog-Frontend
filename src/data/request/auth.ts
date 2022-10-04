@@ -13,6 +13,22 @@ class Auth {
       return error;
     }
   }
+
+  signin(id: string, password: string) {
+    try {
+      return RequestForm({
+        method: "POST",
+        url: getAuth.signin(),
+        withCredentials: true,
+        data: {
+          userId: id,
+          password: password,
+        },
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new Auth();

@@ -4,13 +4,29 @@ import * as I from "../../../Assets/svg";
 import Logo from "../../Default/Logo";
 import { useState } from "react";
 import useInputs from "../../../hooks/useInputs";
+import auth from "../../../data/request/auth";
+import { useNavigate } from "react-router-dom";
 
 const Signin: React.FC = () => {
-  const [Focused, setFocused] = useState(false);
+  const navigate = useNavigate();
+  const [Focused, setFocused] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
   const [{ id, password }, onChange, reset] = useInputs({
     id: "",
     password: "",
   });
+
+  const signin = async () => {
+    try {
+      const res: any = await auth.signin(id, password);
+      console.log(res.status);
+      navigate("/");
+    } catch (e: any) {
+      setIsError(true);
+    }
+
+    reset();
+  };
 
   return (
     <>
@@ -19,7 +35,7 @@ const Signin: React.FC = () => {
         <S.SigninBox>
           <Logo width={335} height={96} />
           <S.HighlightText>다시 온걸 환영해요!</S.HighlightText>
-          <S.InputWrapper className="id">
+          <S.InputWrapper className="id" isError={isError}>
             <S.SortInput>
               <S.StyledSvg>
                 <I.IdAndName />
@@ -35,7 +51,7 @@ const Signin: React.FC = () => {
               />
             </S.SortInput>
           </S.InputWrapper>
-          <S.InputWrapper className="password">
+          <S.InputWrapper className="password" isError={isError}>
             <S.SortInput>
               <S.StyledSvg>
                 <I.Password />
@@ -52,7 +68,7 @@ const Signin: React.FC = () => {
               />
             </S.SortInput>
           </S.InputWrapper>
-          <S.LoginButton isFocused={Focused} onClick={reset}>
+          <S.LoginButton isFocused={Focused} onClick={signin}>
             로그인
           </S.LoginButton>
           <S.TextBox>
@@ -61,6 +77,9 @@ const Signin: React.FC = () => {
               <S.Text>를 잊어 버리셨나요?</S.Text>
             </S.TextUl>
           </S.TextBox>
+          <S.ErrorText isError={isError}>
+            아이디 또는 비밀번호가 일치하지 않아요.
+          </S.ErrorText>
         </S.SigninBox>
       </S.SigninWrapper>
     </>
