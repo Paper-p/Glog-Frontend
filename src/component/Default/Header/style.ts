@@ -38,3 +38,10 @@ export const HeaderElements = styled.li`
 export const Logo = styled.div`
   height: 30px;
 `;
+
+export const Profile = styled.img`
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  margin-right: 20px;
+`;

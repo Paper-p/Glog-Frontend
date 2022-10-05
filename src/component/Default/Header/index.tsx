@@ -31,10 +31,14 @@ const Header: React.FC = () => {
           </Link>
         </S.HeaderElementsList>
       </S.Header>
-      {logged ? (
-        <></>
-      ) : (
-        <S.Header className="right-part">
+      <S.Header className="right-part">
+        {logged ? (
+          <S.HeaderElementsList>
+            <S.HeaderElements>
+              <S.Profile src="/images/profile.jpeg" alt="profile" />
+            </S.HeaderElements>
+          </S.HeaderElementsList>
+        ) : (
           <S.HeaderElementsList>
             <Link to={"/signin"}>
               <S.HeaderElements css={select("/signin")}>
@@ -47,8 +51,8 @@ const Header: React.FC = () => {
               </S.HeaderElements>
             </Link>
           </S.HeaderElementsList>
-        </S.Header>
-      )}
+        )}
+      </S.Header>
     </S.HeaderBox>
   );
 };
