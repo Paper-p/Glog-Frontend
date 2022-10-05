@@ -19,7 +19,9 @@ const Header: React.FC = () => {
       <S.Header>
         <S.HeaderElementsList>
           <S.HeaderElements>
-            <Logo width={90} height={25} />
+            <Link to={"/"}>
+              <Logo width={90} height={25} />
+            </Link>
           </S.HeaderElements>
           <Link to={"/"}>
             <S.HeaderElements css={select("/")}>홈</S.HeaderElements>
@@ -35,7 +37,9 @@ const Header: React.FC = () => {
         {logged ? (
           <S.HeaderElementsList>
             <S.HeaderElements>
-              <S.Profile src="/images/profile.jpeg" alt="profile" />
+              <Link to={"/my"}>
+                <S.Profile src="/images/profile.jpeg" alt="profile" />
+              </Link>
             </S.HeaderElements>
           </S.HeaderElementsList>
         ) : (
