@@ -4,15 +4,38 @@ import * as I from "../../../../Assets/svg";
 import { useState } from "react";
 import useInputs from "../../../../hooks/useInputs";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import auth from "../../../../data/request/auth";
+
+type SetMainType = {
+  userId: string;
+  password: string;
+};
 
 const SetMain: React.FC = () => {
   const [Focused, setFocused] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [{ id, password, checkPassword }, onChange, reset] = useInputs({
-    id: "",
+  const [{ userId, password, checkPassword }, onChange, reset] = useInputs({
+    userId: "",
     password: "",
     checkPassword: "",
   });
+
+  const { register, handleSubmit } = useForm();
+  const onValid = async (data: SetMainType) => {
+    try {
+      const res: any = await auth.confirmId(data.userId);
+      if (res.status === 201) {
+        navigate("/second-signup", { state: { data } });
+      }
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
+  const inValid = (errors: any) => {
+    console.log(errors);
+  };
 
   return (
     <>
@@ -28,13 +51,13 @@ const SetMain: React.FC = () => {
                 <I.IdAndName />
               </S.StyledSvg>
               <S.InputID
-                name="id"
+                name="userId"
                 placeholder="아이디를 입력해주세요"
                 onFocus={() => {
                   setFocused(true);
                 }}
                 onChange={onChange}
-                value={id}
+                value={userId}
               />
             </S.SortInput>
           </S.InputWrapper>

@@ -15,6 +15,16 @@ class Auth {
     }
   }
 
+  confirmId(userId: string) {
+    try {
+      return RequestForm({
+        method: "HEAD",
+        url: `${getAuth.checkId()}?userId=${userId}`,
+        withCredentials: true,
+      });
+    } catch {}
+  }
+
   signin(id: string, password: string) {
     try {
       return RequestForm({
