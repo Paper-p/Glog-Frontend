@@ -1,8 +1,9 @@
 import RequestForm from "../form/requestForm";
+import { SignupModel } from "../model/signup";
 import { getAuth } from "../url/getUrl";
 
 class Auth {
-  checkName(name: string) {
+  confirmName(name: string) {
     try {
       return RequestForm({
         method: "HEAD",
@@ -23,6 +24,23 @@ class Auth {
         data: {
           userId: id,
           password: password,
+        },
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  signup(data: SignupModel) {
+    try {
+      return RequestForm({
+        method: "POST",
+        url: getAuth.signup(),
+        withCredentials: true,
+        data: {
+          nickname: data.nickname,
+          userId: data.userId,
+          password: data.password,
         },
       });
     } catch (error) {
