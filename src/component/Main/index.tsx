@@ -1,4 +1,4 @@
-import Header from "../Default/Header";
+import Header from "../Common/Header";
 
 const Main: React.FC = () => {
   return <Header />;

@@ -1,7 +1,7 @@
-import Header from "../../Default/Header";
+import Header from "../../Common/Header";
 import * as S from "./style";
 import * as I from "../../../Assets/svg";
-import Logo from "../../Default/Logo";
+import Logo from "../../Common/Logo";
 import { useState } from "react";
 import useInputs from "../../../hooks/useInputs";
 import auth from "../../../data/request/auth";

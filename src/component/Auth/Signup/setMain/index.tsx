@@ -1,11 +1,13 @@
 import * as S from "./style";
-import Header from "../../../Default/Header";
+import Header from "../../../Common/Header";
 import * as I from "../../../../Assets/svg";
 import { useState } from "react";
 import useInputs from "../../../../hooks/useInputs";
+import { useNavigate } from "react-router-dom";
 
 const SetMain: React.FC = () => {
-  const [Focused, setFocused] = useState(false);
+  const [Focused, setFocused] = useState<boolean>(false);
+  const navigate = useNavigate();
   const [{ id, password, checkPassword }, onChange, reset] = useInputs({
     id: "",
     password: "",

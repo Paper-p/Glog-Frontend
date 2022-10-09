@@ -1,4 +1,4 @@
-import Header from "../../../Default/Header";
+import Header from "../../../Common/Header";
 import * as S from "./style";
 import * as I from "../../../../Assets/svg";
 import { useState } from "react";
