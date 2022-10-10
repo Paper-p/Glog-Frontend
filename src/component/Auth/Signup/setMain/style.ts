@@ -25,16 +25,18 @@ export const StyledGif = styled.img`
   height: 140px;
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div<{ isError: boolean }>`
   width: 100%;
   height: 52px;
   background: #252727;
   border-radius: 10px;
   margin-top: 20px;
   align-items: center;
+
+  filter: ${(e) => (e.isError ? "drop-shadow(0px 1px 7px #e45b3c)" : "")};
 `;
 
-export const StyledInputBase = styled.input`
+export const Input = styled.input`
   width: 90%;
   height: 40px;
   border: none;
@@ -69,9 +71,20 @@ export const StyledSvg = styled.div`
   }
 `;
 
-export const InputID = styled(StyledInputBase)``;
+export const ErrorTextBox = styled.div`
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-export const InputPassword = styled(StyledInputBase)``;
+export const ErrorText = styled.div<{ isError: boolean }>`
+  display: ${(e) => (e.isError ? "block" : "none")};
+  color: #e83f28;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
+`;
 
 export const SignupButton = styled.button<ButtonPropsType>`
   width: 366px;
@@ -81,6 +94,7 @@ export const SignupButton = styled.button<ButtonPropsType>`
       ? "linear-gradient(95.2deg, #17D56F 45.83%, #119E6D 93.3%)"
       : "#505151";
   }};
+
   border-radius: 10px;
   border: none;
   font-weight: 800;
@@ -88,11 +102,10 @@ export const SignupButton = styled.button<ButtonPropsType>`
   color: ${(e) => {
     return e.isFocused ? "#1C1C1C" : "#9E9E9E";
   }};
+
   cursor: ${(e) => {
     return e.isFocused ? "pointer" : "";
   }};
-  margin-top: 16px;
-  margin-bottom: 20px;
 
   &:hover {
     ${(e) => {
@@ -107,4 +120,5 @@ export const TextBox = styled.div`
   text-align: center;
   color: #eaeaea;
   font-size: 14px;
+  margin-top: 6px;
 `;
