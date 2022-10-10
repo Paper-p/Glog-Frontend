@@ -25,7 +25,11 @@ const SetMain: React.FC = () => {
   const onValid = async () => {
     if (password !== checkPassword) {
       setNull("checkPassword");
-      setError("checkPassword", { shouldFocus: true });
+      setError(
+        "checkPassword",
+        { message: "비밀번호가 일치하지 않습니다." },
+        { shouldFocus: true }
+      );
       setState({
         ...state,
         isError: true,
