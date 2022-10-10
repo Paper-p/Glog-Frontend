@@ -16,7 +16,7 @@ const SetName: React.FC = () => {
 
   const checkUserName = async () => {
     try {
-      const result: any = await auth.checkName(name);
+      const result: any = await auth.confirmName(name);
       console.log(result.status);
       if (result.status === 200) {
         navigate("/");
