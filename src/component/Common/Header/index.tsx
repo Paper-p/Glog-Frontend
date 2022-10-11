@@ -10,7 +10,7 @@ import { loggedAtom } from "Atoms";
 
 const Header: React.FC = () => {
   const { pathname } = useLocation();
-  const [logged, setLogged] = useRecoilState(loggedAtom);
+  const [logged] = useRecoilState(loggedAtom);
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
 

@@ -13,7 +13,7 @@ const Signin: React.FC = () => {
   const navigate = useNavigate();
   const [Focused, setFocused] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [logged, setLogged] = useRecoilState(loggedAtom);
+  const [, setLogged] = useRecoilState(loggedAtom);
   const [{ id, password }, onChange, reset] = useInputs({
     id: "",
     password: "",

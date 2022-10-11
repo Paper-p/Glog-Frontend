@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const SetName: React.FC = () => {
   const [Focused, setFocused] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [, setIsError] = useState<boolean>(false);
   const navigate = useNavigate();
   const [{ name }, onChange, reset] = useInputs({
     name: "",

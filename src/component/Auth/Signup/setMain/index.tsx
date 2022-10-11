@@ -14,12 +14,11 @@ const SetMain: React.FC = () => {
     isError: false,
     errorText: "",
   });
-  const [{ userId, password, checkPassword }, onChange, reset, setNull] =
-    useInputs({
-      userId: "",
-      password: "",
-      checkPassword: "",
-    });
+  const [{ userId, password, checkPassword }, onChange, , setNull] = useInputs({
+    userId: "",
+    password: "",
+    checkPassword: "",
+  });
   const { register, handleSubmit, setError } = useForm();
 
   const onValid = async () => {
