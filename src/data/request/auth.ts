@@ -1,6 +1,6 @@
 import RequestForm from "../form/requestForm";
 import { SignupModel } from "../model/signup";
-import { getAuth } from "../url/getUrl";
+import { getAuth } from "data/url/getUrl";
 
 class Auth {
   confirmName(name: string) {

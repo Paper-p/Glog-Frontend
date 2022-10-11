@@ -1,4 +1,4 @@
-import { SetMain } from "../../component";
+import { SetMain } from "component";
 const SetMainPage: React.FC = () => {
   return <SetMain />;
 };

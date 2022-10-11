@@ -1,9 +1,9 @@
-import Header from "../../../Common/Header";
+import Header from "component/Common/Header";
 import * as S from "./style";
-import * as I from "../../../../Assets/svg";
+import * as I from "Assets/svg";
 import { useState } from "react";
-import useInputs from "../../../../hooks/useInputs";
-import auth from "../../../../data/request/auth";
+import useInputs from "hooks/useInputs";
+import auth from "data/request/auth";
 import { useNavigate } from "react-router-dom";
 
 const SetName: React.FC = () => {

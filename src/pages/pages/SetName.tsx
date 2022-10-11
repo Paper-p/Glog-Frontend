@@ -1,4 +1,4 @@
-import { SetName } from "../../component";
+import { SetName } from "component";
 
 const SetNamePage: React.FC = () => {
   return <SetName />;

@@ -1,11 +1,11 @@
 import * as S from "./style";
-import Header from "../../../Common/Header";
-import * as I from "../../../../Assets/svg";
+import Header from "component/Common/Header";
+import * as I from "Assets/svg";
 import { useState } from "react";
-import useInputs from "../../../../hooks/useInputs";
+import useInputs from "hooks/useInputs";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import auth from "../../../../data/request/auth";
+import auth from "data/request/auth";
 
 const SetMain: React.FC = () => {
   const navigate = useNavigate();
@@ -25,18 +25,21 @@ const SetMain: React.FC = () => {
   const onValid = async () => {
     if (password !== checkPassword) {
       setNull("checkPassword");
-      setError(
-        "checkPassword",
-        { message: "비밀번호가 일치하지 않습니다." },
-        { shouldFocus: true }
-      );
+      setError("checkPassword", { message: "" }, { shouldFocus: true });
       setState({
         ...state,
         isError: true,
         errorText: "비밀번호가 일치하지 않습니다",
       });
     } else {
-      await auth.confirmId(userId);
+      const res: any = await auth.confirmId(userId);
+      if (res.status === 404) {
+        setState({
+          ...state,
+          isError: true,
+          errorText: "이미 존재하는 아이디에요",
+        });
+      }
       //toastify
       navigate("/second-signup", {
         state: { userId: userId, password: password },
@@ -49,7 +52,7 @@ const SetMain: React.FC = () => {
     setState({
       ...state,
       isError: true,
-      errorText: "",
+      errorText: "빈칸을 전부 입력해주세요",
     });
   };
 
@@ -110,7 +113,10 @@ const SetMain: React.FC = () => {
                   <I.Password />
                 </S.StyledSvg>
                 <S.Input
-                  {...register("checkPassword", { required: true })}
+                  {...(register("checkPassword", { required: true }),
+                  () => {
+                    console.log("as");
+                  })}
                   name="checkPassword"
                   type="password"
                   placeholder="비밀번호를 다시 입력해주세요"

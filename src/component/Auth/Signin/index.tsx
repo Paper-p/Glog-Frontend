@@ -1,13 +1,13 @@
-import Header from "../../Common/Header";
+import Header from "component/Common/Header";
 import * as S from "./style";
-import * as I from "../../../Assets/svg";
-import Logo from "../../Common/Logo";
+import * as I from "Assets/svg";
+import Logo from "component/Common/Logo";
 import { useState } from "react";
-import useInputs from "../../../hooks/useInputs";
-import auth from "../../../data/request/auth";
+import useInputs from "hooks/useInputs";
+import auth from "data/request/auth";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { loggedAtom } from "../../../Atoms";
+import { loggedAtom } from "Atoms";
 
 const Signin: React.FC = () => {
   const navigate = useNavigate();

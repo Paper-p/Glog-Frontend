@@ -1,4 +1,4 @@
-import { Signin } from "../../component";
+import { Signin } from "component";
 const SigninPage: React.FC = () => {
   return <Signin />;
 };

@@ -1,4 +1,4 @@
-import { BASE_URL } from "../../shared/config";
+import { BASE_URL } from "shared/config";
 
 export const getAuth = {
   checkName: () => {
