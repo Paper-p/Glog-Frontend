@@ -6,17 +6,24 @@ type ButtonPropsType = {
 
 export const SignupWrapper = styled.div`
   display: flex;
-  height: calc(100vh - 170px);
-  align-items: center;
   justify-content: center;
 `;
 
-export const SignupBox = styled.div`
-  width: 366px;
+export const JoinSection = styled.div`
+  display: flex;
+  height: calc(100vh - 170px);
+  align-items: center;
+  justify-content: center;
+  margin-left: 366px;
+`;
+
+export const JoinBox = styled.div`
+  width: 732px;
   margin-bottom: 170px;
 `;
 
 export const GifBox = styled.div`
+  width: 50%;
   text-align: center;
 `;
 
@@ -25,80 +32,33 @@ export const StyledGif = styled.img`
   height: 140px;
 `;
 
-export const InputWrapper = styled.div<{ isError: boolean }>`
-  width: 100%;
-  height: 52px;
-  background: #252727;
-  border-radius: 10px;
+export const InputElements = styled.div`
+  display: flex;
   margin-top: 20px;
-  align-items: center;
-
-  filter: ${(e) => (e.isError ? "drop-shadow(0px 1px 7px #e45b3c)" : "")};
 `;
 
-export const Input = styled.input`
-  width: 90%;
-  height: 40px;
-  border: none;
-  margin: 6px;
-  background: #252727;
-  font-size: 16px;
-  color: #ffffff7a;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px #252727 inset !important;
-  }
-`;
-
-export const SortInput = styled.div`
+export const ErrorText = styled.div`
   display: flex;
-  text-align: center;
-  margin-left: 10px;
-`;
-
-export const StyledSvg = styled.div`
-  margin: auto;
-
-  & > svg {
-    margin-top: 1.5px;
-  }
-`;
-
-export const ErrorTextBox = styled.div`
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const ErrorText = styled.div<{ isError: boolean }>`
-  display: ${(e) => (e.isError ? "block" : "none")};
+  margin-left: 20px;
   color: #e83f28;
-  font-size: 14px;
-  text-align: center;
-  margin-top: 5px;
+  align-items: center;
 `;
 
 export const SignupButton = styled.button<ButtonPropsType>`
-  width: 366px;
+  width: 50%;
   height: 60px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 800;
+  font-size: 18px;
+  margin-top: 16px;
+
   background: ${(e) => {
     return e.isFocused
       ? "linear-gradient(95.2deg, #17D56F 45.83%, #119E6D 93.3%)"
       : "#505151";
   }};
 
-  border-radius: 10px;
-  border: none;
-  font-weight: 800;
-  font-size: 18px;
   color: ${(e) => {
     return e.isFocused ? "#1C1C1C" : "#9E9E9E";
   }};
@@ -116,7 +76,8 @@ export const SignupButton = styled.button<ButtonPropsType>`
   }
 `;
 
-export const TextBox = styled.div`
+export const CommonText = styled.div`
+  width: 50%;
   text-align: center;
   color: #eaeaea;
   font-size: 14px;
