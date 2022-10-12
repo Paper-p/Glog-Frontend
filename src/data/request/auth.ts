@@ -22,7 +22,9 @@ class Auth {
         url: `${getAuth.checkId()}?userId=${userId}`,
         withCredentials: true,
       });
-    } catch {}
+    } catch (error) {
+      return error;
+    }
   }
 
   signin(id: string, password: string) {
