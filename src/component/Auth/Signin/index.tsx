@@ -1,17 +1,29 @@
-import Header from "component/Common/Header";
 import * as S from "./style";
-import * as I from "Assets/svg";
+import Header from "component/Common/Header";
 import Logo from "component/Common/Logo";
+import Input from "component/Common/Input";
 import { useState } from "react";
-import auth from "data/request/auth";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { loggedAtom } from "Atoms";
+import auth from "data/request/auth";
+import { useForm } from "react-hook-form";
+
+interface AuthForm {
+  userId: string;
+  password: string;
+}
 
 const Signin: React.FC = () => {
   const navigate = useNavigate();
   const [Focused, setFocused] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<AuthForm>();
   const [, setLogged] = useRecoilState(loggedAtom);
 
   return (
@@ -21,36 +33,21 @@ const Signin: React.FC = () => {
         <S.SigninBox>
           <Logo width={335} height={96} />
           <S.HighlightText>다시 온걸 환영해요!</S.HighlightText>
-          <S.InputWrapper className="id" isError={isError}>
-            <S.SortInput>
-              <S.StyledSvg>
-                <I.IdAndName />
-              </S.StyledSvg>
-              <S.InputID
-                name="id"
-                placeholder="아이디를 입력해주세요"
-                onFocus={() => {
-                  setFocused(true);
-                }}
-              />
-            </S.SortInput>
-          </S.InputWrapper>
-          <S.InputWrapper className="password" isError={isError}>
-            <S.SortInput>
-              <S.StyledSvg>
-                <I.Password />
-              </S.StyledSvg>
-              <S.InputPassword
-                name="password"
-                type="password"
-                placeholder="비밀번호를 입력해주세요"
-                onFocus={() => {
-                  setFocused(true);
-                }}
-              />
-            </S.SortInput>
-          </S.InputWrapper>
-          <S.LoginButton isFocused={Focused}>로그인</S.LoginButton>
+          <S.InputBox>
+            <Input
+              sortation={true}
+              placeholder="아이디를 입력해주세요."
+              register={register}
+              isError={isError}
+            />
+            <Input
+              sortation={false}
+              placeholder="비밀번호를 입력해주세요."
+              register={register}
+              isError={isError}
+            />
+          </S.InputBox>
+          <S.LoginButton>로그인</S.LoginButton>
           <S.TextBox>
             <S.TextUl>
               <S.Text>비밀번호</S.Text>

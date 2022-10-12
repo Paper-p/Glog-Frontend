@@ -1,9 +1,5 @@
 import styled from "@emotion/styled";
 
-type ButtonPropsType = {
-  isFocused: boolean;
-};
-
 export const SigninWrapper = styled.div`
   display: flex;
   height: calc(100vh - 170px);
@@ -22,6 +18,12 @@ export const LogoWrapper = styled.div`
   height: 96px;
 `;
 
+export const InputBox = styled.div`
+  & > * {
+    margin: 20px 0;
+  }
+`;
+
 export const HighlightText = styled.div`
   text-align: center;
   font-weight: 600;
@@ -31,87 +33,21 @@ export const HighlightText = styled.div`
   margin-bottom: 8px;
 `;
 
-export const InputWrapper = styled.div<{ isError: boolean }>`
-  width: 100%;
-  height: 52px;
-  background: #252727;
-  border-radius: 10px;
-  margin-top: 20px;
-  align-items: center;
-  ${(e) => {
-    return e.isError ? "filter: drop-shadow(0px 2px 13px #E45B3C);" : "";
-  }}
-
-  &.password {
-    margin-top: 12px;
-    margin-bottom: 32px;
-  }
-`;
-
-export const StyledInputBase = styled.input`
-  width: 90%;
-  height: 40px;
-  border: none;
-  margin: 6px;
-  background: #252727;
-  font-size: 16px;
-  color: #ffffff7a;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px #252727 inset !important;
-  }
-`;
-
-export const InputID = styled(StyledInputBase)``;
-
-export const InputPassword = styled(StyledInputBase)``;
-
-export const SortInput = styled.div`
-  display: flex;
-  text-align: center;
-  margin-left: 10px;
-`;
-
-export const StyledSvg = styled.div`
-  margin: auto;
-
-  & > svg {
-    margin-top: 1.5px;
-  }
-`;
-
-export const LoginButton = styled.button<ButtonPropsType>`
+export const LoginButton = styled.button`
   width: 366px;
   height: 60px;
-  background: ${(e) => {
-    return e.isFocused
-      ? "linear-gradient(95.2deg, #17D56F 45.83%, #119E6D 93.3%)"
-      : "#505151";
-  }};
+  background: linear-gradient(95.2deg, #17d56f 45.83%, #119e6d 93.3%);
   border-radius: 10px;
   border: none;
   font-weight: 800;
   font-size: 18px;
-  color: ${(e) => {
-    return e.isFocused ? "#1C1C1C" : "#9E9E9E";
-  }};
-  cursor: ${(e) => {
-    return e.isFocused ? "pointer" : "";
-  }};
-
+  color: #1c1c1c;
+  cursor: pointer;
   &:hover {
-    ${(e) => {
-      return e.isFocused
-        ? "box-sizing: border-box; background: #f5f5f5; border: 2px solid #17d46f; color: #17d46f;"
-        : "";
-    }};
+    box-sizing: border-box;
+    background: #f5f5f5;
+    border: 2px solid #17d46f;
+    color: #17d46f;
   }
 `;
 
