@@ -42,7 +42,7 @@ export const HighlightText = styled.div`
 export const TextBox = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 10px;
 `;
 
 export const TextUl = styled.ul`
