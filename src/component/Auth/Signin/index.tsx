@@ -37,15 +37,15 @@ const Signin: React.FC = () => {
           <S.InputBox>
             <Input
               sortation={true}
-              placeholder="아이디를 입력해주세요."
               register={register}
               isError={isError}
+              placeholder="아이디를 입력해주세요."
             />
             <Input
               sortation={false}
-              placeholder="비밀번호를 입력해주세요."
               register={register}
               isError={isError}
+              placeholder="비밀번호를 입력해주세요."
             />
           </S.InputBox>
           <S.ButtonBox>

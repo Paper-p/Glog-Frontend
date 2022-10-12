@@ -68,7 +68,6 @@ const SetName: React.FC = () => {
           <S.InputElements>
             <Input
               sortation={true}
-              placeholder="사용하실 닉네임을 입력해주세요."
               register={register("nickname", {
                 required: "닉네임 필수입력입니다.",
                 minLength: {
@@ -81,6 +80,7 @@ const SetName: React.FC = () => {
                 },
               })}
               isError={isError}
+              placeholder="사용하실 닉네임을 입력해주세요."
             />
             <S.ErrorText>{errors.nickname?.message}</S.ErrorText>
           </S.InputElements>

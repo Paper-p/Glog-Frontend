@@ -66,7 +66,6 @@ const SetMain: React.FC = () => {
             <S.InputElements>
               <Input
                 sortation={true}
-                placeholder="사용하실 아이디를 입력해주세요."
                 register={register("userId", {
                   required: "아이디는 필수입력입니다.",
                   minLength: {
@@ -79,13 +78,13 @@ const SetMain: React.FC = () => {
                   },
                 })}
                 isError={isError}
+                placeholder="사용하실 아이디를 입력해주세요."
               />
               <S.ErrorText>{errors.userId?.message}</S.ErrorText>
             </S.InputElements>
             <S.InputElements>
               <Input
                 sortation={false}
-                placeholder="사용하실 비밀번호를 입력해주세요."
                 register={register("password", {
                   required: "비밀번호는 필수입력입니다.",
                   minLength: {
@@ -103,17 +102,18 @@ const SetMain: React.FC = () => {
                   },
                 })}
                 isError={isError}
+                placeholder="사용하실 비밀번호를 입력해주세요."
               />
               <S.ErrorText>{errors.password?.message}</S.ErrorText>
             </S.InputElements>
             <S.InputElements>
               <Input
                 sortation={false}
-                placeholder="사용하실 비밀번호를 한번 더 입력해주세요."
                 register={register("confirmPassword", {
                   required: "비밀번호 확인은 필수입력입니다.",
                 })}
                 isError={isError}
+                placeholder="사용하실 비밀번호를 한번 더 입력해주세요."
               />
               <S.ErrorText>{errors.confirmPassword?.message}</S.ErrorText>
             </S.InputElements>

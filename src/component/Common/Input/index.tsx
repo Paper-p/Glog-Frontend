@@ -1,19 +1,13 @@
 import * as S from "./style";
 import * as I from "Assets/svg";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLInputElement> {
   sortation: boolean;
-  placeholder: string;
   register: any;
   isError: boolean;
 }
 
-const Input: React.FC<Props> = ({
-  sortation,
-  placeholder,
-  register,
-  isError,
-}) => {
+const Input: React.FC<Props> = ({ sortation, register, isError, ...rest }) => {
   return (
     <>
       {sortation ? (
@@ -23,7 +17,7 @@ const Input: React.FC<Props> = ({
               <S.StyledSvg>
                 <I.IdAndName />
               </S.StyledSvg>
-              <S.Input type="text" {...register} placeholder={placeholder} />
+              <S.Input type="text" {...register} {...rest} />
             </S.SortInput>
           </S.InputWrapper>
         </S.Container>
@@ -34,11 +28,7 @@ const Input: React.FC<Props> = ({
               <S.StyledSvg>
                 <I.Password />
               </S.StyledSvg>
-              <S.Input
-                type="password"
-                {...register}
-                placeholder={placeholder}
-              />
+              <S.Input type="password" {...register} {...rest} />
             </S.SortInput>
           </S.InputWrapper>
         </S.Container>
