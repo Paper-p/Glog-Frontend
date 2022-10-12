@@ -2,6 +2,7 @@ import * as S from "./style";
 import Header from "component/Common/Header";
 import Logo from "component/Common/Logo";
 import Input from "component/Common/Input";
+import Button from "component/Common/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -47,7 +48,9 @@ const Signin: React.FC = () => {
               isError={isError}
             />
           </S.InputBox>
-          <S.LoginButton>로그인</S.LoginButton>
+          <S.ButtonBox>
+            <Button text="로그인" />
+          </S.ButtonBox>
           <S.TextBox>
             <S.TextUl>
               <S.Text>비밀번호</S.Text>

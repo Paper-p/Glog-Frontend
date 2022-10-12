@@ -15,7 +15,7 @@ export const JoinSection = styled.div`
 
 export const JoinBox = styled.form`
   width: 732px;
-  margin-bottom: 170px;
+  margin-bottom: 200px;
 `;
 
 export const GifBox = styled.div`
@@ -40,31 +40,10 @@ export const ErrorText = styled.div`
   align-items: center;
 `;
 
-export const SignupButton = styled.button`
-  width: 50%;
-  height: 60px;
-  border-radius: 10px;
-  border: none;
-  font-weight: 800;
-  font-size: 18px;
-  margin-top: 16px;
-  background: linear-gradient(95.2deg, #17d56f 45.83%, #119e6d 93.3%);
-
-  color: #1c1c1c;
-  cursor: pointer;
-
-  &:hover {
-    box-sizing: border-box;
-    background: #f5f5f5;
-    border: 2px solid #17d46f;
-    color: #17d46f;
-  }
-`;
-
 export const CommonText = styled.div`
   width: 50%;
   text-align: center;
   color: #eaeaea;
   font-size: 14px;
-  margin-top: 6px;
+  margin-top: 10px;
 `;

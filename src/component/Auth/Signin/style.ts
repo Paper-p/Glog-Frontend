@@ -20,7 +20,13 @@ export const LogoWrapper = styled.div`
 
 export const InputBox = styled.div`
   & > * {
-    margin: 20px 0;
+    margin-top: 20px;
+  }
+`;
+
+export const ButtonBox = styled.div`
+  & > * {
+    margin: 20px 10px 0 0;
   }
 `;
 
@@ -31,24 +37,6 @@ export const HighlightText = styled.div`
   padding-top: 20px;
   color: white;
   margin-bottom: 8px;
-`;
-
-export const LoginButton = styled.button`
-  width: 366px;
-  height: 60px;
-  background: linear-gradient(95.2deg, #17d56f 45.83%, #119e6d 93.3%);
-  border-radius: 10px;
-  border: none;
-  font-weight: 800;
-  font-size: 18px;
-  color: #1c1c1c;
-  cursor: pointer;
-  &:hover {
-    box-sizing: border-box;
-    background: #f5f5f5;
-    border: 2px solid #17d46f;
-    color: #17d46f;
-  }
 `;
 
 export const TextBox = styled.div`

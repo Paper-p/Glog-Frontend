@@ -1,6 +1,7 @@
-import Header from "component/Common/Header";
 import * as S from "./style";
+import Header from "component/Common/Header";
 import Input from "component/Common/Input";
+import Button from "component/Common/Button";
 import { useState } from "react";
 import auth from "data/request/auth";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +30,7 @@ const SetName: React.FC = () => {
             register={register}
             isError={isError}
           />
-          <S.SignupButton>완료</S.SignupButton>
+          <Button text="완료" />
         </S.SignupBox>
       </S.SignupWrapper>
     </>

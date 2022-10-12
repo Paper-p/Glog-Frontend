@@ -1,6 +1,7 @@
 import * as S from "./style";
 import Header from "component/Common/Header";
 import Input from "component/Common/Input";
+import Button from "component/Common/Button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import auth from "data/request/auth";
@@ -116,7 +117,7 @@ const SetMain: React.FC = () => {
               />
               <S.ErrorText>{errors.confirmPassword?.message}</S.ErrorText>
             </S.InputElements>
-            <S.SignupButton>다음</S.SignupButton>
+            <Button text="다음" />
             <S.CommonText>
               비밀번호는 8자리 이상 및 숫자와 문자, 기호를 포함해주세요.
             </S.CommonText>
