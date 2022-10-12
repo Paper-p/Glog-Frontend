@@ -49,8 +49,8 @@ const Header: React.FC = () => {
                 로그인
               </S.HeaderElements>
             </Link>
-            <Link to={"/first-signup"}>
-              <S.HeaderElements css={select("/first-signup")}>
+            <Link to={"/signup/main"}>
+              <S.HeaderElements css={select("/signup/main")}>
                 회원가입
               </S.HeaderElements>
             </Link>

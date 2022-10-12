@@ -28,7 +28,7 @@ const SetMain: React.FC = () => {
       try {
         const res: any = await auth.confirmId(data.userId);
         res.status === 200 &&
-          navigate("/second-signup", {
+          navigate("/signup/name", {
             state: { userId: data.userId, password: data.password },
           });
       } catch (error: any) {

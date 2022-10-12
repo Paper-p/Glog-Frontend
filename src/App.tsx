@@ -12,8 +12,8 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/signin" element={<SigninPage />} />
-            <Route path="/first-signup" element={<SetMainPage />} />
-            <Route path="/second-signup" element={<SetNamePage />} />
+            <Route path="/signup/main" element={<SetMainPage />} />
+            <Route path="/signup/name" element={<SetNamePage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
