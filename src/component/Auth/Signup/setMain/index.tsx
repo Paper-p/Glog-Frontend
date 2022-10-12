@@ -1,49 +1,124 @@
 import * as S from "./style";
-import * as I from "Assets/svg";
 import Header from "component/Common/Header";
 import Input from "component/Common/Input";
-import { useState } from "react";
-import useInputs from "hooks/useInputs";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import auth from "data/request/auth";
+import { useState } from "react";
+
+interface AuthForm {
+  userId: string;
+  password: string;
+  confirmPassword: string;
+}
 
 const SetMain: React.FC = () => {
-  const [state, setState] = useState({
-    focused: false,
-    isError: false,
-    errorText: "",
-  });
-  const [{ userId, password, checkPassword }, onChange, , setNull] = useInputs({
-    userId: "",
-    password: "",
-    checkPassword: "",
-  });
-  const { register, handleSubmit, setError } = useForm();
+  const navigate = useNavigate();
+  const [isError, setIsError] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<AuthForm>();
+
+  const onValid = async (data: AuthForm) => {
+    if (data.password === data.confirmPassword) {
+      try {
+        const res: any = await auth.confirmId(data.userId);
+        res.status === 200 &&
+          navigate("/second-signup", {
+            state: { userId: data.userId, password: data.password },
+          });
+      } catch (error: any) {
+        console.log(error);
+        setError(
+          "userId",
+          { message: "이미 존재하는 아이디에요." },
+          { shouldFocus: true }
+        );
+      }
+    } else {
+      setError(
+        "confirmPassword",
+        { message: "비밀번호가 일치하지 않습니다." },
+        { shouldFocus: true }
+      );
+    }
+  };
+
+  const inValid = (error: any) => {
+    error && setIsError(true);
+    console.log(isError);
+  };
+
   return (
     <>
       <Header />
       <S.SignupWrapper>
         <S.JoinSection>
-          <S.JoinBox>
+          <S.JoinBox onSubmit={handleSubmit(onValid, inValid)}>
             <S.GifBox>
               <S.StyledGif src="/images/Signup.gif" alt="gif" />
             </S.GifBox>
             <S.InputElements>
-              <Input sortation={true} />
-              <S.ErrorText>asdasd</S.ErrorText>
+              <Input
+                sortation={true}
+                placeholder="사용하실 아이디를 입력해주세요."
+                register={register("userId", {
+                  required: "아이디는 필수입력입니다.",
+                  minLength: {
+                    message: "아이디는 4자 이상이어야해요.",
+                    value: 4,
+                  },
+                  maxLength: {
+                    message: "아이디는 최대 20자 입니다.",
+                    value: 20,
+                  },
+                })}
+                isError={isError}
+              />
+              <S.ErrorText>{errors.userId?.message}</S.ErrorText>
             </S.InputElements>
             <S.InputElements>
-              <Input sortation={false} />
-              <S.ErrorText>asdasd</S.ErrorText>
+              <Input
+                sortation={false}
+                placeholder="사용하실 비밀번호를 입력해주세요."
+                register={register("password", {
+                  required: "비밀번호는 필수입력입니다.",
+                  minLength: {
+                    message: "비밀번호는 8자 이상이어야해요.",
+                    value: 8,
+                  },
+                  maxLength: {
+                    message: "비밀번호는 최대 20자 입니다.",
+                    value: 20,
+                  },
+                  pattern: {
+                    message: "잘못된 비밀번호 형식이에요.",
+                    value:
+                      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                  },
+                })}
+                isError={isError}
+              />
+              <S.ErrorText>{errors.password?.message}</S.ErrorText>
             </S.InputElements>
             <S.InputElements>
-              <Input sortation={false} />
-              <S.ErrorText>asdasd</S.ErrorText>
+              <Input
+                sortation={false}
+                placeholder="사용하실 비밀번호를 한번 더 입력해주세요."
+                register={register("confirmPassword", {
+                  required: "비밀번호 확인은 필수입력입니다.",
+                })}
+                isError={isError}
+              />
+              <S.ErrorText>{errors.confirmPassword?.message}</S.ErrorText>
             </S.InputElements>
-            <S.SignupButton isFocused={state.focused}>다음</S.SignupButton>
+            <S.SignupButton>다음</S.SignupButton>
             <S.CommonText>
-              비밀번호는 8자리 이상 및 기호를 포함해주세요.
+              비밀번호는 8자리 이상 및 숫자와 문자, 기호를 포함해주세요.
             </S.CommonText>
           </S.JoinBox>
         </S.JoinSection>

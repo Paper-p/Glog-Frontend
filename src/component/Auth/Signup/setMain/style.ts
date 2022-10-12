@@ -1,9 +1,5 @@
 import styled from "@emotion/styled";
 
-type ButtonPropsType = {
-  isFocused: boolean;
-};
-
 export const SignupWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -17,7 +13,7 @@ export const JoinSection = styled.div`
   margin-left: 366px;
 `;
 
-export const JoinBox = styled.div`
+export const JoinBox = styled.form`
   width: 732px;
   margin-bottom: 170px;
 `;
@@ -44,7 +40,7 @@ export const ErrorText = styled.div`
   align-items: center;
 `;
 
-export const SignupButton = styled.button<ButtonPropsType>`
+export const SignupButton = styled.button`
   width: 50%;
   height: 60px;
   border-radius: 10px;
@@ -52,27 +48,16 @@ export const SignupButton = styled.button<ButtonPropsType>`
   font-weight: 800;
   font-size: 18px;
   margin-top: 16px;
+  background: linear-gradient(95.2deg, #17d56f 45.83%, #119e6d 93.3%);
 
-  background: ${(e) => {
-    return e.isFocused
-      ? "linear-gradient(95.2deg, #17D56F 45.83%, #119E6D 93.3%)"
-      : "#505151";
-  }};
-
-  color: ${(e) => {
-    return e.isFocused ? "#1C1C1C" : "#9E9E9E";
-  }};
-
-  cursor: ${(e) => {
-    return e.isFocused ? "pointer" : "";
-  }};
+  color: #1c1c1c;
+  cursor: pointer;
 
   &:hover {
-    ${(e) => {
-      return e.isFocused
-        ? "box-sizing: border-box; background: #f5f5f5; border: 2px solid #17d46f; color: #17d46f;"
-        : "";
-    }};
+    box-sizing: border-box;
+    background: #f5f5f5;
+    border: 2px solid #17d46f;
+    color: #17d46f;
   }
 `;
 
