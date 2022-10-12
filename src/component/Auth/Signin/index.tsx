@@ -3,7 +3,6 @@ import * as S from "./style";
 import * as I from "Assets/svg";
 import Logo from "component/Common/Logo";
 import { useState } from "react";
-import useInputs from "hooks/useInputs";
 import auth from "data/request/auth";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -14,25 +13,6 @@ const Signin: React.FC = () => {
   const [Focused, setFocused] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [, setLogged] = useRecoilState(loggedAtom);
-  const [{ id, password }, onChange, reset] = useInputs({
-    id: "",
-    password: "",
-  });
-
-  const signin = async () => {
-    try {
-      const res: any = await auth.signin(id, password);
-      console.log(res.status);
-      if (res.status === 200) {
-        setLogged(true);
-        navigate("/");
-      }
-    } catch (e: any) {
-      setIsError(true);
-    }
-
-    reset();
-  };
 
   return (
     <>
@@ -52,8 +32,6 @@ const Signin: React.FC = () => {
                 onFocus={() => {
                   setFocused(true);
                 }}
-                onChange={onChange}
-                value={id}
               />
             </S.SortInput>
           </S.InputWrapper>
@@ -69,14 +47,10 @@ const Signin: React.FC = () => {
                 onFocus={() => {
                   setFocused(true);
                 }}
-                onChange={onChange}
-                value={password}
               />
             </S.SortInput>
           </S.InputWrapper>
-          <S.LoginButton isFocused={Focused} onClick={signin}>
-            로그인
-          </S.LoginButton>
+          <S.LoginButton isFocused={Focused}>로그인</S.LoginButton>
           <S.TextBox>
             <S.TextUl>
               <S.Text>비밀번호</S.Text>
