@@ -5,20 +5,34 @@ export const SignupWrapper = styled.div`
   height: calc(100vh - 170px);
   align-items: center;
   justify-content: center;
+  margin-left: 366px;
 `;
 
 export const SignupBox = styled.form`
-  width: 366px;
+  width: 732px;
   margin-bottom: 300px;
 `;
 
 export const GifBox = styled.div`
+  width: 366px;
   text-align: center;
 `;
 
 export const StyledGif = styled.img`
   width: 180px;
   height: 140px;
+`;
+
+export const InputElements = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+
+export const ErrorText = styled.div`
+  display: flex;
+  margin-left: 20px;
+  color: #e83f28;
+  align-items: center;
 `;
 
 export const SignupButton = styled.button`

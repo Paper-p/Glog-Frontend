@@ -1,35 +1,89 @@
 import * as S from "./style";
+import { useState } from "react";
 import Header from "component/Common/Header";
 import Input from "component/Common/Input";
 import Button from "component/Common/Button";
-import { useState } from "react";
 import auth from "data/request/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
+interface StateType {
+  userId: string;
+  password: string;
+}
 
 const SetName: React.FC = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const navigate = useNavigate();
+  const location = useLocation().state as StateType;
+
   const {
     register,
     handleSubmit,
     setError,
     formState: { errors },
   } = useForm<{ nickname: string }>();
+
+  const onValid = async (data: any) => {
+    try {
+      const res: any = await auth.confirmName(data.nickname);
+      res.status && createUser(data.nickname);
+    } catch (error: any) {
+      console.log(error);
+      setError(
+        "nickname",
+        { message: "이미 존재하는 닉네임입니다." },
+        { shouldFocus: true }
+      );
+    }
+  };
+
+  const inValid = (error: any) => {
+    error && setIsError(true);
+    console.log(isError);
+  };
+
+  const createUser = async (nickname: string) => {
+    try {
+      const res: any = await auth.signup({
+        nickname: nickname,
+        userId: location.userId,
+        password: location.password,
+      });
+      //toast
+      res.status === 200 && navigate("/");
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Header />
       <S.SignupWrapper>
-        <S.SignupBox>
+        <S.SignupBox onSubmit={handleSubmit(onValid, inValid)}>
           <S.GifBox>
             <S.StyledGif src="/images/Signup.gif" alt="gif" />
           </S.GifBox>
-          <Input
-            sortation={true}
-            placeholder="사용하실 닉네임을 입력해주세요."
-            register={register}
-            isError={isError}
-          />
+          <S.InputElements>
+            <Input
+              sortation={true}
+              placeholder="사용하실 닉네임을 입력해주세요."
+              register={register("nickname", {
+                required: "닉네임 필수입력입니다.",
+                minLength: {
+                  message: "닉네임은 4자 이상이어야해요.",
+                  value: 4,
+                },
+                maxLength: {
+                  message: "닉네임은 최대 20자 입니다.",
+                  value: 20,
+                },
+              })}
+              isError={isError}
+            />
+            <S.ErrorText>{errors.nickname?.message}</S.ErrorText>
+          </S.InputElements>
           <Button text="완료" />
         </S.SignupBox>
       </S.SignupWrapper>
