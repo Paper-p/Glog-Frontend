@@ -27,23 +27,30 @@ const Signin: React.FC = () => {
   } = useForm<AuthForm>();
   const [, setLogged] = useRecoilState(loggedAtom);
 
+  const onValid = async () => {};
+
+  const inValid = () => {};
   return (
     <>
       <Header />
       <S.SigninWrapper>
-        <S.SigninBox>
+        <S.SigninBox onSubmit={handleSubmit(onValid, inValid)}>
           <Logo width={335} height={96} />
           <S.HighlightText>다시 온걸 환영해요!</S.HighlightText>
           <S.InputBox>
             <Input
               sortation={true}
-              register={register}
+              register={register("userId", {
+                required: "아이디는 필수입력입니다.",
+              })}
               isError={isError}
               placeholder="아이디를 입력해주세요."
             />
             <Input
               sortation={false}
-              register={register}
+              register={register("password", {
+                required: "비밀번호는 필수입력입니다.",
+              })}
               isError={isError}
               placeholder="비밀번호를 입력해주세요."
             />

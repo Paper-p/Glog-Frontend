@@ -7,7 +7,7 @@ export const SigninWrapper = styled.div`
   justify-content: center;
 `;
 
-export const SigninBox = styled.div`
+export const SigninBox = styled.form`
   width: 366px;
   height: 410px;
   margin-bottom: 170px;
