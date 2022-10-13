@@ -2,35 +2,46 @@ import styled from "@emotion/styled";
 
 export const SigninWrapper = styled.div`
   display: flex;
-  height: calc(100vh - 170px);
-  align-items: center;
   justify-content: center;
 `;
 
-export const SigninBox = styled.form`
-  width: 366px;
-  height: 410px;
-  margin-bottom: 170px;
+export const JoinSection = styled.div`
+  display: flex;
+  height: calc(100vh - 170px);
+  align-items: center;
+  justify-content: center;
+  margin-left: 366px;
 `;
 
-export const LogoWrapper = styled.div`
-  width: 333px;
-  height: 96px;
+export const JoinBox = styled.form`
+  width: 732px;
+  margin-bottom: 200px;
 `;
 
-export const InputBox = styled.div`
-  & > * {
-    margin-top: 20px;
-  }
+export const GifBox = styled.div`
+  width: 50%;
+  text-align: center;
 `;
 
-export const ButtonBox = styled.div`
-  & > * {
-    margin: 20px 10px 0 0;
-  }
+export const StyledGif = styled.img`
+  width: 180px;
+  height: 140px;
+`;
+
+export const InputElements = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+
+export const ErrorText = styled.div`
+  display: flex;
+  margin-left: 20px;
+  color: #e83f28;
+  align-items: center;
 `;
 
 export const HighlightText = styled.div`
+  width: 366px;
   text-align: center;
   font-weight: 600;
   font-size: 20px;
@@ -40,6 +51,7 @@ export const HighlightText = styled.div`
 `;
 
 export const TextBox = styled.div`
+  width: 366px;
   display: flex;
   justify-content: center;
   margin-top: 10px;
@@ -58,14 +70,4 @@ export const Text = styled.li`
     color: #39c078;
     cursor: pointer;
   }
-`;
-
-export const ErrorText = styled.div<{ isError: boolean }>`
-  display: ${(e) => {
-    return e.isError ? "block" : "none";
-  }};
-  text-align: center;
-  color: #e83f28;
-  font-size: 14px;
-  margin-top: 72px;
 `;
