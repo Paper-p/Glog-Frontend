@@ -1,11 +1,10 @@
+import { type PropsWithChildren } from "react";
 import * as S from "./style";
 
-interface Props {
-  text: string;
-}
+interface Props extends React.HTMLAttributes<HTMLButtonElement> {}
 
-const Button: React.FC<Props> = ({ text }) => {
-  return <S.Button>{text}</S.Button>;
+const Button = ({ children, ...rest }: PropsWithChildren<Props>) => {
+  return <S.Button>{children}</S.Button>;
 };
 
 export default Button;

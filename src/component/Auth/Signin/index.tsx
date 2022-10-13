@@ -49,7 +49,7 @@ const Signin: React.FC = () => {
             />
           </S.InputBox>
           <S.ButtonBox>
-            <Button text="로그인" />
+            <Button>로그인</Button>
           </S.ButtonBox>
           <S.TextBox>
             <S.TextUl>

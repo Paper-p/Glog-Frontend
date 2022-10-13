@@ -84,7 +84,7 @@ const SetName: React.FC = () => {
             />
             <S.ErrorText>{errors.nickname?.message}</S.ErrorText>
           </S.InputElements>
-          <Button text="완료" />
+          <Button>완료</Button>
         </S.SignupBox>
       </S.SignupWrapper>
     </>
