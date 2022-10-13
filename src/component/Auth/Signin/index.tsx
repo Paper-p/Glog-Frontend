@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import { loggedAtom } from "Atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
+import { Password } from "Assets/svg";
 
 interface AuthForm {
   userId: string;
@@ -25,9 +26,19 @@ const Signin: React.FC = () => {
     setError,
     formState: { errors },
   } = useForm<AuthForm>();
-  const [, setLogged] = useRecoilState(loggedAtom);
 
-  const onValid = async () => {};
+  const [logged, setLogged] = useRecoilState(loggedAtom);
+
+  const onValid = async (data: AuthForm) => {
+    try {
+      const res: any = await auth.signin(data.userId, data.password);
+      if (res.status === 200) {
+        setLogged(true);
+        //localStorage에 저장
+        //toast
+      }
+    } catch {}
+  };
 
   const inValid = (error: any) => {
     error && setIsError(true);
