@@ -1,7 +1,5 @@
 import Header from "component/Common/Header";
 
-const Main: React.FC = () => {
+export default function Main() {
   return <Header />;
-};
-
-export default Main;
+}

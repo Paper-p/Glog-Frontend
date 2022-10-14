@@ -15,7 +15,7 @@ interface AuthForm {
   password: string;
 }
 
-const Signin: React.FC = () => {
+export default function Signin() {
   const navigate = useNavigate();
   const [Focused, setFocused] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -64,6 +64,4 @@ const Signin: React.FC = () => {
       </S.SigninWrapper>
     </>
   );
-};
-
-export default Signin;
+}

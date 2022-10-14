@@ -12,7 +12,7 @@ interface StateType {
   password: string;
 }
 
-const SetName: React.FC = () => {
+export default function SetName() {
   const [isError, setIsError] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation().state as StateType;
@@ -89,6 +89,4 @@ const SetName: React.FC = () => {
       </S.SignupWrapper>
     </>
   );
-};
-
-export default SetName;
+}

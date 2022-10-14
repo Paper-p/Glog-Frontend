@@ -13,7 +13,7 @@ interface AuthForm {
   confirmPassword: string;
 }
 
-const SetMain: React.FC = () => {
+export default function SetMain() {
   const navigate = useNavigate();
   const [isError, setIsError] = useState(false);
 
@@ -126,6 +126,4 @@ const SetMain: React.FC = () => {
       </S.SignupWrapper>
     </>
   );
-};
-
-export default SetMain;
+}
