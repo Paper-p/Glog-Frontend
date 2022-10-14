@@ -1,8 +1,8 @@
 import * as S from "./style";
-import Header from "component/Common/Header";
-import Logo from "component/Common/Logo";
-import Input from "component/Common/Input";
-import Button from "component/Common/Button";
+import Header from "components/Common/Header";
+import Logo from "components/Common/Logo";
+import Input from "components/Common/Input";
+import Button from "components/Common/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -15,7 +15,7 @@ interface AuthForm {
   password: string;
 }
 
-const Signin: React.FC = () => {
+export default function Signin() {
   const navigate = useNavigate();
   const [Focused, setFocused] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -49,7 +49,7 @@ const Signin: React.FC = () => {
             />
           </S.InputBox>
           <S.ButtonBox>
-            <Button text="로그인" />
+            <Button>로그인</Button>
           </S.ButtonBox>
           <S.TextBox>
             <S.TextUl>
@@ -64,6 +64,4 @@ const Signin: React.FC = () => {
       </S.SigninWrapper>
     </>
   );
-};
-
-export default Signin;
+}

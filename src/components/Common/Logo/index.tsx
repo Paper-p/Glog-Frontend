@@ -7,7 +7,7 @@ type PropsType = {
   height: number;
 };
 
-const Logo: React.FC<PropsType> = ({ width, height }) => {
+function Logo({ width, height }: PropsType) {
   return (
     <S.LogoWrapper width={width} height={height}>
       <S.SmallCircle />
@@ -17,6 +17,6 @@ const Logo: React.FC<PropsType> = ({ width, height }) => {
       </S.SvgWrapper>
     </S.LogoWrapper>
   );
-};
+}
 
 export default React.memo(Logo);
