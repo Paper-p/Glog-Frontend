@@ -1,4 +1,4 @@
-import { SetMain } from "component";
+import { SetMain } from "components";
 export default function SetMainPage() {
   return <SetMain />;
 }

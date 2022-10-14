@@ -1,8 +1,8 @@
 import * as S from "./style";
 import { useState } from "react";
-import Header from "component/Common/Header";
-import Input from "component/Common/Input";
-import Button from "component/Common/Button";
+import Header from "components/Common/Header";
+import Input from "components/Common/Input";
+import Button from "components/Common/Button";
 import auth from "data/request/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";

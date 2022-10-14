@@ -1,8 +1,8 @@
 import * as S from "./style";
-import Header from "component/Common/Header";
-import Logo from "component/Common/Logo";
-import Input from "component/Common/Input";
-import Button from "component/Common/Button";
+import Header from "components/Common/Header";
+import Logo from "components/Common/Logo";
+import Input from "components/Common/Input";
+import Button from "components/Common/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";

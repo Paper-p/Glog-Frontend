@@ -1,7 +1,7 @@
 import * as S from "./style";
-import Header from "component/Common/Header";
-import Input from "component/Common/Input";
-import Button from "component/Common/Button";
+import Header from "components/Common/Header";
+import Input from "components/Common/Input";
+import Button from "components/Common/Button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import auth from "data/request/auth";
