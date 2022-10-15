@@ -47,7 +47,6 @@ export default function Signin() {
     <>
       <Header />
       <S.SigninWrapper>
-<<<<<<< HEAD:src/component/Auth/Signin/index.tsx
         <S.JoinSection>
           <S.JoinBox onSubmit={handleSubmit(onValid, inValid)}>
             <Logo width={335} height={96} />
@@ -74,7 +73,7 @@ export default function Signin() {
               />
               <S.ErrorText>{errors.password?.message}</S.ErrorText>
             </S.InputElements>
-            <Button text="로그인" />
+            <Button>로그인</Button>
             <S.TextBox>
               <S.TextUl>
                 <S.Text>비밀번호</S.Text>
@@ -83,38 +82,6 @@ export default function Signin() {
             </S.TextBox>
           </S.JoinBox>
         </S.JoinSection>
-=======
-        <S.SigninBox>
-          <Logo width={335} height={96} />
-          <S.HighlightText>다시 온걸 환영해요!</S.HighlightText>
-          <S.InputBox>
-            <Input
-              sortation={true}
-              register={register}
-              isError={isError}
-              placeholder="아이디를 입력해주세요."
-            />
-            <Input
-              sortation={false}
-              register={register}
-              isError={isError}
-              placeholder="비밀번호를 입력해주세요."
-            />
-          </S.InputBox>
-          <S.ButtonBox>
-            <Button>로그인</Button>
-          </S.ButtonBox>
-          <S.TextBox>
-            <S.TextUl>
-              <S.Text>비밀번호</S.Text>
-              <S.Text>를 잊어 버리셨나요?</S.Text>
-            </S.TextUl>
-          </S.TextBox>
-          <S.ErrorText isError={isError}>
-            아이디 또는 비밀번호가 일치하지 않아요.
-          </S.ErrorText>
-        </S.SigninBox>
->>>>>>> ad093a45555252e1ce44948be178e86f5f4876af:src/components/Auth/Signin/index.tsx
       </S.SigninWrapper>
     </>
   );
