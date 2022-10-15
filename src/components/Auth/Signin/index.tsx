@@ -34,8 +34,7 @@ export default function Signin() {
       const res: any = await auth.signin(data.userId, data.password);
       if (res.status === 200) {
         setLogged(true);
-        //localStorage에 저장
-        //toast
+        console.log(res);
       }
     } catch {}
   };

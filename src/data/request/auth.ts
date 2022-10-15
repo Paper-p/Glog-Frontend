@@ -32,7 +32,6 @@ class Auth {
       return RequestForm({
         method: "POST",
         url: getAuth.signin(),
-        withCredentials: true,
         data: {
           userId: id,
           password: password,
@@ -48,7 +47,7 @@ class Auth {
       return RequestForm({
         method: "POST",
         url: getAuth.signup(),
-        withCredentials: true,
+        withCredentials: false,
         data: {
           nickname: data.nickname,
           userId: data.userId,

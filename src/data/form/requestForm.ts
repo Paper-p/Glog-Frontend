@@ -8,7 +8,7 @@ const RequestForm = (p: AxiosRequestConfig, token?: string) => {
       baseURL: BASE_URL,
       url: p.url,
       data: p.data,
-      withCredentials: true,
+      withCredentials: false,
       headers: {
         Authorization: token ? "Bearer" + token : "",
       },

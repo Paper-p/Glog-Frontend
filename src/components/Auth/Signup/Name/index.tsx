@@ -25,9 +25,13 @@ export default function SetName() {
   } = useForm<{ nickname: string }>();
 
   const onValid = async (data: any) => {
+    console.log(data);
+
     try {
       const res: any = await auth.confirmName(data.nickname);
-      res.status && createUser(data.nickname);
+      console.log(res.status);
+
+      res.status === 200 && createUser(data.nickname);
     } catch (error: any) {
       console.log(error);
       setError(
@@ -50,8 +54,10 @@ export default function SetName() {
         userId: location.userId,
         password: location.password,
       });
+      console.log(res);
+
       //toast
-      res.status === 200 && navigate("/");
+      res.status === 201 && navigate("/");
     } catch (error: any) {
       console.log(error);
     }
