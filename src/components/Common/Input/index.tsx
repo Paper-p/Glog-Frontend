@@ -7,7 +7,12 @@ interface Props extends React.HTMLAttributes<HTMLInputElement> {
   isError: boolean;
 }
 
-const Input: React.FC<Props> = ({ sortation, register, isError, ...rest }) => {
+export default function Input({
+  sortation,
+  register,
+  isError,
+  ...rest
+}: Props) {
   return (
     <>
       {sortation ? (
@@ -35,6 +40,4 @@ const Input: React.FC<Props> = ({ sortation, register, isError, ...rest }) => {
       )}
     </>
   );
-};
-
-export default Input;
+}

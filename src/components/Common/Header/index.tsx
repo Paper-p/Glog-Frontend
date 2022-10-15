@@ -8,7 +8,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { loggedAtom } from "Atoms";
 
-const Header: React.FC = () => {
+function Header() {
   const { pathname } = useLocation();
   const [logged] = useRecoilState(loggedAtom);
   const select = (currentPath: string) =>
@@ -59,6 +59,6 @@ const Header: React.FC = () => {
       </S.Header>
     </S.HeaderBox>
   );
-};
+}
 
 export default React.memo(Header);

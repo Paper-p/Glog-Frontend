@@ -3,7 +3,7 @@ import { RecoilRoot } from "recoil";
 import { MainPage, SigninPage, SetNamePage, SetMainPage } from "pages";
 import GlobalStyle from "shared/GlobalStyles";
 
-const App: React.FC = () => {
+export default function App() {
   return (
     <>
       <RecoilRoot>
@@ -19,6 +19,4 @@ const App: React.FC = () => {
       </RecoilRoot>
     </>
   );
-};
-
-export default App;
+}

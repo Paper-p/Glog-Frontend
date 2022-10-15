@@ -1,8 +1,8 @@
 import * as S from "./style";
 import { useState } from "react";
-import Header from "component/Common/Header";
-import Input from "component/Common/Input";
-import Button from "component/Common/Button";
+import Header from "components/Common/Header";
+import Input from "components/Common/Input";
+import Button from "components/Common/Button";
 import auth from "data/request/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ interface StateType {
   password: string;
 }
 
-const SetName: React.FC = () => {
+export default function SetName() {
   const [isError, setIsError] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation().state as StateType;
@@ -84,11 +84,9 @@ const SetName: React.FC = () => {
             />
             <S.ErrorText>{errors.nickname?.message}</S.ErrorText>
           </S.InputElements>
-          <Button text="완료" />
+          <Button>완료</Button>
         </S.SignupBox>
       </S.SignupWrapper>
     </>
   );
-};
-
-export default SetName;
+}
