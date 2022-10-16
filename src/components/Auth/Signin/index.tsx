@@ -6,10 +6,10 @@ import Button from "components/Common/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { loggedAtom } from "Atoms";
+import { loggedAtom } from "atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
-import { Password } from "Assets/svg";
+import { Password } from "assets/svg";
 
 interface AuthForm {
   userId: string;

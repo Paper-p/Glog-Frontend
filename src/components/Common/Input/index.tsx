@@ -1,5 +1,5 @@
 import * as S from "./style";
-import * as I from "Assets/svg";
+import * as I from "assets/svg";
 
 interface Props extends React.HTMLAttributes<HTMLInputElement> {
   sortation: boolean;
