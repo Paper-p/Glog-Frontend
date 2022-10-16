@@ -31,7 +31,7 @@ export default function SetName() {
       const res: any = await auth.confirmName(data.nickname);
       console.log(res.status);
 
-      res.status === 200 && createUser(data.nickname);
+      createUser(data.nickname);
     } catch (error: any) {
       console.log(error);
       setError(

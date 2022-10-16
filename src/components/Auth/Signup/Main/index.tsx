@@ -28,10 +28,11 @@ export default function SetMain() {
     if (data.password === data.confirmPassword) {
       try {
         const res: any = await auth.confirmId(data.userId);
-        res.status === 200 &&
-          navigate("/signup/name", {
-            state: { userId: data.userId, password: data.password },
-          });
+        console.log(res);
+
+        navigate("/signup/name", {
+          state: { userId: data.userId, password: data.password },
+        });
       } catch (error: any) {
         console.log(error);
         setError(

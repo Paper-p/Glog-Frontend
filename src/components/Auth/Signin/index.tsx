@@ -32,11 +32,11 @@ export default function Signin() {
   const onValid = async (data: AuthForm) => {
     try {
       const res: any = await auth.signin(data.userId, data.password);
-      if (res.status === 200) {
-        setLogged(true);
-        console.log(res);
-      }
-    } catch {}
+      setLogged(true);
+      //token && toast
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   const inValid = (error: any) => {
