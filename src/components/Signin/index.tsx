@@ -1,7 +1,7 @@
 import * as S from "./style";
-import Logo from "components/Logo";
-import Input from "components/Input";
-import Button from "components/Button";
+import Logo from "components/Common/Logo";
+import Input from "components/Common/Input";
+import Button from "components/Common/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -9,7 +9,7 @@ import { loggedAtom } from "atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
 import { LoginType } from "types/authType";
-import AuthSection from "components/Section/Auth";
+import AuthSection from "components/Common/Section/Auth";
 
 export default function Signin() {
   const navigate = useNavigate();

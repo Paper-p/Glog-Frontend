@@ -1,11 +1,11 @@
 import * as S from "./style";
 import { useState } from "react";
-import Input from "components/Input";
-import Button from "components/Button";
+import Input from "components/Common/Input";
+import Button from "components/Common/Button";
 import auth from "data/request/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import AuthSection from "components/Section/Auth";
+import AuthSection from "components/Common/Section/Auth";
 
 interface StateType {
   userId: string;
