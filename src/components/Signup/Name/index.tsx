@@ -1,11 +1,11 @@
 import * as S from "./style";
 import { useState } from "react";
-import Header from "components/Common/Header";
-import Input from "components/Common/Input";
-import Button from "components/Common/Button";
+import Input from "components/Input";
+import Button from "components/Button";
 import auth from "data/request/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import AuthSection from "components/Section/Auth";
 
 interface StateType {
   userId: string;
@@ -64,34 +64,30 @@ export default function SetName() {
 
   return (
     <>
-      <Header />
-      <S.SignupWrapper>
-        <S.SignupBox onSubmit={handleSubmit(onValid, inValid)}>
-          <S.GifBox>
-            <S.StyledGif src="/images/Signup.gif" alt="gif" />
-          </S.GifBox>
-          <S.InputElements>
-            <Input
-              sortation={true}
-              register={register("nickname", {
-                required: "닉네임 필수입력입니다.",
-                minLength: {
-                  message: "닉네임은 4자 이상이어야해요.",
-                  value: 4,
-                },
-                maxLength: {
-                  message: "닉네임은 최대 20자 입니다.",
-                  value: 20,
-                },
-              })}
-              isError={isError}
-              placeholder="사용하실 닉네임을 입력해주세요."
-            />
-            <S.ErrorText>{errors.nickname?.message}</S.ErrorText>
-          </S.InputElements>
-          <Button>완료</Button>
-        </S.SignupBox>
-      </S.SignupWrapper>
+      <AuthSection onSubmit={handleSubmit(onValid, inValid)}>
+        <S.GifBox>
+          <S.StyledGif src="/images/Signup.gif" alt="gif" />
+        </S.GifBox>
+        <Input
+          sortation={true}
+          register={register("nickname", {
+            required: "닉네임 필수입력입니다.",
+            minLength: {
+              message: "닉네임은 4자 이상이어야해요.",
+              value: 4,
+            },
+            maxLength: {
+              message: "닉네임은 최대 20자 입니다.",
+              value: 20,
+            },
+          })}
+          isError={isError}
+          placeholder="사용하실 닉네임을 입력해주세요."
+        >
+          <S.ErrorText>{errors.nickname?.message}</S.ErrorText>
+        </Input>
+        <Button>완료</Button>
+      </AuthSection>
     </>
   );
 }

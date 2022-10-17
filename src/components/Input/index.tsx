@@ -11,32 +11,35 @@ export default function Input({
   sortation,
   register,
   isError,
+  children,
   ...rest
 }: Props) {
   return (
     <>
       {sortation ? (
-        <S.Container>
-          <S.InputWrapper isError={isError}>
+        <S.InputElements>
+          <S.InputBox isError={isError}>
             <S.SortInput>
               <S.StyledSvg>
                 <I.IdAndName />
               </S.StyledSvg>
               <S.Input type="text" {...register} {...rest} />
             </S.SortInput>
-          </S.InputWrapper>
-        </S.Container>
+          </S.InputBox>
+          {children}
+        </S.InputElements>
       ) : (
-        <S.Container>
-          <S.InputWrapper isError={isError}>
+        <S.InputElements>
+          <S.InputBox isError={isError}>
             <S.SortInput>
               <S.StyledSvg>
                 <I.Password />
               </S.StyledSvg>
               <S.Input type="password" {...register} {...rest} />
             </S.SortInput>
-          </S.InputWrapper>
-        </S.Container>
+          </S.InputBox>
+          {children}
+        </S.InputElements>
       )}
     </>
   );
