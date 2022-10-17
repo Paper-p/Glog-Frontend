@@ -6,15 +6,10 @@ import Button from "components/Common/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { loggedAtom } from "Atoms";
+import { loggedAtom } from "atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
-import { Password } from "Assets/svg";
-
-interface AuthForm {
-  userId: string;
-  password: string;
-}
+import { LoginType } from "types/authType";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -25,18 +20,18 @@ export default function Signin() {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<AuthForm>();
+  } = useForm<LoginType>();
 
   const [logged, setLogged] = useRecoilState(loggedAtom);
 
-  const onValid = async (data: AuthForm) => {
+  const onValid = async (data: LoginType) => {
     try {
-      const res: any = await auth.signin(data.userId, data.password);
-      if (res.status === 200) {
-        setLogged(true);
-        console.log(res);
-      }
-    } catch {}
+      const res: any = await auth.signin(data);
+      setLogged(true);
+      //token && toast
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   const inValid = (error: any) => {

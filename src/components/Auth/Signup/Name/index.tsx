@@ -31,7 +31,7 @@ export default function SetName() {
       const res: any = await auth.confirmName(data.nickname);
       console.log(res.status);
 
-      res.status === 200 && createUser(data.nickname);
+      createUser(data.nickname);
     } catch (error: any) {
       console.log(error);
       setError(
@@ -55,9 +55,8 @@ export default function SetName() {
         password: location.password,
       });
       console.log(res);
-
       //toast
-      res.status === 201 && navigate("/");
+      navigate("/");
     } catch (error: any) {
       console.log(error);
     }

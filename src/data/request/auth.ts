@@ -1,14 +1,13 @@
-import RequestForm from "../form/requestForm";
-import { SignupModel } from "../model/signup";
 import { getAuth } from "data/url/getUrl";
+import AuthInstance from "util/authInstance";
+import { LoginType, JoinType } from "types/authType";
 
 class Auth {
   confirmName(name: string) {
     try {
-      return RequestForm({
+      return AuthInstance({
         method: "HEAD",
         url: `${getAuth.checkName()}?nickname=${name}`,
-        withCredentials: true,
       });
     } catch (error) {
       return error;
@@ -17,24 +16,23 @@ class Auth {
 
   confirmId(userId: string) {
     try {
-      return RequestForm({
+      return AuthInstance({
         method: "HEAD",
         url: `${getAuth.checkId()}?userId=${userId}`,
-        withCredentials: true,
       });
     } catch (error) {
       return error;
     }
   }
 
-  signin(id: string, password: string) {
+  signin(data: LoginType) {
     try {
-      return RequestForm({
+      return AuthInstance({
         method: "POST",
         url: getAuth.signin(),
         data: {
-          userId: id,
-          password: password,
+          userId: data.userId,
+          password: data.password,
         },
       });
     } catch (error) {
@@ -42,12 +40,11 @@ class Auth {
     }
   }
 
-  signup(data: SignupModel) {
+  signup(data: JoinType) {
     try {
-      return RequestForm({
+      return AuthInstance({
         method: "POST",
         url: getAuth.signup(),
-        withCredentials: false,
         data: {
           nickname: data.nickname,
           userId: data.userId,

@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 import Logo from "../Logo";
 import React from "react";
 import { useRecoilState } from "recoil";
-import { loggedAtom } from "Atoms";
+import { loggedAtom } from "atoms";
 
 function Header() {
   const { pathname } = useLocation();

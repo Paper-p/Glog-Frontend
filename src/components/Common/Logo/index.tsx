@@ -1,5 +1,5 @@
 import * as S from "./style";
-import * as I from "Assets/svg";
+import * as I from "assets/svg";
 import React from "react";
 
 type PropsType = {
