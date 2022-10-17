@@ -55,9 +55,8 @@ export default function SetName() {
         password: location.password,
       });
       console.log(res);
-
       //toast
-      res.status === 201 && navigate("/");
+      navigate("/");
     } catch (error: any) {
       console.log(error);
     }

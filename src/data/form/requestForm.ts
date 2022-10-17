@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { BASE_URL } from "shared/config";
+import { REACT_APP_BASE_URL } from "shared/config";
 
 const RequestForm = (p: AxiosRequestConfig, token?: string) => {
   try {
     const res = axios({
       method: p.method,
-      baseURL: BASE_URL,
+      baseURL: REACT_APP_BASE_URL,
       url: p.url,
       data: p.data,
       withCredentials: false,
