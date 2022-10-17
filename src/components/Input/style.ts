@@ -1,10 +1,18 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
+export const InputElements = styled.div`
   display: flex;
+  margin-top: 20px;
 `;
 
-export const InputWrapper = styled.div<{ isError: boolean }>`
+export const ErrorText = styled.div`
+  display: flex;
+  margin-left: 20px;
+  color: #e83f28;
+  align-items: center;
+`;
+
+export const InputBox = styled.div<{ isError: boolean }>`
   width: 366px;
   height: 52px;
   background: #252727;
@@ -49,5 +57,3 @@ export const StyledSvg = styled.div`
     margin-top: 1.5px;
   }
 `;
-
-export const ErrorText = styled.div``;

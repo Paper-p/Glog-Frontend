@@ -1,18 +1,5 @@
 import styled from "@emotion/styled";
 
-export const SignupWrapper = styled.div`
-  display: flex;
-  height: calc(100vh - 170px);
-  align-items: center;
-  justify-content: center;
-  margin-left: 366px;
-`;
-
-export const SignupBox = styled.form`
-  width: 732px;
-  margin-bottom: 300px;
-`;
-
 export const GifBox = styled.div`
   width: 366px;
   text-align: center;
