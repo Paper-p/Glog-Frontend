@@ -1,4 +1,3 @@
-import Header from "components/Common/Header";
 import React from "react";
 import * as S from "./style";
 
@@ -9,7 +8,6 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
 function AuthSecition({ children, onSubmit }: Props) {
   return (
     <>
-      <Header />
       <S.AuthSection>
         <S.AuthBox>
           <S.AuthForm onSubmit={onSubmit}>{children}</S.AuthForm>

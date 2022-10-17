@@ -1,11 +1,12 @@
 import * as S from "./style";
 import Input from "components/Common/Input";
 import Button from "components/Common/Button";
+import AuthSection from "components/Common/Section/Auth";
+import Header from "components/Common/Header";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import auth from "data/request/auth";
 import { useState } from "react";
-import AuthSection from "components/Common/Section/Auth";
 
 interface AuthForm {
   userId: string;
@@ -57,6 +58,7 @@ export default function SetMain() {
 
   return (
     <>
+      <Header />
       <AuthSection onSubmit={handleSubmit(onValid, inValid)}>
         <S.GifBox>
           <S.StyledGif src="/images/Signup.gif" alt="gif" />
