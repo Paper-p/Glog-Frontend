@@ -1,19 +1,26 @@
-import React from "react";
-import CodeMirror from "@uiw/react-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
+import MarkdownEditor from "@uiw/react-markdown-editor";
+import Header from "components/Common/Header";
 import * as S from "./style";
 
 function Post() {
-  const onChange = React.useCallback(({ value, viewUpdate }: any) => {
-    console.log("value:", value);
-  }, []);
   return (
-    <CodeMirror
-      value="console.log('hello world!');"
-      height="200px"
-      extensions={[javascript({ jsx: true })]}
-      onChange={onChange}
-    />
+    <>
+      <Header />
+      <S.InputSection>
+        <S.TitleBox>
+          <S.Input placeholder="제목" />
+        </S.TitleBox>
+      </S.InputSection>
+      <S.Markdown>
+        <MarkdownEditor
+          className="markdown-editor"
+          visible={true}
+          height={"100vh"}
+          theme={"dark"}
+          placeholder="내용을 입력해주세요"
+        />
+      </S.Markdown>
+    </>
   );
 }
 export default Post;
