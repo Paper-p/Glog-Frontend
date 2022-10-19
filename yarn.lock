@@ -3047,7 +3047,7 @@
     "@uiw/react-codemirror" "^4.12.3"
     "@uiw/react-markdown-preview" "^4.0.20"
 
-"@uiw/react-markdown-preview@^4.0.20":
+"@uiw/react-markdown-preview@^4.0.20", "@uiw/react-markdown-preview@^4.1.2":
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@uiw/react-markdown-preview/-/react-markdown-preview-4.1.2.tgz#41bac8d51c3e5663629afbeb293d20b3486fbd2c"
   integrity sha512-6RKQvuMW/r7JRGV1zZHHmylJFUuEyZtxpC8HqlY0R9p3PtH4hGQzu1S8VCQNAr3RG7u8ByWgmicoF6/UD9cZ6w==
