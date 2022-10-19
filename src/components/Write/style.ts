@@ -1,10 +1,8 @@
 import styled from "@emotion/styled";
 
-export const InputSection = styled.div`
-  margin-top: 65px;
-  height: 250px;
-  display: flex;
-  justify-content: center;
+export const WriteSection = styled.form`
+  padding-top: 65px;
+  margin: auto;
 `;
 
 export const TitleBox = styled.div`
@@ -35,18 +33,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Markdown = styled.div`
-  font-size: 18px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  & .md-editor {
-    width: 73%;
-  }
-
-  & .md-editor-toolbar-warp {
-    height: 60px;
-    margin: auto;
-  }
+export const MarkdownBox = styled.div`
+  width: 73%;
+  height: 100px;
 `;
