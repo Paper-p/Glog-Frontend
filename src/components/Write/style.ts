@@ -68,6 +68,22 @@ export const Tag = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const ChooseImageBox = styled.div`
+  width: 100%;
+  height: 600px;
+  background-color: white;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: white;
+
+  img {
+    width: 150px;
+    height: 150px;
+  }
+`;
 export const MarkdownBox = styled.div`
   display: flex;
   width: 100%;

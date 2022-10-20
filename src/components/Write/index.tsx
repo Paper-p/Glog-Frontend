@@ -60,13 +60,16 @@ function Post() {
             </div>
           ))}
         </S.TagListBox>
+        <S.ChooseImageBox>
+          <img src="images/gallery.png" alt="" />
+        </S.ChooseImageBox>
         <S.MarkdownBox>
           <S.Editor>
             <MarkdownEditor
+              placeholder="내용을 입력해주세요"
               height="70vh"
               visible={true}
               theme="dark"
-              placeholder="내용을 입력해주세요"
             />
           </S.Editor>
         </S.MarkdownBox>
