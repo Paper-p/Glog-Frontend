@@ -5,11 +5,7 @@
       "jquery": ["node_modules/jquery/dist/jquery"] // this mapping is relative to "baseUrl"
     },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,16 +13,13 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "types": ["@emotion/react/types/css-prop"],
     "jsx": "react-jsx"
-    
   },
-  "include": [
-    "src"
-, "react-app-env.d.ts"  ]
+  "include": ["src", "react-app-env.d.ts"]
 }

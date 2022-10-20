@@ -1,7 +1,6 @@
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Logo from "../Logo";
 import React from "react";
