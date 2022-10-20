@@ -2,18 +2,36 @@ import { useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import MarkdownEditor from "@uiw/react-markdown-editor";
-import MarkdownPreview from "@uiw/react-markdown-preview";
+
+interface TagType {
+  id: number;
+  name: string;
+}
 
 function Post() {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState("");
+  const [tag, setTag] = useState<TagType[]>([]);
+  const [idx, setIdx] = useState(0);
 
-  const TitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
-  const ContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const contentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
+  };
+
+  const onKeyPress = (e: any) => {
+    if (content !== "" && e.key === "Enter") {
+      setIdx(idx + 1);
+      tag.push({
+        id: idx,
+        name: content,
+      });
+      setContent("");
+      console.table([tag]);
+    }
   };
 
   return (
@@ -21,9 +39,37 @@ function Post() {
       <Header />
       <S.WriteSection>
         <S.TitleBox>
-          <S.Input placeholder="제목" onChange={TitleChange} value={title} />
+          <S.Input
+            placeholder="제목을 입력해주세요"
+            onChange={titleChange}
+            value={title}
+          />
         </S.TitleBox>
-        <S.MarkdownBox />
+        <S.TagInputBox>
+          <S.TagInput
+            placeholder="태그를 입력해주세요"
+            onKeyPress={onKeyPress}
+            onChange={contentChange}
+            value={content}
+          />
+        </S.TagInputBox>
+        <S.TagListBox>
+          {tag.map((item) => (
+            <div key={item.id}>
+              <S.Tag>{item.name}</S.Tag>
+            </div>
+          ))}
+        </S.TagListBox>
+        <S.MarkdownBox>
+          <S.Editor>
+            <MarkdownEditor
+              height="70vh"
+              visible={true}
+              theme="dark"
+              placeholder="내용을 입력해주세요"
+            />
+          </S.Editor>
+        </S.MarkdownBox>
       </S.WriteSection>
     </>
   );
