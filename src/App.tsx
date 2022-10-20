@@ -1,6 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import { MainPage, SigninPage, SetNamePage, SetMainPage } from "pages";
+import {
+  MainPage,
+  SigninPage,
+  SetNamePage,
+  SetMainPage,
+  WritePage,
+} from "pages";
 import GlobalStyle from "shared/GlobalStyles";
 
 export default function App() {
@@ -14,6 +20,7 @@ export default function App() {
             <Route path="/signin" element={<SigninPage />} />
             <Route path="/signup/main" element={<SetMainPage />} />
             <Route path="/signup/name" element={<SetNamePage />} />
+            <Route path="/write" element={<WritePage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>

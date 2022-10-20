@@ -25,8 +25,8 @@ function Header() {
           <Link to={"/"}>
             <S.HeaderElements css={select("/")}>홈</S.HeaderElements>
           </Link>
-          <Link to={"/feed"}>
-            <S.HeaderElements css={select("/feed")}>
+          <Link to={"/write"}>
+            <S.HeaderElements css={select("/write")}>
               게시물 작성
             </S.HeaderElements>
           </Link>

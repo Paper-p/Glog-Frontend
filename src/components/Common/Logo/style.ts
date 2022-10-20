@@ -13,7 +13,6 @@ export const LogoWrapper = styled.div<WrapperType>`
   height: ${(e) => {
     return `${e.height}px`;
   }};
-  margin-left: 20px;
 `;
 
 export const SmallCircle = styled.div`
