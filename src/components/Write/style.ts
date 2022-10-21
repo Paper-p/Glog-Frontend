@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const WriteSection = styled.form`
   width: 72.5%;
   margin: auto;
-  padding-top: 65px;
+  padding-top: 120px;
 `;
 
 export const TitleBox = styled.div`
@@ -67,17 +67,57 @@ export const Tag = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  animation: fadein 0.4s;
+  -moz-animation: fadein 0.4s; /* Firefox */
+  -webkit-animation: fadein 0.4s; /* Safari and Chrome */
+  -o-animation: fadein 0.4s; /* Opera */
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes fadein {
+    /* Firefox */
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @-o-keyframes fadein {
+    /* Opera */
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
-export const ChooseImageBox = styled.div`
+export const ChooseImageBox = styled.input`
   width: 100%;
   height: 600px;
-  background-color: white;
+  background: #a8a4a4;
   margin-top: 10px;
   align-items: center;
   justify-content: center;
   display: flex;
-  background-color: white;
 
   img {
     width: 150px;

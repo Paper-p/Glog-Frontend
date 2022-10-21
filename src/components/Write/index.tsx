@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import MarkdownEditor from "@uiw/react-markdown-editor";
@@ -60,9 +60,7 @@ function Post() {
             </div>
           ))}
         </S.TagListBox>
-        <S.ChooseImageBox>
-          <img src="images/gallery.png" alt="" />
-        </S.ChooseImageBox>
+        <S.ChooseImageBox type="file" id="main-image" accept="image/*" />
         <S.MarkdownBox>
           <S.Editor>
             <MarkdownEditor
