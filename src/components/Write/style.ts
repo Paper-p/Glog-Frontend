@@ -50,7 +50,7 @@ export const TagInput = styled(Input)`
 
 export const TagListBox = styled.div`
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   gap: 8px;
 `;
@@ -67,6 +67,7 @@ export const Tag = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   animation: fadein 0.4s;
   -moz-animation: fadein 0.4s; /* Firefox */
@@ -118,11 +119,11 @@ export const ChooseImageBox = styled.input`
   align-items: center;
   justify-content: center;
   display: flex;
-
+  /* 
   img {
     width: 150px;
     height: 150px;
-  }
+  } */
 `;
 export const MarkdownBox = styled.div`
   display: flex;

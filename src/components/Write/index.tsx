@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import MarkdownEditor from "@uiw/react-markdown-editor";
@@ -12,7 +12,7 @@ function Post() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState("");
   const [tag, setTag] = useState<TagType[]>([]);
-  const [idx, setIdx] = useState(0);
+  const nextId = useRef(0);
 
   const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -23,15 +23,22 @@ function Post() {
   };
 
   const onKeyPress = (e: any) => {
-    if (content !== "" && e.key === "Enter") {
-      setIdx(idx + 1);
-      tag.push({
-        id: idx,
-        name: content,
-      });
+    if (content !== "" && e.key === "Enter" && tag.length < 6) {
+      setTag(
+        tag.concat({
+          id: nextId.current,
+          name: content,
+        })
+      );
       setContent("");
-      console.table([tag]);
+      nextId.current += 1;
+    } else if (e.key === "Enter") {
+      setContent("");
     }
+  };
+
+  const removeTag = (data: TagType) => {
+    setTag(tag.filter((tag) => tag.id !== data.id));
   };
 
   return (
@@ -56,11 +63,16 @@ function Post() {
         <S.TagListBox>
           {tag.map((item) => (
             <div key={item.id}>
-              <S.Tag>{item.name}</S.Tag>
+              <S.Tag
+                onClick={() => {
+                  removeTag(item);
+                }}
+              >
+                {item.name}
+              </S.Tag>
             </div>
           ))}
         </S.TagListBox>
-        <S.ChooseImageBox type="file" id="main-image" accept="image/*" />
         <S.MarkdownBox>
           <S.Editor>
             <MarkdownEditor
