@@ -12,16 +12,28 @@ function Post() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState("");
   const [tag, setTag] = useState<TagType[]>([]);
-  const nextId = useRef(0);
+  const [imageSrc, setImageSrc] = useState<String>("");
 
-  const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const encodeFileToBase64 = (fileBlob: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise<void>((resolve) => {
+      reader.onload = () => {
+        setImageSrc(String(reader.result));
+        resolve();
+      };
+    });
+  };
+
+  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
-  const contentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   };
 
+  const nextId = useRef(0);
   const onKeyPress = (e: any) => {
     if (content !== "" && e.key === "Enter" && tag.length < 6) {
       setTag(
@@ -37,7 +49,7 @@ function Post() {
     }
   };
 
-  const removeTag = (data: TagType) => {
+  const onRemoveTag = (data: TagType) => {
     setTag(tag.filter((tag) => tag.id !== data.id));
   };
 
@@ -48,7 +60,7 @@ function Post() {
         <S.TitleBox>
           <S.Input
             placeholder="제목을 입력해주세요"
-            onChange={titleChange}
+            onChange={onTitleChange}
             value={title}
           />
         </S.TitleBox>
@@ -56,7 +68,7 @@ function Post() {
           <S.TagInput
             placeholder="태그를 입력해주세요"
             onKeyPress={onKeyPress}
-            onChange={contentChange}
+            onChange={onContentChange}
             value={content}
           />
         </S.TagInputBox>
@@ -65,7 +77,7 @@ function Post() {
             <div key={item.id}>
               <S.Tag
                 onClick={() => {
-                  removeTag(item);
+                  onRemoveTag(item);
                 }}
               >
                 {item.name}
@@ -73,6 +85,16 @@ function Post() {
             </div>
           ))}
         </S.TagListBox>
+        <S.ChooseThumbNailFile
+          type="file"
+          onChange={(e: any) => {
+            encodeFileToBase64(e.target.files[0]);
+          }}
+          accept="image/*"
+        />
+        <S.ChooseImageBox>
+          <p>{imageSrc && <img src={String(imageSrc)} alt="preview-img" />}</p>
+        </S.ChooseImageBox>
         <S.MarkdownBox>
           <S.Editor>
             <MarkdownEditor

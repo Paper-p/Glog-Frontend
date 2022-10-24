@@ -111,19 +111,29 @@ export const Tag = styled.div`
   }
 `;
 
-export const ChooseImageBox = styled.input`
+export const ChooseThumbNailFile = styled.input`
+  border: none;
+  color: #1a1b1e;
+`;
+
+export const ChooseImageBox = styled.div`
   width: 100%;
   height: 600px;
-  background: #a8a4a4;
+  background: #1a1b1e;
+  align-items: center;
+  justify-content: center;
   margin-top: 10px;
   align-items: center;
   justify-content: center;
   display: flex;
-  /* 
+
+  p {
+    text-align: center;
+  }
   img {
-    width: 150px;
-    height: 150px;
-  } */
+    width: 1000px;
+    height: 450px;
+  }
 `;
 export const MarkdownBox = styled.div`
   display: flex;
