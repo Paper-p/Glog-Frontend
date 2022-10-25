@@ -120,7 +120,7 @@ export const ExampleThumbnail = styled.div`
   align-items: center;
   justify-content: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("https://avatars.githubusercontent.com/u/102593699?v=4");
+    url("https://cdn.clien.net/web/api/file/F01/12204564/221a6c7811486c.png?w=780&h=30000");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -134,7 +134,7 @@ export const Explain = styled.div`
   margin: 20px 0;
 `;
 
-export const ThumbnailElements = styled.div<{ imageUrl: string }>`
+export const ThumbnailElements = styled.div`
   width: 609px;
   height: 101px;
 `;
@@ -150,6 +150,13 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   color: #9c9c9c;
+`;
+
+export const ThumnailModal = styled.div`
+  width: 60%;
+  height: 700px;
+  background: white;
+  border-radius: 15px;
 `;
 
 export const MarkdownBox = styled.div`

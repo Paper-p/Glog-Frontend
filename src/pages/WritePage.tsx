@@ -1,5 +1,5 @@
-import Post from "../../src/components/Write";
+import Write from "../../src/components/Write";
 
-export default function PostPage() {
-  return <Post />;
+export default function WritePage() {
+  return <Write />;
 }

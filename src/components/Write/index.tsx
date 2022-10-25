@@ -9,7 +9,7 @@ interface TagType {
   name: string;
 }
 
-function Post() {
+function Write() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState("");
   const [tag, setTag] = useState<TagType[]>([]);
@@ -79,4 +79,4 @@ function Post() {
     </>
   );
 }
-export default Post;
+export default Write;
