@@ -111,30 +111,47 @@ export const Tag = styled.div`
   }
 `;
 
-export const ChooseThumbNailFile = styled.input`
-  border: none;
-  color: #1a1b1e;
-`;
-
-export const ChooseImageBox = styled.div`
-  width: 100%;
-  height: 600px;
-  background: #1a1b1e;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  align-items: center;
-  justify-content: center;
+export const ExampleThumbnail = styled.div`
+  width: 684px;
+  height: 150px;
+  border-radius: 20px;
+  margin: auto;
   display: flex;
-
-  p {
-    text-align: center;
-  }
-  img {
-    width: 1000px;
-    height: 450px;
-  }
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://avatars.githubusercontent.com/u/102593699?v=4");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
+
+export const Explain = styled.div`
+  font-weight: 500;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  margin: 20px 0;
+`;
+
+export const ThumbnailElements = styled.div<{ imageUrl: string }>`
+  width: 609px;
+  height: 101px;
+`;
+
+export const Title = styled.div`
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const Content = styled.div`
+  color: #9c9c9c;
+`;
+
 export const MarkdownBox = styled.div`
   display: flex;
   width: 100%;

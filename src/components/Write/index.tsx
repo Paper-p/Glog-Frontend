@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import MarkdownEditor from "@uiw/react-markdown-editor";
+import Button from "components/Common/Button";
 
 interface TagType {
   id: number;
@@ -12,18 +13,6 @@ function Post() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState("");
   const [tag, setTag] = useState<TagType[]>([]);
-  const [imageSrc, setImageSrc] = useState<String>("");
-
-  const encodeFileToBase64 = (fileBlob: any) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise<void>((resolve) => {
-      reader.onload = () => {
-        setImageSrc(String(reader.result));
-        resolve();
-      };
-    });
-  };
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -33,7 +22,7 @@ function Post() {
     setContent(e.target.value);
   };
 
-  const nextId = useRef(0);
+  const nextId = useRef(0); //unique id
   const onKeyPress = (e: any) => {
     if (content !== "" && e.key === "Enter" && tag.length < 6) {
       setTag(
@@ -43,6 +32,7 @@ function Post() {
         })
       );
       setContent("");
+      window.localStorage.setItem("access-token", "asdasdawdwadaw");
       nextId.current += 1;
     } else if (e.key === "Enter") {
       setContent("");
@@ -85,26 +75,6 @@ function Post() {
             </div>
           ))}
         </S.TagListBox>
-        <S.ChooseThumbNailFile
-          type="file"
-          onChange={(e: any) => {
-            encodeFileToBase64(e.target.files[0]);
-          }}
-          accept="image/*"
-        />
-        <S.ChooseImageBox>
-          <p>{imageSrc && <img src={String(imageSrc)} alt="preview-img" />}</p>
-        </S.ChooseImageBox>
-        <S.MarkdownBox>
-          <S.Editor>
-            <MarkdownEditor
-              placeholder="내용을 입력해주세요"
-              height="70vh"
-              visible={true}
-              theme="dark"
-            />
-          </S.Editor>
-        </S.MarkdownBox>
       </S.WriteSection>
     </>
   );

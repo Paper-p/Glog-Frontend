@@ -1,5 +1,4 @@
-import Post from "../../src/components/Write/index"
-import React from "react";
+import Post from "../../src/components/Write";
 
 export default function PostPage() {
   return <Post />;
