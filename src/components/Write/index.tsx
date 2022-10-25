@@ -42,6 +42,7 @@ function Write() {
   const onRemoveTag = (data: TagType) => {
     setTag(tag.filter((tag) => tag.id !== data.id));
   };
+  //
 
   return (
     <>
