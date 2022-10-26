@@ -2,7 +2,7 @@ import * as S from "./style";
 import Logo from "components/Common/Logo";
 import Input from "components/Common/Input";
 import Button from "components/Common/Button";
-import AuthSection from "components/Common/Layout/Auth";
+import AuthLayout from "components/Common/Layout/Auth";
 import Header from "components/Common/Header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ export default function Signin() {
   return (
     <>
       <Header />
-      <AuthSection onSubmit={handleSubmit(onValid, inValid)}>
+      <AuthLayout onSubmit={handleSubmit(onValid, inValid)}>
         <Logo width={335} height={96} />
         <S.HighlightText>다시 온걸 환영해요!</S.HighlightText>
         <Input
@@ -71,7 +71,7 @@ export default function Signin() {
             <S.Text>를 잊어 버리셨나요?</S.Text>
           </S.TextUl>
         </S.TextBox>
-      </AuthSection>
+      </AuthLayout>
     </>
   );
 }
