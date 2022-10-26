@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import MarkdownEditor from "@uiw/react-markdown-editor";
+import useInputs from "hooks/useInputs";
 
 interface TagType {
   id: number;
@@ -9,11 +10,14 @@ interface TagType {
 }
 
 function Write() {
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState("");
   const [tag, setTag] = useState<TagType[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [markdown, setMarkdown] = useState("");
+
+  const [{ title, content }, onChange, , setNull] = useInputs({
+    title: "",
+    content: "",
+  });
 
   const tabbar = [
     {
@@ -55,35 +59,27 @@ function Write() {
     setActiveIndex(index);
   };
 
-  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const onContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
-  };
-
   const nextId = useRef(0); //unique id
   const onAddTag = (e: any) => {
     if (content !== "" && e.key === "Enter" && tag.length < 6) {
       setTag(
+        //불변성 지키기
         tag.concat({
           id: nextId.current,
           name: content,
         })
       );
-      setContent("");
+      setNull("content");
       window.localStorage.setItem("access-token", "asdasdawdwadaw");
       nextId.current += 1;
     } else if (e.key === "Enter") {
-      setContent("");
+      setNull("content");
     }
   };
 
   const onRemoveTag = (data: TagType) => {
     setTag(tag.filter((tag) => tag.id !== data.id));
   };
-  //
 
   return (
     <>
@@ -91,16 +87,18 @@ function Write() {
       <S.WriteLayout>
         <S.TitleBox>
           <S.TitleInput
+            name="title"
             placeholder="제목을 입력해주세요"
-            onChange={onTitleChange}
+            onChange={onChange}
             value={title}
           />
         </S.TitleBox>
         <S.TagInputBox>
           <S.TagInput
+            name="content"
             placeholder="태그를 입력해주세요"
             onKeyPress={onAddTag}
-            onChange={onContentChange}
+            onChange={onChange}
             value={content}
           />
         </S.TagInputBox>
