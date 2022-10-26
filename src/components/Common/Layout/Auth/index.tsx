@@ -5,16 +5,16 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   onSubmit?: any;
 }
 
-function AuthSecition({ children, onSubmit }: Props) {
+function AuthLayout({ children, onSubmit }: Props) {
   return (
     <>
-      <S.AuthSection>
-        <S.AuthBox>
+      <S.AuthLayout>
+        <S.AuthWrapper>
           <S.AuthForm onSubmit={onSubmit}>{children}</S.AuthForm>
-        </S.AuthBox>
-      </S.AuthSection>
+        </S.AuthWrapper>
+      </S.AuthLayout>
     </>
   );
 }
 
-export default AuthSecition;
+export default AuthLayout;

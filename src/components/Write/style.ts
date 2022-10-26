@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const WriteSection = styled.form`
+export const WriteLayout = styled.section`
   width: 72.5%;
   margin: auto;
   padding-top: 120px;
@@ -13,7 +13,7 @@ export const TitleBox = styled.div`
   border-bottom: 1px solid #484848;
 `;
 
-export const Input = styled.input`
+export const TitleInput = styled.input`
   width: 100%;
   height: 100%;
   font-size: 48px;
@@ -43,7 +43,7 @@ export const TagInputBox = styled.div`
   margin-bottom: 5px;
 `;
 
-export const TagInput = styled(Input)`
+export const TagInput = styled(TitleInput)`
   font-size: 20px;
   color: #969696;
 `;
@@ -111,105 +111,41 @@ export const Tag = styled.div`
   }
 `;
 
-export const ExampleThumbnail = styled.div`
-  width: 684px;
-  height: 150px;
-  border-radius: 20px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("https://cdn.clien.net/web/api/file/F01/12204564/221a6c7811486c.png?w=780&h=30000");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
-
-export const Explain = styled.div`
-  font-weight: 500;
-  font-size: 30px;
-  color: white;
-  text-align: center;
-  margin: 20px 0;
-`;
-
-export const ThumbnailElements = styled.div`
-  width: 609px;
-  height: 101px;
-`;
-
-export const Title = styled.div`
-  font-weight: 500;
-  font-size: 20px;
-  color: white;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-export const Content = styled.div`
-  color: #9c9c9c;
-`;
-
-export const ThumnailModal = styled.div`
-  width: 60%;
-  height: 700px;
-  background: white;
-  border-radius: 15px;
-`;
-
-export const Editor = styled.div`
-  width: 100%;
-  height: 100%;
-
-  .md-editor {
-    font-size: 20px;
-  }
-
-  .md-editor-toolbar-warp {
-    justify-content: center;
-    height: 45px;
-  }
-
-  .md-editor-toolbar-mode {
-    display: none;
-  }
-  .wmde-markdown p {
-    text-align: center;
-  }
-`;
-
 export const Tabbar = styled.div`
   display: flex;
   width: 100%;
   height: 60px;
   background: #373b45;
   border-radius: 10px 10px 0 0;
-  padding-left: 15px;
+  border-top: 1px solid #767676;
+  border-left: 1px solid #767676;
+  border-right: 1px solid #767676;
 
   .is-active {
     background-color: #1f2125;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    border-bottom: 3px double #1f2125;
   }
 `;
 
 export const Tabs = styled.div`
+  display: flex;
   width: 150px;
   height: 100%;
-  color: white;
   text-align: center;
-  display: flex;
   justify-content: center;
   align-items: center;
+  color: #d8d7d7;
+  font-weight: 700;
   cursor: pointer;
-
-  transition: 0.2s;
 `;
 
-export const MarkdownBox = styled.div`
+export const Markdown = styled.div`
   width: 100%;
-  height: 500px;
+  height: 900px;
   background: #1f2125;
+  border-bottom: 1px solid #767676;
+  border-left: 1px solid #767676;
+  border-right: 1px solid #767676;
 `;

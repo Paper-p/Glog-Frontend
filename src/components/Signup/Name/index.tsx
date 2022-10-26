@@ -2,7 +2,7 @@ import * as S from "./style";
 import { useState } from "react";
 import Input from "components/Common/Input";
 import Button from "components/Common/Button";
-import AuthSection from "components/Common/Section/Auth";
+import AuthSection from "components/Common/Layout/Auth";
 import Header from "components/Common/Header";
 import auth from "data/request/auth";
 import { useNavigate, useLocation } from "react-router-dom";

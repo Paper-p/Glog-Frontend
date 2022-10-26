@@ -13,11 +13,7 @@ function Write() {
   const [tag, setTag] = useState<TagType[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const tabClickHandler = (index: number) => {
-    setActiveIndex(index);
-  };
-
-  const tabContArr = [
+  const tabbar = [
     {
       tabTitle: (
         <S.Tabs
@@ -27,7 +23,7 @@ function Write() {
           글작성
         </S.Tabs>
       ),
-      tabCont: <div> 탭1 내용 </div>,
+      tabContent: <div> 탭1 내용 </div>,
     },
     {
       tabTitle: (
@@ -38,9 +34,13 @@ function Write() {
           미리보기
         </S.Tabs>
       ),
-      tabCont: <div> 탭2 내용 </div>,
+      tabContent: <div> 탭2 내용 </div>,
     },
   ];
+
+  const tabClickHandler = (index: number) => {
+    setActiveIndex(index);
+  };
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -51,7 +51,7 @@ function Write() {
   };
 
   const nextId = useRef(0); //unique id
-  const onKeyPress = (e: any) => {
+  const onAddTag = (e: any) => {
     if (content !== "" && e.key === "Enter" && tag.length < 6) {
       setTag(
         tag.concat({
@@ -75,9 +75,9 @@ function Write() {
   return (
     <>
       <Header />
-      <S.WriteSection>
+      <S.WriteLayout>
         <S.TitleBox>
-          <S.Input
+          <S.TitleInput
             placeholder="제목을 입력해주세요"
             onChange={onTitleChange}
             value={title}
@@ -86,7 +86,7 @@ function Write() {
         <S.TagInputBox>
           <S.TagInput
             placeholder="태그를 입력해주세요"
-            onKeyPress={onKeyPress}
+            onKeyPress={onAddTag}
             onChange={onContentChange}
             value={content}
           />
@@ -105,12 +105,12 @@ function Write() {
           ))}
         </S.TagListBox>
         <S.Tabbar>
-          {tabContArr.map((idx) => {
+          {tabbar.map((idx) => {
             return idx.tabTitle;
           })}
         </S.Tabbar>
-        <S.MarkdownBox>{tabContArr[activeIndex].tabCont}</S.MarkdownBox>
-      </S.WriteSection>
+        <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
+      </S.WriteLayout>
     </>
   );
 }

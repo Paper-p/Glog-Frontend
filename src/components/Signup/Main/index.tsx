@@ -1,7 +1,7 @@
 import * as S from "./style";
 import Input from "components/Common/Input";
 import Button from "components/Common/Button";
-import AuthSection from "components/Common/Section/Auth";
+import AuthSection from "components/Common/Layout/Auth";
 import Header from "components/Common/Header";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";

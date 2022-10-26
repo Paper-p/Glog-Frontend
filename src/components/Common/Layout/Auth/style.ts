@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
-export const AuthSection = styled.div`
+export const AuthLayout = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-export const AuthBox = styled.div`
+export const AuthWrapper = styled.div`
   display: flex;
   height: calc(100vh - 170px);
   align-items: center;
