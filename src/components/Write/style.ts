@@ -159,13 +159,6 @@ export const ThumnailModal = styled.div`
   border-radius: 15px;
 `;
 
-export const MarkdownBox = styled.div`
-  display: flex;
-  width: 100%;
-  height: 500px;
-  margin-top: 25px;
-`;
-
 export const Editor = styled.div`
   width: 100%;
   height: 100%;
@@ -185,4 +178,38 @@ export const Editor = styled.div`
   .wmde-markdown p {
     text-align: center;
   }
+`;
+
+export const Tabbar = styled.div`
+  display: flex;
+  width: 100%;
+  height: 60px;
+  background: #373b45;
+  border-radius: 10px 10px 0 0;
+  padding-left: 15px;
+
+  .is-active {
+    background-color: #1f2125;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+`;
+
+export const Tabs = styled.div`
+  width: 150px;
+  height: 100%;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  transition: 0.2s;
+`;
+
+export const MarkdownBox = styled.div`
+  width: 100%;
+  height: 500px;
+  background: #1f2125;
 `;
