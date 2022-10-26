@@ -2,7 +2,7 @@ import * as S from "./style";
 import { useState } from "react";
 import Input from "components/Common/Input";
 import Button from "components/Common/Button";
-import AuthSection from "components/Common/Section/Auth";
+import AuthLayout from "components/Common/Layout/Auth";
 import Header from "components/Common/Header";
 import auth from "data/request/auth";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -66,7 +66,7 @@ export default function SetName() {
   return (
     <>
       <Header />
-      <AuthSection onSubmit={handleSubmit(onValid, inValid)}>
+      <AuthLayout onSubmit={handleSubmit(onValid, inValid)}>
         <S.GifBox>
           <S.StyledGif src="/images/Signup.gif" alt="gif" />
         </S.GifBox>
@@ -89,7 +89,7 @@ export default function SetName() {
           <S.ErrorText>{errors.nickname?.message}</S.ErrorText>
         </Input>
         <Button>완료</Button>
-      </AuthSection>
+      </AuthLayout>
     </>
   );
 }

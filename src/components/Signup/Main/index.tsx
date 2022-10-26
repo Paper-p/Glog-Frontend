@@ -1,7 +1,7 @@
 import * as S from "./style";
 import Input from "components/Common/Input";
 import Button from "components/Common/Button";
-import AuthSection from "components/Common/Section/Auth";
+import AuthLayout from "components/Common/Layout/Auth";
 import Header from "components/Common/Header";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -59,7 +59,7 @@ export default function SetMain() {
   return (
     <>
       <Header />
-      <AuthSection onSubmit={handleSubmit(onValid, inValid)}>
+      <AuthLayout onSubmit={handleSubmit(onValid, inValid)}>
         <S.GifBox>
           <S.StyledGif src="/images/Signup.gif" alt="gif" />
         </S.GifBox>
@@ -118,7 +118,7 @@ export default function SetMain() {
         <S.CommonText>
           비밀번호는 8자리 이상 및 숫자와 문자, 기호를 포함해주세요.
         </S.CommonText>
-      </AuthSection>
+      </AuthLayout>
     </>
   );
 }
