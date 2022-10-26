@@ -8,6 +8,7 @@ import {
   WritePage,
 } from "pages";
 import GlobalStyle from "shared/GlobalStyles";
+import CheckLogin from "components/checkLogin";
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
         <GlobalStyle />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<CheckLogin />} />
             <Route path="/signin" element={<SigninPage />} />
             <Route path="/signup/main" element={<SetMainPage />} />
             <Route path="/signup/name" element={<SetNamePage />} />
