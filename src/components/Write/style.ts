@@ -20,6 +20,7 @@ export const TitleInput = styled.input`
   background: #1a1b1e;
   border: none;
   color: #ededed;
+  font-weight: 00;
 
   &:focus {
     outline: none;
@@ -112,6 +113,7 @@ export const Tag = styled.div`
 `;
 
 export const Tabbar = styled.div`
+  margin-top: 20px;
   display: flex;
   width: 100%;
   height: 60px;
@@ -143,9 +145,28 @@ export const Tabs = styled.div`
 
 export const Markdown = styled.div`
   width: 100%;
-  height: 900px;
+  height: 90vh;
   background: #1f2125;
   border-bottom: 1px solid #767676;
   border-left: 1px solid #767676;
   border-right: 1px solid #767676;
+
+  .md-editor {
+    font-size: 15px;
+    background: #1f2125;
+  }
+
+  .md-editor-preview {
+    display: none;
+  }
+
+  .wmde-markdown {
+    background: #1f2125;
+    padding: 50px;
+    color: #bbbbbb;
+  }
+
+  .wmde-markdown pre > code {
+    color: black;
+  }
 `;
