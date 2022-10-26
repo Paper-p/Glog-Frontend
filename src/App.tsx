@@ -8,7 +8,6 @@ import {
   WritePage,
 } from "pages";
 import GlobalStyle from "shared/GlobalStyles";
-import CheckLogin from "components/checkLogin";
 
 export default function App() {
   return (

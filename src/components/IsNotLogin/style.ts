@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
-export const Section = styled.div`
+export const Layout = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-export const Wrap = styled.div`
+export const Section = styled.div`
   display: flex;
   height: calc(100vh - 360px);
   align-items: center;

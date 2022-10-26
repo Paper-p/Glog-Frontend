@@ -2,12 +2,12 @@ import Button from "components/Common/Button";
 import Header from "components/Common/Header";
 import * as S from "./style";
 
-function CheckLogin() {
+function IsNotLogin() {
   return (
     <>
       <Header />
-      <S.Section>
-        <S.Wrap>
+      <S.Layout>
+        <S.Section>
           <S.Box>
             <S.Emoji>😅</S.Emoji>
             <S.WarnningText>
@@ -15,10 +15,10 @@ function CheckLogin() {
             </S.WarnningText>
             <Button>로그인하러 하기</Button>
           </S.Box>
-        </S.Wrap>
-      </S.Section>
+        </S.Section>
+      </S.Layout>
     </>
   );
 }
 
-export default CheckLogin;
+export default IsNotLogin;
