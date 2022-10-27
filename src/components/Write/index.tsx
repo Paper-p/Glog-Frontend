@@ -2,12 +2,13 @@ import { useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import Tag from "components/Tag";
+import ThumbnailModal from "components/Modal/ThumbnailModal";
 import useInputs from "hooks/useInputs";
 import MarkdownEditor from "@uiw/react-markdown-editor";
-import Button from "components/Common/Button";
 
 function Write() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
   const [markdown, setMarkdown] = useState("");
   const [{ title }, onChange] = useInputs({
     title: "",
@@ -45,14 +46,16 @@ function Write() {
           미리보기
         </S.Tabs>
       ),
-      tabContent: (
-        <MarkdownEditor.Markdown source={`# ${title}\n ${markdown}`} />
-      ),
+      tabContent: <MarkdownEditor.Markdown source={markdown} />,
     },
   ];
 
   const tabClickHandler = (index: number) => {
     setActiveIndex(index);
+  };
+
+  const showModal = () => {
+    setModalOpen(true);
   };
 
   return (
@@ -68,26 +71,8 @@ function Write() {
           />
         </S.TitleBox>
         <Tag />
-        {/* <S.InputFileModalLayout>
-          <S.Box>
-            <S.InputFileBox>
-              <div className="box-file-input">
-                <label>
-                  <input
-                    type="file"
-                    name="ev_display"
-                    className="file-input"
-                    accept="image/*"
-                  />
-                </label>
-                <p>썸네일 이미지를 정해주세요</p>
-              </div>
-            </S.InputFileBox>
-          </S.Box>
-          <S.Box>
-            <Button className="button">적용하기</Button>
-          </S.Box>
-        </S.InputFileModalLayout> */}
+        <button onClick={showModal}>모달 띄우기</button>
+        {modalOpen && <ThumbnailModal setModalOpen={setModalOpen} />}
         <S.Tabbar>
           {tabbar.map((idx) => {
             return idx.tabTitle;
