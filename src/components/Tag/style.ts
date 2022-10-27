@@ -35,7 +35,7 @@ export const TagInput = styled.input`
 
 export const TagListBox = styled.div`
   width: 100%;
-  height: 60px;
+  height: content;
   display: flex;
   gap: 8px;
 `;

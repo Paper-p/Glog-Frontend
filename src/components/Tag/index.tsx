@@ -1,5 +1,5 @@
 import useInputs from "hooks/useInputs";
-import React, { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import * as S from "./style";
 
 interface TagType {
@@ -13,23 +13,24 @@ function Tag() {
     content: "",
   });
 
-  const nextId = useRef(0); //unique id
-  const onAddTag = (e: any) => {
-    if (content !== "" && e.key === "Enter" && tag.length < 6) {
-      setTag(
-        //불변성 지키기
-        tag.concat({
-          id: nextId.current,
-          name: content,
-        })
-      );
-      setNull("content");
-      window.localStorage.setItem("access-token", "asdasdawdwadaw");
-      nextId.current += 1;
-    } else if (e.key === "Enter") {
-      setNull("content");
-    }
-  };
+  const nextId = useRef(1); //unique id
+  const onAddTag = useCallback(
+    (e: any) => {
+      if (content !== "" && e.key === "Enter") {
+        setTag(
+          tag.concat({
+            id: nextId.current,
+            name: content,
+          })
+        );
+        setNull("content");
+        nextId.current += 1;
+      } else if (e.key === "Enter") {
+        setNull("content");
+      }
+    },
+    [content, setNull, tag]
+  );
 
   const onRemoveTag = (data: TagType) => {
     setTag(tag.filter((tag) => tag.id !== data.id));
