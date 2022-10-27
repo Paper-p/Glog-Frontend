@@ -38,7 +38,7 @@ export const ThumbnailModal = styled.div`
   width: 800px;
   height: 750px;
   background: #252727;
-  border-radius: 10px;
+  border-radius: 15px;
 `;
 
 export const Box = styled.div`

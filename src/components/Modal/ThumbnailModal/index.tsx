@@ -7,6 +7,21 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 function ThumbnailModal({ setModalOpen }: Props) {
+  // 스크롤 막기
+  useEffect(() => {
+    //top => 현재위치
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px; 
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+
   return (
     <S.ThumbnailModalLayout>
       <S.Background>
