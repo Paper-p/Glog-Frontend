@@ -8,10 +8,11 @@ class Auth {
         headers: {
           "content-type": "multipart/form-data",
         },
-        url: REACT_APP_BASE_URL + "image",
+        url: REACT_APP_BASE_URL + "/image",
         data: {
           image: FormData,
         },
+        method: "POST",
       });
     } catch (error) {
       return error;
