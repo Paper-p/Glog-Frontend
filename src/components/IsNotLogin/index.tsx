@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 function IsNotLogin() {
   return (
     <>
-      ~
       <Header />
       <S.Layout>
         <S.Section>
