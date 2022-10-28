@@ -1,12 +1,8 @@
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, { useEffect } from "react";
 import * as S from "./style";
 import Button from "components/Common/Button";
 import { useRecoilState } from "recoil";
 import { imageModalAtom } from "atoms/AtomContainer";
-
-interface Props extends React.HTMLAttributes<HTMLButtonElement> {
-  setModalOpen: Dispatch<SetStateAction<boolean>>;
-}
 
 function ThumbnailModal() {
   const [, setImageModal] = useRecoilState(imageModalAtom);
