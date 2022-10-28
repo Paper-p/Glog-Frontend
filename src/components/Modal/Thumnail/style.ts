@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 
 export const ThumbnailModalLayout = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 10;
   top: 0;
   left: 0;
@@ -23,15 +23,6 @@ export const Background = styled.div`
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(0.1px);
-  animation: modal-bg-show 0.1s;
-  @keyframes modal-bg-show {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 `;
 
 export const ThumbnailModal = styled.div`

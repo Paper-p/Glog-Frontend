@@ -1,15 +1,17 @@
-import Button from "components/Common/Button";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import * as S from "./style";
-import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
+import Button from "components/Common/Button";
+import { useRecoilState } from "recoil";
+import { imageModalAtom } from "atoms/AtomContainer";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-function ThumbnailModal({ setModalOpen }: Props) {
-  // 스크롤 막기
+function ThumbnailModal() {
+  const [, setImageModal] = useRecoilState(imageModalAtom);
+
   useEffect(() => {
-    //top => 현재위치
     document.body.style.cssText = `
       position: fixed; 
       top: -${window.scrollY}px; 
@@ -22,10 +24,14 @@ function ThumbnailModal({ setModalOpen }: Props) {
     };
   }, []);
 
+  const onClick = () => {
+    setImageModal(false);
+  };
+
   return (
     <S.ThumbnailModalLayout>
-      <S.Background>
-        <S.ThumbnailModal>
+      <S.Background onClick={onClick}>
+        <S.ThumbnailModal onClick={(e) => e.stopPropagation()}>
           <S.Box>
             <S.InputFileBox>
               <div className="box-file-input">

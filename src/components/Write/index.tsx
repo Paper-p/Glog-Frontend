@@ -2,17 +2,24 @@ import { useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import Tag from "components/Tag";
-import ThumbnailModal from "components/Modal/ThumbnailModal";
+import ThumbnailModal from "components/Modal/Thumnail";
 import useInputs from "hooks/useInputs";
 import MarkdownEditor from "@uiw/react-markdown-editor";
+import { useRecoilState } from "recoil";
+import { imageModalAtom } from "atoms/AtomContainer";
 
 function Write() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [markdown, setMarkdown] = useState("");
   const [{ title }, onChange] = useInputs({
     title: "",
   });
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [imageModal, setImageModal] = useRecoilState(imageModalAtom);
+  const [markdown, setMarkdown] = useState("");
+
+  const tabClickHandler = (index: number) => {
+    setActiveIndex(index);
+  };
 
   const tabbar = [
     {
@@ -50,12 +57,8 @@ function Write() {
     },
   ];
 
-  const tabClickHandler = (index: number) => {
-    setActiveIndex(index);
-  };
-
   const showModal = () => {
-    setModalOpen(true);
+    setImageModal(true);
   };
 
   return (
@@ -72,7 +75,7 @@ function Write() {
         </S.TitleBox>
         <Tag />
         <button onClick={showModal}>모달 띄우기</button>
-        {modalOpen && <ThumbnailModal setModalOpen={setModalOpen} />}
+        {imageModal && <ThumbnailModal />}
         <S.Tabbar>
           {tabbar.map((idx) => {
             return idx.tabTitle;
