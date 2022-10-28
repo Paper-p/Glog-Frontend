@@ -36,7 +36,8 @@ function Header() {
         {logged ? (
           <S.HeaderElementsList>
             <S.HeaderElements>
-              <Link to={"/my"}>
+              <Link to={"/my"} className="user-profile">
+                <S.Username>오종진님</S.Username>
                 <S.Profile src="/images/profile.jpeg" alt="profile" />
               </Link>
             </S.HeaderElements>
