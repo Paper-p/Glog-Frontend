@@ -6,14 +6,13 @@ class Auth {
     try {
       return AxiosInstance(
         {
+          method: "POST",
+          url: REACT_APP_BASE_URL + "/image",
+
           headers: {
             "content-type": "multipart/form-data",
           },
-          url: REACT_APP_BASE_URL + "/image",
-          data: {
-            image: FormData,
-          },
-          method: "POST",
+          data: thumnailImage,
         },
         token
       );
