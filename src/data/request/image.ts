@@ -8,7 +8,6 @@ class Auth {
         {
           method: "POST",
           url: REACT_APP_BASE_URL + "/image",
-
           headers: {
             "content-type": "multipart/form-data",
           },
