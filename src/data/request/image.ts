@@ -1,7 +1,7 @@
 import { REACT_APP_BASE_URL } from "shared/config";
 import AxiosInstance from "util/axiosInstance";
 
-class Auth {
+class Image {
   uploadImage(thumnailImage: FormData, token: string) {
     try {
       return AxiosInstance(
@@ -21,4 +21,4 @@ class Auth {
   }
 }
 
-export default new Auth();
+export default new Image();
