@@ -36,18 +36,11 @@ function ThumbnailModal() {
       setProfile(URL.createObjectURL(e.target.files[0]));
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
-      const res = await axios({
-        method: "POST",
-        headers: {
-          Authorization:
-            "Bearer " + window.localStorage.getItem("access-token"),
-          "Content-Type": "multipart/form-data",
-        },
-        data: formData,
-        url: REACT_APP_BASE_URL + "/image",
-        withCredentials: false,
-      });
-      console.log(res.status);
+      const res = await image.uploadImage(
+        formData,
+        String(window.localStorage.getItem("access-token"))
+      );
+      console.log(res);
     } catch (e: any) {
       console.log(e);
     }
