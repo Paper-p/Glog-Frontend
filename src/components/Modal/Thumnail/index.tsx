@@ -1,13 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import Button from "components/Common/Button";
 import { useRecoilState } from "recoil";
 import { imageModalAtom } from "atoms/AtomContainer";
 import image from "data/request/image";
-import { useLocalStorage } from "hooks/useLocalStorage";
-import axios from "axios";
-import { REACT_APP_BASE_URL } from "shared/config";
-import fs from "fs";
 
 function ThumbnailModal() {
   const [, setImageModal] = useRecoilState(imageModalAtom);
