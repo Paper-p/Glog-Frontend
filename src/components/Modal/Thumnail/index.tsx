@@ -1,11 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import Button from "components/Common/Button";
 import { useRecoilState } from "recoil";
 import { imageModalAtom } from "atoms/AtomContainer";
+import image from "data/request/image";
+import { useLocalStorage } from "hooks/useLocalStorage";
+import axios from "axios";
+import { REACT_APP_BASE_URL } from "shared/config";
+import fs from "fs";
 
 function ThumbnailModal() {
   const [, setImageModal] = useRecoilState(imageModalAtom);
+  const [profile, setProfile] = useState("/images");
+  const setProfileImage = useRef<any>(null);
 
   useEffect(() => {
     document.body.style.cssText = `
@@ -24,23 +31,61 @@ function ThumbnailModal() {
     setImageModal(false);
   };
 
+  const imgHandler = async (e: any) => {
+    try {
+      setProfile(URL.createObjectURL(e.target.files[0]));
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      const res = await axios({
+        method: "POST",
+        headers: {
+          Authorization:
+            "Bearer " + window.localStorage.getItem("access-token"),
+          "Content-Type": "multipart/form-data",
+        },
+        data: formData,
+        url: REACT_APP_BASE_URL + "/image",
+        withCredentials: false,
+      });
+      console.log(res.status);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
+  const imgBtnClick = (e: any) => {
+    e.preventDefault();
+    setProfileImage.current?.click();
+  };
+
   return (
     <S.ThumbnailModalLayout>
       <S.Background onClick={onClick}>
         <S.ThumbnailModal onClick={(e) => e.stopPropagation()}>
           <S.Box>
             <S.InputFileBox>
-              <div className="box-file-input">
+              {/* <div className="box-file-input">
                 <label>
                   <input
                     type="file"
                     name="ev_display"
                     className="file-input"
                     accept="image/*"
+                    onChange={imgHandler}
                   />
                 </label>
                 <p>썸네일 이미지를 정해주세요</p>
-              </div>
+              </div> */}
+              <img src={profile} alt="" />
+              <button onClick={imgBtnClick}>asd</button>
+              <input
+                ref={setProfileImage}
+                type={"file"}
+                id={"profile"}
+                accept={"image/*"}
+                name={"file"}
+                onChange={imgHandler}
+              />
             </S.InputFileBox>
           </S.Box>
           <S.Box>

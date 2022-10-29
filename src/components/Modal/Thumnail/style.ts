@@ -53,6 +53,15 @@ export const InputFileBox = styled.div`
   justify-content: center;
   margin-top: 25%;
 
+  input {
+    display: none;
+  }
+
+  img {
+    width: 600px;
+    height: 250px;
+  }
+
   .box-file-input {
     text-align: center;
   }
