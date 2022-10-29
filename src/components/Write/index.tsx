@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import Tag from "components/Tag";
-import ThumbnailModal from "components/Modal/Thumnail";
+import ThumbnailModal from "components/Modal/Thumbnail";
 import useInputs from "hooks/useInputs";
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import { useRecoilState } from "recoil";
