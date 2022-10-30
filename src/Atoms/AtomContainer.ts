@@ -15,6 +15,11 @@ export const imageModalAtom = atom({
   default: false,
 });
 
+export const thumbnailUrlAtom = atom({
+  key: "thumbnailUrl",
+  default: "",
+});
+
 export const tagAtom = atom<TagType[]>({
   key: "tag",
   default: [],
