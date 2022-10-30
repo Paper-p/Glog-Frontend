@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import Tag from "components/Tag";
@@ -6,7 +6,7 @@ import ThumbnailModal from "components/Modal/Thumbnail";
 import useInputs from "hooks/useInputs";
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import { useRecoilState } from "recoil";
-import { imageModalAtom, tagAtom } from "atoms/AtomContainer";
+import { imageModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import { Button } from "components/Common/Button/style";
 import feed from "data/request/feed";
 
@@ -15,7 +15,9 @@ function Write() {
     title: "",
   });
 
+  const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [tag, setTag] = useRecoilState(tagAtom);
+  const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [activeIndex, setActiveIndex] = useState(0);
   const [imageModal, setImageModal] = useRecoilState(imageModalAtom);
   const [markdown, setMarkdown] = useState("");
@@ -60,8 +62,26 @@ function Write() {
     },
   ];
 
-  const writeFeed = () => {
-    console.log(tag);
+  const writeFeed = async () => {
+    try {
+      tag.forEach((_data, index) => {
+        setRequestTagList(requestTagList.concat(tag[index].name));
+      });
+      console.log(tag);
+      const res: any = await feed.writeFeed({
+        title: title,
+        content: markdown,
+        thumbnail: thumbnailUrl,
+        tags: requestTagList,
+        token: String(window.localStorage.getItem("access-token")),
+      });
+      if (res.status === 200) {
+        setThumbnailUrl("");
+        setTag([]);
+      }
+    } catch (e: any) {
+      console.log(e);
+    }
   };
 
   const showModal = () => {

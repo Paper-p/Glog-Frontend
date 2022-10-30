@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as S from "./style";
 import Button from "components/Common/Button";
 import { useRecoilState } from "recoil";
-import { imageModalAtom } from "atoms/AtomContainer";
+import { imageModalAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import image from "data/request/image";
 
 function ThumbnailModal() {
+  const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [, setImageModal] = useRecoilState(imageModalAtom);
-  const [profile, setProfile] = useState("/images");
   const setProfileImage = useRef<any>(null);
 
   useEffect(() => {
@@ -29,14 +29,14 @@ function ThumbnailModal() {
 
   const imgHandler = async (e: any) => {
     try {
-      setProfile(URL.createObjectURL(e.target.files[0]));
+      setThumbnailUrl(URL.createObjectURL(e.target.files[0]));
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
-      const res = await image.uploadImage(
+      const res: any = await image.uploadImage(
         formData,
         String(window.localStorage.getItem("access-token"))
       );
-      console.log(res);
+      setThumbnailUrl(res.data.imageUrl);
     } catch (e: any) {
       console.log(e);
     }
@@ -65,7 +65,7 @@ function ThumbnailModal() {
                 </label>
                 <p>썸네일 이미지를 정해주세요</p>
               </div> */}
-              <img src={profile} alt="" />
+              <img src={thumbnailUrl} alt="thumbnail" />
               <button onClick={imgBtnClick}>asd</button>
               <input
                 ref={setProfileImage}
