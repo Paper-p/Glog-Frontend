@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as S from "./style";
+import MarkdownEditor from "@uiw/react-markdown-editor";
 import Header from "components/Common/Header";
 import Tag from "components/Tag";
 import ThumbnailModal from "components/Modal/Thumbnail";
-import useInputs from "hooks/useInputs";
-import MarkdownEditor from "@uiw/react-markdown-editor";
+import Button from "components/Common/Button";
+import feed from "data/request/feed";
 import { useRecoilState } from "recoil";
 import { imageModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
-import { Button } from "components/Common/Button/style";
-import feed from "data/request/feed";
+import useInputs from "hooks/useInputs";
 
 function Write() {
   const [{ title }, onChange] = useInputs({
@@ -64,21 +64,19 @@ function Write() {
 
   const writeFeed = async () => {
     try {
+      // tag 에서 name 만 requestTagList 로 옮기기
       tag.forEach((_data, index) => {
         setRequestTagList(requestTagList.concat(tag[index].name));
       });
-      console.log(tag);
-      const res: any = await feed.writeFeed({
+      await feed.writeFeed({
         title: title,
         content: markdown,
         thumbnail: thumbnailUrl,
         tags: requestTagList,
         token: String(window.localStorage.getItem("access-token")),
       });
-      if (res.status === 200) {
-        setThumbnailUrl("");
-        setTag([]);
-      }
+      setThumbnailUrl("");
+      setTag([]);
     } catch (e: any) {
       console.log(e);
     }
