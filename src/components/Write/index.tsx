@@ -6,13 +6,16 @@ import ThumbnailModal from "components/Modal/Thumbnail";
 import useInputs from "hooks/useInputs";
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import { useRecoilState } from "recoil";
-import { imageModalAtom } from "atoms/AtomContainer";
+import { imageModalAtom, tagAtom } from "atoms/AtomContainer";
+import { Button } from "components/Common/Button/style";
+import feed from "data/request/feed";
 
 function Write() {
   const [{ title }, onChange] = useInputs({
     title: "",
   });
 
+  const [tag, setTag] = useRecoilState(tagAtom);
   const [activeIndex, setActiveIndex] = useState(0);
   const [imageModal, setImageModal] = useRecoilState(imageModalAtom);
   const [markdown, setMarkdown] = useState("");
@@ -57,6 +60,10 @@ function Write() {
     },
   ];
 
+  const writeFeed = () => {
+    console.log(tag);
+  };
+
   const showModal = () => {
     setImageModal(true);
   };
@@ -82,6 +89,7 @@ function Write() {
           })}
         </S.Tabbar>
         <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
+        <Button onClick={writeFeed}>작성하기</Button>
       </S.WriteLayout>
     </>
   );

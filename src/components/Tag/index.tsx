@@ -1,5 +1,7 @@
+import { tagAtom } from "atoms/AtomContainer";
 import useInputs from "hooks/useInputs";
-import { useCallback, useRef, useState } from "react";
+import { useRef } from "react";
+import { useRecoilState } from "recoil";
 import * as S from "./style";
 
 interface TagType {
@@ -8,29 +10,26 @@ interface TagType {
 }
 
 function Tag() {
-  const [tag, setTag] = useState<TagType[]>([]);
-  const [{ content }, onChange, , setNull] = useInputs({
+  const [tag, setTag] = useRecoilState(tagAtom);
+  const [{ content }, onChange, setNull] = useInputs({
     content: "",
   });
 
-  const nextId = useRef(1); //unique id
-  const onAddTag = useCallback(
-    (e: any) => {
-      if (content !== "" && e.key === "Enter") {
-        setTag(
-          tag.concat({
-            id: nextId.current,
-            name: content,
-          })
-        );
-        setNull("content");
-        nextId.current += 1;
-      } else if (e.key === "Enter") {
-        setNull("content");
-      }
-    },
-    [content, setNull, tag]
-  );
+  const nextId = useRef(1);
+  const onAddTag = (e: any) => {
+    if (content !== "" && e.key === "Enter") {
+      setTag(
+        tag.concat({
+          id: nextId.current,
+          name: content,
+        })
+      );
+      setNull("content");
+      nextId.current += 1;
+    } else if (e.key === "Enter") {
+      setNull("content");
+    }
+  };
 
   const onRemoveTag = (data: TagType) => {
     setTag(tag.filter((tag) => tag.id !== data.id));
