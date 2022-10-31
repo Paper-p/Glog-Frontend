@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import Header from "components/Common/Header";
@@ -16,11 +16,16 @@ function Write() {
   });
 
   const [requestTagList, setRequestTagList] = useState<string[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [markdown, setMarkdown] = useState("");
+
   const [tag, setTag] = useRecoilState(tagAtom);
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [imageModal, setImageModal] = useRecoilState(imageModalAtom);
-  const [markdown, setMarkdown] = useState("");
+
+  useEffect(() => {
+    console.log(requestTagList);
+  }, [requestTagList]);
 
   const tabClickHandler = (index: number) => {
     setActiveIndex(index);
@@ -62,12 +67,21 @@ function Write() {
     },
   ];
 
-  const writeFeed = async () => {
+  const writeFeed = () => {
+    tag.forEach((item) => {
+      setRequestTagList((preveList: any) => [
+        ...preveList,
+        requestTagList.concat(item.name).join(""),
+      ]);
+    });
+
+    if (tag) {
+      request();
+    }
+  };
+
+  const request = async () => {
     try {
-      // tag 에서 name 만 requestTagList 로 옮기기
-      tag.forEach((_data, index) => {
-        setRequestTagList(requestTagList.concat(tag[index].name));
-      });
       await feed.writeFeed({
         title: title,
         content: markdown,
@@ -75,8 +89,8 @@ function Write() {
         tags: requestTagList,
         token: String(window.localStorage.getItem("access-token")),
       });
-      setThumbnailUrl("");
       setTag([]);
+      setThumbnailUrl("");
     } catch (e: any) {
       console.log(e);
     }
@@ -112,4 +126,5 @@ function Write() {
     </>
   );
 }
+
 export default Write;

@@ -1,8 +1,8 @@
-import { tagAtom } from "atoms/AtomContainer";
-import useInputs from "hooks/useInputs";
 import { useRef } from "react";
-import { useRecoilState } from "recoil";
 import * as S from "./style";
+import useInputs from "hooks/useInputs";
+import { useRecoilState } from "recoil";
+import { tagAtom } from "atoms/AtomContainer";
 
 interface TagType {
   id: number;
