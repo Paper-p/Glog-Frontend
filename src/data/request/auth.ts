@@ -1,5 +1,5 @@
 import { getAuth } from "data/url/getUrl";
-import AuthInstance from "util/authInstance";
+import AuthInstance from "util/AxiosInstance";
 import { LoginType, JoinType } from "types/authType";
 
 class Auth {

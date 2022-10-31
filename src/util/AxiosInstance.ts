@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { REACT_APP_BASE_URL } from "shared/config";
 
-const AuthInstance = (data: AxiosRequestConfig, token?: string) => {
+const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
   try {
-    const authInstance = axios({
+    const axiosInstance = axios({
       method: data.method,
       baseURL: REACT_APP_BASE_URL,
       url: data.url,
@@ -13,10 +13,10 @@ const AuthInstance = (data: AxiosRequestConfig, token?: string) => {
         Authorization: token ? "Bearer " + token : "",
       },
     });
-    return authInstance;
+    return axiosInstance;
   } catch (error) {
     return error;
   }
 };
 
-export default AuthInstance;
+export default AxiosInstance;
