@@ -1,11 +1,11 @@
 import { getAuth } from "data/url/getUrl";
-import AuthInstance from "util/AxiosInstance";
+import AxiosInstance from "util/axiosInstance";
 import { LoginType, JoinType } from "types/authType";
 
 class Auth {
   confirmName(name: string) {
     try {
-      return AuthInstance({
+      return AxiosInstance({
         method: "HEAD",
         url: `${getAuth.checkName()}?nickname=${name}`,
       });
@@ -16,7 +16,7 @@ class Auth {
 
   confirmId(userId: string) {
     try {
-      return AuthInstance({
+      return AxiosInstance({
         method: "HEAD",
         url: `${getAuth.checkId()}?userId=${userId}`,
       });
@@ -27,7 +27,7 @@ class Auth {
 
   signin(data: LoginType) {
     try {
-      return AuthInstance({
+      return AxiosInstance({
         method: "POST",
         url: getAuth.signin(),
         data: {
@@ -42,7 +42,7 @@ class Auth {
 
   signup(data: JoinType) {
     try {
-      return AuthInstance({
+      return AxiosInstance({
         method: "POST",
         url: getAuth.signup(),
         data: {

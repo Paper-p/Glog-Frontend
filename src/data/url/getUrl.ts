@@ -20,9 +20,3 @@ export const getAuth = {
     return REACT_APP_BASE_URL + "/auth/";
   },
 };
-
-export const getUser = {
-  getMiniProfile: () => {
-    return REACT_APP_BASE_URL + "/user/profile";
-  },
-};

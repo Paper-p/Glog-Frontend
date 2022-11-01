@@ -29,6 +29,9 @@ export default function Signin() {
     try {
       const res: any = await auth.signin(data);
       setLogged(true);
+      console.log(res);
+      window.localStorage.setItem("access-token", res.data.accessToken);
+
       //token && toast
     } catch (error: any) {
       console.log(error);
