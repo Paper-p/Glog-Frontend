@@ -2,12 +2,12 @@ import { useEffect, useRef } from "react";
 import * as S from "./style";
 import Button from "components/Common/Button";
 import { useRecoilState } from "recoil";
-import { imageModalAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
+import { writeModalAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import image from "data/request/image";
 
-function ThumbnailModal() {
+function WriteModal() {
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
-  const [, setImageModal] = useRecoilState(imageModalAtom);
+  const [, setWriteModal] = useRecoilState(writeModalAtom);
   const setProfileImage = useRef<any>(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function ThumbnailModal() {
   }, []);
 
   const onClick = () => {
-    setImageModal(false);
+    setWriteModal(false);
   };
 
   const imgHandler = async (e: any) => {
@@ -86,4 +86,4 @@ function ThumbnailModal() {
   );
 }
 
-export default ThumbnailModal;
+export default WriteModal;

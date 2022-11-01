@@ -22,7 +22,7 @@ export const Background = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(0.1px);
+  backdrop-filter: blur(10px);
 `;
 
 export const ThumbnailModal = styled.div`

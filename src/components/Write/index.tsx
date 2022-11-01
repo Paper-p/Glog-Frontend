@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import * as S from "./style";
 import MarkdownEditor from "@uiw/react-markdown-editor";
+import WriteModal from "components/Modal/WriteModal";
 import Header from "components/Common/Header";
 import Tag from "components/Tag";
-import ThumbnailModal from "components/Modal/Thumbnail";
 import Button from "components/Common/Button";
 import feed from "data/request/feed";
 import { useRecoilState } from "recoil";
-import { imageModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
+import { writeModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import useInputs from "hooks/useInputs";
 
 interface WriteType {
@@ -23,16 +23,18 @@ function Write() {
   });
 
   const [requestTagList, setRequestTagList] = useState<string[]>([]);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [markdown, setMarkdown] = useState("");
-  const [isClick, setIsClick] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [markdown, setMarkdown] = useState<string>("");
+  const [isClick, setIsClick] = useState<boolean>(false);
+  const [border, setBorder] = useState<number>(0);
 
   const [tag, setTag] = useRecoilState(tagAtom);
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
-  const [imageModal, setImageModal] = useRecoilState(imageModalAtom);
+  const [writeModal, setWriteModal] = useRecoilState(writeModalAtom);
 
   const tabClickHandler = (index: number) => {
     setActiveIndex(index);
+    setBorder(activeIndex);
   };
 
   const tabbar = [
@@ -53,7 +55,7 @@ function Write() {
           onChange={(value) => setMarkdown(value)}
           theme="dark"
           value={markdown}
-          height="90vh"
+          height="89vh"
         />
       ),
     },
@@ -76,7 +78,6 @@ function Write() {
       const data = {
         title,
         content: markdown,
-        thumbnailUrl,
         tags: requestTagList,
       };
 
@@ -85,7 +86,8 @@ function Write() {
 
       if (!isEmpty(data)) {
         setIsClick(false);
-        request(data);
+        setWriteModal(true);
+        // request(data);
       } else {
         setIsClick(false);
       }
@@ -119,10 +121,6 @@ function Write() {
     }
   };
 
-  const showModal = () => {
-    setImageModal(true);
-  };
-
   return (
     <>
       <Header />
@@ -136,15 +134,18 @@ function Write() {
           />
         </S.TitleBox>
         <Tag />
-        <button onClick={showModal}>모달 띄우기</button>
-        {imageModal && <ThumbnailModal />}
+        {writeModal && <WriteModal />}
         <S.Tabbar>
           {tabbar.map((idx) => {
             return idx.tabTitle;
           })}
         </S.Tabbar>
-        <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
-        <Button onClick={saveTag}>작성하기</Button>
+        <S.Markdown isPreview={border}>
+          {tabbar[activeIndex].tabContent}
+        </S.Markdown>
+        <S.Sumbit>
+          <Button onClick={saveTag}>작성하기</Button>
+        </S.Sumbit>
       </S.WriteLayout>
     </>
   );
