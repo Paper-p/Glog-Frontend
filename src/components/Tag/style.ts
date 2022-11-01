@@ -45,7 +45,7 @@ export const Tag = styled.div`
   height: 38px;
   background: #3a3b3d;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   color: #969696;
   padding: 0 8px;

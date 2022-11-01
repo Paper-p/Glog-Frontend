@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const WriteLayout = styled.section`
   width: 72.5%;
   margin: auto;
-  padding-top: 120px;
+  padding-top: 40px;
 `;
 
 export const TitleBox = styled.div`
@@ -16,7 +16,7 @@ export const TitleBox = styled.div`
 export const TitleInput = styled.input`
   width: 100%;
   height: 100%;
-  font-size: 48px;
+  font-size: 40px;
   background: #1a1b1e;
   border: none;
   color: #ededed;
@@ -36,21 +36,22 @@ export const TitleInput = styled.input`
 `;
 
 export const Tabbar = styled.div`
-  margin-top: 30px;
   display: flex;
   width: 100%;
   height: 60px;
+  margin-top: 40px;
   background: #373b45;
-  border-radius: 10px 10px 0 0;
+  border-radius: 3px 3px 0 0;
+
   border-top: 1px solid #767676;
   border-left: 1px solid #767676;
   border-right: 1px solid #767676;
 
   .is-active {
+    box-sizing: content-box;
     background-color: #1f2125;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom: 3px double #1f2125;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
   }
 `;
 
@@ -66,15 +67,20 @@ export const Tabs = styled.div`
   cursor: pointer;
 `;
 
-export const Markdown = styled.div`
+export const Markdown = styled.div<{ isPreview: number }>`
   width: 100%;
-  height: 90vh;
+  margin-bottom: 150px;
   background: #1f2125;
-  border-bottom: 1px solid #767676;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+
   border-left: 1px solid #767676;
   border-right: 1px solid #767676;
+  border-bottom: 1px solid #767676;
 
   .md-editor {
+    min-height: 40vh;
+    height: content;
     font-size: 15px;
     background: #1f2125;
   }
@@ -84,12 +90,39 @@ export const Markdown = styled.div`
   }
 
   .wmde-markdown {
+    min-height: 40vh;
+    height: content;
+    font-size: 20px;
     background: #1f2125;
-    padding: 50px;
     color: #bbbbbb;
+    padding: 50px;
   }
 
   .wmde-markdown pre > code {
     color: black;
   }
+`;
+
+export const Footer = styled.div`
+  position: fixed;
+  width: 72.5%;
+  height: 100px;
+  left: 50%;
+  bottom: 0;
+  margin-left: -36.25%;
+  background: #262626;
+  justify-content: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr;
+`;
+
+export const Part = styled.div`
+  width: 50%;
+  height: 100%;
+
+  margin: 0 30px 0 30px;
 `;

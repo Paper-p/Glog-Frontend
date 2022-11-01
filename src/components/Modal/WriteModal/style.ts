@@ -21,7 +21,7 @@ export const Background = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: hsla(50, 33%, 25%, 0.15);
   backdrop-filter: blur(10px);
 `;
 

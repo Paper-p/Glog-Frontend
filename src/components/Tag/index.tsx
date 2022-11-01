@@ -19,7 +19,7 @@ function Tag() {
   const nextId = useRef(1);
   const onAddTag = useCallback(
     (e: any) => {
-      if (content !== "" && e.key === "Enter") {
+      if (content !== "" && e.key === "Enter" && tag.length + 1 < 6) {
         setTag(
           tag.concat({
             id: nextId.current,

@@ -55,7 +55,6 @@ function Write() {
           onChange={(value) => setMarkdown(value)}
           theme="dark"
           value={markdown}
-          height="89vh"
         />
       ),
     },
@@ -90,12 +89,12 @@ function Write() {
         // request(data);
       } else {
         setIsClick(false);
+        setWriteModal(true);
       }
     }
   }, [isClick]);
 
   const saveTag = () => {
-    // recoil tag 배열에서 name 만 requestTagList 로 concat(불변성 유지)
     tag.forEach((item) => {
       setRequestTagList((preveList: any) => [
         ...preveList,
@@ -143,10 +142,15 @@ function Write() {
         <S.Markdown isPreview={border}>
           {tabbar[activeIndex].tabContent}
         </S.Markdown>
-        <S.Sumbit>
-          <Button onClick={saveTag}>작성하기</Button>
-        </S.Sumbit>
       </S.WriteLayout>
+      <S.Footer>
+        <S.Part>
+          <Button width="100px">나가기</Button>
+        </S.Part>
+        <S.Part>
+          <Button width="100px">작성하기</Button>
+        </S.Part>
+      </S.Footer>
     </>
   );
 }
