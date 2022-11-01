@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import * as S from "./style";
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import Header from "components/Common/Header";
@@ -10,6 +10,13 @@ import { useRecoilState } from "recoil";
 import { imageModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import useInputs from "hooks/useInputs";
 
+interface WriteType {
+  title: string;
+  content: string;
+  thumbnailUrl: string;
+  tags: string[];
+}
+
 function Write() {
   const [{ title }, onChange] = useInputs({
     title: "",
@@ -18,14 +25,11 @@ function Write() {
   const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [markdown, setMarkdown] = useState("");
+  const [isClick, setIsClick] = useState(false);
 
   const [tag, setTag] = useRecoilState(tagAtom);
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [imageModal, setImageModal] = useRecoilState(imageModalAtom);
-
-  useEffect(() => {
-    console.log(requestTagList);
-  }, [requestTagList]);
 
   const tabClickHandler = (index: number) => {
     setActiveIndex(index);
@@ -67,7 +71,29 @@ function Write() {
     },
   ];
 
-  const writeFeed = () => {
+  useEffect(() => {
+    if (isClick) {
+      const data = {
+        title,
+        content: markdown,
+        thumbnailUrl,
+        tags: requestTagList,
+      };
+
+      const isEmpty = (obj: Object) =>
+        !Object.values(obj).every((x) => x !== null && x !== "");
+
+      if (!isEmpty(data)) {
+        setIsClick(false);
+        request(data);
+      } else {
+        setIsClick(false);
+      }
+    }
+  }, [isClick]);
+
+  const saveTag = () => {
+    // recoil tag 배열에서 name 만 requestTagList 로 concat(불변성 유지)
     tag.forEach((item) => {
       setRequestTagList((preveList: any) => [
         ...preveList,
@@ -75,22 +101,19 @@ function Write() {
       ]);
     });
 
-    if (tag) {
-      request();
-    }
+    setIsClick(true);
   };
 
-  const request = async () => {
+  const request = async (data: WriteType) => {
+    console.log(data);
     try {
       await feed.writeFeed({
-        title: title,
-        content: markdown,
+        title: data.title,
+        content: data.content,
         thumbnail: thumbnailUrl,
         tags: requestTagList,
         token: String(window.localStorage.getItem("access-token")),
       });
-      setTag([]);
-      setThumbnailUrl("");
     } catch (e: any) {
       console.log(e);
     }
@@ -121,7 +144,7 @@ function Write() {
           })}
         </S.Tabbar>
         <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
-        <Button onClick={writeFeed}>작성하기</Button>
+        <Button onClick={saveTag}>작성하기</Button>
       </S.WriteLayout>
     </>
   );

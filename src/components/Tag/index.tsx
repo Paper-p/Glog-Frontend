@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import * as S from "./style";
 import useInputs from "hooks/useInputs";
 import { useRecoilState } from "recoil";
 import { tagAtom } from "atoms/AtomContainer";
+import React from "react";
 
 interface TagType {
   id: number;
@@ -16,24 +17,30 @@ function Tag() {
   });
 
   const nextId = useRef(1);
-  const onAddTag = (e: any) => {
-    if (content !== "" && e.key === "Enter") {
-      setTag(
-        tag.concat({
-          id: nextId.current,
-          name: content,
-        })
-      );
-      setNull("content");
-      nextId.current += 1;
-    } else if (e.key === "Enter") {
-      setNull("content");
-    }
-  };
+  const onAddTag = useCallback(
+    (e: any) => {
+      if (content !== "" && e.key === "Enter") {
+        setTag(
+          tag.concat({
+            id: nextId.current,
+            name: content,
+          })
+        );
+        setNull("content");
+        nextId.current += 1;
+      } else if (e.key === "Enter") {
+        setNull("content");
+      }
+    },
+    [content, tag]
+  );
 
-  const onRemoveTag = (data: TagType) => {
-    setTag(tag.filter((tag) => tag.id !== data.id));
-  };
+  const onRemoveTag = useCallback(
+    (data: TagType) => {
+      setTag(tag.filter((tag) => tag.id !== data.id));
+    },
+    [tag]
+  );
 
   return (
     <S.TagLayout>
@@ -63,4 +70,4 @@ function Tag() {
   );
 }
 
-export default Tag;
+export default React.memo(Tag);
