@@ -11,6 +11,8 @@ import user from "data/request/user";
 function Header() {
   const { pathname } = useLocation();
   const [logged] = useRecoilState(loggedAtom);
+  const [nickname, setNickname] = useState<string>("");
+  const [profileImg, setprofileImg] = useState<string>("");
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
 
@@ -21,6 +23,8 @@ function Header() {
           const res: any = await user.getMiniProfile(
             String(window.localStorage.getItem("access-token"))
           );
+          setNickname(res.data.nickname);
+          setprofileImg(res.data.profileImageUrl);
         } catch (e: any) {
           console.log(e);
         }
@@ -53,8 +57,8 @@ function Header() {
           <S.HeaderElementsList>
             <S.HeaderElements>
               <Link to={"/my"} className="user-profile">
-                <S.Username>오종진님</S.Username>
-                <S.Profile src="" alt="profile" />
+                <S.Username>{nickname}님</S.Username>
+                <S.Profile src={profileImg} alt="profile" />
               </Link>
             </S.HeaderElements>
           </S.HeaderElementsList>
