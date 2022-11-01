@@ -20,3 +20,15 @@ export const getAuth = {
     return REACT_APP_BASE_URL + "/auth/";
   },
 };
+
+export const getUser = {
+  getMiniProfile: () => {
+    return REACT_APP_BASE_URL + "/user/profile";
+  },
+};
+
+export const getFeed = {
+  writeFeed: () => {
+    return REACT_APP_BASE_URL + "/feed";
+  },
+};
