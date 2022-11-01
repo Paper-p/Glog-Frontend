@@ -1,19 +1,34 @@
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Logo from "../Logo";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
+import user from "data/request/user";
 
 function Header() {
   const { pathname } = useLocation();
   const [logged] = useRecoilState(loggedAtom);
-
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
+
+  useEffect(() => {
+    if (logged == true) {
+      const getMiniProfile = async () => {
+        try {
+          const res: any = await user.getMiniProfile(
+            String(window.localStorage.getItem("access-token"))
+          );
+        } catch (e: any) {
+          console.log(e);
+        }
+      };
+      getMiniProfile();
+    }
+  }, [logged]);
+
   return (
     <S.HeaderBox>
       <S.Header>
@@ -39,7 +54,7 @@ function Header() {
             <S.HeaderElements>
               <Link to={"/my"} className="user-profile">
                 <S.Username>오종진님</S.Username>
-                <S.Profile src="/images/profile.jpeg" alt="profile" />
+                <S.Profile src="" alt="profile" />
               </Link>
             </S.HeaderElements>
           </S.HeaderElementsList>
