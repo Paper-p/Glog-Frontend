@@ -1,6 +1,7 @@
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Logo from "../Logo";
 import React from "react";
@@ -10,9 +11,9 @@ import { loggedAtom } from "atoms";
 function Header() {
   const { pathname } = useLocation();
   const [logged] = useRecoilState(loggedAtom);
+
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
-
   return (
     <S.HeaderBox>
       <S.Header>

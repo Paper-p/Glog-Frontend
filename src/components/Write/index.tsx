@@ -1,29 +1,45 @@
-import React, { useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import * as S from "./style";
-import Header from "components/Common/Header";
 import MarkdownEditor from "@uiw/react-markdown-editor";
+import Header from "components/Common/Header";
+import Tag from "components/Tag";
+import ThumbnailModal from "components/Modal/Thumbnail";
+import Button from "components/Common/Button";
+import feed from "data/request/feed";
+import { useRecoilState } from "recoil";
+import { imageModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import useInputs from "hooks/useInputs";
 
-interface TagType {
-  id: number;
-  name: string;
+interface WriteType {
+  title: string;
+  content: string;
+  thumbnailUrl: string;
+  tags: string[];
 }
 
 function Write() {
-  const [tag, setTag] = useState<TagType[]>([]);
+  const [{ title }, onChange] = useInputs({
+    title: "",
+  });
+
+  const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [markdown, setMarkdown] = useState("");
+  const [isClick, setIsClick] = useState(false);
 
-  const [{ title, content }, onChange, , setNull] = useInputs({
-    title: "",
-    content: "",
-  });
+  const [tag, setTag] = useRecoilState(tagAtom);
+  const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
+  const [imageModal, setImageModal] = useRecoilState(imageModalAtom);
+
+  const tabClickHandler = (index: number) => {
+    setActiveIndex(index);
+  };
 
   const tabbar = [
     {
       tabTitle: (
         <S.Tabs
-          key="0"
+          key="write-part"
           className={activeIndex === 0 ? "is-active" : ""}
           onClick={() => tabClickHandler(0)}
         >
@@ -34,8 +50,8 @@ function Write() {
         <MarkdownEditor
           visible={false}
           hideToolbar={false}
-          onChange={(value, viewUpdate) => setMarkdown(value)}
-          theme={"dark"}
+          onChange={(value) => setMarkdown(value)}
+          theme="dark"
           value={markdown}
           height="90vh"
         />
@@ -44,7 +60,7 @@ function Write() {
     {
       tabTitle: (
         <S.Tabs
-          key="1"
+          key="preview-part"
           className={activeIndex === 1 ? "is-active" : ""}
           onClick={() => tabClickHandler(1)}
         >
@@ -55,30 +71,56 @@ function Write() {
     },
   ];
 
-  const tabClickHandler = (index: number) => {
-    setActiveIndex(index);
+  useEffect(() => {
+    if (isClick) {
+      const data = {
+        title,
+        content: markdown,
+        thumbnailUrl,
+        tags: requestTagList,
+      };
+
+      const isEmpty = (obj: Object) =>
+        !Object.values(obj).every((x) => x !== null && x !== "");
+
+      if (!isEmpty(data)) {
+        setIsClick(false);
+        request(data);
+      } else {
+        setIsClick(false);
+      }
+    }
+  }, [isClick]);
+
+  const saveTag = () => {
+    // recoil tag 배열에서 name 만 requestTagList 로 concat(불변성 유지)
+    tag.forEach((item) => {
+      setRequestTagList((preveList: any) => [
+        ...preveList,
+        requestTagList.concat(item.name).join(""),
+      ]);
+    });
+
+    setIsClick(true);
   };
 
-  const nextId = useRef(0); //unique id
-  const onAddTag = (e: any) => {
-    if (content !== "" && e.key === "Enter" && tag.length < 6) {
-      setTag(
-        //불변성 지키기
-        tag.concat({
-          id: nextId.current,
-          name: content,
-        })
-      );
-      setNull("content");
-      window.localStorage.setItem("access-token", "asdasdawdwadaw");
-      nextId.current += 1;
-    } else if (e.key === "Enter") {
-      setNull("content");
+  const request = async (data: WriteType) => {
+    console.log(data);
+    try {
+      await feed.writeFeed({
+        title: data.title,
+        content: data.content,
+        thumbnail: thumbnailUrl,
+        tags: requestTagList,
+        token: String(window.localStorage.getItem("access-token")),
+      });
+    } catch (e: any) {
+      console.log(e);
     }
   };
 
-  const onRemoveTag = (data: TagType) => {
-    setTag(tag.filter((tag) => tag.id !== data.id));
+  const showModal = () => {
+    setImageModal(true);
   };
 
   return (
@@ -93,36 +135,19 @@ function Write() {
             value={title}
           />
         </S.TitleBox>
-        <S.TagInputBox>
-          <S.TagInput
-            name="content"
-            placeholder="태그를 입력해주세요"
-            onKeyPress={onAddTag}
-            onChange={onChange}
-            value={content}
-          />
-        </S.TagInputBox>
-        <S.TagListBox>
-          {tag.map((item) => (
-            <div key={item.id}>
-              <S.Tag
-                onClick={() => {
-                  onRemoveTag(item);
-                }}
-              >
-                {item.name}
-              </S.Tag>
-            </div>
-          ))}
-        </S.TagListBox>
+        <Tag />
+        <button onClick={showModal}>모달 띄우기</button>
+        {imageModal && <ThumbnailModal />}
         <S.Tabbar>
           {tabbar.map((idx) => {
             return idx.tabTitle;
           })}
         </S.Tabbar>
         <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
+        <Button onClick={saveTag}>작성하기</Button>
       </S.WriteLayout>
     </>
   );
 }
+
 export default Write;

@@ -8,15 +8,9 @@ function useInputs(initialForm: any) {
     setForm((form: any) => ({ ...form, [name]: value }));
   }, []);
   const reset = useCallback(() => setForm(initialForm), [initialForm]);
-  const setNull = useCallback(
-    (key: string) => {
-      setForm({
-        key: "",
-        ...form,
-      });
-    },
-    [form]
-  );
+  const setNull = useCallback((key: string) => {
+    setForm((form: any) => ({ ...form, [key]: "" }));
+  }, []);
   return [form, onChange, reset, setNull];
 }
 

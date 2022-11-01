@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { REACT_APP_BASE_URL } from "shared/config";
 
-const AuthInstance = (data: AxiosRequestConfig, token?: string) => {
+const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
   try {
     const authInstance = axios({
       method: data.method,
@@ -19,4 +19,4 @@ const AuthInstance = (data: AxiosRequestConfig, token?: string) => {
   }
 };
 
-export default AuthInstance;
+export default AxiosInstance;
