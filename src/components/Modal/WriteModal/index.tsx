@@ -1,14 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 import * as S from "./style";
-import Button from "components/Common/Button";
 import { useRecoilState } from "recoil";
-import { writeModalAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
+import { writeModalAtom, thumbnailUrlAtom, tagAtom } from "atoms/AtomContainer";
 import image from "data/request/image";
 import ModalLayout from "components/Common/Layout/Modal";
 
 function WriteModal() {
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [, setWriteModal] = useRecoilState(writeModalAtom);
+  const [requestTagList, setRequestTagList] = useState<string[]>([]);
+  const [tag, setTag] = useRecoilState(tagAtom);
+  const [isClick, setIsClick] = useState<boolean>(false);
   const setProfileImage = useRef<any>(null);
 
   // <img src={thumbnailUrl} alt="thumbnail" />
