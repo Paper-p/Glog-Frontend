@@ -47,7 +47,7 @@ function WriteTag() {
       <S.TagInputBox>
         <S.TagInput
           name="content"
-          placeholder="태그를 입력해주세요"
+          placeholder="태그를 입력해주세요 (최대 5개)"
           onKeyPress={onAddTag}
           onChange={onChange}
           value={content}
