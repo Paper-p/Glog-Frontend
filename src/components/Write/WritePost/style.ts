@@ -6,14 +6,14 @@ export const WritePostForm = styled.div`
   padding-top: 40px;
 `;
 
-export const TitleBox = styled.div<{ isError: boolean }>`
+dexport const TitleBox = styled.div<{ isNull: boolean }>`
   width: 100%;
   height: 100px;
   background: #1a1b1e;
   border-bottom: 1px solid #484848;
-  border-radius: ${(e) => (e.isError ? "10px" : "")};
-  padding: ${(e) => (e.isError ? "20px" : "")};
-  filter: ${(e) => (e.isError ? "drop-shadow(0px 1px 7px #e45b3c)" : "")};
+  border-radius: ${(e) => (e.isNull ? "10px" : "")};
+  padding: ${(e) => (e.isNull ? "10px" : "")};
+  filter: ${(e) => (e.isNull ? "drop-shadow(0px 1px 7px #e45b3c)" : "")};
 `;
 
 export const TitleInput = styled.input`
@@ -38,17 +38,18 @@ export const TitleInput = styled.input`
   }
 `;
 
+export const ContentBox = styled.div<{ isNull: boolean }>`
+  border-radius: 2px;
+  border: 1px solid #767676;
+  margin: 40px 0 150px 0;
+  filter: ${(e) => (e.isNull ? "drop-shadow(0px 1px 7px #e45b3c)" : "")};
+`;
+
 export const Tabbar = styled.div`
   display: flex;
   width: 100%;
   height: 60px;
-  margin-top: 40px;
   background: #373b45;
-  border-radius: 3px 3px 0 0;
-
-  border-top: 1px solid #767676;
-  border-left: 1px solid #767676;
-  border-right: 1px solid #767676;
 
   .is-active {
     box-sizing: content-box;
@@ -72,14 +73,7 @@ export const Tabs = styled.div`
 
 export const Markdown = styled.div`
   width: 100%;
-  margin-bottom: 150px;
   background: #1f2125;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-
-  border-left: 1px solid #767676;
-  border-right: 1px solid #767676;
-  border-bottom: 1px solid #767676;
 
   .md-editor {
     min-height: 40vh;
@@ -103,36 +97,5 @@ export const Markdown = styled.div`
 
   .wmde-markdown pre > code {
     color: black;
-  }
-`;
-
-export const Footer = styled.div`
-  position: fixed;
-  width: 72.5%;
-  height: 100px;
-  left: 50%;
-  bottom: 0;
-  margin-left: -36.25%;
-  background: #262626;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  display: flex;
-`;
-
-export const Part = styled.div`
-  width: 33.3%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  line-height: 100px;
-  color: #e83f28;
-  font-size: 20px;
-
-  .exit {
-    margin-left: -200px;
-  }
-
-  .submit {
-    margin-right: -200px;
   }
 `;

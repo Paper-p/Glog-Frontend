@@ -4,13 +4,12 @@ import MarkdownEditor from "@uiw/react-markdown-editor";
 import WriteModal from "components/Modal/WriteModal";
 import Header from "components/Common/Header";
 import Tag from "components/Write/WriteTag";
-import Button from "components/Common/Button";
 import feed from "data/request/feed";
 import { useRecoilState } from "recoil";
 import { writeModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import useInputs from "hooks/useInputs";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import WriteFooter from "../WriteFooter";
 
 interface WriteType {
   title: string;
@@ -20,13 +19,6 @@ interface WriteType {
 }
 
 function WritePost() {
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors },
-  } = useForm<{ title: string }>();
-
   const [{ title }, onChange] = useInputs({
     title: "",
   });
@@ -37,13 +29,12 @@ function WritePost() {
   const [markdown, setMarkdown] = useState<string>("");
   const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [isClick, setIsClick] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isTitleNull, setIsTitleError] = useState<boolean>(false);
+  const [isContentNull, setIsContentError] = useState<boolean>(false);
 
   const [tag, setTag] = useRecoilState(tagAtom);
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [writeModal, setWriteModal] = useRecoilState(writeModalAtom);
-
-  const [contentIsNotNull, setContentIsNotNull] = useState<boolean>(false);
 
   const tabClickHandler = (index: number) => {
     setActiveIndex(index);
@@ -83,6 +74,23 @@ function WritePost() {
       tabContent: <MarkdownEditor.Markdown source={markdown} />,
     },
   ];
+
+  const handleClick = () => {
+    const confirmContent = markdown.replace(/\n/g, "").trim().length; // 줄바꿈 제외
+
+    if (title.trim().length === 0 && confirmContent === 0) {
+      setIsTitleError(true);
+      setIsContentError(true);
+    } else if (title.trim().length === 0) {
+      setIsTitleError(true);
+    } else if (confirmContent === 0) {
+      setIsContentError(true);
+    } else {
+      console.log("IS NOT NULL");
+      setIsTitleError(false);
+      setIsContentError(false);
+    }
+  };
 
   useEffect(() => {
     if (isClick) {
@@ -132,65 +140,35 @@ function WritePost() {
     }
   };
 
-  const onExit = () => {
-    setTag([]);
-    navigate("/");
-  };
-
   const onWrite = () => {
     setWriteModal(true);
   };
 
-  const onValid = () => {
-    console.log("asd");
-  };
-
-  const inValid = (error: any) => {
-    error && setIsError(true);
-  };
-
   return (
     <>
-      <form onSubmit={handleSubmit(onValid, inValid)}>
-        <Header />
-        {writeModal && <WriteModal />}
-        <S.WritePostForm>
-          <S.TitleBox isError={isError}>
-            <S.TitleInput
-              type="text"
-              placeholder="제목을 입력해주세요"
-              {...register("title", {
-                required: "제목은 필수 입력입니다.",
-              })}
-            />
-          </S.TitleBox>
-          <Tag />
+      <Header />
+      {writeModal && <WriteModal />}
+      <S.WritePostForm>
+        <S.TitleBox isNull={isTitleNull}>
+          <S.TitleInput
+            name="title"
+            placeholder="제목을 입력해주세요"
+            onChange={onChange}
+            value={title}
+            type="text"
+          />
+        </S.TitleBox>
+        <Tag />
+        <S.ContentBox isNull={isContentNull}>
           <S.Tabbar>
             {tabbar.map((idx) => {
               return idx.tabTitle;
             })}
           </S.Tabbar>
           <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
-        </S.WritePostForm>
-        <S.Footer>
-          <S.Part>
-            <Button
-              width="100px"
-              onClick={onExit}
-              className="exit"
-              isButton={true}
-            >
-              나가기
-            </Button>
-          </S.Part>
-          <S.Part className="errorText">{errors.title?.message}</S.Part>
-          <S.Part>
-            <Button width="100px" className="submit">
-              작성하기
-            </Button>
-          </S.Part>
-        </S.Footer>
-      </form>
+        </S.ContentBox>
+      </S.WritePostForm>
+      <WriteFooter onClick={handleClick} />
     </>
   );
 }
