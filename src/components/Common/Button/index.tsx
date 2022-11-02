@@ -4,20 +4,27 @@ import { css } from "@emotion/react";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   width?: string;
+  height?: string;
   background?: string;
 }
 
 export default function Button({
   width,
+  height,
   background,
   children,
   ...rest
 }: Props) {
   const custom = (data: Props) =>
-    css({ width: data.width }, { background: data.background });
+    css(
+      { width: data.width },
+      { height: data.height },
+      { background: data.background }
+    );
 
   const data = {
     width,
+    height,
     background,
   };
 
