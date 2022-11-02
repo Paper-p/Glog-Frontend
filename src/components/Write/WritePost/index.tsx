@@ -10,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { writeModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import useInputs from "hooks/useInputs";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 interface WriteType {
   title: string;
@@ -19,25 +20,32 @@ interface WriteType {
 }
 
 function WritePost() {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<{ title: string }>();
+
   const [{ title }, onChange] = useInputs({
     title: "",
   });
 
   const navigate = useNavigate();
 
-  const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [markdown, setMarkdown] = useState<string>("");
+  const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [isClick, setIsClick] = useState<boolean>(false);
-  const [border, setBorder] = useState<number>(0);
 
   const [tag, setTag] = useRecoilState(tagAtom);
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [writeModal, setWriteModal] = useRecoilState(writeModalAtom);
 
+  const [contentIsNotNull, setContentIsNotNull] = useState<boolean>(false);
+
   const tabClickHandler = (index: number) => {
     setActiveIndex(index);
-    setBorder(activeIndex);
   };
 
   const tabbar = [
@@ -132,39 +140,56 @@ function WritePost() {
     setWriteModal(true);
   };
 
+  const onValid = () => {
+    console.log("asd");
+  };
+
+  const inValid = () => {
+    console.log("hi");
+  };
+
   return (
     <>
-      <Header />
-      {writeModal && <WriteModal />}
-      <S.WritePostLayout>
-        <S.TitleBox>
-          <S.TitleInput
-            name="title"
-            placeholder="제목을 입력해주세요"
-            onChange={onChange}
-            value={title}
-          />
-        </S.TitleBox>
-        <Tag />
-        <S.Tabbar>
-          {tabbar.map((idx) => {
-            return idx.tabTitle;
-          })}
-        </S.Tabbar>
-        <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
-      </S.WritePostLayout>
-      <S.Footer>
-        <S.Part>
-          <Button width="100px" onClick={onExit}>
-            나가기
-          </Button>
-        </S.Part>
-        <S.Part>
-          <Button width="100px" onClick={onWrite}>
-            작성하기
-          </Button>
-        </S.Part>
-      </S.Footer>
+      <form onSubmit={handleSubmit(onValid, inValid)}>
+        <Header />
+        {writeModal && <WriteModal />}
+        <S.WritePostForm>
+          <S.TitleBox>
+            <S.TitleInput
+              type="text"
+              placeholder="제목을 입력해주세요"
+              {...register("title", {
+                required: "이메일은 필수 입력입니다.",
+              })}
+            />
+          </S.TitleBox>
+          <Tag />
+          <S.Tabbar>
+            {tabbar.map((idx) => {
+              return idx.tabTitle;
+            })}
+          </S.Tabbar>
+          <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
+        </S.WritePostForm>
+        <S.Footer>
+          <S.Part>
+            <Button
+              width="100px"
+              onClick={onExit}
+              className="exit"
+              isButton={true}
+            >
+              나가기
+            </Button>
+          </S.Part>
+          <S.Part className="errorText">error text</S.Part>
+          <S.Part>
+            <Button width="100px" className="submit">
+              작성하기
+            </Button>
+          </S.Part>
+        </S.Footer>
+      </form>
     </>
   );
 }
