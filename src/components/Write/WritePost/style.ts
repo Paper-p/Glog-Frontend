@@ -6,7 +6,7 @@ export const WritePostForm = styled.div`
   padding-top: 40px;
 `;
 
-dexport const TitleBox = styled.div<{ isNull: boolean }>`
+export const TitleBox = styled.div<{ isNull: boolean }>`
   width: 100%;
   height: 100px;
   background: #1a1b1e;
