@@ -31,6 +31,7 @@ function WritePost() {
   const [isClick, setIsClick] = useState<boolean>(false);
   const [isTitleNull, setIsTitleError] = useState<boolean>(false);
   const [isContentNull, setIsContentError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const [tag, setTag] = useRecoilState(tagAtom);
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
@@ -81,14 +82,20 @@ function WritePost() {
     if (title.trim().length === 0 && confirmContent === 0) {
       setIsTitleError(true);
       setIsContentError(true);
+      setErrorMessage("제목과 내용은 필수 입력입니다");
     } else if (title.trim().length === 0) {
       setIsTitleError(true);
+      setIsContentError(false);
+      setErrorMessage("제목은 필수 입력입니다");
     } else if (confirmContent === 0) {
       setIsContentError(true);
+      setIsTitleError(false);
+      setErrorMessage("내용은 필수 입력입니다");
     } else {
-      console.log("IS NOT NULL");
+      setWriteModal(true);
       setIsTitleError(false);
       setIsContentError(false);
+      setErrorMessage("");
     }
   };
 
@@ -140,15 +147,11 @@ function WritePost() {
     }
   };
 
-  const onWrite = () => {
-    setWriteModal(true);
-  };
-
   return (
     <>
       <Header />
       {writeModal && <WriteModal />}
-      <S.WritePostForm>
+      <S.WritePostLayout>
         <S.TitleBox isNull={isTitleNull}>
           <S.TitleInput
             name="title"
@@ -167,8 +170,8 @@ function WritePost() {
           </S.Tabbar>
           <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
         </S.ContentBox>
-      </S.WritePostForm>
-      <WriteFooter onClick={handleClick} />
+      </S.WritePostLayout>
+      <WriteFooter onClick={handleClick} errorMessage={errorMessage} />
     </>
   );
 }

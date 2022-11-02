@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const WritePostForm = styled.div`
+export const WritePostLayout = styled.div`
   width: 72.5%;
   margin: auto;
   padding-top: 40px;
@@ -12,7 +12,7 @@ export const TitleBox = styled.div<{ isNull: boolean }>`
   background: #1a1b1e;
   border-bottom: 1px solid #484848;
   border-radius: ${(e) => (e.isNull ? "10px" : "")};
-  padding: ${(e) => (e.isNull ? "10px" : "")};
+  padding: 10px;
   filter: ${(e) => (e.isNull ? "drop-shadow(0px 1px 7px #e45b3c)" : "")};
 `;
 
