@@ -15,6 +15,11 @@ export const writeModalAtom = atom({
   default: false,
 });
 
+export const contentAtom = atom({
+  key: "content",
+  default: "",
+});
+
 export const thumbnailUrlAtom = atom({
   key: "thumbnailUrl",
   default: "",
