@@ -37,6 +37,7 @@ function WritePost() {
   const [markdown, setMarkdown] = useState<string>("");
   const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [isClick, setIsClick] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const [tag, setTag] = useRecoilState(tagAtom);
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
@@ -144,8 +145,8 @@ function WritePost() {
     console.log("asd");
   };
 
-  const inValid = () => {
-    console.log("hi");
+  const inValid = (error: any) => {
+    error && setIsError(true);
   };
 
   return (
@@ -154,12 +155,12 @@ function WritePost() {
         <Header />
         {writeModal && <WriteModal />}
         <S.WritePostForm>
-          <S.TitleBox>
+          <S.TitleBox isError={isError}>
             <S.TitleInput
               type="text"
               placeholder="제목을 입력해주세요"
               {...register("title", {
-                required: "이메일은 필수 입력입니다.",
+                required: "제목은 필수 입력입니다.",
               })}
             />
           </S.TitleBox>
@@ -182,7 +183,7 @@ function WritePost() {
               나가기
             </Button>
           </S.Part>
-          <S.Part className="errorText">error text</S.Part>
+          <S.Part className="errorText">{errors.title?.message}</S.Part>
           <S.Part>
             <Button width="100px" className="submit">
               작성하기

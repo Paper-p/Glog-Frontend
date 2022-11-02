@@ -6,11 +6,14 @@ export const WritePostForm = styled.div`
   padding-top: 40px;
 `;
 
-export const TitleBox = styled.div`
+export const TitleBox = styled.div<{ isError: boolean }>`
   width: 100%;
   height: 100px;
   background: #1a1b1e;
   border-bottom: 1px solid #484848;
+  border-radius: ${(e) => (e.isError ? "10px" : "")};
+  padding: ${(e) => (e.isError ? "20px" : "")};
+  filter: ${(e) => (e.isError ? "drop-shadow(0px 1px 7px #e45b3c)" : "")};
 `;
 
 export const TitleInput = styled.input`
@@ -123,6 +126,7 @@ export const Part = styled.div`
   text-align: center;
   line-height: 100px;
   color: #e83f28;
+  font-size: 20px;
 
   .exit {
     margin-left: -200px;
