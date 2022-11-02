@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const TagLayout = styled.div`
+export const WriteTagLayout = styled.div`
   margin-top: 20px;
 `;
 

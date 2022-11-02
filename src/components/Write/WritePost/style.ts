@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const WriteLayout = styled.section`
+export const WritePostLayout = styled.section`
   width: 72.5%;
   margin: auto;
   padding-top: 40px;
@@ -67,7 +67,7 @@ export const Tabs = styled.div`
   cursor: pointer;
 `;
 
-export const Markdown = styled.div<{ isPreview: number }>`
+export const Markdown = styled.div`
   width: 100%;
   margin-bottom: 150px;
   background: #1f2125;
@@ -122,7 +122,5 @@ export const Footer = styled.div`
 
 export const Part = styled.div`
   width: 50%;
-  height: 100%;
-
   margin: 0 30px 0 30px;
 `;

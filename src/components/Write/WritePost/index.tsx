@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import WriteModal from "components/Modal/WriteModal";
 import Header from "components/Common/Header";
-import Tag from "components/Tag";
+import Tag from "components/Write/WriteTag";
 import Button from "components/Common/Button";
 import feed from "data/request/feed";
 import { useRecoilState } from "recoil";
 import { writeModalAtom, tagAtom, thumbnailUrlAtom } from "atoms/AtomContainer";
 import useInputs from "hooks/useInputs";
+import { useNavigate } from "react-router-dom";
 
 interface WriteType {
   title: string;
@@ -17,10 +18,12 @@ interface WriteType {
   tags: string[];
 }
 
-function Write() {
+function WritePost() {
   const [{ title }, onChange] = useInputs({
     title: "",
   });
+
+  const navigate = useNavigate();
 
   const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -120,10 +123,20 @@ function Write() {
     }
   };
 
+  const onExit = () => {
+    setTag([]);
+    navigate("/");
+  };
+
+  const onWrite = () => {
+    setWriteModal(true);
+  };
+
   return (
     <>
       <Header />
-      <S.WriteLayout>
+      {writeModal && <WriteModal />}
+      <S.WritePostLayout>
         <S.TitleBox>
           <S.TitleInput
             name="title"
@@ -133,26 +146,27 @@ function Write() {
           />
         </S.TitleBox>
         <Tag />
-        {writeModal && <WriteModal />}
         <S.Tabbar>
           {tabbar.map((idx) => {
             return idx.tabTitle;
           })}
         </S.Tabbar>
-        <S.Markdown isPreview={border}>
-          {tabbar[activeIndex].tabContent}
-        </S.Markdown>
-      </S.WriteLayout>
+        <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
+      </S.WritePostLayout>
       <S.Footer>
         <S.Part>
-          <Button width="100px">나가기</Button>
+          <Button width="100px" onClick={onExit}>
+            나가기
+          </Button>
         </S.Part>
         <S.Part>
-          <Button width="100px">작성하기</Button>
+          <Button width="100px" onClick={onWrite}>
+            작성하기
+          </Button>
         </S.Part>
       </S.Footer>
     </>
   );
 }
 
-export default Write;
+export default WritePost;

@@ -10,7 +10,7 @@ interface TagType {
   name: string;
 }
 
-function Tag() {
+function WriteTag() {
   const [tag, setTag] = useRecoilState(tagAtom);
   const [{ content }, onChange, setNull] = useInputs({
     content: "",
@@ -43,7 +43,7 @@ function Tag() {
   );
 
   return (
-    <S.TagLayout>
+    <S.WriteTagLayout>
       <S.TagInputBox>
         <S.TagInput
           name="content"
@@ -66,8 +66,8 @@ function Tag() {
           </div>
         ))}
       </S.TagListBox>
-    </S.TagLayout>
+    </S.WriteTagLayout>
   );
 }
 
-export default React.memo(Tag);
+export default React.memo(WriteTag);
