@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const WritePostLayout = styled.section`
+export const WritePostForm = styled.div`
   width: 72.5%;
   margin: auto;
   padding-top: 40px;
@@ -111,16 +111,24 @@ export const Footer = styled.div`
   bottom: 0;
   margin-left: -36.25%;
   background: #262626;
-  justify-content: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr;
+  display: flex;
 `;
 
 export const Part = styled.div`
-  width: 50%;
-  margin: 0 30px 0 30px;
+  width: 33.3%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 100px;
+  color: #e83f28;
+
+  .exit {
+    margin-left: -200px;
+  }
+
+  .submit {
+    margin-right: -200px;
+  }
 `;
