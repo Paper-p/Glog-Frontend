@@ -4,16 +4,23 @@ import { useLocation } from "react-router-dom";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Logo from "../Logo";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
 
 function Header() {
   const { pathname } = useLocation();
-  const [logged] = useRecoilState(loggedAtom);
+  const [logged, setLogged] = useRecoilState(loggedAtom);
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
+
+  useEffect(() => {
+    if (window.localStorage.getItem("access-token")) {
+      setLogged(true);
+    }
+  }, []);
+
   return (
     <S.HeaderBox>
       <S.Header>
