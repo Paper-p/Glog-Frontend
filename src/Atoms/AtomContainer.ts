@@ -15,6 +15,11 @@ export const writeModalAtom = atom({
   default: false,
 });
 
+export const titleAtom = atom({
+  key: "title",
+  default: "",
+});
+
 export const contentAtom = atom({
   key: "content",
   default: "",
