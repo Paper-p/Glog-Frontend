@@ -18,6 +18,8 @@ function Header() {
   useEffect(() => {
     if (window.localStorage.getItem("access-token")) {
       setLogged(true);
+    } else {
+      setLogged(false);
     }
   }, []);
 
