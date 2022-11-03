@@ -1,68 +1,92 @@
 import styled from "@emotion/styled";
 
-export const ThumbnailModal = styled.div`
-  width: 800px;
-  height: 750px;
+export const WriteModal = styled.div`
+  width: 600px;
+  height: 339px;
   background: #252727;
   border-radius: 15px;
 `;
 
-export const Box = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const Text = styled.p`
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  margin-top: 40px;
+`;
 
-  .button {
-    margin-top: 80px;
+export const UploadSvgBox = styled.div`
+  width: 452px;
+  margin: auto;
+  display: flex;
+  padding: 24px 0 9px 0;
+  cursor: pointer;
+
+  p {
+    margin-left: 6px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #18d570;
   }
 `;
 
-export const InputFileBox = styled.div`
+export const UploadSvg = styled.div`
+  width: 15px;
+  height: 15px;
+
+  & > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const PreviewBox = styled.div`
   display: flex;
-  width: 684px;
-  height: 338px;
-  background: #656262;
-  border-radius: 10px;
-  align-items: center;
   justify-content: center;
-  margin-top: 25%;
+`;
+
+export const Preview = styled.div<{ url: string }>`
+  width: 452px;
+  height: 100px;
+  border-radius: 10px;
+  padding: 22px 36px;
+  background-image: ${(e) =>
+    e.url
+      ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${e.url})`
+      : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(https://siliconvalleygazette.com/posts/what-is-the-404-not-found-error.png)`};
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+`;
+
+export const PreviewTitle = styled.p`
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  color: #fff;
+`;
+
+export const PreviewContent = styled.p`
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #9c9c9c;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const UploadThumbnail = styled.div`
+  display: flex;
+  justify-content: center;
 
   input {
     display: none;
   }
 
-  img {
-    width: 600px;
-    height: 250px;
-  }
-
-  .box-file-input {
-    text-align: center;
-  }
-
-  .box-file-input label {
-    display: inline-block;
-    background: #23a3a7;
-    color: #fff;
-    padding: 0px 15px;
-    line-height: 35px;
-    cursor: pointer;
-    border-radius: 7px;
-    margin: 65px 0 40px 0;
-  }
-
-  .box-file-input label:after {
-    content: "BROWSE";
-    font-size: 15px;
-  }
-
-  .box-file-input .file-input {
-    display: none;
-  }
-
-  .box-file-input .filename {
-    display: inline-block;
-    padding-left: 10px;
+  button {
+    margin-top: 32px;
   }
 `;

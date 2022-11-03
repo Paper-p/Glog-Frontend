@@ -2,8 +2,11 @@ import { useRef, useState } from "react";
 import * as S from "./style";
 import { useRecoilState } from "recoil";
 import { writeModalAtom, thumbnailUrlAtom, tagAtom } from "atoms/AtomContainer";
-import image from "data/request/image";
 import ModalLayout from "components/Common/Layout/Modal";
+import Button from "components/Common/Button";
+import { Upload } from "assets/svg";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 
 function WriteModal() {
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
@@ -13,27 +16,16 @@ function WriteModal() {
   const [isClick, setIsClick] = useState<boolean>(false);
   const setProfileImage = useRef<any>(null);
 
-  // <img src={thumbnailUrl} alt="thumbnail" />
-  // <button onClick={imgBtnClick}>asd</button>
-  // <input
-  //   ref={setProfileImage}
-  //   type={"file"}
-  //   id={"profile"}
-  //   accept={"image/*"}
-  //   name={"file"}
-  //   onChange={imgHandler}
-  // />
-
   const imgHandler = async (e: any) => {
     try {
       setThumbnailUrl(URL.createObjectURL(e.target.files[0]));
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
-      const res: any = await image.uploadImage(
-        formData,
-        String(window.localStorage.getItem("access-token"))
-      );
-      setThumbnailUrl(res.data.imageUrl);
+      // const res: any = await image.uploadImage(
+      //   formData,
+      //   String(window.localStorage.getItem("access-token"))
+      // );
+      // setThumbnailUrl(res.data.imageUrl);
     } catch (e: any) {
       console.log(e);
     }
@@ -46,7 +38,37 @@ function WriteModal() {
 
   return (
     <ModalLayout setModal={setWriteModal}>
-      <S.ThumbnailModal onClick={(e) => e.stopPropagation()}></S.ThumbnailModal>
+      <S.WriteModal onClick={(e) => e.stopPropagation()}>
+        <S.Text>게시글 프리뷰</S.Text>
+        <S.UploadSvgBox onClick={imgBtnClick}>
+          <S.UploadSvg>
+            <Upload />
+          </S.UploadSvg>
+          <p>썸네일 변경</p>
+        </S.UploadSvgBox>
+        <S.PreviewBox>
+          <S.Preview url={thumbnailUrl}>
+            <S.PreviewTitle>유저 리서치(User Research)란?</S.PreviewTitle>
+            <S.PreviewContent>
+              asdasdasdasdasdasdasdasdasd
+              asdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
+            </S.PreviewContent>
+          </S.Preview>
+        </S.PreviewBox>
+        <S.UploadThumbnail>
+          <input
+            ref={setProfileImage}
+            type={"file"}
+            id={"profile"}
+            accept={"image/*"}
+            name={"file"}
+            onChange={imgHandler}
+          />
+          <Button width="452px" height="40px" css={{ fontSize: "15px" }}>
+            작성하기
+          </Button>
+        </S.UploadThumbnail>
+      </S.WriteModal>
     </ModalLayout>
   );
 }
