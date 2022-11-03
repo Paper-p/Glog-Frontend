@@ -3,41 +3,23 @@ import * as S from "./style";
 import { css } from "@emotion/react";
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
-  isButton?: boolean;
   width?: string;
   height?: string;
-  background?: string;
 }
 
-export default function Button({
-  isButton,
-  width,
-  height,
-  background,
-  children,
-  ...rest
-}: Props) {
+export default function Button({ width, height, children, ...rest }: Props) {
   const custom = (data: Props) =>
-    css(
-      { width: data.width },
-      { height: data.height },
-      { background: data.background }
-    );
+    css({ width: data.width }, { height: data.height });
 
   const data = {
     width,
     height,
-    background,
   };
 
   return (
     <>
       {data ? (
-        <S.Button
-          css={custom(data)}
-          type={isButton ? "button" : "submit"}
-          {...rest}
-        >
+        <S.Button css={custom(data)} {...rest}>
           {children}
         </S.Button>
       ) : (
