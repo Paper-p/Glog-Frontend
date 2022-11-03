@@ -87,6 +87,9 @@ export const UploadThumbnail = styled.div`
   }
 
   button {
+    width: 452px;
+    height: 40px;
+    font-size: 15px;
     margin-top: 32px;
   }
 `;

@@ -4,20 +4,16 @@ import WriteModal from "components/Modal/WriteModal";
 import Header from "components/Common/Header";
 import Tag from "components/Write/WriteTag";
 import { useRecoilState } from "recoil";
-import { writeModalAtom, contentAtom } from "atoms/AtomContainer";
-import useInputs from "hooks/useInputs";
+import { writeModalAtom, contentAtom, titleAtom } from "atoms/AtomContainer";
 import WriteFooter from "./WriteFooter";
 import WriteContent from "./WriteContent";
 
 function Write() {
-  const [{ title }, onChange] = useInputs({
-    title: "",
-  });
-
   const [isTitleNull, setIsTitleError] = useState<boolean>(false);
   const [isContentNull, setIsContentError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  const [title, setTitle] = useRecoilState(titleAtom);
   const [content] = useRecoilState(contentAtom);
   const [writeModal, setWriteModal] = useRecoilState(writeModalAtom);
 
@@ -44,6 +40,10 @@ function Write() {
     }
   };
 
+  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
   return (
     <>
       <Header />
@@ -53,7 +53,7 @@ function Write() {
           <S.TitleInput
             name="title"
             placeholder="제목을 입력해주세요"
-            onChange={onChange}
+            onChange={onTitleChange}
             value={title}
             type="text"
           />

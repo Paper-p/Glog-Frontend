@@ -1,16 +1,23 @@
 import { useRef, useState } from "react";
 import * as S from "./style";
 import { useRecoilState } from "recoil";
-import { writeModalAtom, thumbnailUrlAtom, tagAtom } from "atoms/AtomContainer";
+import {
+  writeModalAtom,
+  thumbnailUrlAtom,
+  tagAtom,
+  contentAtom,
+  titleAtom,
+} from "atoms/AtomContainer";
 import ModalLayout from "components/Common/Layout/Modal";
 import Button from "components/Common/Button";
 import { Upload } from "assets/svg";
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 
 function WriteModal() {
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [, setWriteModal] = useRecoilState(writeModalAtom);
+  const [title, setTitle] = useRecoilState(titleAtom);
+  const [content] = useRecoilState(contentAtom);
+
   const [requestTagList, setRequestTagList] = useState<string[]>([]);
   const [tag, setTag] = useRecoilState(tagAtom);
   const [isClick, setIsClick] = useState<boolean>(false);
@@ -48,11 +55,8 @@ function WriteModal() {
         </S.UploadSvgBox>
         <S.PreviewBox>
           <S.Preview url={thumbnailUrl}>
-            <S.PreviewTitle>유저 리서치(User Research)란?</S.PreviewTitle>
-            <S.PreviewContent>
-              asdasdasdasdasdasdasdasdasd
-              asdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
-            </S.PreviewContent>
+            <S.PreviewTitle>{title}</S.PreviewTitle>
+            <S.PreviewContent>{content}</S.PreviewContent>
           </S.Preview>
         </S.PreviewBox>
         <S.UploadThumbnail>
@@ -64,9 +68,7 @@ function WriteModal() {
             name={"file"}
             onChange={imgHandler}
           />
-          <Button width="452px" height="40px" css={{ fontSize: "15px" }}>
-            작성하기
-          </Button>
+          <Button>작성하기</Button>
         </S.UploadThumbnail>
       </S.WriteModal>
     </ModalLayout>
