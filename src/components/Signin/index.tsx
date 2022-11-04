@@ -23,16 +23,27 @@ export default function Signin() {
     formState: { errors },
   } = useForm<LoginType>();
 
-  const [logged, setLogged] = useRecoilState(loggedAtom);
+  const [, setLogged] = useRecoilState(loggedAtom);
 
   const onValid = async (data: LoginType) => {
     try {
       const res: any = await auth.signin(data);
       setLogged(true);
-      console.log(res);
-      window.localStorage.setItem("access-token", res.data.accessToken);
 
-      //token && toast
+      localStorage.setItem("token", JSON.stringify(res.data));
+      console.log(localStorage.getItem("token"));
+
+      const expiredAtDate = new Date(
+        JSON.parse(localStorage.getItem("token") || "{}").expiredAt
+      );
+
+      localStorage.setItem(
+        "expiredAt",
+        expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
+      );
+      console.log(localStorage.getItem("expiredAt"));
+
+      navigate("/");
     } catch (error: any) {
       console.log(error);
     }
@@ -41,6 +52,10 @@ export default function Signin() {
   const inValid = (error: any) => {
     error && setIsError(true);
   };
+
+  //GMT: 2022년 November 3일 Thursday PM 10:12:17
+  //GMT: 2022년 November 4일 Friday AM 6:57:17.126
+
   return (
     <>
       <Header />
