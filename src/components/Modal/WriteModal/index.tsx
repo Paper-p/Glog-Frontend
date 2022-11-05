@@ -21,25 +21,25 @@ function WriteModal() {
   const [content] = useRecoilState(contentAtom);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const [requestTagList, setRequestTagList] = useState<string[]>([]);
+  const [onlyNameList, setOnlyNameList] = useState<string[]>([]);
   const [tag] = useRecoilState(tagAtom);
   const [isClick, setIsClick] = useState<boolean>(false);
   const setProfileImage = useRef<any>(null);
 
   useEffect(() => {
     if (isClick) {
+      console.log(onlyNameList);
       setIsClick(false);
       request();
     }
   }, [isClick]);
 
   const saveTag = () => {
-    tag.forEach((item) => {
-      setRequestTagList((preveList: any) => [
-        ...preveList,
-        requestTagList.concat(item.name).join(""),
-      ]);
-    });
+    setOnlyNameList(
+      tag.map(({ name }) => {
+        return name;
+      })
+    );
 
     setIsClick(true);
   };
@@ -51,7 +51,7 @@ function WriteModal() {
           title,
           content,
           thumbnail: thumbnailUrl,
-          tags: requestTagList,
+          tags: onlyNameList,
           token: JSON.parse(localStorage.getItem("token") || "{}").accessToken,
         });
       } catch (e: any) {

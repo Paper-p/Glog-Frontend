@@ -6,13 +6,13 @@ import { tagAtom } from "atoms/AtomContainer";
 import React from "react";
 
 interface TagType {
-  id?: number;
+  id: number;
   name: string;
 }
 
 function WriteTag() {
   const [isRight, setIsRight] = useState<boolean>(false);
-  const [list, setList] = useState<string[]>([]);
+  const [onlyNameList, setOnlyNameList] = useState<string[]>([]);
   const [tag, setTag] = useRecoilState(tagAtom);
   const nextId = useRef(1);
   const [{ content }, onChange, setNull] = useInputs({
@@ -20,7 +20,7 @@ function WriteTag() {
   });
 
   useEffect(() => {
-    if (isRight && !list.includes(content)) {
+    if (isRight && !onlyNameList.includes(content)) {
       setTag(
         tag.concat({
           id: nextId.current,
@@ -30,23 +30,22 @@ function WriteTag() {
       nextId.current += 1;
       setIsRight(false);
       setNull("content");
-      setList([]);
+      setOnlyNameList([]);
     } else {
       setIsRight(false);
       setNull("content");
-      setList([]);
+      setOnlyNameList([]);
     }
   }, [isRight]);
 
   const onAddTag = useCallback(
     (e: any) => {
       if (content !== "" && e.key === "Enter" && tag.length + 1 < 6) {
-        tag.forEach((item) => {
-          setList((preveList: string[]) => [
-            ...preveList,
-            list.concat(item.name).join(""),
-          ]);
-        });
+        setOnlyNameList(
+          tag.map(({ name }) => {
+            return name;
+          })
+        );
         setIsRight(true);
       } else if (e.key === "Enter") {
         setNull("content");
