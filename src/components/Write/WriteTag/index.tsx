@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import useInputs from "hooks/useInputs";
 import { useRecoilState } from "recoil";
@@ -6,28 +6,48 @@ import { tagAtom } from "atoms/AtomContainer";
 import React from "react";
 
 interface TagType {
-  id: number;
+  id?: number;
   name: string;
 }
 
 function WriteTag() {
+  const [isRight, setIsRight] = useState<boolean>(false);
+  const [list, setList] = useState<string[]>([]);
   const [tag, setTag] = useRecoilState(tagAtom);
+  const nextId = useRef(1);
   const [{ content }, onChange, setNull] = useInputs({
     content: "",
   });
 
-  const nextId = useRef(1);
+  useEffect(() => {
+    if (isRight && !list.includes(content)) {
+      setTag(
+        tag.concat({
+          id: nextId.current,
+          name: content,
+        })
+      );
+      nextId.current += 1;
+      setIsRight(false);
+      setNull("content");
+      setList([]);
+    } else {
+      setIsRight(false);
+      setNull("content");
+      setList([]);
+    }
+  }, [isRight]);
+
   const onAddTag = useCallback(
     (e: any) => {
       if (content !== "" && e.key === "Enter" && tag.length + 1 < 6) {
-        setTag(
-          tag.concat({
-            id: nextId.current,
-            name: content,
-          })
-        );
-        setNull("content");
-        nextId.current += 1;
+        tag.forEach((item) => {
+          setList((preveList: string[]) => [
+            ...preveList,
+            list.concat(item.name).join(""),
+          ]);
+        });
+        setIsRight(true);
       } else if (e.key === "Enter") {
         setNull("content");
       }
@@ -47,7 +67,7 @@ function WriteTag() {
       <S.TagInputBox>
         <S.TagInput
           name="content"
-          placeholder="태그를 입력해주세요 (최대 5개)"
+          placeholder="태그를 입력해주세요"
           onKeyPress={onAddTag}
           onChange={onChange}
           value={content}
