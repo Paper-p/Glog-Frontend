@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import { useRecoilState } from "recoil";
 import {
@@ -11,28 +11,67 @@ import {
 import ModalLayout from "components/Common/Layout/Modal";
 import Button from "components/Common/Button";
 import { Upload } from "assets/svg";
+import image from "data/request/image";
+import feed from "data/request/feed";
 
 function WriteModal() {
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [, setWriteModal] = useRecoilState(writeModalAtom);
-  const [title, setTitle] = useRecoilState(titleAtom);
+  const [title] = useRecoilState(titleAtom);
   const [content] = useRecoilState(contentAtom);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const [requestTagList, setRequestTagList] = useState<string[]>([]);
-  const [tag, setTag] = useRecoilState(tagAtom);
+  const [tag] = useRecoilState(tagAtom);
   const [isClick, setIsClick] = useState<boolean>(false);
   const setProfileImage = useRef<any>(null);
+
+  useEffect(() => {
+    if (isClick) {
+      setIsClick(false);
+      request();
+    }
+  }, [isClick]);
+
+  const saveTag = () => {
+    tag.forEach((item) => {
+      setRequestTagList((preveList: any) => [
+        ...preveList,
+        requestTagList.concat(item.name).join(""),
+      ]);
+    });
+
+    setIsClick(true);
+  };
+
+  const request = async () => {
+    if (thumbnailUrl !== "") {
+      try {
+        await feed.writeFeed({
+          title,
+          content,
+          thumbnail: thumbnailUrl,
+          tags: requestTagList,
+          token: JSON.parse(localStorage.getItem("token") || "{}").accessToken,
+        });
+      } catch (e: any) {
+        console.log(e);
+      }
+    } else {
+      setErrorMessage("썸네일 이미지가 없어요");
+    }
+  };
 
   const imgHandler = async (e: any) => {
     try {
       setThumbnailUrl(URL.createObjectURL(e.target.files[0]));
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
-      // const res: any = await image.uploadImage(
-      //   formData,
-      //   String(window.localStorage.getItem("access-token"))
-      // );
-      // setThumbnailUrl(res.data.imageUrl);
+      const res: any = await image.uploadImage(
+        formData,
+        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+      );
+      setThumbnailUrl(res.data.imageUrl);
     } catch (e: any) {
       console.log(e);
     }
@@ -68,8 +107,9 @@ function WriteModal() {
             name={"file"}
             onChange={imgHandler}
           />
-          <Button>작성하기</Button>
+          <Button onClick={saveTag}>작성하기</Button>
         </S.UploadThumbnail>
+        <S.ErrorMessage>{errorMessage}</S.ErrorMessage>
       </S.WriteModal>
     </ModalLayout>
   );

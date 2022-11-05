@@ -28,20 +28,23 @@ export default function Signin() {
   const onValid = async (data: LoginType) => {
     try {
       const res: any = await auth.signin(data);
+
       setLogged(true);
 
       localStorage.setItem("token", JSON.stringify(res.data));
-      console.log(localStorage.getItem("token"));
-
       const expiredAtDate = new Date(
         JSON.parse(localStorage.getItem("token") || "{}").expiredAt
       );
 
+      // 만료시간 변형
       localStorage.setItem(
         "expiredAt",
         expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
       );
-      console.log(localStorage.getItem("expiredAt"));
+
+      console.log(
+        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+      );
 
       navigate("/");
     } catch (error: any) {

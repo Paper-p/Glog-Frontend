@@ -93,3 +93,10 @@ export const UploadThumbnail = styled.div`
     margin-top: 32px;
   }
 `;
+
+export const ErrorMessage = styled.p`
+  margin-top: 15px;
+  color: #e83f28;
+  text-align: center;
+  font-weight: 600;
+`;

@@ -31,9 +31,11 @@ export const ButtonBox = styled.div`
 
   p {
     cursor: pointer;
+    font-weight: bold;
   }
 
   button {
+    font-weight: bold;
     border: 0;
     outline: 0;
     background-color: #262626;
