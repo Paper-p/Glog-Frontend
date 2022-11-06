@@ -2,7 +2,7 @@ import * as S from "./style";
 import * as I from "assets/svg";
 import React from "react";
 
-type PropsType = {
+interface PropsType = {
   width: number;
   height: number;
 };

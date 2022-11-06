@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 
-interface Props extends React.HTMLAttributes<HTMLButtonElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   isContentNull: boolean;
 }
 
@@ -31,7 +31,7 @@ function WriteContent({ isContentNull }: Props) {
         <MarkdownEditor
           visible={false}
           hideToolbar={false}
-          onChange={(value) => setContent(value)}
+          onChange={setContent}
           theme="dark"
           value={content}
         />

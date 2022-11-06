@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { SetterOrUpdater } from "recoil";
 import * as S from "./style";
 
-interface Props extends React.HTMLAttributes<HTMLButtonElement> {
+interface Props extends React.HTMLAttributes<HTMLElement> {
   setModal: SetterOrUpdater<boolean>;
 }
 
@@ -26,7 +26,7 @@ function ModalLayout({ children, setModal }: Props) {
 
   return (
     <S.ModalLayout>
-      <S.Background onClick={onClick}>{children}</S.Background>
+      <S.Background onClick={() => onClick}>{children}</S.Background>
     </S.ModalLayout>
   );
 }

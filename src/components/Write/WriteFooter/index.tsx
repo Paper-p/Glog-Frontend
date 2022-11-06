@@ -3,7 +3,8 @@ import { useRecoilState } from "recoil";
 import { tagAtom } from "atoms/AtomContainer";
 import { useNavigate } from "react-router-dom";
 
-interface Props extends React.HTMLAttributes<HTMLButtonElement> {
+interface Props
+  extends React.HTMLAttributes<HTMLDivElement | HTMLParagraphElement> {
   errorMessage: string;
 }
 
@@ -21,9 +22,9 @@ function WriteFooter({ errorMessage, ...rest }: Props) {
       <p className="error">{errorMessage}</p>
       <S.ButtonBox>
         <p onClick={onExit}>취소</p>
-        <button {...rest}>
+        <div {...rest}>
           <p>작성하기</p>
-        </button>
+        </div>
       </S.ButtonBox>
     </S.Footer>
   );
