@@ -2,10 +2,10 @@ import * as S from "./style";
 import * as I from "assets/svg";
 import React from "react";
 
-interface PropsType = {
+interface PropsType {
   width: number;
   height: number;
-};
+}
 
 function Logo({ width, height }: PropsType) {
   return (
