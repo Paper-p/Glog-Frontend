@@ -12,7 +12,6 @@ export const Profile_Layout = styled.div`
   width: 100%;
   height: 330px;
   background-color: #1f2125;
-  margin-bottom: 70px;
   display: flex;
   justify-content: center;
 `;
@@ -38,4 +37,15 @@ export const ProfileName = styled.p`
   color: #ffffff;
   margin-top: 16px;
   text-align: center;
+`;
+
+export const MyPost = styled.div`
+  background-color: #33333399;
+  width: 117px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 10px;
+  color: #969696;
+  margin: 40px 0 20px 13.4%;
 `;

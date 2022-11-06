@@ -10,6 +10,7 @@ export default function MyPageInfo() {
           <S.ProfileName>wheniwasym</S.ProfileName>
         </S.Profile_Box>
       </S.Profile_Layout>
+      <S.MyPost>내 게시물's</S.MyPost>
       <S.MyPosts_Layout>
         <Poster />
         <Poster />
