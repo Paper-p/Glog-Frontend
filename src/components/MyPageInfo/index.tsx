@@ -1,24 +1,28 @@
-import Poster from "components/Poster";
+import Poster from "components/Common/Poster";
 import * as S from "./style";
 
 export default function MyPageInfo() {
   return (
     <>
-      <S.Profile_Layout>
-        <S.Profile_Box>
+      <S.ProfileLayout>
+        <S.ProfileBox>
           <S.ProfileImage src="images/profile.jpeg" />
           <S.ProfileName>wheniwasym</S.ProfileName>
-        </S.Profile_Box>
-      </S.Profile_Layout>
-      <S.MyPost>내 게시물's</S.MyPost>
-      <S.MyPosts_Layout>
-        <Poster />
-        <Poster />
-        <Poster />
-        <Poster />
-        <Poster />
-        <Poster />
-      </S.MyPosts_Layout>
+        </S.ProfileBox>
+      </S.ProfileLayout>
+      <S.MyPostsLayout>
+        <S.CategoryBox>
+          <S.Category>💻내 게시물's</S.Category>
+        </S.CategoryBox>
+        <S.MyPostsBox>
+          <Poster />
+          <Poster />
+          <Poster />
+          <Poster />
+          <Poster />
+          <Poster />
+        </S.MyPostsBox>
+      </S.MyPostsLayout>
     </>
   );
 }

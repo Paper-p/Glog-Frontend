@@ -1,14 +1,23 @@
 import styled from "@emotion/styled";
 
-export const MyPosts_Layout = styled.div`
-  width: 100%;
+export const MyPostsLayout = styled.div`
+  width: 72.5%;
+  margin: auto;
+`;
+
+export const CategoryBox = styled.div`
+  padding-top: 30px;
+  padding-bottom: 16px;
+`;
+
+export const MyPostsBox = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 330px);
   gap: 24px 24px;
 `;
 
-export const Profile_Layout = styled.div`
+export const ProfileLayout = styled.div`
   width: 100%;
   height: 330px;
   background-color: #1f2125;
@@ -16,7 +25,7 @@ export const Profile_Layout = styled.div`
   justify-content: center;
 `;
 
-export const Profile_Box = styled.div`
+export const ProfileBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,7 +48,7 @@ export const ProfileName = styled.p`
   text-align: center;
 `;
 
-export const MyPost = styled.div`
+export const Category = styled.div`
   background-color: #33333399;
   width: 117px;
   height: 32px;
@@ -47,5 +56,4 @@ export const MyPost = styled.div`
   text-align: center;
   border-radius: 10px;
   color: #969696;
-  margin: 40px 0 20px 13.4%;
 `;
