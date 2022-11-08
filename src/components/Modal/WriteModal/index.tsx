@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as S from "./style";
+import { PostBox, Button, ModalLayout } from "components/Common";
 import { useRecoilState } from "recoil";
 import {
   writeModalAtom,
@@ -8,29 +9,30 @@ import {
   contentAtom,
   titleAtom,
 } from "atoms/AtomContainer";
-import ModalLayout from "components/Common/Layout/Modal";
-import Button from "components/Common/Button";
 import { Upload } from "assets/svg";
 import image from "data/request/image";
 import feed from "data/request/feed";
+import { useNavigate } from "react-router-dom";
+import { marked } from "marked";
 
-function WriteModal() {
+export function WriteModal() {
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [, setWriteModal] = useRecoilState(writeModalAtom);
-  const [title] = useRecoilState(titleAtom);
-  const [content] = useRecoilState(contentAtom);
+  const [title, setTitle] = useRecoilState(titleAtom);
+  const [content, setContent] = useRecoilState(contentAtom);
+  const [tag, setTag] = useRecoilState(tagAtom);
   const [errorMessage, setErrorMessage] = useState<string>("");
-
+  const [contentPreview, setContentPreiview] = useState<string>("");
   const [onlyNameList, setOnlyNameList] = useState<string[]>([]);
-  const [tag] = useRecoilState(tagAtom);
   const [isClick, setIsClick] = useState<boolean>(false);
   const setProfileImage = useRef<any>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    setContentPreiview(marked(content).replace(/<[^>]+>/g, ""));
     if (isClick) {
-      console.log(onlyNameList);
-      setIsClick(false);
       request();
+      setIsClick(false);
     }
   }, [isClick]);
 
@@ -40,7 +42,6 @@ function WriteModal() {
         return name;
       })
     );
-
     setIsClick(true);
   };
 
@@ -54,6 +55,11 @@ function WriteModal() {
           tags: onlyNameList,
           token: JSON.parse(localStorage.getItem("token") || "{}").accessToken,
         });
+        setWriteModal(false);
+        setTitle("");
+        setContent("");
+        setTag([]);
+        navigate("/");
       } catch (e: any) {
         console.log(e);
       }
@@ -92,12 +98,13 @@ function WriteModal() {
           </S.UploadSvg>
           <p>썸네일 변경</p>
         </S.UploadSvgBox>
-        <S.PreviewBox>
-          <S.Preview url={thumbnailUrl}>
-            <S.PreviewTitle>{title}</S.PreviewTitle>
-            <S.PreviewContent>{content}</S.PreviewContent>
-          </S.Preview>
-        </S.PreviewBox>
+        <PostBox
+          imageUrl={thumbnailUrl}
+          title={title}
+          content={contentPreview}
+          like={3192}
+          view={8321}
+        />
         <S.UploadThumbnail>
           <input
             ref={setProfileImage}
@@ -114,5 +121,3 @@ function WriteModal() {
     </ModalLayout>
   );
 }
-
-export default WriteModal;

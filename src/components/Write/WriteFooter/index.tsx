@@ -18,7 +18,7 @@ function WriteFooter({ errorMessage, ...rest }: Props) {
   };
 
   return (
-    <S.Footer>
+    <S.FooterLayout>
       <p className="error">{errorMessage}</p>
       <S.ButtonBox>
         <p onClick={onExit}>취소</p>
@@ -26,7 +26,7 @@ function WriteFooter({ errorMessage, ...rest }: Props) {
           <p>작성하기</p>
         </div>
       </S.ButtonBox>
-    </S.Footer>
+    </S.FooterLayout>
   );
 }
 

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const ContentBox = styled.div<{ isNull: boolean }>`
   border-radius: 2px;
   border: 1px solid #767676;
-  margin: 40px 0 150px 0;
+  margin-top: 40px;
   filter: ${(e) => (e.isNull ? "drop-shadow(0px 1px 7px #e45b3c)" : "")};
 `;
 
@@ -35,29 +35,63 @@ export const Tabs = styled.div`
 
 export const Markdown = styled.div`
   width: 100%;
-  background: #1f2125;
+  padding: 25px;
+  background-color: #1f2125;
 
-  .md-editor {
-    min-height: 40vh;
-    height: content;
-    font-size: 15px;
-    background: #1f2125;
+  /* .w-md-editor-text-pre > code,
+  .w-md-editor-text-input {
+    font-size: 20px !important;
+    line-height: 19px !important;
+  } */
+
+  .w-md-editor {
+    box-shadow: inherit !important;
   }
 
-  .md-editor-preview {
+  .w-md-editor-bar {
     display: none;
   }
 
-  .wmde-markdown {
-    min-height: 40vh;
-    height: content;
-    font-size: 20px;
-    background: #1f2125;
-    color: #bbbbbb;
-    padding: 50px;
+  .wmde-markdown h1 {
+    border-bottom: 1px solid #484848;
   }
 
-  .wmde-markdown pre > code {
-    color: black;
+  .wmde-markdown h2 {
+    border-bottom: 1px solid #484848;
+  }
+
+  .w-md-editor-text {
+    padding: 0;
+  }
+
+  .w-md-editor-input {
+    width: 100%;
+    background-color: #1f2125;
+  }
+
+  .w-md-editor-preview {
+    display: none;
+  }
+
+  .w-md-editor-text-input {
+    color: white;
+  }
+
+  .wmde-markdown.wmde-markdown-color {
+    background: none;
+    min-height: 40vh !important;
+    height: fit-content !important;
+  }
+
+  .w-md-editor-text-pre,
+  .w-md-editor-text-input {
+    min-height: 40vh;
+    color: white;
+  }
+
+  .wmde-markdown-var.w-md-editor.w-md-editor-show-live {
+    min-height: 40vh !important;
+    height: fit-content !important;
+    background-color: #1f2125;
   }
 `;

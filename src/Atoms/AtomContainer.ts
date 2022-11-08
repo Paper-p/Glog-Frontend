@@ -20,7 +20,7 @@ export const titleAtom = atom({
   default: "",
 });
 
-export const contentAtom = atom({
+export const contentAtom = atom<any>({
   key: "content",
   default: "",
 });

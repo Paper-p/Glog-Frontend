@@ -1,24 +1,23 @@
 import { useState } from "react";
 import * as S from "./style";
-import WriteModal from "components/Modal/WriteModal";
 import Header from "components/Common/Header";
 import Tag from "components/Write/WriteTag";
 import { useRecoilState } from "recoil";
 import { writeModalAtom, contentAtom, titleAtom } from "atoms/AtomContainer";
-import WriteFooter from "./WriteFooter";
-import WriteContent from "./WriteContent";
+import WriteFooter from "../WriteFooter";
+import WriteContent from "../WriteContent";
+import { WriteModal } from "components/Modal/WriteModal";
 
 function Write() {
   const [isTitleNull, setIsTitleError] = useState<boolean>(false);
   const [isContentNull, setIsContentError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-
   const [title, setTitle] = useRecoilState(titleAtom);
   const [content] = useRecoilState(contentAtom);
   const [writeModal, setWriteModal] = useRecoilState(writeModalAtom);
 
   const handleClick = () => {
-    const confirmContent = content.replace(/\n/g, "").trim().length; // 줄바꿈 제외
+    const confirmContent = content.replace(/\n/g, "").trim().length;
 
     if (title.trim().length === 0 && confirmContent === 0) {
       setIsTitleError(true);

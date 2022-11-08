@@ -26,7 +26,7 @@ function ModalLayout({ children, setModal }: Props) {
 
   return (
     <S.ModalLayout>
-      <S.Background onClick={() => onClick}>{children}</S.Background>
+      <S.Background onClick={onClick}>{children}</S.Background>
     </S.ModalLayout>
   );
 }

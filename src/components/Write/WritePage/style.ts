@@ -3,12 +3,13 @@ import styled from "@emotion/styled";
 export const WritePostLayout = styled.div`
   width: 72.5%;
   margin: auto;
-  padding-top: 40px;
+  padding-bottom: 150px;
 `;
 
 export const TitleBox = styled.div<{ isNull: boolean }>`
   width: 100%;
   height: 100px;
+  margin-top: 40px;
   background: #1a1b1e;
   border-bottom: 1px solid #484848;
   border-radius: ${(e) => (e.isNull ? "10px" : "")};

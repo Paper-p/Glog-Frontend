@@ -1,11 +1,8 @@
 import styled from "@emotion/styled";
 
-//공통속성----------
-//----------------
-
 export const HeaderBox = styled.div`
   width: 100%;
-  padding-top: 100px;
+  margin-top: 100px;
   display: flex;
   justify-content: center;
 

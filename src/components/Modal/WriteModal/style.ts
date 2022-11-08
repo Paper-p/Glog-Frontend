@@ -1,81 +1,48 @@
 import styled from "@emotion/styled";
 
 export const WriteModal = styled.div`
-  width: 600px;
-  height: 339px;
+  width: 760px;
+  height: 400px;
   background: #252727;
   border-radius: 15px;
 `;
 
 export const Text = styled.p`
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
   margin-top: 40px;
 `;
 
 export const UploadSvgBox = styled.div`
-  width: 452px;
+  width: 684px;
   margin: auto;
   display: flex;
-  padding: 24px 0 9px 0;
-  cursor: pointer;
+  padding: 35px 0 9px 0;
 
   p {
     margin-left: 6px;
     font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
+    font-size: 15px;
+    line-height: 20px;
     color: #18d570;
+    cursor: pointer;
   }
 `;
 
 export const UploadSvg = styled.div`
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
 
   & > svg {
+    cursor: pointer;
+
     display: block;
     width: 100%;
     height: 100%;
   }
-`;
-
-export const PreviewBox = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-export const Preview = styled.div<{ url: string }>`
-  width: 452px;
-  height: 100px;
-  border-radius: 10px;
-  padding: 22px 36px;
-  background-image: ${(e) =>
-    e.url
-      ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${e.url})`
-      : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(https://siliconvalleygazette.com/posts/what-is-the-404-not-found-error.png)`};
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-`;
-
-export const PreviewTitle = styled.p`
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 24px;
-  color: #fff;
-`;
-
-export const PreviewContent = styled.p`
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
-  color: #9c9c9c;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 export const UploadThumbnail = styled.div`
@@ -87,10 +54,10 @@ export const UploadThumbnail = styled.div`
   }
 
   button {
-    width: 452px;
-    height: 40px;
-    font-size: 15px;
-    margin-top: 32px;
+    width: 682px;
+    height: 45px;
+    font-size: 17px;
+    margin-top: 20px;
   }
 `;
 

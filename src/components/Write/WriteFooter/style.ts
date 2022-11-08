@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
 
-export const Footer = styled.div`
+export const FooterLayout = styled.footer`
   position: fixed;
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 72.5%;
   height: 100px;
   left: 50%;
   bottom: 0;
   margin-left: -36.25%;
+  align-items: center;
+  justify-content: center;
   background: #262626;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
@@ -34,11 +34,8 @@ export const ButtonBox = styled.div`
     font-weight: bold;
   }
 
-  button {
+  div {
     font-weight: bold;
-    border: 0;
-    outline: 0;
-    background-color: #262626;
     color: #18d570;
     font-size: 17px;
   }

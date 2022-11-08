@@ -1,10 +1,11 @@
 import MarkdownEditor from "@uiw/react-markdown-editor";
+import MDEditor from "@uiw/react-md-editor";
 import { contentAtom } from "atoms/AtomContainer";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   isContentNull: boolean;
 }
 
@@ -28,12 +29,13 @@ function WriteContent({ isContentNull }: Props) {
         </S.Tabs>
       ),
       tabContent: (
-        <MarkdownEditor
-          visible={false}
-          hideToolbar={false}
-          onChange={setContent}
-          theme="dark"
+        <MDEditor
+          hideToolbar={true}
+          onChange={(value) => setContent(value)}
           value={content}
+          textareaProps={{
+            placeholder: "내용을 입력해주세요",
+          }}
         />
       ),
     },
@@ -47,7 +49,7 @@ function WriteContent({ isContentNull }: Props) {
           미리보기
         </S.Tabs>
       ),
-      tabContent: <MarkdownEditor.Markdown source={content} />,
+      tabContent: <MDEditor.Markdown source={content} />,
     },
   ];
 
@@ -58,7 +60,9 @@ function WriteContent({ isContentNull }: Props) {
           return idx.tabTitle;
         })}
       </S.Tabbar>
-      <S.Markdown>{tabbar[activeIndex].tabContent}</S.Markdown>
+      <S.Markdown data-color-mode="dark">
+        {tabbar[activeIndex].tabContent}
+      </S.Markdown>
     </S.ContentBox>
   );
 }

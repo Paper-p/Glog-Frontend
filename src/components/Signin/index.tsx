@@ -56,9 +56,6 @@ export default function Signin() {
     error && setIsError(true);
   };
 
-  //GMT: 2022년 November 3일 Thursday PM 10:12:17
-  //GMT: 2022년 November 4일 Friday AM 6:57:17.126
-
   return (
     <>
       <Header />
