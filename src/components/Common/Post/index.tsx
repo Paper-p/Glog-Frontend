@@ -1,7 +1,7 @@
 import * as S from "./style";
 import * as I from "assets/svg";
 
-export default function Poster() {
+export default function Post() {
   return (
     <S.Poster_Box>
       <S.Thumbnail src="images/profile.jpeg" />

@@ -1,5 +1,5 @@
 import Category from "components/Common/Category";
-import Poster from "components/Common/Poster";
+import Post from "components/Common/Post";
 import * as S from "./style";
 
 export default function MyPageInfo() {
@@ -16,12 +16,12 @@ export default function MyPageInfo() {
           <Category>💻내 게시물's</Category>
         </S.CategoryBox>
         <S.MyPostsBox>
-          <Poster />
-          <Poster />
-          <Poster />
-          <Poster />
-          <Poster />
-          <Poster />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
         </S.MyPostsBox>
       </S.MyPostsLayout>
     </>

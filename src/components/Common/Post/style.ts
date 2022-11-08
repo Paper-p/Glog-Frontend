@@ -5,6 +5,7 @@ export const Poster_Box = styled.div`
   height: 330px;
   position: relative;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const Thumbnail = styled.img`
