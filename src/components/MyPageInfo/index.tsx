@@ -1,3 +1,4 @@
+import Category from "components/Common/Category";
 import Poster from "components/Common/Poster";
 import * as S from "./style";
 
@@ -12,7 +13,7 @@ export default function MyPageInfo() {
       </S.ProfileLayout>
       <S.MyPostsLayout>
         <S.CategoryBox>
-          <S.Category>💻내 게시물's</S.Category>
+          <Category>💻내 게시물's</Category>
         </S.CategoryBox>
         <S.MyPostsBox>
           <Poster />
