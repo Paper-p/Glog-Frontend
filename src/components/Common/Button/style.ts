@@ -14,7 +14,7 @@ export const Button = styled.button`
 
   &:hover {
     box-sizing: border-box;
-    background: #f5f5f5;
+    background: #252727;
     border: 2px solid #17d46f;
     color: #17d46f;
   }

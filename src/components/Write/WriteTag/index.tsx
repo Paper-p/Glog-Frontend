@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import useInputs from "hooks/useInputs";
 import { useRecoilState } from "recoil";
@@ -10,24 +10,43 @@ interface TagType {
   name: string;
 }
 
-function Tag() {
+function WriteTag() {
+  const [isRight, setIsRight] = useState<boolean>(false);
+  const [onlyNameList, setOnlyNameList] = useState<string[]>([]);
   const [tag, setTag] = useRecoilState(tagAtom);
+  const nextId = useRef(1);
   const [{ content }, onChange, setNull] = useInputs({
     content: "",
   });
 
-  const nextId = useRef(1);
+  useEffect(() => {
+    if (isRight && !onlyNameList.includes(content)) {
+      setTag(
+        tag.concat({
+          id: nextId.current,
+          name: content,
+        })
+      );
+      nextId.current += 1;
+      setIsRight(false);
+      setNull("content");
+      setOnlyNameList([]);
+    } else {
+      setIsRight(false);
+      setNull("content");
+      setOnlyNameList([]);
+    }
+  }, [isRight]);
+
   const onAddTag = useCallback(
     (e: any) => {
-      if (content !== "" && e.key === "Enter") {
-        setTag(
-          tag.concat({
-            id: nextId.current,
-            name: content,
+      if (content !== "" && e.key === "Enter" && tag.length + 1 < 6) {
+        setOnlyNameList(
+          tag.map(({ name }) => {
+            return name;
           })
         );
-        setNull("content");
-        nextId.current += 1;
+        setIsRight(true);
       } else if (e.key === "Enter") {
         setNull("content");
       }
@@ -43,7 +62,7 @@ function Tag() {
   );
 
   return (
-    <S.TagLayout>
+    <S.WriteTagLayout>
       <S.TagInputBox>
         <S.TagInput
           name="content"
@@ -66,8 +85,8 @@ function Tag() {
           </div>
         ))}
       </S.TagListBox>
-    </S.TagLayout>
+    </S.WriteTagLayout>
   );
 }
 
-export default React.memo(Tag);
+export default React.memo(WriteTag);
