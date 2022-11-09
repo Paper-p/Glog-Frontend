@@ -7,8 +7,13 @@ import Logo from "../Logo";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
+import Input from "../Input";
 
-function Header() {
+interface Props {
+  isNeedSearch?: boolean;
+}
+
+function Header({ isNeedSearch }: Props) {
   const { pathname } = useLocation();
   const [logged, setLogged] = useRecoilState(loggedAtom);
 
@@ -24,52 +29,61 @@ function Header() {
     } else {
       setLogged(false);
     }
-  }, []);
+  }, [logged]);
 
   return (
-    <S.HeaderBox>
+    <S.HeaderLayout>
       <S.Header>
-        <S.HeaderElementsList>
-          <S.HeaderElements>
-            <Link to={"/"}>
-              <Logo width={90} height={25} />
-            </Link>
-          </S.HeaderElements>
+        <S.HeaderElements>
           <Link to={"/"}>
-            <S.HeaderElements css={select("/")}>홈</S.HeaderElements>
+            <Logo width={90} height={25} />
           </Link>
-          <Link to={"/write"}>
-            <S.HeaderElements css={select("/write")}>
-              게시물 작성
-            </S.HeaderElements>
-          </Link>
-        </S.HeaderElementsList>
-      </S.Header>
-      <S.Header className="right-part">
-        {logged ? (
-          <S.HeaderElementsList>
-            <S.HeaderElements>
-              <Link to={"/my"}>
-                <S.Profile src="/images/profile.jpeg" alt="profile" />
-              </Link>
-            </S.HeaderElements>
-          </S.HeaderElementsList>
-        ) : (
-          <S.HeaderElementsList>
-            <Link to={"/signin"}>
-              <S.HeaderElements css={select("/signin")}>
-                로그인
-              </S.HeaderElements>
+          <S.HeaderBox>
+            <Link to={"/"}>
+              <p className="home" css={select("/")}>
+                홈
+              </p>
             </Link>
-            <Link to={"/signup/main"}>
-              <S.HeaderElements css={select("/signup/main")}>
-                회원가입
-              </S.HeaderElements>
+            <Link to={"/write"}>
+              <p className="write-post" css={select("/write")}>
+                게시물 작성
+              </p>
             </Link>
-          </S.HeaderElementsList>
-        )}
+          </S.HeaderBox>
+        </S.HeaderElements>
+        <S.HeaderElements className="search">
+          {isNeedSearch ? (
+            <Input
+              purpose="searchBar"
+              placeholder="찾고싶은 주제를 입력해주세요"
+            />
+          ) : (
+            <React.Fragment></React.Fragment>
+          )}
+        </S.HeaderElements>
+        <S.HeaderElements>
+          <S.HeaderBox className="right ">
+            {logged ? (
+              <>
+                <p className="user-name">오종진님</p>
+                <Link to={"/my"}>
+                  <S.Profile src="/images/profile.jpeg" alt="" />
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to={"/signin"}>
+                  <p css={select("/signin")}>로그인</p>
+                </Link>
+                <Link to={"/signup/main"}>
+                  <p css={select("/signup/main")}>회원가입</p>
+                </Link>
+              </>
+            )}
+          </S.HeaderBox>
+        </S.HeaderElements>
       </S.Header>
-    </S.HeaderBox>
+    </S.HeaderLayout>
   );
 }
 

@@ -5,13 +5,6 @@ export const InputElements = styled.div`
   margin-top: 20px;
 `;
 
-export const ErrorText = styled.div`
-  display: flex;
-  margin-left: 20px;
-  color: #e83f28;
-  align-items: center;
-`;
-
 export const InputBox = styled.div<{ isError: boolean }>`
   width: 366px;
   height: 52px;
@@ -26,7 +19,6 @@ export const Input = styled.input`
   width: 90%;
   height: 40px;
   border: none;
-  margin: 6px;
   background: #252727;
   font-size: 16px;
   color: #ffffff7a;
@@ -46,14 +38,23 @@ export const Input = styled.input`
 
 export const SortInput = styled.div`
   display: flex;
+  height: 100%;
   text-align: center;
+  justify-content: center;
+  align-items: center;
   margin-left: 10px;
 `;
 
 export const StyledSvg = styled.div`
   margin: auto;
 
-  & > svg {
+  &.need-margin > svg {
     margin-top: 1.5px;
+  }
+  &.search {
+    width: 13px;
+    height: 22.5px;
+    margin: 10px;
+    padding-bottom: 1px;
   }
 `;
