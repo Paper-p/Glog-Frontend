@@ -42,6 +42,12 @@ export const Description = styled.p`
   font-size: 15px;
   color: #85888d;
   font-weight: 400;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const TextBox_Bottom = styled.div`
