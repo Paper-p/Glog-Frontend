@@ -58,7 +58,7 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
             </Link>
           </S.HeaderBox>
         </S.HeaderElements>
-        <S.HeaderElements className="search">
+        <S.HeaderElements className="search-section">
           {isNeedSearch ? (
             <Input
               purpose="searchBar"

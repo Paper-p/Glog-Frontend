@@ -40,7 +40,10 @@ export const HeaderElements = styled.div`
     margin-right: 88px;
   }
 
-  .search {
+  @media screen and (max-width: 1020px) {
+    &.search-section {
+      display: none;
+    }
   }
 
   .search-box {

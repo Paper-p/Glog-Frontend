@@ -7,7 +7,7 @@ export const PostLayout = styled.div`
 
 export const PostBox = styled.div<{ url: string }>`
   cursor: pointer;
-  width: 35.8vw;
+  width: 35.63vw;
   height: 150px;
   border-radius: 10px;
   padding: 26px 39px;

@@ -21,7 +21,7 @@ export const Catrgory = styled.div`
 
 export const PostListSection = styled.div`
   width: 72.5%;
-  gap: 16px 16px;
+  gap: 0.83vw 0.83vw;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
