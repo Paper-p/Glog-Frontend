@@ -1,8 +1,25 @@
 import Category from "components/Common/Category";
 import Post from "components/Common/Post";
+import user from "data/request/user";
+import { useEffect } from "react";
 import * as S from "./style";
 
 export default function MyPageInfo() {
+  useEffect(() => {
+    const getMyInfo = async () => {
+      try {
+        const res: any = await user.getMyInfo(
+          String(window.localStorage.getItem("access-token"))
+        );
+        console.log(res.data);
+      } catch (e: any) {
+        console.log(e);
+      }
+    };
+
+    getMyInfo();
+  }, []);
+
   return (
     <>
       <S.ProfileLayout>
