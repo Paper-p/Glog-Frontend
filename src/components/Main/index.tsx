@@ -1,32 +1,29 @@
 import { loggedAtom } from "atoms";
+import { searchAtom } from "atoms/AtomContainer";
 import { PostBox } from "components/Common";
 import Header from "components/Common/Header";
 import feed from "data/request/feed";
-import useInputs from "hooks/useInputs";
 import { marked } from "marked";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 
 export default function Main() {
-  const [{ keyword }, onChange, setNull] = useInputs({
-    keyword: "",
-  });
   const [list, setList] = useState<any[]>([]);
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [logged] = useRecoilState(loggedAtom);
+  const [search] = useRecoilState(searchAtom);
 
   const getFeedList = async (keyword?: string) => {
     try {
       const res: any = await feed.getFeedList(
         10,
         0,
-        "var",
+        keyword ? keyword : "",
         logged
           ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
           : ""
       );
-      console.log(res.data.list);
       setList(res.data.list);
     } catch (e: any) {
       console.log(e);
@@ -35,6 +32,13 @@ export default function Main() {
 
   useEffect(() => {
     getFeedList();
+  }, []);
+
+  useEffect(() => {
+    if (isEnter) {
+      setIsEnter(false);
+      getFeedList(search);
+    }
   }, [isEnter]);
 
   const onSearch = (e: React.KeyboardEvent<HTMLElement>) => {
@@ -45,7 +49,7 @@ export default function Main() {
 
   return (
     <>
-      <Header isNeedSearch={true} onChange={onChange} onKeyPress={onSearch} />
+      <Header isNeedSearch={true} onKeyPress={onSearch} />
       <S.CategoryBox>
         <S.Catrgory>💻 게시물’s</S.Catrgory>
       </S.CategoryBox>

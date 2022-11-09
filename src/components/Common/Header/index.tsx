@@ -8,16 +8,17 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
 import Input from "../Input";
+import { searchAtom } from "atoms/AtomContainer";
 
 interface Props {
   isNeedSearch?: boolean;
-  onChange?: React.FormEventHandler<HTMLInputElement> | undefined;
   onKeyPress?: React.KeyboardEventHandler<HTMLInputElement> | undefined;
 }
 
-function Header({ isNeedSearch, onChange, onKeyPress }: Props) {
+function Header({ isNeedSearch, onKeyPress }: Props) {
   const { pathname } = useLocation();
   const [logged, setLogged] = useRecoilState(loggedAtom);
+  const [search, setSearch] = useRecoilState(searchAtom);
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
@@ -32,6 +33,10 @@ function Header({ isNeedSearch, onChange, onKeyPress }: Props) {
       setLogged(false);
     }
   }, [logged]);
+
+  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <S.HeaderLayout>
@@ -58,8 +63,8 @@ function Header({ isNeedSearch, onChange, onKeyPress }: Props) {
             <Input
               purpose="searchBar"
               placeholder="찾고싶은 주제를 입력해주세요"
-              onChange={onChange}
               onKeyPress={onKeyPress}
+              onChange={onSearchChange}
             />
           ) : (
             <React.Fragment></React.Fragment>
