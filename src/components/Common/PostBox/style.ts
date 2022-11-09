@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
-export const PreviewBox = styled.div`
+export const PostLayout = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-export const Preview = styled.div<{ url: string }>`
+export const PostBox = styled.div<{ url: string }>`
   width: 684px;
   height: 150px;
   border-radius: 10px;
@@ -19,7 +19,7 @@ export const Preview = styled.div<{ url: string }>`
   background-size: cover;
 `;
 
-export const PreviewTitle = styled.p`
+export const PostTitle = styled.p`
   font-weight: 600;
   font-size: 17px;
   line-height: 24px;
@@ -29,7 +29,7 @@ export const PreviewTitle = styled.p`
   white-space: nowrap;
 `;
 
-export const PreviewContent = styled.p`
+export const PostContent = styled.p`
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;

@@ -11,10 +11,10 @@ interface Props {
 
 function PostBox({ imageUrl, title, content, like, view }: Props) {
   return (
-    <S.PreviewBox>
-      <S.Preview url={imageUrl}>
-        <S.PreviewTitle>{title}</S.PreviewTitle>
-        <S.PreviewContent>{content}</S.PreviewContent>
+    <S.PostLayout>
+      <S.PostBox url={imageUrl}>
+        <S.PostTitle>{title}</S.PostTitle>
+        <S.PostContent>{content}</S.PostContent>
         <S.InfoBox>
           <S.Info>
             <S.Svg className="heart">
@@ -29,8 +29,8 @@ function PostBox({ imageUrl, title, content, like, view }: Props) {
             <p>{view}</p>
           </S.Info>
         </S.InfoBox>
-      </S.Preview>
-    </S.PreviewBox>
+      </S.PostBox>
+    </S.PostLayout>
   );
 }
 
