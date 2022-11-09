@@ -5,6 +5,10 @@ export const WriteModal = styled.div`
   height: 400px;
   background: #252727;
   border-radius: 15px;
+
+  .preview {
+    width: 684px;
+  }
 `;
 
 export const Text = styled.p`
