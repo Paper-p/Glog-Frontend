@@ -32,10 +32,10 @@ class Feed {
           params: {
             size: size,
             page: page,
-            keyword: keyword ? keyword : "",
+            keyword: keyword,
           },
         },
-        token ? token : ""
+        token
       );
     } catch (error) {
       return error;

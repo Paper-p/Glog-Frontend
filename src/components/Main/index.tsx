@@ -13,32 +13,39 @@ export default function Main() {
     keyword: "",
   });
   const [list, setList] = useState<any[]>([]);
+  const [isEnter, setIsEnter] = useState<boolean>(false);
   const [logged] = useRecoilState(loggedAtom);
 
-  useEffect(() => {
-    const getFeedList = async () => {
-      try {
-        const res: any = await feed.getFeedList(
-          0,
-          10,
-          "",
-          logged
-            ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-            : ""
-        );
-        console.log(res.data.list);
+  const getFeedList = async (keyword?: string) => {
+    try {
+      const res: any = await feed.getFeedList(
+        10,
+        0,
+        "var",
+        logged
+          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
+          : ""
+      );
+      console.log(res.data.list);
+      setList(res.data.list);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
 
-        setList(res.data.list);
-      } catch (e: any) {
-        console.log(e);
-      }
-    };
+  useEffect(() => {
     getFeedList();
-  }, []);
+  }, [isEnter]);
+
+  const onSearch = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter") {
+      setIsEnter(true);
+    }
+  };
 
   return (
     <>
-      <Header isNeedSearch={true} onChange={onChange} />
+      <Header isNeedSearch={true} onChange={onChange} onKeyPress={onSearch} />
       <S.CategoryBox>
         <S.Catrgory>💻 게시물’s</S.Catrgory>
       </S.CategoryBox>
