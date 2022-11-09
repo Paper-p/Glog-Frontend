@@ -11,9 +11,10 @@ import Input from "../Input";
 
 interface Props {
   isNeedSearch?: boolean;
+  onChange?: React.FormEventHandler<HTMLInputElement> | undefined;
 }
 
-function Header({ isNeedSearch }: Props) {
+function Header({ isNeedSearch, onChange }: Props) {
   const { pathname } = useLocation();
   const [logged, setLogged] = useRecoilState(loggedAtom);
 
@@ -56,6 +57,7 @@ function Header({ isNeedSearch }: Props) {
             <Input
               purpose="searchBar"
               placeholder="찾고싶은 주제를 입력해주세요"
+              onChange={onChange}
             />
           ) : (
             <React.Fragment></React.Fragment>
