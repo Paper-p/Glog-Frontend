@@ -12,7 +12,7 @@ interface Props {
 function PostBox({ imageUrl, title, content, like, view }: Props) {
   return (
     <S.PostLayout>
-      <S.PostBox url={imageUrl}>
+      <S.PostBox url={imageUrl} className="preview">
         <S.PostTitle>{title}</S.PostTitle>
         <S.PostContent>{content}</S.PostContent>
         <S.InfoBox>
