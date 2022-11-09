@@ -5,7 +5,7 @@ import AxiosInstance from "util/axiosInstance";
 class Feed {
   writeFeed(data: WriteType) {
     try {
-      AxiosInstance(
+      return AxiosInstance(
         {
           method: "POST",
           url: getFeed.writeFeed(),
@@ -17,6 +17,25 @@ class Feed {
           },
         },
         data.token
+      );
+    } catch (error) {
+      return error;
+    }
+  }
+
+  getFeedList(size: number, page: number, keyword?: string, token?: string) {
+    try {
+      return AxiosInstance(
+        {
+          method: "GET",
+          url: getFeed.getFeedlist(),
+          params: {
+            size: size,
+            page: page,
+            keyword: keyword ? keyword : "",
+          },
+        },
+        token ? token : ""
       );
     } catch (error) {
       return error;

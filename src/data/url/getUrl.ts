@@ -25,4 +25,8 @@ export const getFeed = {
   writeFeed: () => {
     return REACT_APP_BASE_URL + "/feed";
   },
+
+  getFeedlist: () => {
+    return REACT_APP_BASE_URL + "/feed/list";
+  },
 };
