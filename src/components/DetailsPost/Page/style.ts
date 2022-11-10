@@ -6,13 +6,6 @@ export const DetailsPostLayout = styled.div`
   padding-top: 65px;
 `;
 
-export const Title = styled.p`
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 57px;
-  color: #ffffff;
-`;
-
 export const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -26,6 +19,7 @@ export const Tag = styled.div`
   height: content;
   padding: 10px 18px;
   background: #3a3b3d;
+  margin-top: 22px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: bold;
@@ -35,3 +29,5 @@ export const Tag = styled.div`
   justify-content: center;
   cursor: pointer;
 `;
+
+export const PageInfoBox = styled.div``;
