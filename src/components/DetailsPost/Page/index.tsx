@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 import PostTitle from "../Title";
 import * as S from "./style";
 
-function DetailsPost() {
+function DetailsPostPage() {
   const params = useParams();
   const [response, setResponse] = useState<any>({});
   const [logged] = useRecoilState(loggedAtom);
@@ -52,4 +52,4 @@ function DetailsPost() {
   );
 }
 
-export default DetailsPost;
+export default DetailsPostPage;

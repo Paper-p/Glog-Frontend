@@ -8,7 +8,7 @@ import {
   tagAtom,
   contentAtom,
   titleAtom,
-} from "atoms/AtomContainer";
+} from "atoms";
 import { Upload } from "assets/svg";
 import image from "data/request/image";
 import feed from "data/request/feed";
@@ -99,6 +99,7 @@ export function WriteModal() {
           <p>썸네일 변경</p>
         </S.UploadSvgBox>
         <PostBox
+          isDefault={true}
           imageUrl={thumbnailUrl}
           title={title}
           content={contentPreview}

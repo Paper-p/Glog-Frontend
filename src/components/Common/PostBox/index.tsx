@@ -1,8 +1,10 @@
-import { Heartt, Vieww } from "assets/svg";
 import { Link } from "react-router-dom";
 import * as S from "./style";
+import React from "react";
+import InfoBox from "./Common";
 
 interface Props {
+  isDefault: boolean;
   id?: number;
   imageUrl: string;
   title: string;
@@ -11,30 +13,38 @@ interface Props {
   view: number;
 }
 
-function PostBox({ id, imageUrl, title, content, like, view }: Props) {
+function PostBox({
+  isDefault,
+  id,
+  imageUrl,
+  title,
+  content,
+  like,
+  view,
+}: Props) {
   return (
-    <S.PostLayout>
-      <Link to={`/post/${id}`}>
-        <S.PostBox url={imageUrl} className="preview">
-          <S.PostTitle>{title}</S.PostTitle>
-          <S.PostContent>{content}</S.PostContent>
-          <S.InfoBox>
-            <S.Info>
-              <S.Svg className="heart">
-                <Heartt />
-              </S.Svg>
-              <p>{like}</p>
-            </S.Info>
-            <S.Info>
-              <S.Svg className="view">
-                <Vieww />
-              </S.Svg>
-              <p>{view}</p>
-            </S.Info>
-          </S.InfoBox>
-        </S.PostBox>
-      </Link>
-    </S.PostLayout>
+    <React.Fragment>
+      <S.PostBoxLayout>
+        <Link to={`/post/${id}`}>
+          {isDefault ? (
+            <S.PostBox url={imageUrl} className="preview">
+              <S.PostTitle className="default">{title}</S.PostTitle>
+              <S.PostContent className="default">{content}</S.PostContent>
+              <InfoBox like={view} hit={like} />
+            </S.PostBox>
+          ) : (
+            <S.PostBox className="not-default">
+              <S.Thumbnail src={imageUrl} />
+              <S.TextBox>
+                <S.PostTitle>{title}</S.PostTitle>
+                <S.PostContent>{content}</S.PostContent>
+                <InfoBox like={view} hit={like} />
+              </S.TextBox>
+            </S.PostBox>
+          )}
+        </Link>
+      </S.PostBoxLayout>
+    </React.Fragment>
   );
 }
 

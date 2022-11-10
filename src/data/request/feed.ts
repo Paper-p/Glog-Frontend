@@ -47,7 +47,7 @@ class Feed {
       return AxiosInstance(
         {
           method: "GET",
-          url: `${getFeed.feed()}/${id}`,
+          url: getFeed.feed() + `/${id}`,
         },
         token
       );
