@@ -22,7 +22,7 @@ export const getAuth = {
 };
 
 export const getFeed = {
-  writeFeed: () => {
+  feed: () => {
     return REACT_APP_BASE_URL + "/feed";
   },
 

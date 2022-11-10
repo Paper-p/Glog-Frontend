@@ -8,7 +8,7 @@ class Feed {
       return AxiosInstance(
         {
           method: "POST",
-          url: getFeed.writeFeed(),
+          url: getFeed.feed(),
           data: {
             title: data.title,
             content: data.content,
@@ -40,6 +40,18 @@ class Feed {
     } catch (error) {
       return error;
     }
+  }
+
+  getDetailsPost(id: number, token?: string) {
+    try {
+      return AxiosInstance(
+        {
+          method: "GET",
+          url: `${getFeed.feed()}/${id}`,
+        },
+        token
+      );
+    } catch (error) {}
   }
 }
 
