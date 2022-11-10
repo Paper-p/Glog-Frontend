@@ -36,6 +36,7 @@ export const ProfileImage = styled.img`
   height: 164px;
   border-radius: 100px;
   object-fit: cover;
+  cursor: pointer;
 `;
 
 export const ProfileName = styled.p`
@@ -46,4 +47,5 @@ export const ProfileName = styled.p`
   color: #ffffff;
   margin-top: 16px;
   text-align: center;
+  cursor: pointer;
 `;

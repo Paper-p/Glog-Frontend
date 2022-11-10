@@ -5,15 +5,16 @@ import { useEffect, useState } from "react";
 import * as S from "./style";
 
 export default function MyPageInfo() {
-  const [myInfo, setMyInfo] = useState<any[]>([]);
+  const [myInfo, setMyInfo] = useState<any>({});
+  const [myFeedList, setMyFeedList] = useState<any[]>([]);
   useEffect(() => {
     const getMyInfo = async () => {
       try {
         const res: any = await user.getMyInfo(
           String(window.localStorage.getItem("access-token"))
         );
-        setMyInfo(res.data.feedList);
-        console.log(res.data);
+        setMyFeedList(res.data.feedList);
+        setMyInfo(res.data);
       } catch (e: any) {
         console.log(e);
       }
@@ -26,8 +27,8 @@ export default function MyPageInfo() {
     <>
       <S.ProfileLayout>
         <S.ProfileBox>
-          <S.ProfileImage src="images/profile.jpeg" />
-          <S.ProfileName>wheniwasym</S.ProfileName>
+          <S.ProfileImage src={myInfo.profileImageUrl} />
+          <S.ProfileName>{myInfo.nickname}</S.ProfileName>
         </S.ProfileBox>
       </S.ProfileLayout>
       <S.MyPostsLayout>
@@ -35,7 +36,7 @@ export default function MyPageInfo() {
           <Category>💻내 게시물's</Category>
         </S.CategoryBox>
         <S.MyPostsBox>
-          {myInfo.map((post) => (
+          {myFeedList.map((post) => (
             <Post
               key={post.id}
               id={post.id}
