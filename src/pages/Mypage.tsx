@@ -1,11 +1,11 @@
 import Header from "components/Common/Header";
-import Poster from "components/Poster";
+import MyPageInfo from "components/MyPageInfo";
 
 export default function Mypage() {
   return (
     <>
       <Header />
-      <Poster />
+      <MyPageInfo />
     </>
   );
 }
