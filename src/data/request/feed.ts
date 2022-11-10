@@ -51,7 +51,9 @@ class Feed {
         },
         token
       );
-    } catch (error) {}
+    } catch (error) {
+      return error;
+    }
   }
 }
 
