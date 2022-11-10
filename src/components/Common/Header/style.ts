@@ -30,10 +30,20 @@ export const HeaderElements = styled.li`
   font-weight: 600;
   color: #9d9d9d;
   cursor: pointer;
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const Logo = styled.div`
   height: 30px;
+`;
+
+export const Username = styled.p`
+  font-size: 18px;
+  margin-right: 12px;
 `;
 
 export const Profile = styled.img`

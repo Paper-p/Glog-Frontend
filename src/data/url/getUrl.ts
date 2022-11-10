@@ -21,6 +21,16 @@ export const getAuth = {
   },
 };
 
+export const getUser = {
+  getMiniProfile: () => {
+    return REACT_APP_BASE_URL + "/user/profile";
+  },
+
+  getMyInfo: () => {
+    return REACT_APP_BASE_URL + "/user/my";
+  },
+};
+
 export const getFeed = {
   writeFeed: () => {
     return REACT_APP_BASE_URL + "/feed";
