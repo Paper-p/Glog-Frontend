@@ -1,11 +1,12 @@
 import Header from "components/Common/Header";
-import MyPageInfo from "components/MyPageInfo";
+import { Personal } from "../components";
 
 export default function Mypage() {
   return (
     <>
+      ㅋㅋ
       <Header />
-      <MyPageInfo />
+      <Personal />
     </>
   );
 }
