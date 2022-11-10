@@ -1,6 +1,7 @@
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Logo from "../Logo";
 import React, { useEffect, useState } from "react";
@@ -26,11 +27,11 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
     currentPath === pathname && css({ color: "#E0E0E0" });
 
   useEffect(() => {
-    if (logged == true) {
+    if (logged) {
       const getMiniProfile = async () => {
         try {
           const res: any = await user.getMiniProfile(
-            String(window.localStorage.getItem("access-token"))
+            JSON.parse(localStorage.getItem("token") || "{}").accessToken
           );
           setNickname(res.data.nickname);
           setprofileImg(res.data.profileImageUrl);

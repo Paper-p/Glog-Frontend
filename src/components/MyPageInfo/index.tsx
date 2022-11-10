@@ -16,7 +16,7 @@ export default function MyPageInfo() {
     const getMyInfo = async () => {
       try {
         const res: any = await user.getMyInfo(
-          String(window.localStorage.getItem("access-token"))
+          JSON.parse(localStorage.getItem("token") || "{}").accessToken
         );
         setMyFeedList(res.data.feedList);
         setMyInfo(res.data);
@@ -25,7 +25,7 @@ export default function MyPageInfo() {
       }
     };
     const isLogged = () => {
-      if (logged == false) {
+      if (!logged) {
         navigator("/signin");
       }
     };

@@ -27,11 +27,11 @@ export default function Post({
         <S.TextBoxBottom>
           <S.LikeBox>
             <I.Like />
-            <p>{hit}</p>
+            <p>{likeCount}</p>
           </S.LikeBox>
           <S.ViewsBox>
             <I.Views />
-            <p>{likeCount}</p>
+            <p>{hit}</p>
           </S.ViewsBox>
         </S.TextBoxBottom>
       </S.TextBox>
