@@ -4,7 +4,6 @@ import { Personal } from "../components";
 export default function Mypage() {
   return (
     <>
-      ㅋㅋ
       <Header />
       <Personal />
     </>
