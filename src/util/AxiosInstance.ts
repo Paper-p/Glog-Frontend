@@ -3,7 +3,7 @@ import { REACT_APP_BASE_URL } from "shared/config";
 
 const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
   try {
-    const authInstance = axios({
+    const axiosInstance = axios({
       method: data.method,
       baseURL: REACT_APP_BASE_URL,
       url: data.url,
@@ -14,7 +14,7 @@ const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
       },
       params: data.params,
     });
-    return authInstance;
+    return axiosInstance;
   } catch (error) {
     return error;
   }

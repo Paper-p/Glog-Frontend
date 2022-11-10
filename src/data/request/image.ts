@@ -1,5 +1,5 @@
 import { REACT_APP_BASE_URL } from "shared/config";
-import AxiosInstance from "util/axiosInstance";
+import AxiosInstance from "util/AxiosInstance";
 
 class Image {
   uploadImage(thumnailImage: FormData, token: string) {

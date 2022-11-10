@@ -1,6 +1,6 @@
 import { getFeed } from "data/url/getUrl";
 import { WriteType } from "types/feedType";
-import AxiosInstance from "util/axiosInstance";
+import AxiosInstance from "util/AxiosInstance";
 
 class Feed {
   writeFeed(data: WriteType) {

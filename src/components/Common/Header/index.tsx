@@ -1,12 +1,12 @@
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Logo from "../Logo";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
+import user from "data/request/user";
 import Input from "../Input";
 import { searchAtom } from "atoms/AtomContainer";
 
@@ -17,11 +17,30 @@ interface Props {
 
 function Header({ isNeedSearch, onKeyPress }: Props) {
   const { pathname } = useLocation();
-  const [logged, setLogged] = useRecoilState(loggedAtom);
   const [search, setSearch] = useRecoilState(searchAtom);
+  const [logged, setLogged] = useRecoilState(loggedAtom);
+  const [nickname, setNickname] = useState<string>("");
+  const [profileImg, setprofileImg] = useState<string>("");
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
+
+  useEffect(() => {
+    if (logged == true) {
+      const getMiniProfile = async () => {
+        try {
+          const res: any = await user.getMiniProfile(
+            String(window.localStorage.getItem("access-token"))
+          );
+          setNickname(res.data.nickname);
+          setprofileImg(res.data.profileImageUrl);
+        } catch (e: any) {
+          console.log(e);
+        }
+      };
+      getMiniProfile();
+    }
+  }, [logged]);
 
   useEffect(() => {
     const nowDate = new Date();
@@ -74,9 +93,9 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           <S.HeaderBox className="right ">
             {logged ? (
               <>
-                <p className="user-name">오종진님</p>
+                <p className="user-name">{nickname}</p>
                 <Link to={"/my"}>
-                  <S.Profile src="/images/profile.jpeg" alt="" />
+                  <S.Profile src={profileImg} alt="" />
                 </Link>
               </>
             ) : (
