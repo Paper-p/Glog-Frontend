@@ -1,4 +1,4 @@
-import { DetailsPost } from "components";
+import { DetailsPost } from "../components";
 import React from "react";
 
 function DetailsPostPage() {
