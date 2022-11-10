@@ -1,5 +1,4 @@
-import { loggedAtom } from "atoms";
-import { searchAtom } from "atoms/AtomContainer";
+import { loggedAtom, searchAtom } from "atoms";
 import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
 import Header from "components/Common/Header";

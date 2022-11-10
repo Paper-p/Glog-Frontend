@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
 import { useRecoilState } from "recoil";
-import { writeModalAtom, contentAtom, titleAtom } from "atoms/AtomContainer";
+import { writeModalAtom, contentAtom, titleAtom } from "atoms";
 import WriteFooter from "../Footer";
 import WriteContent from "../Content";
 import WriteTag from "../Tag";

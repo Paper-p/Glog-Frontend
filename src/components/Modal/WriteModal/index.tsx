@@ -8,7 +8,7 @@ import {
   tagAtom,
   contentAtom,
   titleAtom,
-} from "atoms/AtomContainer";
+} from "atoms";
 import { Upload } from "assets/svg";
 import image from "data/request/image";
 import feed from "data/request/feed";
