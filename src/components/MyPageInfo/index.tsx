@@ -1,12 +1,17 @@
+import { loggedAtom } from "atoms";
 import Category from "components/Common/Category";
 import Post from "components/Common/Post";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import * as S from "./style";
 
 export default function MyPageInfo() {
   const [myInfo, setMyInfo] = useState<any>({});
   const [myFeedList, setMyFeedList] = useState<any[]>([]);
+  const [logged] = useRecoilState(loggedAtom);
+  const navigator = useNavigate();
   useEffect(() => {
     const getMyInfo = async () => {
       try {
@@ -19,7 +24,13 @@ export default function MyPageInfo() {
         console.log(e);
       }
     };
+    const isLogged = () => {
+      if (logged == false) {
+        navigator("/signin");
+      }
+    };
 
+    isLogged();
     getMyInfo();
   }, []);
 
