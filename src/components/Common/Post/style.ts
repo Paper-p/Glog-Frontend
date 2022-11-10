@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Poster_Box = styled.div`
-  width: 330px;
+  width: 17.19vw;
   height: 330px;
   position: relative;
   border-radius: 10px;

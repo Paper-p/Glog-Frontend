@@ -13,8 +13,8 @@ export const CategoryBox = styled.div`
 export const MyPostsBox = styled.div`
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(4, 330px);
-  gap: 24px 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25vw 1.25vw;
 `;
 
 export const ProfileLayout = styled.div`
