@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 
-interface Props extends React.HTMLAttributes<HTMLButtonElement> {
+interface Props extends React.HTMLAttributes<HTMLFormElement> {
   onSubmit?: any;
 }
 

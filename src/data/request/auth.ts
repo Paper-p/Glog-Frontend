@@ -55,6 +55,21 @@ class Auth {
       return error;
     }
   }
+
+  tokenReissuance() {
+    try {
+      return AxiosInstance({
+        method: "PATCH",
+        headers: {
+          RefreshToken: JSON.parse(localStorage.getItem("token") || "{}")
+            .refreshToken,
+        },
+        url: getAuth.tokenReissuance(),
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new Auth();

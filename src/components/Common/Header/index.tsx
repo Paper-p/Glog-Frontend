@@ -13,6 +13,7 @@ function Header() {
   const [logged] = useRecoilState(loggedAtom);
   const [nickname, setNickname] = useState<string>("");
   const [profileImg, setprofileImg] = useState<string>("");
+
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
 
@@ -32,6 +33,17 @@ function Header() {
       getMiniProfile();
     }
   }, [logged]);
+
+  useEffect(() => {
+    const nowDate = new Date();
+    const expiredAt: any = localStorage.getItem("expiredAt");
+
+    if (expiredAt > nowDate.getTime().toString()) {
+      setLogged(true);
+    } else {
+      setLogged(false);
+    }
+  }, []);
 
   return (
     <S.HeaderBox>

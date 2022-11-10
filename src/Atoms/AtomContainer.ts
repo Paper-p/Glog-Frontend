@@ -10,9 +10,19 @@ export const loggedAtom = atom({
   default: false,
 });
 
-export const imageModalAtom = atom({
-  key: "imageModal",
+export const writeModalAtom = atom({
+  key: "writeModal",
   default: false,
+});
+
+export const titleAtom = atom({
+  key: "title",
+  default: "",
+});
+
+export const contentAtom = atom<any>({
+  key: "content",
+  default: "",
 });
 
 export const thumbnailUrlAtom = atom({

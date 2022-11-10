@@ -23,16 +23,30 @@ export default function Signin() {
     formState: { errors },
   } = useForm<LoginType>();
 
-  const [logged, setLogged] = useRecoilState(loggedAtom);
+  const [, setLogged] = useRecoilState(loggedAtom);
 
   const onValid = async (data: LoginType) => {
     try {
       const res: any = await auth.signin(data);
-      setLogged(true);
-      console.log(res);
-      window.localStorage.setItem("access-token", res.data.accessToken);
 
-      //token && toast
+      setLogged(true);
+
+      localStorage.setItem("token", JSON.stringify(res.data));
+      const expiredAtDate = new Date(
+        JSON.parse(localStorage.getItem("token") || "{}").expiredAt
+      );
+
+      // 만료시간 변형
+      localStorage.setItem(
+        "expiredAt",
+        expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
+      );
+
+      console.log(
+        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+      );
+
+      navigate("/");
     } catch (error: any) {
       console.log(error);
     }
@@ -41,6 +55,7 @@ export default function Signin() {
   const inValid = (error: any) => {
     error && setIsError(true);
   };
+
   return (
     <>
       <Header />
