@@ -1,6 +1,7 @@
 import { loggedAtom } from "atoms";
 import { searchAtom } from "atoms/AtomContainer";
 import { PostBox } from "components/Common";
+import Category from "components/Common/Category";
 import Header from "components/Common/Header";
 import feed from "data/request/feed";
 import { marked } from "marked";
@@ -51,7 +52,7 @@ export default function Main() {
     <>
       <Header isNeedSearch={true} onKeyPress={onSearch} />
       <S.CategoryBox>
-        <S.Catrgory>💻 게시물’s</S.Catrgory>
+        <Category>💻 게시물’s</Category>
       </S.CategoryBox>
       <S.PostListSection>
         <>
