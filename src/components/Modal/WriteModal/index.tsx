@@ -99,6 +99,7 @@ export function WriteModal() {
           <p>썸네일 변경</p>
         </S.UploadSvgBox>
         <PostBox
+          isDefault={true}
           imageUrl={thumbnailUrl}
           title={title}
           content={contentPreview}

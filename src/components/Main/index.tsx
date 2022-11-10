@@ -58,6 +58,7 @@ export default function Main() {
           {list.map((idx) => (
             <div key={idx.id}>
               <PostBox
+                isDefault={true}
                 id={idx.id}
                 imageUrl={idx.thumbnail}
                 title={idx.title}

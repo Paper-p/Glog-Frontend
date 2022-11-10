@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
-export const PostLayout = styled.div`
+export const PostBoxLayout = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-export const PostBox = styled.div<{ url: string }>`
+export const PostBox = styled.div<{ url?: string }>`
   cursor: pointer;
   width: 35.63vw;
   height: 150px;
@@ -18,31 +18,79 @@ export const PostBox = styled.div<{ url: string }>`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  &.not-default {
+    width: 17.19vw;
+    height: 330px;
+    position: relative;
+    background: none;
+    padding: 0;
+  }
 `;
 
 export const PostTitle = styled.p`
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 24px;
-  color: #fff;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #fff;
+
+  &.default {
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 24px;
+  }
+`;
+
+export const Thumbnail = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 10px;
 `;
 
 export const PostContent = styled.p`
+  font-size: 15px;
+  color: #85888d;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
-  color: #9c9c9c;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  height: 72.5px;
+
+  &.default {
+    height: auto;
+    font-size: 18px;
+    color: #9c9c9c;
+    -webkit-line-clamp: 1;
+    line-height: 21px;
+    margin-bottom: 34.5px;
+  }
+`;
+
+export const TextBox = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 145px;
+  background: rgba(51, 51, 51, 0.7);
+  backdrop-filter: blur(14px);
+  border-radius: 10px;
+  padding: 10px 12px 12px 12px;
 `;
 
 export const InfoBox = styled.div`
   display: flex;
-  margin-top: 34.5px;
 
   p {
     font-weight: 500;
