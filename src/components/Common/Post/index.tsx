@@ -19,12 +19,12 @@ export default function Post({
   likeCount,
 }: Props) {
   return (
-    <S.Poster_Box>
+    <S.PostBox>
       <S.Thumbnail src={thumbnail} />
       <S.TextBox>
         <S.Title>{title}</S.Title>
         <S.Description>{previewContent}</S.Description>
-        <S.TextBox_Bottom>
+        <S.TextBoxBottom>
           <S.LikeBox>
             <I.Like />
             <p>{hit}</p>
@@ -33,8 +33,8 @@ export default function Post({
             <I.Views />
             <p>{likeCount}</p>
           </S.ViewsBox>
-        </S.TextBox_Bottom>
+        </S.TextBoxBottom>
       </S.TextBox>
-    </S.Poster_Box>
+    </S.PostBox>
   );
 }

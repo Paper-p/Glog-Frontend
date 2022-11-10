@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Poster_Box = styled.div`
+export const PostBox = styled.div`
   width: 17.19vw;
   height: 330px;
   position: relative;
@@ -50,7 +50,7 @@ export const Description = styled.p`
   text-overflow: ellipsis;
 `;
 
-export const TextBox_Bottom = styled.div`
+export const TextBoxBottom = styled.div`
   position: absolute;
   bottom: 12px;
   display: flex;
