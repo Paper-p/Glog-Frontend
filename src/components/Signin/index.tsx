@@ -63,21 +63,21 @@ export default function Signin() {
         <Logo width={335} height={96} />
         <S.HighlightText>다시 온걸 환영해요!</S.HighlightText>
         <Input
-          sortation={true}
           register={register("userId", {
             required: "아이디는 필수입력입니다.",
           })}
           isError={isError}
+          purpose="userId"
           placeholder="아이디를 입력해주세요."
         >
           <S.ErrorText>{errors.userId?.message}</S.ErrorText>
         </Input>
         <Input
-          sortation={false}
           register={register("password", {
             required: "비밀번호는 필수입력입니다.",
           })}
           isError={isError}
+          purpose="password"
           placeholder="비밀번호를 입력해주세요."
         >
           <S.ErrorText>{errors.password?.message}</S.ErrorText>

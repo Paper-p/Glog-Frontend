@@ -1,5 +1,5 @@
 import { getUser } from "data/url/getUrl";
-import AxiosInstance from "util/axiosInstance";
+import AxiosInstance from "util/AxiosInstance";
 
 class User {
   getMiniProfile(token: string) {

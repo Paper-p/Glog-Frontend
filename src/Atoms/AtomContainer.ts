@@ -34,3 +34,8 @@ export const tagAtom = atom<TagType[]>({
   key: "tag",
   default: [],
 });
+
+export const searchAtom = atom({
+  key: "search",
+  default: "",
+});

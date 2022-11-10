@@ -64,7 +64,6 @@ export default function SetMain() {
           <S.StyledGif src="/images/Signup.gif" alt="gif" />
         </S.GifBox>
         <Input
-          sortation={true}
           register={register("userId", {
             required: "아이디는 필수입력입니다.",
             minLength: {
@@ -77,12 +76,12 @@ export default function SetMain() {
             },
           })}
           isError={isError}
+          purpose="userId"
           placeholder="사용하실 아이디를 입력해주세요."
         >
           <S.ErrorText>{errors.userId?.message}</S.ErrorText>
         </Input>
         <Input
-          sortation={false}
           register={register("password", {
             required: "비밀번호는 필수입력입니다.",
             minLength: {
@@ -100,16 +99,17 @@ export default function SetMain() {
             },
           })}
           isError={isError}
+          purpose="password"
           placeholder="사용하실 비밀번호를 입력해주세요."
         >
           <S.ErrorText>{errors.password?.message}</S.ErrorText>
         </Input>
         <Input
-          sortation={false}
           register={register("confirmPassword", {
             required: "비밀번호 확인은 필수입력입니다.",
           })}
           isError={isError}
+          purpose="password"
           placeholder="사용하실 비밀번호를 한번 더 입력해주세요."
         >
           <S.ErrorText>{errors.confirmPassword?.message}</S.ErrorText>

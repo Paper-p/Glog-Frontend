@@ -9,7 +9,7 @@ interface PropsType {
 
 function Logo({ width, height }: PropsType) {
   return (
-    <S.LogoWrapper width={width} height={height}>
+    <S.LogoWrapper width={width} height={height} className="logo">
       <S.SmallCircle />
       <S.BigCircle />
       <S.SvgWrapper width={width} height={height}>

@@ -1,14 +1,15 @@
 import { useState } from "react";
 import * as S from "./style";
 import Header from "components/Common/Header";
-import Tag from "components/Write/WriteTag";
 import { useRecoilState } from "recoil";
 import { writeModalAtom, contentAtom, titleAtom } from "atoms/AtomContainer";
-import WriteFooter from "../WriteFooter";
-import WriteContent from "../WriteContent";
+import WriteFooter from "../Footer";
+import WriteContent from "../Content";
+import WriteTag from "../Tag";
 import { WriteModal } from "components/Modal/WriteModal";
+import WriteTitle from "../Title";
 
-function Write() {
+function WritePage() {
   const [isTitleNull, setIsTitleError] = useState<boolean>(false);
   const [isContentNull, setIsContentError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -48,16 +49,12 @@ function Write() {
       <Header />
       {writeModal && <WriteModal />}
       <S.WritePostLayout>
-        <S.TitleBox isNull={isTitleNull}>
-          <S.TitleInput
-            name="title"
-            placeholder="제목을 입력해주세요"
-            onChange={onTitleChange}
-            value={title}
-            type="text"
-          />
-        </S.TitleBox>
-        <Tag />
+        <WriteTitle
+          title={title}
+          onChange={onTitleChange}
+          isTitleNull={isTitleNull}
+        />
+        <WriteTag />
         <WriteContent isContentNull={isContentNull} />
       </S.WritePostLayout>
       <WriteFooter onClick={handleClick} errorMessage={errorMessage} />
@@ -65,4 +62,4 @@ function Write() {
   );
 }
 
-export default Write;
+export default WritePage;

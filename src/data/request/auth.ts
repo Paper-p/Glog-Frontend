@@ -1,5 +1,5 @@
 import { getAuth } from "data/url/getUrl";
-import AxiosInstance from "util/axiosInstance";
+import AxiosInstance from "util/AxiosInstance";
 import { LoginType, JoinType } from "types/authType";
 
 class Auth {
@@ -7,7 +7,10 @@ class Auth {
     try {
       return AxiosInstance({
         method: "HEAD",
-        url: `${getAuth.checkName()}?nickname=${name}`,
+        url: getAuth.checkName(),
+        params: {
+          nickname: name,
+        },
       });
     } catch (error) {
       return error;
@@ -18,7 +21,10 @@ class Auth {
     try {
       return AxiosInstance({
         method: "HEAD",
-        url: `${getAuth.checkId()}?userId=${userId}`,
+        url: getAuth.checkId(),
+        params: {
+          userId: userId,
+        },
       });
     } catch (error) {
       return error;

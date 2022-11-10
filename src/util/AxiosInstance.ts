@@ -12,6 +12,7 @@ const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
       headers: {
         Authorization: token ? "Bearer " + token : "",
       },
+      params: data.params,
     });
     return axiosInstance;
   } catch (error) {

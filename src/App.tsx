@@ -6,6 +6,7 @@ import {
   SetNamePage,
   SetMainPage,
   WritePage,
+  DetailsPostPage,
 } from "pages";
 import GlobalStyle from "shared/GlobalStyles";
 import Mypage from "pages/Mypage";
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/signup/main" element={<SetMainPage />} />
             <Route path="/signup/name" element={<SetNamePage />} />
             <Route path="/write" element={<WritePage />} />
+            <Route path="/post/:postId" element={<DetailsPostPage />} />
             <Route path="/my" element={<Mypage />} />
           </Routes>
         </BrowserRouter>

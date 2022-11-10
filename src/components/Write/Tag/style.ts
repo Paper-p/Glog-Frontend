@@ -34,21 +34,22 @@ export const TagInput = styled.input`
 `;
 
 export const TagListBox = styled.div`
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 72.5vw;
   height: content;
   display: flex;
   gap: 8px;
 `;
 
 export const Tag = styled.div`
-  min-width: 60px;
-  height: 38px;
+  height: content;
+  padding: 10px 18px;
   background: #3a3b3d;
   border-radius: 10px;
   font-size: 14px;
   font-weight: bold;
   color: #969696;
-  padding: 0 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

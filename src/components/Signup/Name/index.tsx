@@ -26,12 +26,9 @@ export default function SetName() {
   } = useForm<{ nickname: string }>();
 
   const onValid = async (data: any) => {
-    console.log(data);
-
     try {
       const res: any = await auth.confirmName(data.nickname);
-      console.log(res.status);
-
+      console.log(res);
       createUser(data.nickname);
     } catch (error: any) {
       console.log(error);
@@ -45,7 +42,6 @@ export default function SetName() {
 
   const inValid = (error: any) => {
     error && setIsError(true);
-    console.log(isError);
   };
 
   const createUser = async (nickname: string) => {
@@ -55,8 +51,6 @@ export default function SetName() {
         userId: location.userId,
         password: location.password,
       });
-      console.log(res);
-      //toast
       navigate("/");
     } catch (error: any) {
       console.log(error);
@@ -71,7 +65,6 @@ export default function SetName() {
           <S.StyledGif src="/images/Signup.gif" alt="gif" />
         </S.GifBox>
         <Input
-          sortation={true}
           register={register("nickname", {
             required: "닉네임 필수입력입니다.",
             minLength: {
@@ -84,6 +77,7 @@ export default function SetName() {
             },
           })}
           isError={isError}
+          purpose="userId"
           placeholder="사용하실 닉네임을 입력해주세요."
         >
           <S.ErrorText>{errors.nickname?.message}</S.ErrorText>

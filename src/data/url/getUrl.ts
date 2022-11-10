@@ -32,7 +32,11 @@ export const getUser = {
 };
 
 export const getFeed = {
-  writeFeed: () => {
+  feed: () => {
     return REACT_APP_BASE_URL + "/feed";
+  },
+
+  getFeedlist: () => {
+    return REACT_APP_BASE_URL + "/feed/list";
   },
 };
