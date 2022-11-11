@@ -1,10 +1,12 @@
 import { loggedAtom } from "atoms";
 import { Header } from "components/Common";
+import Category from "components/Common/Category";
 import feed from "data/request/feed";
 import useInputs from "hooks/useInputs";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import DetailsPostComment from "../Comment";
 import DetailsPostContent from "../Content";
 import DetailsPostInfo from "../Info";
 import Skeleton from "../Skeleton";
@@ -64,6 +66,10 @@ function DetailsPostPage() {
             />
             <DetailsPostThumbnail imageUrl={response.thumbnail} />
             <DetailsPostContent content={response.content} />
+            <Category>📖 댓글</Category>
+            <DetailsPostComment />
+            <DetailsPostComment />
+            <DetailsPostComment />
           </>
         ) : (
           <Skeleton />
