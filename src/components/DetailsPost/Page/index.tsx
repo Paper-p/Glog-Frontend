@@ -50,7 +50,12 @@ function DetailsPostPage() {
             </React.Fragment>
           ))}
         </S.TagList>
-        <DetailsPostInfo />
+        <DetailsPostInfo
+          author={response.author}
+          createdAt={response.createdAt}
+          like={response.likeCount}
+          hit={response.hit}
+        />
         <DetailsPostThumbnail imageUrl={response.thumbnail} />
         <DetailsPostContent content={response.content} />
       </S.DetailsPostLayout>
