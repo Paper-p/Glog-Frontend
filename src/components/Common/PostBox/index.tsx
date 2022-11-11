@@ -38,7 +38,7 @@ function PostBox({
               <S.TextBox>
                 <S.PostTitle>{title}</S.PostTitle>
                 <S.PostContent>{content}</S.PostContent>
-                <InfoBox like={view} hit={like} />
+                <InfoBox like={like} hit={view} />
               </S.TextBox>
             </S.PostBox>
           )}
