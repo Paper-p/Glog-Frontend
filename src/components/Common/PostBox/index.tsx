@@ -30,7 +30,7 @@ function PostBox({
             <S.PostBox url={imageUrl} className="preview">
               <S.PostTitle className="default">{title}</S.PostTitle>
               <S.PostContent className="default">{content}</S.PostContent>
-              <InfoBox like={view} hit={like} />
+              <InfoBox like={like} hit={view} />
             </S.PostBox>
           ) : (
             <S.PostBox className="not-default">
@@ -38,7 +38,7 @@ function PostBox({
               <S.TextBox>
                 <S.PostTitle>{title}</S.PostTitle>
                 <S.PostContent>{content}</S.PostContent>
-                <InfoBox like={view} hit={like} />
+                <InfoBox like={like} hit={view} />
               </S.TextBox>
             </S.PostBox>
           )}

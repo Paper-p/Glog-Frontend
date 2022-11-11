@@ -7,7 +7,7 @@ export const AuthLayout = styled.div`
 
 export const AuthWrapper = styled.div`
   display: flex;
-  height: calc(100vh - 170px);
+  height: calc(100vh - 120px);
   align-items: center;
   justify-content: center;
   margin-left: 366px;
@@ -15,5 +15,5 @@ export const AuthWrapper = styled.div`
 
 export const AuthForm = styled.form`
   width: 732px;
-  margin-bottom: 200px;
+  margin-bottom: 190px;
 `;
