@@ -5,6 +5,9 @@ import useInputs from "hooks/useInputs";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import DetailsPostContent from "../Content";
+import DetailsPostInfo from "../Info";
+import DetailsPostThumbnail from "../Thumbnail";
 import PostTitle from "../Title";
 import * as S from "./style";
 
@@ -39,7 +42,7 @@ function DetailsPostPage() {
     <React.Fragment>
       <Header isNeedSearch={false} />
       <S.DetailsPostLayout>
-        {/* <PostTitle /> */}
+        <PostTitle title={response.title} />
         <S.TagList>
           {response.tagList?.map((item: string) => (
             <React.Fragment key={item}>
@@ -47,6 +50,9 @@ function DetailsPostPage() {
             </React.Fragment>
           ))}
         </S.TagList>
+        <DetailsPostInfo />
+        <DetailsPostThumbnail imageUrl={response.thumbnail} />
+        <DetailsPostContent content={response.content} />
       </S.DetailsPostLayout>
     </React.Fragment>
   );

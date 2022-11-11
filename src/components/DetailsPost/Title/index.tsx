@@ -1,6 +1,9 @@
 import * as S from "./style";
 
-function PostTitle(title: string) {
+interface Props {
+  title: string;
+}
+function PostTitle({ title }: Props) {
   return <S.Title>{title}</S.Title>;
 }
 

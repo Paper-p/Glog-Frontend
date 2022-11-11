@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 
 export const DetailsPostLayout = styled.div`
-  width: 72.5%;
+  width: 50%;
   margin: auto;
-  padding-top: 65px;
+  padding: 65px 65px;
 `;
 
 export const TagList = styled.div`
@@ -29,5 +29,3 @@ export const Tag = styled.div`
   justify-content: center;
   cursor: pointer;
 `;
-
-export const PageInfoBox = styled.div``;
