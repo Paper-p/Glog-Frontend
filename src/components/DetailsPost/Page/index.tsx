@@ -1,6 +1,5 @@
 import { loggedAtom } from "atoms";
-import { Button, Header } from "components/Common";
-import Category from "components/Common/Category";
+import { Button, Header, Category } from "components/Common";
 import feed from "data/request/feed";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
