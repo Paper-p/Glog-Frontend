@@ -13,7 +13,6 @@ export const CommentBox = styled.div`
 export const Box = styled.div`
   display: flex;
   gap: 7px;
-  margin-bottom: 1px;
   align-items: center;
 `;
 
@@ -25,6 +24,7 @@ export const UserProfile = styled.div`
   }
 
   cursor: pointer;
+  margin-left: 8px;
 `;
 
 export const UserName = styled.p`
@@ -50,5 +50,5 @@ export const Border = styled.div`
   width: 100%;
   height: 0px;
   border: 1px solid #484848;
-  margin: 20px 0;
+  margin: 15px 0;
 `;

@@ -18,9 +18,7 @@ function DetailsPostComment() {
             <S.UserName>오종진</S.UserName>
             <S.CreatedAt>2022-10-10</S.CreatedAt>
           </S.Box>
-          <S.UserComment>
-            좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용좋은글이네용
-          </S.UserComment>
+          <S.UserComment>좋은글이네요</S.UserComment>
         </div>
       </S.CommentBox>
       <S.Border />

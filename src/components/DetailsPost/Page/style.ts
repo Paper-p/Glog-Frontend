@@ -6,6 +6,37 @@ export const DetailsPostLayout = styled.div`
   padding: 65px 65px;
 `;
 
+export const CommentBox = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 1vw;
+  margin: 15px 0 30px 0;
+  justify-content: space-between;
+  background: #27282b;
+  border-radius: 10px;
+  align-items: center;
+
+  button {
+    width: 89px;
+    height: 33.8px;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-top: 0;
+  }
+
+  textarea {
+    width: 37.6vw;
+    background: #27282b;
+    color: #fff;
+    font-family: "Pretendard";
+    font-size: 16px;
+    line-height: 1.75rem;
+    resize: none;
+    border: none;
+    outline: none;
+  }
+`;
+
 export const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
