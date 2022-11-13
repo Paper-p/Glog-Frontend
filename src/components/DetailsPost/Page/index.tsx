@@ -1,15 +1,18 @@
 import { loggedAtom } from "atoms";
-import { Header } from "components/Common";
+import { Button, Header, Category } from "components/Common";
 import feed from "data/request/feed";
-import useInputs from "hooks/useInputs";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import DetailsPostContent from "../Content";
-import DetailsPostInfo from "../Info";
-import Skeleton from "../Skeleton";
-import DetailsPostThumbnail from "../Thumbnail";
-import PostTitle from "../Title";
+import TextareaAutosize from "react-textarea-autosize";
+import {
+  DetailsPostComment,
+  DetailsPostContent,
+  DetailsPostInfo,
+  DetailsPostSkeleton,
+  DetailsPostThumbnail,
+  DetailsPostTitle,
+} from "components/DetailsPost";
 import * as S from "./style";
 
 function DetailsPostPage() {
@@ -17,10 +20,6 @@ function DetailsPostPage() {
   const [response, setResponse] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [logged] = useRecoilState(loggedAtom);
-
-  const [{ title }, onChange, setNull] = useInputs({
-    title: "",
-  });
 
   useEffect(() => {
     const getDetailsPost = async () => {
@@ -48,7 +47,7 @@ function DetailsPostPage() {
       <S.DetailsPostLayout>
         {isLoading ? (
           <>
-            <PostTitle title={response.title} />
+            <DetailsPostTitle title={response.title} />
             <S.TagList>
               {response.tagList?.map((item: string) => (
                 <React.Fragment key={item}>
@@ -64,9 +63,19 @@ function DetailsPostPage() {
             />
             <DetailsPostThumbnail imageUrl={response.thumbnail} />
             <DetailsPostContent content={response.content} />
+            <Category>📖 댓글</Category>
+            <S.CommentBox>
+              <div style={{ padding: "18px", width: "90%" }}>
+                <TextareaAutosize placeholder="댓글을 입력해주세요" />
+              </div>
+              <Button>등록</Button>
+            </S.CommentBox>
+            <DetailsPostComment isMine={true} />
+            <DetailsPostComment isMine={false} />
+            <DetailsPostComment isMine={false} />
           </>
         ) : (
-          <Skeleton />
+          <DetailsPostSkeleton />
         )}
       </S.DetailsPostLayout>
     </React.Fragment>
