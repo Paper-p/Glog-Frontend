@@ -7,3 +7,4 @@ export { Hit } from "./Hit";
 export { Like } from "./Like";
 export { Search } from "./Search";
 export { Kebob } from "./Kebob";
+export { Control } from "./Control";
