@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const DetailsPostLayout = styled.div`
-  width: 50%;
+  width: 50vw;
   margin: auto;
   padding: 65px 65px;
 `;
@@ -9,23 +9,24 @@ export const DetailsPostLayout = styled.div`
 export const CommentBox = styled.div`
   display: flex;
   width: 100%;
-  gap: 1vw;
+  gap: 2vw;
   margin: 15px 0 30px 0;
   justify-content: space-between;
   background: #27282b;
   border-radius: 10px;
-  align-items: center;
+  align-items: baseline;
 
   button {
-    width: 89px;
-    height: 33.8px;
+    width: 3.28vw;
+    min-width: 60px;
+    height: 33.85px;
     font-size: 16px;
     margin-right: 10px;
     margin-top: 0;
   }
 
   textarea {
-    width: 37.6vw;
+    width: 90%;
     background: #27282b;
     color: #fff;
     font-family: "Pretendard";

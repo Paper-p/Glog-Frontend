@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import TextareaAutosize from "react-textarea-autosize";
-import * as S from "./style";
 import {
   DetailsPostComment,
   DetailsPostContent,
@@ -14,6 +13,7 @@ import {
   DetailsPostThumbnail,
   DetailsPostTitle,
 } from "components/DetailsPost";
+import * as S from "./style";
 
 function DetailsPostPage() {
   const params = useParams();
