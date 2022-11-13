@@ -21,7 +21,8 @@ export const CommentBox = styled.div`
     height: 33.85px;
     font-size: 16px;
     margin-right: 10px;
-    margin-top: 0;
+    // 기본스타일 수정 (20px)
+    margin-top: 0px;
   }
 
   textarea {

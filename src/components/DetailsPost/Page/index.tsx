@@ -70,9 +70,9 @@ function DetailsPostPage() {
               </div>
               <Button>등록</Button>
             </S.CommentBox>
-            <DetailsPostComment />
-            <DetailsPostComment />
-            <DetailsPostComment />
+            <DetailsPostComment isMine={true} />
+            <DetailsPostComment isMine={false} />
+            <DetailsPostComment isMine={false} />
           </>
         ) : (
           <DetailsPostSkeleton />
