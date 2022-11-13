@@ -9,12 +9,11 @@ export const DetailsPostLayout = styled.div`
 export const CommentBox = styled.div`
   display: flex;
   width: 100%;
-  gap: 2vw;
   margin: 15px 0 30px 0;
-  justify-content: space-between;
   background: #27282b;
   border-radius: 10px;
   align-items: baseline;
+  justify-content: space-between;
 
   button {
     width: 3.28vw;
@@ -26,7 +25,7 @@ export const CommentBox = styled.div`
   }
 
   textarea {
-    width: 90%;
+    width: 100%;
     background: #27282b;
     color: #fff;
     font-family: "Pretendard";

@@ -65,7 +65,7 @@ function DetailsPostPage() {
             <DetailsPostContent content={response.content} />
             <Category>📖 댓글</Category>
             <S.CommentBox>
-              <div style={{ padding: "18px" }}>
+              <div style={{ padding: "18px", width: "90%" }}>
                 <TextareaAutosize placeholder="댓글을 입력해주세요" />
               </div>
               <Button>등록</Button>
