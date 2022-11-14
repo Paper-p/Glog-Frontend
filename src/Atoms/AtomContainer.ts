@@ -10,7 +10,7 @@ interface TagType {
 export const loggedAtom = atom({
   key: "logged",
   default: false,
-  effects_UNSTABLE: [persistAtom],
+  effects_UNSTABLE: [persistAtom], //새로고침시에도 데이터유지
 });
 
 export const writeModalAtom = atom({
@@ -41,4 +41,9 @@ export const tagAtom = atom<TagType[]>({
 export const searchAtom = atom({
   key: "search",
   default: "",
+});
+
+export const detailsPostResponseAtom = atom<any>({
+  key: "detailsPostResponse",
+  default: {},
 });
