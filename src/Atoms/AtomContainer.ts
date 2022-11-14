@@ -42,8 +42,3 @@ export const searchAtom = atom({
   key: "search",
   default: "",
 });
-
-export const detailsPostResponseAtom = atom<any>({
-  key: "detailsPostResponse",
-  default: {},
-});
