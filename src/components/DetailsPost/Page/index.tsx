@@ -70,9 +70,14 @@ function DetailsPostPage() {
               </div>
               <Button>등록</Button>
             </S.CommentBox>
-            <DetailsPostComment isMine={true} />
-            <DetailsPostComment isMine={false} />
-            <DetailsPostComment isMine={false} />
+            {response.comments?.map((idx) => (
+              <DetailsPostComment
+                author={idx.author}
+                content={idx.content}
+                createdAt={idx.createdAt}
+                isMine={idx.isMine}
+              />
+            ))}
           </>
         ) : (
           <DetailsPostSkeleton />

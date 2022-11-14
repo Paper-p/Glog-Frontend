@@ -5,10 +5,17 @@ import TextareaAutosize from "react-textarea-autosize";
 import * as S from "./style";
 
 interface Props {
+  author: {
+    userId: string;
+    nickname: string;
+    profileImageUrl: string;
+  };
+  content: string;
+  createdAt: Date;
   isMine: boolean;
 }
 
-function DetailsPostComment({ isMine }: Props) {
+function DetailsPostComment({ author, content, createdAt, isMine }: Props) {
   const [isClick, setIsClick] = useState<boolean>(false);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isRemove, setIsRemove] = useState<boolean>(false);
