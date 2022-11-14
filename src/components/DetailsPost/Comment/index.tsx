@@ -2,18 +2,10 @@ import { Control, Kebob } from "assets/svg";
 import { Button } from "components/Common";
 import React, { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import { CommentType } from "types/commentType";
 import * as S from "./style";
 
-interface Props {
-  author: {
-    userId: string;
-    nickname: string;
-    profileImageUrl: string;
-  };
-  content: string;
-  createdAt: Date;
-  isMine: boolean;
-}
+interface Props extends CommentType {}
 
 function DetailsPostComment({ author, content, createdAt, isMine }: Props) {
   const [isClick, setIsClick] = useState<boolean>(false);
@@ -31,22 +23,17 @@ function DetailsPostComment({ author, content, createdAt, isMine }: Props) {
       <S.Commnet>
         <S.UserBox>
           <S.UserProfile>
-            <img
-              src="https://www.sanitascare.it/wp-content/uploads/2017/04/default-user-image.jpg"
-              alt=""
-            />
+            <img src={author.profileImageUrl} alt="" />
           </S.UserProfile>
           <div>
-            <S.UserName>오종진</S.UserName>
+            <S.UserName>{author.nickname}</S.UserName>
             {isEdit ? (
               <S.EditTextarea>
                 <TextareaAutosize placeholder="댓글을 입력해주세요" />
                 <Button>수정</Button>
               </S.EditTextarea>
             ) : (
-              <S.UserComment>
-                실제로는 이런구조인것인데 var 키워드를 사용하면 이러한 문제들이
-              </S.UserComment>
+              <S.UserComment>{content}</S.UserComment>
             )}
           </div>
         </S.UserBox>

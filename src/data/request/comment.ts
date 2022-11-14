@@ -2,12 +2,17 @@ import { getComment } from "data/url/getUrl";
 import AxiosInstance from "util/AxiosInstance";
 
 class Comment {
-  addComment(feedId: number) {
+  addComment(feedId: number, comment: string) {
+    console.log(feedId, comment);
+
     try {
       return AxiosInstance(
         {
           method: "POST",
           url: getComment.commentUrl() + `/${feedId}`,
+          data: {
+            content: comment,
+          },
         },
         JSON.parse(localStorage.getItem("token") || "{}").accessToken
       );
