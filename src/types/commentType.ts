@@ -1,4 +1,5 @@
 export interface CommentType {
+  id: number;
   author: {
     userId: string;
     nickname: string;
