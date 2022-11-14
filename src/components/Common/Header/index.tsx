@@ -95,7 +95,7 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
             {logged ? (
               <>
                 <p className="user-name">{nickname}</p>
-                <Link to={"/my"}>
+                <Link to={`/my/${nickname}`}>
                   <S.Profile src={profileImg} alt="" />
                 </Link>
               </>
