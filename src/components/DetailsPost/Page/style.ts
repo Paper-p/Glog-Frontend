@@ -61,3 +61,15 @@ export const Tag = styled.div`
   justify-content: center;
   cursor: pointer;
 `;
+
+export const NotLogged = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  height: 67.5px;
+  margin: 15px 0 30px 0;
+  background: #27282b;
+  color: #fff;
+  border-radius: 10px;
+`;
