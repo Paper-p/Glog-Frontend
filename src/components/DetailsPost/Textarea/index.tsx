@@ -1,10 +1,9 @@
 import { loggedAtom } from "atoms";
 import { Button } from "components/Common";
 import comment from "data/request/comment";
-import feed from "data/request/feed";
 import useInputs from "hooks/useInputs";
 import React from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
 import { useRecoilState } from "recoil";
@@ -23,49 +22,16 @@ function DetailsPostTextarea({ setState }: Props) {
 
   const queryClient = useQueryClient();
 
-  const query = useQuery({
-    queryKey: ["add"],
-    queryFn: () => reload(),
-  });
-
-  const reload = async () => {
-    try {
-      const res: any = await feed.getDetailsPost(
-        Number(params.postId),
-        logged
-          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          : ""
-      );
-      setState(res.data);
-    } catch (e: any) {
-      console.log(e);
-    }
-  };
-
   const onAddComment = async () => {
-    const { res }: any = await comment.addComment(
-      Number(params.postId),
-      content
-    );
     setNull("content");
-    return res;
+    return comment.addComment(Number(params.postId), content);
   };
 
-  const saveComment = useMutation(() => onAddComment(), {
+  const { mutate: addComment } = useMutation(() => onAddComment(), {
     onSuccess: () => {
-      queryClient.invalidateQueries("add");
-    },
-    onError: () => {
-      console.log("onError");
-    },
-    onSettled: () => {
-      console.log("onSettled");
+      queryClient.invalidateQueries();
     },
   });
-
-  const onSaveComment = () => {
-    saveComment.mutate();
-  };
 
   return (
     <React.Fragment>
@@ -79,7 +45,7 @@ function DetailsPostTextarea({ setState }: Props) {
               value={content}
             />
           </div>
-          <Button onClick={onSaveComment}>등록</Button>
+          <Button onClick={() => addComment()}>등록</Button>
         </S.TextareaLayout>
       ) : (
         <S.NotLogged>댓글작성은 로그인이 필요합니다</S.NotLogged>
