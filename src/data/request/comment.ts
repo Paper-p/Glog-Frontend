@@ -21,12 +21,15 @@ class Comment {
     }
   }
 
-  editComment(commentId: number) {
+  editComment(commentId: number, text: string) {
     try {
       return AxiosInstance(
         {
           method: "PATCH",
           url: getComment.commentUrl() + `/${commentId}`,
+          data: {
+            content: text,
+          },
         },
         JSON.parse(localStorage.getItem("token") || "{}").accessToken
       );
