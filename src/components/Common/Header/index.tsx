@@ -15,6 +15,7 @@ interface Props {
   isNeedSearch?: boolean;
   onKeyPress?: React.KeyboardEventHandler<HTMLInputElement> | undefined;
 }
+//헤더
 
 function Header({ isNeedSearch, onKeyPress }: Props) {
   const { pathname } = useLocation();
@@ -40,7 +41,6 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           console.log(e);
         }
       };
-      console.log("asdfasfsaf", userId);
 
       getMiniProfile();
     }
@@ -97,7 +97,9 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           <S.HeaderBox className="right ">
             {logged ? (
               <>
-                <p className="user-name">{nickname}</p>
+                <Link to={`/${nickname}`} state={{ userId: userId }}>
+                  <p className="user-name">{nickname}</p>
+                </Link>
                 <Link to={`/${nickname}`} state={{ userId: userId }}>
                   <S.Profile src={profileImg} alt="" />
                 </Link>
