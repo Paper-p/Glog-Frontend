@@ -105,6 +105,7 @@ export function WriteModal() {
           content={contentPreview}
           like={3192}
           view={8321}
+          isPreview={true}
         />
         <S.UploadThumbnail>
           <input

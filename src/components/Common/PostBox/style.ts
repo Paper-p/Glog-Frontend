@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 
-export const PostBoxLayout = styled.div`
+export const PostBoxLayout = styled.div<{ isPreview: boolean | undefined }>`
   display: flex;
   justify-content: center;
+  pointer-events: ${(e) => (e.isPreview ? "none" : "")};
 `;
 
 export const PostBox = styled.div<{ url?: string }>`

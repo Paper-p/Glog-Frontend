@@ -11,6 +11,7 @@ interface Props {
   content: string;
   like: number;
   view: number;
+  isPreview?: boolean;
 }
 
 function PostBox({
@@ -21,10 +22,11 @@ function PostBox({
   content,
   like,
   view,
+  isPreview,
 }: Props) {
   return (
     <React.Fragment>
-      <S.PostBoxLayout>
+      <S.PostBoxLayout isPreview={isPreview}>
         <Link to={`/post/${id}`}>
           {isDefault ? (
             <S.PostBox url={imageUrl} className="preview">
