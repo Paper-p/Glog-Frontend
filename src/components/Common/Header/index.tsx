@@ -22,10 +22,10 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
   const [logged, setLogged] = useRecoilState(loggedAtom);
   const [nickname, setNickname] = useState<string>("");
   const [profileImg, setprofileImg] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
-
   useEffect(() => {
     if (logged) {
       const getMiniProfile = async () => {
@@ -35,10 +35,13 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           );
           setNickname(res.data.nickname);
           setprofileImg(res.data.profileImageUrl);
+          setUserId(res.data.userId);
         } catch (e: any) {
           console.log(e);
         }
       };
+      console.log("asdfasfsaf", userId);
+
       getMiniProfile();
     }
   }, [logged]);
@@ -95,7 +98,7 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
             {logged ? (
               <>
                 <p className="user-name">{nickname}</p>
-                <Link to={`/${nickname}`}>
+                <Link to={`/${nickname}`} state={{ userId: userId }}>
                   <S.Profile src={profileImg} alt="" />
                 </Link>
               </>

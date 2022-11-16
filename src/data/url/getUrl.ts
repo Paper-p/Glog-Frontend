@@ -26,8 +26,8 @@ export const getUser = {
     return REACT_APP_BASE_URL + "/user/profile";
   },
 
-  getMyInfo: () => {
-    return REACT_APP_BASE_URL + "/user/my";
+  getUserInfo: () => {
+    return REACT_APP_BASE_URL + "/user/";
   },
 };
 

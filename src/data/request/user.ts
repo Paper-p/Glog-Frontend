@@ -16,12 +16,12 @@ class User {
     }
   }
 
-  getMyInfo(token: string) {
+  getUserInfo(token: string, userId: number) {
     try {
       return AxiosInstance(
         {
           method: "GET",
-          url: getUser.getMyInfo(),
+          url: getUser.getUserInfo() + userId,
         },
         token
       );
