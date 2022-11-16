@@ -15,6 +15,7 @@ import { CommentType } from "types/commentType";
 import { loggedAtom } from "atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../Textarea";
+import { useQuery } from "react-query";
 
 function DetailsPostPage() {
   const [logged] = useRecoilState(loggedAtom);
@@ -22,24 +23,44 @@ function DetailsPostPage() {
   const [response, setResponse] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
 
+  const getDetailsPostData = async () => {
+    setLoading(false);
+    try {
+      const res: any = await feed.getDetailsPost(
+        Number(params.postId),
+        logged
+          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
+          : ""
+      );
+      setResponse(res.data);
+      setLoading(true);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    const getDetailsPostData = async () => {
-      setLoading(false);
-      try {
-        const res: any = await feed.getDetailsPost(
-          Number(params.postId),
-          logged
-            ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-            : ""
-        );
-        setResponse(res.data);
-        setLoading(true);
-      } catch (e: any) {
-        console.log(e);
-      }
-    };
     getDetailsPostData();
   }, []);
+
+  const fetch = async () => {
+    try {
+      const res: any = await feed.getDetailsPost(
+        Number(params.postId),
+        logged
+          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
+          : ""
+      );
+      setResponse(res.data);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
+  const commentsQuery = useQuery({
+    queryKey: "feed",
+    queryFn: fetch,
+  });
 
   return (
     <React.Fragment>
@@ -64,7 +85,7 @@ function DetailsPostPage() {
             <DetailsPostThumbnail imageUrl={response.thumbnail} />
             <DetailsPostContent content={response.content} />
             <Category>📖 댓글</Category>
-            <DetailsPostTextarea setState={setResponse} />
+            <DetailsPostTextarea />
           </>
         ) : (
           <DetailsPostSkeleton />

@@ -9,27 +9,22 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 
-interface Props {
-  setState: (x: boolean) => void;
-}
-
-function DetailsPostTextarea({ setState }: Props) {
+function DetailsPostTextarea() {
   const params = useParams();
   const [logged] = useRecoilState(loggedAtom);
+  const queryClient = useQueryClient();
   const [{ content }, onChange, setNull] = useInputs({
     content: "",
   });
-
-  const queryClient = useQueryClient();
 
   const onAddComment = async () => {
     setNull("content");
     return comment.addComment(Number(params.postId), content);
   };
 
-  const { mutate: addComment } = useMutation(() => onAddComment(), {
+  const { mutate: addComment } = useMutation(onAddComment, {
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries("feed");
     },
   });
 

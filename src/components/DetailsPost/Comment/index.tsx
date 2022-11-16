@@ -1,14 +1,10 @@
 import { Control, Kebob } from "assets/svg";
-import { loggedAtom } from "atoms";
 import { Button } from "components/Common";
 import comment from "data/request/comment";
-import feed from "data/request/feed";
 import useInputs from "hooks/useInputs";
 import React, { useEffect, useState } from "react";
-import { useQueryClient, useQuery, useMutation } from "react-query";
-import { useParams } from "react-router-dom";
+import { useQueryClient, useMutation } from "react-query";
 import TextareaAutosize from "react-textarea-autosize";
-import { useRecoilState } from "recoil";
 import { CommentType } from "types/commentType";
 import * as S from "./style";
 
@@ -24,14 +20,11 @@ function DetailsPostComment({
   isMine,
   setState,
 }: Props) {
+  const [isClick, setIsClick] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const [{ edit }, onChange] = useInputs({
     edit: content,
   });
-  const params = useParams();
-  const [isClick, setIsClick] = useState<boolean>(false);
-  const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [logged] = useRecoilState(loggedAtom);
-  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (isClick === false) {
@@ -39,38 +32,17 @@ function DetailsPostComment({
     }
   }, [isClick]);
 
-  const query = useQuery({
-    queryKey: ["edit"],
-    queryFn: () => reload(),
-  });
+  const queryClient = useQueryClient();
 
-  const reload = async () => {
-    try {
-      const res: any = await feed.getDetailsPost(
-        Number(params.postId),
-        logged
-          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          : ""
-      );
-      setState(res.data);
-    } catch (e: any) {
-      console.log(e);
-    }
+  const onEditComment = async () => {
+    setIsClick(false);
+    return comment.editComment(id, edit);
   };
 
-  const editComment = async () => {
-    const { res }: any = await comment.editComment(id, edit);
-    return res;
-  };
-
-  const saveComment = useMutation(() => editComment(), {
-    onSuccess: () => {
-      queryClient.invalidateQueries("edit");
-      setIsEdit(false);
-      setIsClick(false);
+  const { mutate: editComment } = useMutation(() => onEditComment(), {
+    onSettled: () => {
+      queryClient.invalidateQueries("feed");
     },
-    onError: () => {},
-    onSettled: () => {},
   });
 
   return (
@@ -79,13 +51,8 @@ function DetailsPostComment({
         <S.UserBox>
           {isEdit ? (
             <S.EditTextarea>
-              <TextareaAutosize
-                placeholder="댓글을 입력해주세요"
-                onChange={onChange}
-                value={edit}
-                name="edit"
-              />
-              <Button onClick={() => saveComment.mutate()}>수정</Button>
+              <TextareaAutosize name="edit" onChange={onChange} value={edit} />
+              <Button onClick={() => editComment()}>수정</Button>
             </S.EditTextarea>
           ) : (
             <>
@@ -102,7 +69,7 @@ function DetailsPostComment({
         <S.CommentBox isClick={isClick}>
           {isEdit ? <></> : <S.CreatedAt>2022-10-10</S.CreatedAt>}
           <S.Icon isClick={isClick}>
-            {isMine ? (
+            {isMine ? ( // 내댓글일때는 수정이나 삭제가 가능하도록 케밥버튼 띄워주기
               <React.Fragment>
                 <div onClick={() => setIsClick(!isClick)}>
                   {isClick ? <Control /> : <Kebob />}

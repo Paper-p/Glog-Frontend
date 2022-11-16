@@ -3,8 +3,6 @@ import AxiosInstance from "util/AxiosInstance";
 
 class Comment {
   addComment(feedId: number, comment: string) {
-    console.log(feedId, comment);
-
     try {
       return AxiosInstance(
         {
