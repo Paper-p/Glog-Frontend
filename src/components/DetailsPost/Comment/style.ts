@@ -13,7 +13,6 @@ export const DetailsPostCommentLayout = styled.div`
   }
 
   @-webkit-keyframes fadein {
-    /* Safari and Chrome */
     from {
       opacity: 0;
     }
@@ -111,6 +110,12 @@ export const Edit = styled(ControlText)`
   -webkit-animation: fadein 0.7s;
 `;
 
+export const Remove = styled(ControlText)`
+  color: #f55f56;
+  animation: fadein 1s;
+  -webkit-animation: fadein 1s;
+`;
+
 export const EditTextarea = styled.div`
   width: 100%;
   margin-top: 10px;
@@ -141,12 +146,6 @@ export const EditTextarea = styled.div`
     border: none;
     outline: none;
   }
-`;
-
-export const Remove = styled(ControlText)`
-  color: #f55f56;
-  animation: fadein 1s;
-  -webkit-animation: fadein 1s;
 `;
 
 export const Border = styled.div`

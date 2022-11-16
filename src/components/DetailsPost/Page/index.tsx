@@ -12,34 +12,37 @@ import {
 } from "components/DetailsPost";
 import * as S from "./style";
 import { CommentType } from "types/commentType";
-import { loggedAtom } from "atoms";
+import { loggedAtom, removeCommentModalAtom } from "atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../Textarea";
 import { useQuery } from "react-query";
+import RemoveCommentModal from "components/Modal/RemoveCommentModal";
 
 function DetailsPostPage() {
   const [logged] = useRecoilState(loggedAtom);
+  const [removeCommentModal, setRemoveCommentModal] = useRecoilState(
+    removeCommentModalAtom
+  );
   const params = useParams();
   const [response, setResponse] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getDetailsPostData = async () => {
-    setLoading(false);
-    try {
-      const res: any = await feed.getDetailsPost(
-        Number(params.postId),
-        logged
-          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          : ""
-      );
-      setResponse(res.data);
-      setLoading(true);
-    } catch (e: any) {
-      console.log(e);
-    }
-  };
-
   useEffect(() => {
+    const getDetailsPostData = async () => {
+      setLoading(false);
+      try {
+        const res: any = await feed.getDetailsPost(
+          Number(params.postId),
+          logged
+            ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
+            : ""
+        );
+        setResponse(res.data);
+        setLoading(true);
+      } catch (e: any) {
+        console.log(e);
+      }
+    };
     getDetailsPostData();
   }, []);
 
@@ -66,6 +69,7 @@ function DetailsPostPage() {
     <React.Fragment>
       <Header isNeedSearch={false} />
       <S.DetailsPostLayout>
+        {removeCommentModal && <RemoveCommentModal />}
         {loading ? (
           <>
             <DetailsPostTitle title={response.title} />

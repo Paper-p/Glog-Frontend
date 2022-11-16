@@ -1,10 +1,13 @@
 import { Control, Kebob } from "assets/svg";
+import { removeCommentModalAtom } from "atoms";
+import { commentIdAtom } from "atoms/AtomContainer";
 import { Button } from "components/Common";
 import comment from "data/request/comment";
 import useInputs from "hooks/useInputs";
 import React, { useEffect, useState } from "react";
 import { useQueryClient, useMutation } from "react-query";
 import TextareaAutosize from "react-textarea-autosize";
+import { useRecoilState } from "recoil";
 import { CommentType } from "types/commentType";
 import * as S from "./style";
 
@@ -21,6 +24,8 @@ function DetailsPostComment({
   setState,
 }: Props) {
   const [isClick, setIsClick] = useState<boolean>(false);
+  const [, setRemoveCommentModal] = useRecoilState(removeCommentModalAtom);
+  const [, setCommentId] = useRecoilState(commentIdAtom);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [{ edit }, onChange] = useInputs({
     edit: content,
@@ -44,6 +49,11 @@ function DetailsPostComment({
       queryClient.invalidateQueries("feed");
     },
   });
+
+  const onRemoveComment = () => {
+    setCommentId(id);
+    setRemoveCommentModal(true);
+  };
 
   return (
     <S.DetailsPostCommentLayout>
@@ -77,7 +87,7 @@ function DetailsPostComment({
                 {isClick ? (
                   <S.CommentControl>
                     <S.Edit onClick={() => setIsEdit(true)}>수정</S.Edit>
-                    <S.Remove>삭제</S.Remove>
+                    <S.Remove onClick={onRemoveComment}>삭제</S.Remove>
                   </S.CommentControl>
                 ) : (
                   <></>
