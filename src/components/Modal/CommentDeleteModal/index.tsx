@@ -26,7 +26,8 @@ function RemoveCommentModal() {
   return (
     <ModalLayout setModal={setRemoveCommentModal}>
       <S.RemoveCommentModal onClick={(e) => e.stopPropagation()}>
-        <S.Text>정말 댓글을 삭제하시겠어요?</S.Text>
+        <S.TitleText>댓글삭제</S.TitleText>
+        <S.Text>정말 댓글을 삭제하시겠습니까?</S.Text>
         <S.ButtonBox>
           <Button onClick={() => removeComment()}>확인</Button>
           <Button onClick={() => setRemoveCommentModal(false)}>취소</Button>

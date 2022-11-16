@@ -8,7 +8,7 @@ import {
   DetailsPostInfo,
   DetailsPostSkeleton,
   DetailsPostThumbnail,
-  DetailsPostTitle,
+  DetailsPostTag,
 } from "components/DetailsPost";
 import * as S from "./style";
 import { CommentType } from "types/commentType";
@@ -16,13 +16,11 @@ import { loggedAtom, removeCommentModalAtom } from "atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../Textarea";
 import { useQuery } from "react-query";
-import RemoveCommentModal from "components/Modal/RemoveCommentModal";
+import RemoveCommentModal from "components/Modal/CommentDeleteModal";
 
 function DetailsPostPage() {
   const [logged] = useRecoilState(loggedAtom);
-  const [removeCommentModal, setRemoveCommentModal] = useRecoilState(
-    removeCommentModalAtom
-  );
+  const [removeCommentModal] = useRecoilState(removeCommentModalAtom);
   const params = useParams();
   const [response, setResponse] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
@@ -72,14 +70,8 @@ function DetailsPostPage() {
         {removeCommentModal && <RemoveCommentModal />}
         {loading ? (
           <>
-            <DetailsPostTitle title={response.title} />
-            <S.TagList>
-              {response.tagList?.map((item: string) => (
-                <React.Fragment key={item}>
-                  <S.Tag>{item}</S.Tag>
-                </React.Fragment>
-              ))}
-            </S.TagList>
+            <S.Title>{response.title}</S.Title>
+            <DetailsPostTag tagList={response.tagList} />
             <DetailsPostInfo
               author={response.author}
               createdAt={response.createdAt}
