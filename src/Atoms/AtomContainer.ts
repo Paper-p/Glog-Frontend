@@ -18,6 +18,16 @@ export const writeModalAtom = atom({
   default: false,
 });
 
+export const commentIdAtom = atom({
+  key: "commentId",
+  default: 0,
+});
+
+export const removeCommentModalAtom = atom({
+  key: "removeCommentModal",
+  default: false,
+});
+
 export const titleAtom = atom({
   key: "title",
   default: "",
