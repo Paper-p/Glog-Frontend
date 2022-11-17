@@ -1,29 +1,33 @@
-import { loggedAtom } from "atoms";
-import { Button, Header, Category } from "components/Common";
+import { Header, Category } from "components/Common";
 import feed from "data/request/feed";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import TextareaAutosize from "react-textarea-autosize";
 import {
   DetailsPostComment,
   DetailsPostContent,
   DetailsPostInfo,
   DetailsPostSkeleton,
   DetailsPostThumbnail,
-  DetailsPostTitle,
+  DetailsPostTag,
 } from "components/DetailsPost";
 import * as S from "./style";
+import { CommentType } from "types/commentType";
+import { loggedAtom, removeCommentModalAtom } from "atoms";
+import { useRecoilState } from "recoil";
+import DetailsPostTextarea from "../Textarea";
+import { useQuery } from "react-query";
+import RemoveCommentModal from "components/Modal/CommentDeleteModal";
 
 function DetailsPostPage() {
+  const [logged] = useRecoilState(loggedAtom);
+  const [removeCommentModal] = useRecoilState(removeCommentModalAtom);
   const params = useParams();
   const [response, setResponse] = useState<any>({});
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [logged] = useRecoilState(loggedAtom);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const getDetailsPost = async () => {
-      setIsLoading(false);
+    const getDetailsPostData = async () => {
+      setLoading(false);
       try {
         const res: any = await feed.getDetailsPost(
           Number(params.postId),
@@ -32,29 +36,42 @@ function DetailsPostPage() {
             : ""
         );
         setResponse(res.data);
-        setIsLoading(true);
+        setLoading(true);
       } catch (e: any) {
         console.log(e);
       }
     };
-
-    getDetailsPost();
+    getDetailsPostData();
   }, []);
+
+  const fetch = async () => {
+    try {
+      const res: any = await feed.getDetailsPost(
+        Number(params.postId),
+        logged
+          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
+          : ""
+      );
+      setResponse(res.data);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
+  const commentsQuery = useQuery({
+    queryKey: "feed",
+    queryFn: fetch,
+  });
 
   return (
     <React.Fragment>
       <Header isNeedSearch={false} />
       <S.DetailsPostLayout>
-        {isLoading ? (
+        {removeCommentModal && <RemoveCommentModal />}
+        {loading ? (
           <>
-            <DetailsPostTitle title={response.title} />
-            <S.TagList>
-              {response.tagList?.map((item: string) => (
-                <React.Fragment key={item}>
-                  <S.Tag>{item}</S.Tag>
-                </React.Fragment>
-              ))}
-            </S.TagList>
+            <S.Title>{response.title}</S.Title>
+            <DetailsPostTag tagList={response.tagList} />
             <DetailsPostInfo
               author={response.author}
               createdAt={response.createdAt}
@@ -64,19 +81,22 @@ function DetailsPostPage() {
             <DetailsPostThumbnail imageUrl={response.thumbnail} />
             <DetailsPostContent content={response.content} />
             <Category>📖 댓글</Category>
-            <S.CommentBox>
-              <div style={{ padding: "18px", width: "90%" }}>
-                <TextareaAutosize placeholder="댓글을 입력해주세요" />
-              </div>
-              <Button>등록</Button>
-            </S.CommentBox>
-            <DetailsPostComment isMine={true} />
-            <DetailsPostComment isMine={false} />
-            <DetailsPostComment isMine={false} />
+            <DetailsPostTextarea />
           </>
         ) : (
           <DetailsPostSkeleton />
         )}
+        {response.comments?.map((idx: CommentType) => (
+          <DetailsPostComment
+            key={idx.id}
+            id={idx.id}
+            author={idx.author}
+            content={idx.content}
+            createdAt={idx.createdAt}
+            isMine={idx.isMine}
+            setState={setResponse}
+          />
+        ))}
       </S.DetailsPostLayout>
     </React.Fragment>
   );

@@ -1,17 +1,35 @@
 import { Control, Kebob } from "assets/svg";
+import { removeCommentModalAtom } from "atoms";
+import { commentIdAtom } from "atoms/AtomContainer";
 import { Button } from "components/Common";
+import comment from "data/request/comment";
+import useInputs from "hooks/useInputs";
 import React, { useEffect, useState } from "react";
+import { useQueryClient, useMutation } from "react-query";
 import TextareaAutosize from "react-textarea-autosize";
+import { useRecoilState } from "recoil";
+import { CommentType } from "types/commentType";
 import * as S from "./style";
 
-interface Props {
-  isMine: boolean;
+interface Props extends CommentType {
+  setState: (x: boolean) => void;
 }
 
-function DetailsPostComment({ isMine }: Props) {
+function DetailsPostComment({
+  id,
+  author,
+  content,
+  createdAt,
+  isMine,
+  setState,
+}: Props) {
   const [isClick, setIsClick] = useState<boolean>(false);
+  const [, setRemoveCommentModal] = useRecoilState(removeCommentModalAtom);
+  const [, setCommentId] = useRecoilState(commentIdAtom);
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [isRemove, setIsRemove] = useState<boolean>(false);
+  const [{ edit }, onChange] = useInputs({
+    edit: content,
+  });
 
   useEffect(() => {
     if (isClick === false) {
@@ -19,34 +37,49 @@ function DetailsPostComment({ isMine }: Props) {
     }
   }, [isClick]);
 
+  const queryClient = useQueryClient();
+
+  const onEditComment = async () => {
+    setIsClick(false);
+    return comment.editComment(id, edit);
+  };
+
+  const { mutate: editComment } = useMutation(() => onEditComment(), {
+    onSettled: () => {
+      queryClient.invalidateQueries("feed");
+    },
+  });
+
+  const onRemoveComment = () => {
+    setCommentId(id);
+    setRemoveCommentModal(true);
+  };
+
   return (
     <S.DetailsPostCommentLayout>
-      <S.Commnet>
+      <S.Comment>
         <S.UserBox>
-          <S.UserProfile>
-            <img
-              src="https://www.sanitascare.it/wp-content/uploads/2017/04/default-user-image.jpg"
-              alt=""
-            />
-          </S.UserProfile>
-          <div>
-            <S.UserName>오종진</S.UserName>
-            {isEdit ? (
-              <S.EditTextarea>
-                <TextareaAutosize placeholder="댓글을 입력해주세요" />
-                <Button>수정</Button>
-              </S.EditTextarea>
-            ) : (
-              <S.UserComment>
-                실제로는 이런구조인것인데 var 키워드를 사용하면 이러한 문제들이
-              </S.UserComment>
-            )}
-          </div>
+          {isEdit ? (
+            <S.EditTextarea>
+              <TextareaAutosize name="edit" onChange={onChange} value={edit} />
+              <Button onClick={() => editComment()}>수정</Button>
+            </S.EditTextarea>
+          ) : (
+            <>
+              <S.UserProfile>
+                <img src={author.profileImageUrl} alt="" />
+              </S.UserProfile>
+              <div>
+                <S.UserName>{author.nickname}</S.UserName>
+                <S.UserComment>{content}</S.UserComment>
+              </div>
+            </>
+          )}
         </S.UserBox>
         <S.CommentBox isClick={isClick}>
-          <S.CreatedAt>2022-10-10</S.CreatedAt>
+          {isEdit ? <></> : <S.CreatedAt>2022-10-10</S.CreatedAt>}
           <S.Icon isClick={isClick}>
-            {isMine ? (
+            {isMine ? ( // 내댓글일때는 수정이나 삭제가 가능하도록 케밥버튼 띄워주기
               <React.Fragment>
                 <div onClick={() => setIsClick(!isClick)}>
                   {isClick ? <Control /> : <Kebob />}
@@ -54,7 +87,7 @@ function DetailsPostComment({ isMine }: Props) {
                 {isClick ? (
                   <S.CommentControl>
                     <S.Edit onClick={() => setIsEdit(true)}>수정</S.Edit>
-                    <S.Remove>삭제</S.Remove>
+                    <S.Remove onClick={onRemoveComment}>삭제</S.Remove>
                   </S.CommentControl>
                 ) : (
                   <></>
@@ -65,7 +98,7 @@ function DetailsPostComment({ isMine }: Props) {
             )}
           </S.Icon>
         </S.CommentBox>
-      </S.Commnet>
+      </S.Comment>
       <S.Border />
     </S.DetailsPostCommentLayout>
   );

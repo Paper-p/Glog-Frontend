@@ -40,3 +40,9 @@ export const getFeed = {
     return REACT_APP_BASE_URL + "/feed/list";
   },
 };
+
+export const getComment = {
+  commentUrl: () => {
+    return REACT_APP_BASE_URL + "/comment";
+  },
+};

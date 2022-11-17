@@ -13,7 +13,6 @@ export const DetailsPostCommentLayout = styled.div`
   }
 
   @-webkit-keyframes fadein {
-    /* Safari and Chrome */
     from {
       opacity: 0;
     }
@@ -23,7 +22,7 @@ export const DetailsPostCommentLayout = styled.div`
   }
 `;
 
-export const Commnet = styled.div`
+export const Comment = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 7px;
@@ -31,7 +30,8 @@ export const Commnet = styled.div`
 
 export const UserBox = styled.div`
   display: flex;
-  gap: 8px;
+  width: 100%;
+  gap: 10px;
 `;
 
 export const UserProfile = styled.div`
@@ -57,6 +57,7 @@ export const UserComment = styled.p`
   font-weight: 500;
   font-size: 15px;
   color: #ffffff;
+  word-break: break-all;
 `;
 
 export const CommentBox = styled.div<{ isClick: boolean }>`
@@ -109,11 +110,17 @@ export const Edit = styled(ControlText)`
   -webkit-animation: fadein 0.7s;
 `;
 
+export const Remove = styled(ControlText)`
+  color: #f55f56;
+  animation: fadein 1s;
+  -webkit-animation: fadein 1s;
+`;
+
 export const EditTextarea = styled.div`
+  width: 100%;
   margin-top: 10px;
   display: flex;
   align-items: flex-end;
-  width: 34vw;
   padding: 7px 15px;
   background: #27282b;
   border-radius: 10px;
@@ -129,7 +136,7 @@ export const EditTextarea = styled.div`
   }
 
   textarea {
-    width: 100%;
+    width: 95%;
     background: #27282b;
     color: #fff;
     font-family: "Pretendard";
@@ -139,12 +146,6 @@ export const EditTextarea = styled.div`
     border: none;
     outline: none;
   }
-`;
-
-export const Remove = styled(ControlText)`
-  color: #f55f56;
-  animation: fadein 1s;
-  -webkit-animation: fadein 1s;
 `;
 
 export const Border = styled.div`

@@ -10,10 +10,13 @@ import {
   MyPage,
 } from "pages";
 import GlobalStyle from "shared/GlobalStyles";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <GlobalStyle />
         <BrowserRouter>
@@ -28,6 +31,6 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
-    </>
+    </QueryClientProvider>
   );
 }

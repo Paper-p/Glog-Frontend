@@ -1,4 +1,6 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+const { persistAtom } = recoilPersist();
 
 interface TagType {
   id: number;
@@ -8,10 +10,21 @@ interface TagType {
 export const loggedAtom = atom({
   key: "logged",
   default: false,
+  effects_UNSTABLE: [persistAtom], //새로고침시에도 데이터유지
 });
 
 export const writeModalAtom = atom({
   key: "writeModal",
+  default: false,
+});
+
+export const commentIdAtom = atom({
+  key: "commentId",
+  default: 0,
+});
+
+export const removeCommentModalAtom = atom({
+  key: "removeCommentModal",
   default: false,
 });
 
