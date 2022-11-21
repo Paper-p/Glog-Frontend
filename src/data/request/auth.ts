@@ -64,14 +64,13 @@ class Auth {
 
   tokenReissuance() {
     try {
-      return AxiosInstance({
-        method: "PATCH",
-        headers: {
-          RefreshToken: JSON.parse(localStorage.getItem("token") || "{}")
-            .refreshToken,
+      return AxiosInstance(
+        {
+          method: "PATCH",
+          url: getAuth.tokenReissuance(),
         },
-        url: getAuth.tokenReissuance(),
-      });
+        JSON.parse(localStorage.getItem("token") || "{}").refreshToken
+      );
     } catch (error) {
       return error;
     }

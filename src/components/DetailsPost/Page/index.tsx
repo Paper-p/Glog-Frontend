@@ -61,6 +61,7 @@ function DetailsPostPage() {
   const commentsQuery = useQuery({
     queryKey: "feed",
     queryFn: fetch,
+    refetchOnWindowFocus: false,
   });
 
   return (
