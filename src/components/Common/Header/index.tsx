@@ -15,15 +15,13 @@ interface Props {
   isNeedSearch?: boolean;
   onKeyPress?: React.KeyboardEventHandler<HTMLInputElement> | undefined;
 }
-//헤더
 
 function Header({ isNeedSearch, onKeyPress }: Props) {
   const { pathname } = useLocation();
-  const [search, setSearch] = useRecoilState(searchAtom);
+  const [, setSearch] = useRecoilState(searchAtom);
   const [logged, setLogged] = useRecoilState(loggedAtom);
   const [nickname, setNickname] = useState<string>("");
   const [profileImg, setprofileImg] = useState<string>("");
-  const [userId, setUserId] = useState<string>("");
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
@@ -36,7 +34,6 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           );
           setNickname(res.data.nickname);
           setprofileImg(res.data.profileImageUrl);
-          setUserId(res.data.userId);
         } catch (e: any) {
           console.log(e);
         }
