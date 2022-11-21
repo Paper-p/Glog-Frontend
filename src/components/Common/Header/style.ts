@@ -13,6 +13,14 @@ export const Header = styled.header`
   margin: auto;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 1000px) {
+    width: 85%;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 90%;
+  }
 `;
 
 export const HeaderElements = styled.div`
