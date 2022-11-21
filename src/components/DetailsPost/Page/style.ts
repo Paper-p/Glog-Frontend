@@ -15,6 +15,7 @@ export const DetailsPostLayout = styled.div`
 
   @media screen and (max-width: 700px) {
     width: 100vw;
+    padding: 65px 30px;
   }
 `;
 
