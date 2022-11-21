@@ -24,7 +24,7 @@ export default function App() {
             <Route path="/signup/name" element={<SetNamePage />} />
             <Route path="/write" element={<WritePage />} />
             <Route path="/post/:postId" element={<DetailsPostPage />} />
-            <Route path="/:ninkname" element={<UserProfilePage />} />
+            <Route path="/:nickname" element={<UserProfilePage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>

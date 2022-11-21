@@ -3,29 +3,28 @@ import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { useLocation } from "react-router-dom";
 import * as S from "./style";
-
-interface LocationType {
-  userId: number;
-}
 
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
   const [feedList, setFeedList] = useState<any[]>([]);
+  const [isMine, setIsMine] = useState<boolean>(false);
   const [logged] = useRecoilState(loggedAtom);
   const navigator = useNavigate();
-  const location = useLocation().state as LocationType;
+  const params = useParams();
 
   useEffect(() => {
+    console.log(params.nickname);
+
     const getUserInfo = async () => {
       try {
         const res: any = await user.getUserInfo(
           JSON.parse(localStorage.getItem("token") || "{}").accessToken,
-          location.userId
+          String(params.nickname)
         );
+        setIsMine(res.data.isMine);
         setFeedList(res.data.feedList);
         setUserInfo(res.data);
       } catch (e: any) {
@@ -33,8 +32,10 @@ export default function UserPropfile() {
       }
     };
 
-    if (!logged) {
-      navigator("/signin");
+    if (isMine) {
+      if (!logged) {
+        navigator("/signin");
+      }
     }
 
     getUserInfo();
