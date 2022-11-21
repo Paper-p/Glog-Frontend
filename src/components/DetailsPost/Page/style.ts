@@ -4,6 +4,18 @@ export const DetailsPostLayout = styled.div`
   width: 50vw;
   margin: auto;
   padding: 65px 65px;
+
+  @media screen and (max-width: 1430px) {
+    width: 70vw;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 90vw;
+  }
+
+  @media screen and (max-width: 650px) {
+    width: 100vw;
+  }
 `;
 
 export const Title = styled.p`
