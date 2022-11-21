@@ -1,6 +1,7 @@
 import axios from "axios";
 import auth from "data/request/auth";
 import { getAuth } from "data/url/getUrl";
+import { useNavigate } from "react-router-dom";
 import { REACT_APP_BASE_URL } from "shared/config";
 
 export const instance = axios.create({
@@ -28,6 +29,7 @@ instance.interceptors.response.use(
     return res;
   },
   async (err) => {
+    const navigate = useNavigate();
     const originalConfig = err.config;
 
     if (err.response) {
@@ -61,6 +63,7 @@ instance.interceptors.response.use(
 
           return instance(originalConfig);
         } catch (_error) {
+          navigate("/signin");
           return Promise.reject(_error);
         }
       }
