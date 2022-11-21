@@ -1,19 +1,24 @@
 import { AxiosRequestConfig } from "axios";
-import { instance } from "./TestInstance";
+import { instance } from "./Interceptor";
 
-const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
+const AxiosInstance = (
+  data: AxiosRequestConfig,
+  token?: string,
+  isRefresh?: boolean
+) => {
   try {
-    const axios = instance({
+    const request = instance({
       method: data.method,
       url: data.url,
       withCredentials: false,
       data: data.data,
       headers: {
-        Authorization: token ? "Bearer " + token : "",
+        Authorization: token && !isRefresh ? "Bearer " + token : "",
+        RefreshToken: token && isRefresh ? token : "",
       },
       params: data.params,
     });
-    return axios;
+    return request;
   } catch (error) {
     return error;
   }
