@@ -1,11 +1,10 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { REACT_APP_BASE_URL } from "shared/config";
+import { AxiosRequestConfig } from "axios";
+import { instance } from "./TestInstance";
 
 const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
   try {
-    const axiosInstance = axios({
+    const axios = instance({
       method: data.method,
-      baseURL: REACT_APP_BASE_URL,
       url: data.url,
       withCredentials: false,
       data: data.data,
@@ -14,7 +13,7 @@ const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
       },
       params: data.params,
     });
-    return axiosInstance;
+    return axios;
   } catch (error) {
     return error;
   }

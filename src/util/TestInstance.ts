@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuth } from "data/url/getUrl";
 import { REACT_APP_BASE_URL } from "shared/config";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: REACT_APP_BASE_URL,
   headers: {
     "Content-Type": "application/json",
@@ -13,7 +13,7 @@ instance.interceptors.request.use(
   (config: any) => {
     const token = JSON.parse(localStorage.getItem("token") || "{}").accessToken;
     if (token) {
-      config.headers["Authorization"] = "Bearer " + token; // for Spring Boot back-end
+      config.headers["Authorization"] = "Bearer " + token;
     }
     return config;
   },
@@ -35,13 +35,13 @@ instance.interceptors.response.use(
 
         try {
           const res = await instance.patch(getAuth.tokenReissuance(), {
-            header: {
+            headers: {
               refreshToken: JSON.parse(localStorage.getItem("token") || "{}")
                 .refreshToken,
             },
           });
-
           localStorage.setItem("token", JSON.stringify(res.data));
+
           const expiredAtDate = new Date(
             JSON.parse(localStorage.getItem("token") || "{}").expiredAt
           );
