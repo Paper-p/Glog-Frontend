@@ -51,7 +51,9 @@ export default function UserPropfile() {
       </S.ProfileLayout>
       <S.MyPostsLayout>
         <S.CategoryBox>
-          <Category>💻내 게시물's</Category>
+          <Category>
+            {isMine ? "💻내 게시물's" : `💻 ${userInfo.nickname}님의 게시물's`}
+          </Category>
         </S.CategoryBox>
         <S.MyPostsBox>
           {feedList.map((post) => (
