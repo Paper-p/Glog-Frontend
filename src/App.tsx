@@ -7,7 +7,7 @@ import {
   SetMainPage,
   WritePage,
   DetailsPostPage,
-  MyPage,
+  UserProfilePage,
 } from "pages";
 import GlobalStyle from "shared/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -27,7 +27,7 @@ export default function App() {
             <Route path="/signup/name" element={<SetNamePage />} />
             <Route path="/write" element={<WritePage />} />
             <Route path="/post/:postId" element={<DetailsPostPage />} />
-            <Route path="/:ninkname" element={<MyPage />} />
+            <Route path="/:nickname" element={<UserProfilePage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>

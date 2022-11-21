@@ -18,14 +18,13 @@ interface Props {
 
 function Header({ isNeedSearch, onKeyPress }: Props) {
   const { pathname } = useLocation();
-  const [search, setSearch] = useRecoilState(searchAtom);
+  const [, setSearch] = useRecoilState(searchAtom);
   const [logged, setLogged] = useRecoilState(loggedAtom);
   const [nickname, setNickname] = useState<string>("");
   const [profileImg, setprofileImg] = useState<string>("");
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
-
   useEffect(() => {
     if (logged) {
       const getMiniProfile = async () => {
@@ -39,6 +38,7 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           console.log(e);
         }
       };
+
       getMiniProfile();
     }
   }, [logged]);
@@ -94,7 +94,9 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           <S.HeaderBox className="right ">
             {logged ? (
               <>
-                <p className="user-name">{nickname}</p>
+                <Link to={`/${nickname}`}>
+                  <p className="user-name">{nickname}</p>
+                </Link>
                 <Link to={`/${nickname}`}>
                   <S.Profile src={profileImg} alt="" />
                 </Link>
