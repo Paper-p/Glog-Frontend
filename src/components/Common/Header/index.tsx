@@ -97,10 +97,10 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           <S.HeaderBox className="right ">
             {logged ? (
               <>
-                <Link to={`/${nickname}`} state={{ userId: userId }}>
+                <Link to={`/${nickname}`}>
                   <p className="user-name">{nickname}</p>
                 </Link>
-                <Link to={`/${nickname}`} state={{ userId: userId }}>
+                <Link to={`/${nickname}`}>
                   <S.Profile src={profileImg} alt="" />
                 </Link>
               </>
