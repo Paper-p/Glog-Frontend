@@ -69,8 +69,7 @@ class Auth {
           method: "PATCH",
           url: getAuth.tokenReissuance(),
         },
-        JSON.parse(localStorage.getItem("token") || "{}").refreshToken,
-        true
+        JSON.parse(localStorage.getItem("token") || "{}").refreshToken
       );
     } catch (error) {
       return error;

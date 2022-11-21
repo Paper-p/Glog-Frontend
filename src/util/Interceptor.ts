@@ -1,5 +1,6 @@
 import axios from "axios";
 import auth from "data/request/auth";
+import { getAuth } from "data/url/getUrl";
 import { REACT_APP_BASE_URL } from "shared/config";
 
 export const instance = axios.create({
@@ -34,7 +35,15 @@ instance.interceptors.response.use(
         originalConfig._retry = true;
 
         try {
-          const res: any = await auth.tokenReissuance();
+          const res: any = await axios({
+            method: "PATCH",
+            url: getAuth.tokenReissuance(),
+            headers: {
+              RefreshToken: JSON.parse(localStorage.getItem("token") || "{}")
+                .refreshToken,
+            },
+          });
+
           localStorage.setItem("token", JSON.stringify(res.data));
 
           const expiredAtDate = new Date(
