@@ -17,7 +17,7 @@ export const getAuth = {
    * 토근 재발급
    */
   tokenReissuance: () => {
-    return REACT_APP_BASE_URL + "/auth/";
+    return REACT_APP_BASE_URL + "/auth";
   },
 };
 
