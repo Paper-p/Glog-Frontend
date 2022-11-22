@@ -13,10 +13,6 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
   (config: any) => {
-    const token = JSON.parse(localStorage.getItem("token") || "{}").accessToken;
-    if (token) {
-      config.headers["Authorization"] = "Bearer " + token;
-    }
     return config;
   },
   (error) => {
@@ -45,6 +41,7 @@ instance.interceptors.response.use(
             },
           });
 
+          localStorage.removeItem("token");
           localStorage.setItem("token", JSON.stringify(res.data));
 
           const expiredAtDate = new Date(
@@ -56,10 +53,7 @@ instance.interceptors.response.use(
             expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
           );
 
-          console.log(
-            JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          );
-
+          console.log("refreshed");
           return instance(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);
