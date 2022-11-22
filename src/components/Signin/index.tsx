@@ -11,6 +11,7 @@ import { loggedAtom } from "atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
 import { LoginType } from "types/authType";
+import { toast } from "react-toastify";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -45,7 +46,9 @@ export default function Signin() {
       console.log(
         JSON.parse(localStorage.getItem("token") || "{}").accessToken
       );
-
+      toast.success("로그인에 성공했어요", {
+        autoClose: 2000,
+      });
       navigate("/");
     } catch (error: any) {
       console.log(error);
