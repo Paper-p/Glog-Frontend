@@ -11,6 +11,8 @@ import {
 } from "pages";
 import GlobalStyle from "shared/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -20,6 +22,7 @@ export default function App() {
       <RecoilRoot>
         <GlobalStyle />
         <BrowserRouter>
+          <ToastContainer />
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/signin" element={<SigninPage />} />

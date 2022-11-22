@@ -14,6 +14,7 @@ import image from "data/request/image";
 import feed from "data/request/feed";
 import { useNavigate } from "react-router-dom";
 import { marked } from "marked";
+import { toast } from "react-toastify";
 
 export function WriteModal() {
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
@@ -59,6 +60,10 @@ export function WriteModal() {
         setTitle("");
         setContent("");
         setTag([]);
+        setThumbnailUrl("");
+        toast.success("게시물이 출간되었습니다", {
+          autoClose: 2000,
+        });
         navigate("/");
       } catch (e: any) {
         console.log(e);
