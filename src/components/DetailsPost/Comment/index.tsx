@@ -6,6 +6,7 @@ import comment from "data/request/comment";
 import useInputs from "hooks/useInputs";
 import React, { useEffect, useState } from "react";
 import { useQueryClient, useMutation } from "react-query";
+import { Link } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
 import { useRecoilState } from "recoil";
 import { CommentType } from "types/commentType";
@@ -67,7 +68,9 @@ function DetailsPostComment({
           ) : (
             <>
               <S.UserProfile>
-                <img src={author.profileImageUrl} alt="" />
+                <Link to={`/${author.nickname}`}>
+                  <img src={author.profileImageUrl} alt="" />
+                </Link>
               </S.UserProfile>
               <div>
                 <S.UserName>{author.nickname}</S.UserName>

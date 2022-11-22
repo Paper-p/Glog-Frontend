@@ -1,5 +1,6 @@
 import InfoBox from "components/Common/PostBox/Common";
 import React from "react";
+import { Link } from "react-router-dom";
 import * as S from "./style";
 
 interface Props {
@@ -34,7 +35,9 @@ function DetailsPostInfo({ author, createdAt, like, hit }: Props) {
     <S.DetailsPostInfoLayout>
       <S.AuthorInfo>
         <S.Profile>
-          <img src={author?.profileImageUrl} alt="" />
+          <Link to={`/${author?.nickname}`}>
+            <img src={author?.profileImageUrl} alt="" />
+          </Link>
         </S.Profile>
         <S.Author>
           <S.Name>{author?.nickname}</S.Name>
