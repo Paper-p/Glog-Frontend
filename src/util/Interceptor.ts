@@ -1,8 +1,7 @@
 import axios from "axios";
-import auth from "data/request/auth";
 import { getAuth } from "data/url/getUrl";
-import { useNavigate } from "react-router-dom";
 import { REACT_APP_BASE_URL } from "shared/config";
+import AxiosInstance from "./AxiosInstance";
 
 export const instance = axios.create({
   baseURL: REACT_APP_BASE_URL,
@@ -13,6 +12,10 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
   (config: any) => {
+    const token = JSON.parse(localStorage.getItem("token") || "{}").accessToken;
+    if (token) {
+      config.headers["Authorization"] = "Bearer " + token;
+    }
     return config;
   },
   (error) => {
@@ -53,9 +56,8 @@ instance.interceptors.response.use(
             expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
           );
 
-          console.log("refreshed");
-          return instance(originalConfig);
-        } catch (_error) {
+          return AxiosInstance(originalConfig);
+        } catch (_error: any) {
           return Promise.reject(_error);
         }
       }
