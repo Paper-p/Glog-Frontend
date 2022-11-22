@@ -3,6 +3,7 @@ import { removeCommentModalAtom } from "atoms";
 import { commentIdAtom } from "atoms/AtomContainer";
 import { Button } from "components/Common";
 import comment from "data/request/comment";
+import { useDate } from "hooks/useDate";
 import useInputs from "hooks/useInputs";
 import React, { useEffect, useState } from "react";
 import { useQueryClient, useMutation } from "react-query";
@@ -55,6 +56,8 @@ function DetailsPostComment({
     setRemoveCommentModal(true);
   };
 
+  const formatDate = useDate(new Date(createdAt));
+
   return (
     <S.DetailsPostCommentLayout>
       <S.Comment>
@@ -77,7 +80,7 @@ function DetailsPostComment({
           )}
         </S.UserBox>
         <S.CommentBox isClick={isClick}>
-          {isEdit ? <></> : <S.CreatedAt>2022-10-10</S.CreatedAt>}
+          {isEdit ? <></> : <S.CreatedAt>{formatDate}</S.CreatedAt>}
           <S.Icon isClick={isClick}>
             {isMine ? ( // 내댓글일때는 수정이나 삭제가 가능하도록 케밥버튼 띄워주기
               <React.Fragment>
