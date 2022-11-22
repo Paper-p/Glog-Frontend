@@ -7,6 +7,7 @@ import Header from "components/Common/Header";
 import auth from "data/request/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface StateType {
   userId: string;
@@ -50,6 +51,9 @@ export default function SetName() {
         nickname: nickname,
         userId: location.userId,
         password: location.password,
+      });
+      toast.success("회원가입을 성공했어요", {
+        autoClose: 2000,
       });
       navigate("/");
     } catch (error: any) {
