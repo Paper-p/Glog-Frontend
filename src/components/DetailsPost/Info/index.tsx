@@ -1,4 +1,5 @@
 import InfoBox from "components/Common/PostBox/Common";
+import { useDate } from "hooks/useDate";
 import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
@@ -15,21 +16,7 @@ interface Props {
 }
 
 function DetailsPostInfo({ author, createdAt, like, hit }: Props) {
-  const leftPad = (value: any) => {
-    if (value >= 10) {
-      return value;
-    }
-
-    return `0${value}`;
-  };
-
-  const toStringByFormatting = (source: Date, delimiter = "-") => {
-    const year = source.getFullYear();
-    const month = leftPad(source.getMonth() + 1);
-    const day = leftPad(source.getDate());
-
-    return [year, month, day].join(delimiter);
-  };
+  const formatDate = useDate(new Date(createdAt));
 
   return (
     <S.DetailsPostInfoLayout>
@@ -41,7 +28,7 @@ function DetailsPostInfo({ author, createdAt, like, hit }: Props) {
         </S.Profile>
         <S.Author>
           <S.Name>{author?.nickname}</S.Name>
-          <S.createdAt>{toStringByFormatting(new Date(createdAt))}</S.createdAt>
+          <S.createdAt>{formatDate}</S.createdAt>
         </S.Author>
       </S.AuthorInfo>
       <S.PostInfo>
