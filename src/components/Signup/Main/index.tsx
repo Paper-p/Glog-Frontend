@@ -41,6 +41,7 @@ export default function SetMain() {
           { message: "이미 존재하는 아이디에요." },
           { shouldFocus: true }
         );
+        setIsError(true);
       }
     } else {
       setError(
