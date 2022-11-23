@@ -25,26 +25,8 @@ function DetailsPostPage() {
   const [response, setResponse] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    const getDetailsPostData = async () => {
-      setLoading(false);
-      try {
-        const res: any = await feed.getDetailsPost(
-          Number(params.postId),
-          logged
-            ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-            : ""
-        );
-        setResponse(res.data);
-        setLoading(true);
-      } catch (e: any) {
-        console.log(e);
-      }
-    };
-    getDetailsPostData();
-  }, []);
-
-  const fetch = async () => {
+  const getDetailsPostData = async () => {
+    setLoading(false);
     try {
       const res: any = await feed.getDetailsPost(
         Number(params.postId),
@@ -53,14 +35,19 @@ function DetailsPostPage() {
           : ""
       );
       setResponse(res.data);
+      setLoading(true);
     } catch (e: any) {
       console.log(e);
     }
   };
 
+  useEffect(() => {
+    getDetailsPostData();
+  }, []);
+
   const commentsQuery = useQuery({
     queryKey: "feed",
-    queryFn: fetch,
+    queryFn: getDetailsPostData,
     refetchOnWindowFocus: false,
   });
 
