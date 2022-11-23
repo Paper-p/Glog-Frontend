@@ -51,7 +51,14 @@ export default function Signin() {
       });
       navigate("/");
     } catch (error: any) {
-      console.log(error);
+      if (error.response.status === 404) {
+        setError(
+          "userId",
+          { message: "아이디 혹은 비밀번호를 다시 확인해주세요" },
+          { shouldFocus: true }
+        );
+        setIsError(true);
+      }
     }
   };
 
