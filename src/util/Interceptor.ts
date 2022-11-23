@@ -29,15 +29,13 @@ instance.interceptors.response.use(
   },
   async (err) => {
     const originalConfig = err.config;
+    console.log("refresh required");
 
     if (err.response) {
       if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
-        console.log("interceptor config:", originalConfig);
 
         try {
-          console.log("Refresh Start");
-
           const res: any = await axios({
             method: "PATCH",
             url: getAuth.tokenReissuance(),
@@ -47,18 +45,10 @@ instance.interceptors.response.use(
             },
           });
 
+          console.log("new Token", res.data);
+
           localStorage.removeItem("token");
           localStorage.setItem("token", JSON.stringify(res.data));
-          console.log("REFRESHED");
-
-          const expiredAtDate = new Date(
-            JSON.parse(localStorage.getItem("token") || "{}").expiredAt
-          );
-
-          localStorage.setItem(
-            "expiredAt",
-            expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
-          );
 
           return AxiosInstance(originalConfig);
         } catch (_error: any) {
