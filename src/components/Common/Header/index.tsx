@@ -29,17 +29,21 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
 
   const getMiniProfile = async () => {
     try {
-      const res: any = await user.getMiniProfile(
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken
-      );
-      setNickname(res.data.nickname);
-      setprofileImg(res.data.profileImageUrl);
+      if (logged) {
+        const res: any = await user.getMiniProfile(
+          JSON.parse(localStorage.getItem("token") || "{}").accessToken
+        );
+        setNickname(res.data.nickname);
+        setprofileImg(res.data.profileImageUrl);
+      }
     } catch (e: any) {
       console.log(e);
     }
   };
 
   useEffect(() => {
+    console.log(logged);
+
     if (logged) {
       getMiniProfile();
     }

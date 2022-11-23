@@ -1,5 +1,7 @@
+import { loggedAtom } from "atoms";
 import axios, { AxiosRequestConfig } from "axios";
 import { getAuth } from "data/url/getUrl";
+import { useRecoilState } from "recoil";
 import { REACT_APP_BASE_URL } from "shared/config";
 import AxiosInstance from "./AxiosInstance";
 
@@ -12,10 +14,6 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
   (config: any) => {
-    const token = JSON.parse(localStorage.getItem("token") || "{}").accessToken;
-    if (token) {
-      config.headers["Authorization"] = "Bearer " + token;
-    }
     return config;
   },
   (error) => {

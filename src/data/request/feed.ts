@@ -1,4 +1,6 @@
+import { loggedAtom } from "atoms";
 import { getFeed } from "data/url/getUrl";
+import { useRecoilState } from "recoil";
 import { WriteType } from "types/feedType";
 import AxiosInstance from "util/AxiosInstance";
 

@@ -23,7 +23,7 @@ export default function Main() {
         keyword ? keyword : "",
         logged
           ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          : ""
+          : null
       );
       setList(res.data.list);
     } catch (e: any) {
