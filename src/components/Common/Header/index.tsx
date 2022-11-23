@@ -10,6 +10,7 @@ import { loggedAtom } from "atoms";
 import user from "data/request/user";
 import Input from "../Input";
 import { searchAtom } from "atoms/AtomContainer";
+import { useQuery } from "react-query";
 
 interface Props {
   isNeedSearch?: boolean;
@@ -25,23 +26,29 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
+
+  const getMiniProfile = async () => {
+    try {
+      const res: any = await user.getMiniProfile(
+        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+      );
+      setNickname(res.data.nickname);
+      setprofileImg(res.data.profileImageUrl);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     if (logged) {
-      const getMiniProfile = async () => {
-        try {
-          const res: any = await user.getMiniProfile(
-            JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          );
-          setNickname(res.data.nickname);
-          setprofileImg(res.data.profileImageUrl);
-        } catch (e: any) {
-          console.log(e);
-        }
-      };
-
       getMiniProfile();
     }
   }, [logged]);
+
+  const profileQuery = useQuery({
+    queryKey: "post",
+    queryFn: () => getMiniProfile,
+  });
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);

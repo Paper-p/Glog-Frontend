@@ -5,6 +5,7 @@ import Header from "components/Common/Header";
 import feed from "data/request/feed";
 import { marked } from "marked";
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 
@@ -40,6 +41,11 @@ export default function Main() {
       getFeedList(search);
     }
   }, [isEnter]);
+
+  const postQuery = useQuery({
+    queryKey: "post",
+    queryFn: () => getFeedList,
+  });
 
   const onSearch = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") {
