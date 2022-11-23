@@ -43,17 +43,6 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
     }
   }, [logged]);
 
-  useEffect(() => {
-    const nowDate = new Date();
-    const expiredAt: any = localStorage.getItem("expiredAt");
-
-    if (expiredAt > nowDate.getTime().toString()) {
-      setLogged(true);
-    } else {
-      setLogged(false);
-    }
-  }, [logged]);
-
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
