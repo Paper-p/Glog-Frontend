@@ -10,39 +10,6 @@ export const instance = axios.create({
   },
 });
 
-const refresh = async (originalConfig: AxiosRequestConfig) => {
-  try {
-    const res: any = await axios({
-      method: "PATCH",
-      url: getAuth.tokenReissuance(),
-      headers: {
-        RefreshToken: JSON.parse(localStorage.getItem("token") || "{}")
-          .refreshToken,
-      },
-    });
-
-    localStorage.removeItem("token");
-    localStorage.setItem("token", JSON.stringify(res.data));
-    console.log(
-      "new RefreshToken",
-      JSON.parse(JSON.parse(localStorage.getItem("token") || "{}").refreshToken)
-    );
-
-    const expiredAtDate = new Date(
-      JSON.parse(localStorage.getItem("token") || "{}").expiredAt
-    );
-
-    localStorage.setItem(
-      "expiredAt",
-      expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
-    );
-
-    return AxiosInstance(originalConfig);
-  } catch (_error: any) {
-    return Promise.reject(_error);
-  }
-};
-
 instance.interceptors.request.use(
   (config: any) => {
     const token = JSON.parse(localStorage.getItem("token") || "{}").accessToken;
@@ -66,10 +33,39 @@ instance.interceptors.response.use(
     if (err.response) {
       if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
-        refresh(originalConfig);
+        console.log("interceptor config:", originalConfig);
+
+        try {
+          console.log("Refresh Start");
+
+          const res: any = await axios({
+            method: "PATCH",
+            url: getAuth.tokenReissuance(),
+            headers: {
+              RefreshToken: JSON.parse(localStorage.getItem("token") || "{}")
+                .refreshToken,
+            },
+          });
+
+          localStorage.removeItem("token");
+          localStorage.setItem("token", JSON.stringify(res.data));
+          console.log("REFRESHED");
+
+          const expiredAtDate = new Date(
+            JSON.parse(localStorage.getItem("token") || "{}").expiredAt
+          );
+
+          localStorage.setItem(
+            "expiredAt",
+            expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
+          );
+
+          return AxiosInstance(originalConfig);
+        } catch (_error: any) {
+          return Promise.reject(_error);
+        }
       }
     }
-
     return Promise.reject(err);
   }
 );
