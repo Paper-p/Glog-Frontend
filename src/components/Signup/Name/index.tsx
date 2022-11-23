@@ -47,7 +47,7 @@ export default function SetName() {
 
   const createUser = async (nickname: string) => {
     try {
-      const res: any = await auth.signup({
+      await auth.signup({
         nickname: nickname,
         userId: location.userId,
         password: location.password,
@@ -58,6 +58,7 @@ export default function SetName() {
       navigate("/");
     } catch (error: any) {
       console.log(error);
+      setIsError(true);
     }
   };
 
