@@ -35,6 +35,8 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
         );
         setNickname(res.data.nickname);
         setprofileImg(res.data.profileImageUrl);
+      } else {
+        localStorage.removeItem("token");
       }
     } catch (e: any) {
       console.log(e);

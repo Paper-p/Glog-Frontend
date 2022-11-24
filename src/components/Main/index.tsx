@@ -4,7 +4,7 @@ import Category from "components/Common/Category";
 import Header from "components/Common/Header";
 import feed from "data/request/feed";
 import { marked } from "marked";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
