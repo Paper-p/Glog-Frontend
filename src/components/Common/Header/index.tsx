@@ -42,7 +42,10 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
   };
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("token") || "{}").accessToken) {
+    if (
+      JSON.parse(localStorage.getItem("token") || "{}").accessToken !==
+      undefined
+    ) {
       setLogged(true);
     } else {
       setLogged(false);
