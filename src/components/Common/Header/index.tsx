@@ -52,14 +52,6 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(logged);
-
-    if (logged) {
-      getMiniProfile();
-    }
-  }, [logged]);
-
   const profileQuery = useQuery({
     queryKey: "post",
     queryFn: () => getMiniProfile,
