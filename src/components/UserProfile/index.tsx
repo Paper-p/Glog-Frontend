@@ -66,6 +66,7 @@ export default function UserPropfile() {
               content={post.previewContent}
               view={post.hit}
               like={post.likeCount}
+              isMine={isMine}
             />
           ))}
         </S.MyPostsBox>

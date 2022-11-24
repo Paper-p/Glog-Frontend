@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import * as S from "./style";
-import React from "react";
+import React, { useState } from "react";
 import InfoBox from "./Common";
+import * as I from "assets/svg";
 
 interface Props {
   isDefault: boolean;
@@ -11,6 +12,7 @@ interface Props {
   content: string;
   like: number;
   view: number;
+  isMine?: boolean;
   isPreview?: boolean;
 }
 
@@ -22,8 +24,11 @@ function PostBox({
   content,
   like,
   view,
+  isMine,
   isPreview,
 }: Props) {
+  const [modify, setModify] = useState(true);
+
   return (
     <React.Fragment>
       <S.PostBoxLayout isPreview={isPreview}>
@@ -40,7 +45,30 @@ function PostBox({
               <S.TextBox>
                 <S.PostTitle>{title}</S.PostTitle>
                 <S.PostContent>{content}</S.PostContent>
-                <InfoBox like={like} hit={view} />
+                <S.PostFooter>
+                  <InfoBox like={like} hit={view} />
+                  {isMine ? (
+                    <S.ModifyBox>
+                      {modify ? (
+                        <>
+                          <S.Modify>수정</S.Modify>
+                          <S.Delete>삭제</S.Delete>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      <div
+                        onClick={() => {
+                          setModify(!modify);
+                        }}
+                      >
+                        <I.Kebob />
+                      </div>
+                    </S.ModifyBox>
+                  ) : (
+                    <></>
+                  )}
+                </S.PostFooter>
               </S.TextBox>
             </S.PostBox>
           )}
