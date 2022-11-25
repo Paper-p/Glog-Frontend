@@ -42,11 +42,6 @@ export default function Main() {
     }
   }, [isEnter]);
 
-  const postQuery = useQuery({
-    queryKey: "post",
-    queryFn: () => getFeedList,
-  });
-
   const onSearch = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") {
       setIsEnter(true);
