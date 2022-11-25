@@ -27,37 +27,32 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
 
-  const getMiniProfile = async () => {
-    try {
-      if (logged) {
-        const res: any = await user.getMiniProfile(
-          JSON.parse(localStorage.getItem("token") || "{}").accessToken
-        );
-        setNickname(res.data.nickname);
-        setprofileImg(res.data.profileImageUrl);
-      } else {
-        localStorage.removeItem("token");
-      }
-    } catch (e: any) {
-      console.log(e);
-    }
-  };
-
   useEffect(() => {
-    if (
-      JSON.parse(localStorage.getItem("token") || "{}").accessToken !==
-      undefined
-    ) {
-      setLogged(true);
+    const getMiniProfile = async () => {
+      try {
+        if (logged) {
+          const res: any = await user.getMiniProfile(
+            JSON.parse(localStorage.getItem("token") || "{}").accessToken
+          );
+          setNickname(res.data.nickname);
+          setprofileImg(res.data.profileImageUrl);
+        } else {
+          localStorage.removeItem("token");
+        }
+      } catch (e: any) {
+        console.log(e);
+      }
+    };
+
+    console.log(JSON.parse(localStorage.getItem("token") || "{}"));
+
+    if (logged) {
+      getMiniProfile();
     } else {
       setLogged(false);
+      localStorage.removeItem("token");
     }
   }, []);
-
-  const profileQuery = useQuery({
-    queryKey: "post",
-    queryFn: () => getMiniProfile,
-  });
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
