@@ -1,9 +1,7 @@
-import { loggedAtom } from "atoms";
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import { getAuth } from "data/url/getUrl";
-import { useRecoilState } from "recoil";
 import { REACT_APP_BASE_URL } from "shared/config";
-import AxiosInstance from "./AxiosInstance";
+import TokenService from "./TokenService";
 
 export const instance = axios.create({
   baseURL: REACT_APP_BASE_URL,
@@ -12,33 +10,41 @@ export const instance = axios.create({
   },
 });
 
+instance.interceptors.request.use(
+  (config: any) => {
+    const token = TokenService.getLocalAccessToken();
+    if (token) {
+      config.headers["Authorization"] = "Bearer " + token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 instance.interceptors.response.use(
   (res) => {
     return res;
   },
   async (err) => {
     const originalConfig = err.config;
-    console.log("refresh required");
 
-    if (err.response) {
+    if (originalConfig.url !== "/auth/signin" && err.response) {
       if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
-        console.log("refresh processing");
 
         try {
           const res: any = await axios({
             method: "PATCH",
             url: getAuth.tokenReissuance(),
             headers: {
-              RefreshToken: JSON.parse(localStorage.getItem("token") || "{}")
-                .refreshToken,
+              RefreshToken: TokenService.getLocalRefreshToken(),
             },
           });
 
           console.log("new Token", res.data);
-
-          localStorage.removeItem("token");
-          localStorage.setItem("token", JSON.stringify(res.data));
+          TokenService.updateLocalAccessToken(res.data.accessToken);
 
           return instance(originalConfig);
         } catch (_error: any) {
