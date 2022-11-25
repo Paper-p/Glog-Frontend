@@ -44,7 +44,7 @@ instance.interceptors.response.use(
           });
 
           console.log("new Token", res.data);
-          TokenService.updateLocalAccessToken(res.data.accessToken);
+          TokenService.setUser(res.data);
 
           return instance(originalConfig);
         } catch (_error: any) {
