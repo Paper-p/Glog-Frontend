@@ -12,19 +12,6 @@ export const instance = axios.create({
   },
 });
 
-instance.interceptors.request.use(
-  (config: any) => {
-    const token = JSON.parse(localStorage.getItem("token") || "{}").accessToken;
-    if (token) {
-      config.headers["Authorization"] = "Bearer " + token;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
 instance.interceptors.response.use(
   (res) => {
     return res;
@@ -36,6 +23,7 @@ instance.interceptors.response.use(
     if (err.response) {
       if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
+        console.log("refresh processing");
 
         try {
           const res: any = await axios({
@@ -52,7 +40,7 @@ instance.interceptors.response.use(
           localStorage.removeItem("token");
           localStorage.setItem("token", JSON.stringify(res.data));
 
-          return AxiosInstance(originalConfig);
+          return instance(originalConfig);
         } catch (_error: any) {
           return Promise.reject(_error);
         }

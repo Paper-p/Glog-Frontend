@@ -10,7 +10,6 @@ import { loggedAtom } from "atoms";
 import user from "data/request/user";
 import Input from "../Input";
 import { searchAtom } from "atoms/AtomContainer";
-import { useQuery } from "react-query";
 
 interface Props {
   isNeedSearch?: boolean;
@@ -43,8 +42,6 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
         console.log(e);
       }
     };
-
-    console.log(JSON.parse(localStorage.getItem("token") || "{}"));
 
     if (logged) {
       getMiniProfile();
