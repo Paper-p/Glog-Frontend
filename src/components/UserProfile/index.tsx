@@ -16,8 +16,6 @@ export default function UserPropfile() {
   const params = useParams();
 
   useEffect(() => {
-    console.log(params.nickname);
-
     const getUserInfo = async () => {
       try {
         const res: any = await user.getUserInfo(
@@ -39,7 +37,7 @@ export default function UserPropfile() {
     }
 
     getUserInfo();
-  }, []);
+  }, [params.nickname]);
 
   return (
     <>
