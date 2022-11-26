@@ -12,19 +12,15 @@ import * as S from "./style";
 export default function Main() {
   const [list, setList] = useState<any[]>([]);
   const [isEnter, setIsEnter] = useState<boolean>(false);
-  const [logged] = useRecoilState(loggedAtom);
   const [search] = useRecoilState(searchAtom);
 
   const getFeedList = async (keyword?: string) => {
     try {
-      const res: any = await feed.getFeedList(
-        10,
-        0,
-        keyword ? keyword : "",
-        logged
-          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          : null
-      );
+      const res: any = await feed.getFeedList({
+        size: 10,
+        page: 0,
+        keyword: keyword ? keyword : "",
+      });
       setList(res.data.list);
     } catch (e: any) {
       console.log(e);

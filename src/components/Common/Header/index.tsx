@@ -10,7 +10,7 @@ import { loggedAtom } from "atoms";
 import user from "data/request/user";
 import Input from "../Input";
 import { searchAtom } from "atoms/AtomContainer";
-import { useQuery } from "react-query";
+import TokenService from "util/TokenService";
 
 interface Props {
   isNeedSearch?: boolean;
@@ -30,27 +30,21 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
   useEffect(() => {
     const getMiniProfile = async () => {
       try {
-        if (logged) {
-          const res: any = await user.getMiniProfile(
-            JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          );
-          setNickname(res.data.nickname);
-          setprofileImg(res.data.profileImageUrl);
-        } else {
-          localStorage.removeItem("token");
-        }
+        const res: any = await user.getMiniProfile(
+          TokenService.getLocalAccessToken()
+        );
+        setNickname(res.data.nickname);
+        setprofileImg(res.data.profileImageUrl);
       } catch (e: any) {
         console.log(e);
       }
     };
 
-    console.log(JSON.parse(localStorage.getItem("token") || "{}"));
-
     if (logged) {
       getMiniProfile();
     } else {
       setLogged(false);
-      localStorage.removeItem("token");
+      TokenService.removeUser();
     }
   }, []);
 
