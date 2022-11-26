@@ -11,32 +11,49 @@ import * as S from "./style";
 
 export default function Main() {
   const [list, setList] = useState<any[]>([]);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true);
+  const page = useRef<number>(0);
+  const observerTargetEl = useRef<HTMLDivElement>(null);
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [search] = useRecoilState(searchAtom);
 
   const getFeedList = async (keyword?: string) => {
     try {
       const res: any = await feed.getFeedList({
-        size: 10,
-        page: 0,
+        size: 8,
+        page: page.current,
         keyword: keyword ? keyword : "",
       });
-      setList(res.data.list);
+      setList((prevPosts) => [...prevPosts, ...res.data.list]);
+      setHasNextPage(res.data.list.length === 8);
+      if (res.data.list.length) {
+        page.current += 1;
+      }
     } catch (e: any) {
       console.log(e);
     }
   };
 
   useEffect(() => {
-    getFeedList();
-  }, []);
+    if (!observerTargetEl.current || !hasNextPage) return;
 
-  useEffect(() => {
-    if (isEnter) {
-      setIsEnter(false);
-      getFeedList(search);
-    }
-  }, [isEnter]);
+    const io = new IntersectionObserver((entries, observer) => {
+      if (entries[0].isIntersecting) {
+        getFeedList();
+      }
+    });
+    io.observe(observerTargetEl.current);
+
+    return () => {
+      io.disconnect();
+    };
+  }, [fetch, hasNextPage]);
+  // useEffect(() => {
+  //   if (isEnter) {
+  //     setIsEnter(false);
+  //     getFeedList(search);
+  //   }
+  // }, [isEnter]);
 
   const onSearch = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") {
@@ -67,6 +84,7 @@ export default function Main() {
               />
             </div>
           ))}
+          <div ref={observerTargetEl} />
         </>
       </S.PostListSection>
     </>
