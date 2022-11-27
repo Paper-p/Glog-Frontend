@@ -17,22 +17,23 @@ export default function Main() {
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [search] = useRecoilState(searchAtom);
 
-  const getFeedList = async (keyword?: string) => {
+  const getFeedList = useCallback(async (keyword?: string) => {
     try {
       const res: any = await feed.getFeedList({
-        size: 8,
+        size: 10,
         page: page.current,
         keyword: keyword ? keyword : "",
       });
       setList((prevPosts) => [...prevPosts, ...res.data.list]);
-      setHasNextPage(res.data.list.length === 8);
+      setHasNextPage(res.data.list.length === 10);
+
       if (res.data.list.length) {
         page.current += 1;
       }
     } catch (e: any) {
-      console.log(e);
+      console.error(e);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (!observerTargetEl.current || !hasNextPage) return;
@@ -47,13 +48,7 @@ export default function Main() {
     return () => {
       io.disconnect();
     };
-  }, [fetch, hasNextPage]);
-  // useEffect(() => {
-  //   if (isEnter) {
-  //     setIsEnter(false);
-  //     getFeedList(search);
-  //   }
-  // }, [isEnter]);
+  }, [hasNextPage, getFeedList]);
 
   const onSearch = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") {
