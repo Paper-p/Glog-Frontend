@@ -4,7 +4,6 @@ export const PostBoxLayout = styled.div<{ isPreview: boolean | undefined }>`
   display: flex;
   justify-content: center;
   pointer-events: ${(e) => (e.isPreview ? "none" : "")};
-  z-index: 1;
 `;
 
 export const PostBox = styled.div<{ url?: string }>`
@@ -116,21 +115,20 @@ export const Svg = styled.div`
 
 export const PostFooter = styled.div`
   display: flex;
-  z-index: 999;
 `;
 
-export const ModifyBox = styled.div`
-  display: flex;
+export const ModifyBox = styled.div<{ modify: boolean | undefined }>`
+  display: ${(props) => (props.modify ? "flex" : "none")};
   position: absolute;
   right: 20px;
   gap: 18px;
 `;
 
 export const Modify = styled.p`
-  color: #7b7b7b;
+  color: #9a9a9a;
   font-family: "Pretendard";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
 `;
 

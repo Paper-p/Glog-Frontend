@@ -27,12 +27,12 @@ function PostBox({
   isMine,
   isPreview,
 }: Props) {
-  const [modify, setModify] = useState(true);
+  const [modify, setModify] = useState<boolean>(false);
 
   return (
     <React.Fragment>
       <S.PostBoxLayout isPreview={isPreview}>
-        <Link to={`/post/${id}`}>
+        <Link to={`/post/${id}`} className="link">
           {isDefault ? (
             <S.PostBox url={imageUrl} className="preview">
               <S.PostTitle className="default">{title}</S.PostTitle>
@@ -48,15 +48,11 @@ function PostBox({
                 <S.PostFooter>
                   <InfoBox like={like} hit={view} />
                   {isMine ? (
-                    <S.ModifyBox>
-                      {modify ? (
-                        <>
-                          <S.Modify>수정</S.Modify>
-                          <S.Delete>삭제</S.Delete>
-                        </>
-                      ) : (
-                        <></>
-                      )}
+                    <S.ModifyBox modify={modify}>
+                      <>
+                        <S.Modify>수정</S.Modify>
+                        <S.Delete>삭제</S.Delete>
+                      </>
                       <div
                         onClick={() => {
                           setModify(!modify);
