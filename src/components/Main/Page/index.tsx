@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import MainSkeleton from "../Skeleton";
 import { Skeleton } from "../Skeleton/style";
 import * as S from "./style";
+import uuid from "react-uuid";
 
 export default function Main() {
   const [list, setList] = useState<any[]>([]);
@@ -20,14 +21,22 @@ export default function Main() {
   const [search] = useRecoilState(searchAtom);
 
   const getFeedList = useCallback(async (keyword?: string) => {
+    if (keyword) {
+      page.current = 0;
+    }
     try {
       setIsLoad(true);
       const res: any = await feed.getFeedList({
         size: 12,
         page: page.current,
-        keyword: keyword ? keyword : "",
+        keyword: keyword && keyword,
       });
-      setList((prevPosts) => [...prevPosts, ...res.data.list]);
+
+      setList(
+        keyword
+          ? res.data.list
+          : (prevPosts) => [...prevPosts, ...res.data.list]
+      );
       setHasNextPage(res.data.list.length === 12);
       setIsLoad(false);
 
@@ -47,6 +56,7 @@ export default function Main() {
         getFeedList();
       }
     });
+
     io.observe(observerTargetEl.current);
 
     return () => {
@@ -62,8 +72,14 @@ export default function Main() {
 
   useEffect(() => {
     if (isEnter) {
+      if (search === "") {
+        page.current = 0;
+        setList([]);
+        getFeedList(search);
+      }
       getFeedList(search);
       setIsEnter(false);
+      page.current = 0;
     }
   }, [isEnter]);
 
@@ -76,7 +92,7 @@ export default function Main() {
       <S.PostListSection>
         <>
           {list.map((idx) => (
-            <div key={idx.id}>
+            <div key={uuid()}>
               <PostBox
                 isDefault={true}
                 id={idx.id}
