@@ -34,12 +34,14 @@ function PostBox({
       <S.PostBoxLayout isPreview={isPreview}>
         <div>
           {isDefault ? (
-            <Link to={`post/${id}`} className="postContent">
+            <Link to={`post/${id}`}>
               <S.PostBox url={imageUrl} className="preview">
                 <S.PostTitle className="default">{title}</S.PostTitle>
                 <S.PostContent className="default">{content}</S.PostContent>
+                <S.InfoBox>
+                  <InfoBox like={like} hit={view} />
+                </S.InfoBox>
               </S.PostBox>
-              <InfoBox like={like} hit={view} />
             </Link>
           ) : (
             <S.PostBox className="not-default">
