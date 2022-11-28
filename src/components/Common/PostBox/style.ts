@@ -7,7 +7,6 @@ export const PostBoxLayout = styled.div<{ isPreview: boolean | undefined }>`
 `;
 
 export const PostBox = styled.div<{ url?: string }>`
-  cursor: pointer;
   width: 35.63vw;
   height: 150px;
   border-radius: 10px;
@@ -129,6 +128,9 @@ export const ModifyBox = styled.div<{ modify: boolean | undefined }>`
   }
 `;
 
+export const KebobBox = styled.span`
+  cursor: pointer;
+`;
 export const Modify = styled.p`
   color: #9a9a9a;
   font-family: "Pretendard";

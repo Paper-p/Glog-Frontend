@@ -32,19 +32,27 @@ function PostBox({
   return (
     <React.Fragment>
       <S.PostBoxLayout isPreview={isPreview}>
-        <Link to={`/post/${id}`}>
+        <div>
           {isDefault ? (
-            <S.PostBox url={imageUrl} className="preview">
-              <S.PostTitle className="default">{title}</S.PostTitle>
-              <S.PostContent className="default">{content}</S.PostContent>
+            <Link to={`post/${id}`} className="postContent">
+              <S.PostBox url={imageUrl} className="preview">
+                <S.PostTitle className="default">{title}</S.PostTitle>
+                <S.PostContent className="default">{content}</S.PostContent>
+              </S.PostBox>
               <InfoBox like={like} hit={view} />
-            </S.PostBox>
+            </Link>
           ) : (
             <S.PostBox className="not-default">
-              <S.Thumbnail src={imageUrl} />
+              <Link to={`/post/${id}`}>
+                <S.Thumbnail src={imageUrl} />
+              </Link>
               <S.TextBox>
-                <S.PostTitle>{title}</S.PostTitle>
-                <S.PostContent>{content}</S.PostContent>
+                <Link to={`/post/${id}`}>
+                  <S.PostTitle>{title}</S.PostTitle>
+                </Link>
+                <Link to={`/post/${id}`}>
+                  <S.PostContent>{content}</S.PostContent>
+                </Link>
                 <S.PostFooter>
                   <InfoBox like={like} hit={view} />
                   {isMine ? (
@@ -53,13 +61,13 @@ function PostBox({
                         <S.Modify>수정</S.Modify>
                         <S.Delete>삭제 </S.Delete>
                       </div>
-                      <span
+                      <S.KebobBox
                         onClick={() => {
                           setModify(!modify);
                         }}
                       >
                         <I.Kebob />
-                      </span>
+                      </S.KebobBox>
                     </S.ModifyBox>
                   ) : (
                     <></>
@@ -68,7 +76,7 @@ function PostBox({
               </S.TextBox>
             </S.PostBox>
           )}
-        </Link>
+        </div>
       </S.PostBoxLayout>
     </React.Fragment>
   );
