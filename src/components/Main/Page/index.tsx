@@ -1,13 +1,10 @@
 import { searchAtom } from "atoms";
-import { PostBox } from "components/Common";
-import Category from "components/Common/Category";
-import Header from "components/Common/Header";
+import { PostBox, Category, Header } from "components/Common";
 import feed from "data/request/feed";
 import { marked } from "marked";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import MainSkeleton from "../Skeleton";
-import { Skeleton } from "../Skeleton/style";
 import * as S from "./style";
 import uuid from "react-uuid";
 
@@ -24,6 +21,8 @@ export default function Main() {
     if (keyword) {
       page.current = 0;
     }
+    console.log(keyword);
+
     try {
       setIsLoad(true);
       const res: any = await feed.getFeedList({
@@ -58,10 +57,7 @@ export default function Main() {
     });
 
     io.observe(observerTargetEl.current);
-
-    return () => {
-      io.disconnect();
-    };
+    return () => io.disconnect();
   }, [hasNextPage, getFeedList, isLoad]);
 
   const onSearch = (e: React.KeyboardEvent<HTMLElement>) => {
