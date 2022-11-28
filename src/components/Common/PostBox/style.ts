@@ -118,10 +118,15 @@ export const PostFooter = styled.div`
 `;
 
 export const ModifyBox = styled.div<{ modify: boolean | undefined }>`
-  display: ${(props) => (props.modify ? "flex" : "none")};
+  display: flex;
   position: absolute;
   right: 20px;
   gap: 18px;
+
+  & > div {
+    display: ${(props) => (props.modify ? "flex" : "none")};
+    gap: 18px;
+  }
 `;
 
 export const Modify = styled.p`
@@ -130,6 +135,8 @@ export const Modify = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
+  animation: fadein 0.7s;
+  -webkit-animation: fadein 0.7s;
 `;
 
 export const Delete = styled.p`
@@ -138,4 +145,6 @@ export const Delete = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
+  animation: fadein 0.3s;
+  -webkit-animation: fadein 0.3s;
 `;
