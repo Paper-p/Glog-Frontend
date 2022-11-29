@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import InfoBox from "./Common";
 import * as I from "assets/svg";
 import { useRecoilState } from "recoil";
-import { deletePostModalAtom } from "atoms";
+import { deletePostId, deletePostModalAtom } from "atoms";
 
 interface Props {
   isDefault: boolean;
@@ -31,8 +31,10 @@ function PostBox({
 }: Props) {
   const [modify, setModify] = useState<boolean>(false);
   const [, setDeletePostModal] = useRecoilState(deletePostModalAtom);
+  const [postId, setPostId] = useRecoilState(deletePostId);
   const onDeletePost = () => {
     setDeletePostModal(true);
+    setPostId(Number(id));
   };
   return (
     <React.Fragment>

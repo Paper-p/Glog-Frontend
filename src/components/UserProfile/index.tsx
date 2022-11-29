@@ -4,6 +4,7 @@ import Category from "components/Common/Category";
 import DeletePostModal from "components/Modal/DeletePostModal";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
@@ -18,29 +19,34 @@ export default function UserPropfile() {
   const navigator = useNavigate();
   const params = useParams();
 
-  useEffect(() => {
-    const getUserInfo = async () => {
-      try {
-        const res: any = await user.getUserInfo(
-          JSON.parse(localStorage.getItem("token") || "{}").accessToken,
-          String(params.nickname)
-        );
-        setIsMine(res.data.isMine);
-        setFeedList(res.data.feedList);
-        setUserInfo(res.data);
-      } catch (e: any) {
-        console.log(e);
-      }
-    };
+  const getUserInfo = async () => {
+    try {
+      const res: any = await user.getUserInfo(
+        JSON.parse(localStorage.getItem("token") || "{}").accessToken,
+        String(params.nickname)
+      );
+      setIsMine(res.data.isMine);
+      setFeedList(res.data.feedList);
+      setUserInfo(res.data);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
 
+  useEffect(() => {
     if (isMine) {
       if (!logged) {
         navigator("/signin");
       }
     }
-
     getUserInfo();
   }, [params.nickname]);
+
+  const postsQuery = useQuery({
+    queryKey: "posts",
+    queryFn: getUserInfo,
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <>

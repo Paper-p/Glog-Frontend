@@ -1,22 +1,22 @@
-import { deletePostModalAtom } from "atoms";
+import { deletePostId, deletePostModalAtom } from "atoms";
 import { Button, ModalLayout } from "components/Common";
+import feed from "data/request/feed";
 import React from "react";
 import { useQueryClient, useMutation } from "react-query";
-import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 
 function DeletePostModal() {
   const [, setDeletePostModal] = useRecoilState(deletePostModalAtom);
+  const [postId] = useRecoilState(deletePostId);
   const queryClient = useQueryClient();
-  const params = useParams();
   const onDeletePost = async () => {
-    Number(params.postId);
+    return feed.deletePost(postId);
   };
 
   const { mutate: deletePost } = useMutation(() => onDeletePost(), {
     onSettled: () => {
-      queryClient.invalidateQueries("feed");
+      queryClient.invalidateQueries("posts");
       setDeletePostModal(false);
     },
   });
