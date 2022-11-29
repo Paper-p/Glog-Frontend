@@ -1,4 +1,4 @@
-import { searchAtom } from "atoms";
+import { getProfileAtom, searchAtom } from "atoms";
 import { PostBox, Category, Header } from "components/Common";
 import feed from "data/request/feed";
 import { marked } from "marked";
@@ -15,6 +15,7 @@ export default function Main() {
   const observerTargetEl = useRef<HTMLDivElement>(null);
   const [isLoad, setIsLoad] = useState<boolean>(false);
   const [search] = useRecoilState(searchAtom);
+  const [, setGetProfile] = useRecoilState(getProfileAtom);
 
   const getFeedList = useCallback(async () => {
     try {
@@ -25,6 +26,7 @@ export default function Main() {
         keyword: search && search,
       });
 
+      setGetProfile(true); //miniprofile 요청
       setList((prevPosts) => [...prevPosts, ...res.data.list]);
       setHasNextPage(res.data.list.length === 12);
       setIsLoad(false);

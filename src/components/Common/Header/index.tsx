@@ -9,8 +9,9 @@ import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
 import user from "data/request/user";
 import Input from "../Input";
-import { searchAtom } from "atoms/AtomContainer";
+import { getProfileAtom, searchAtom } from "atoms/AtomContainer";
 import TokenService from "util/TokenService";
+import { useQuery } from "react-query";
 
 interface Props {
   isNeedSearch?: boolean;
@@ -23,12 +24,13 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
   const [logged, setLogged] = useRecoilState(loggedAtom);
   const [nickname, setNickname] = useState<string>("");
   const [profileImg, setprofileImg] = useState<string>("");
+  const [getProfile] = useRecoilState(getProfileAtom);
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
 
-  useEffect(() => {
-    const getMiniProfile = async () => {
+  const getMiniProfile = async () => {
+    if (logged) {
       try {
         const res: any = await user.getMiniProfile(
           TokenService.getLocalAccessToken()
@@ -38,15 +40,23 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
       } catch (e: any) {
         console.log(e);
       }
-    };
-
-    if (logged) {
-      getMiniProfile();
     } else {
       setLogged(false);
       TokenService.removeUser();
     }
-  }, []);
+  };
+
+  const { isLoading, refetch } = useQuery({
+    queryKey: "header",
+    queryFn: getMiniProfile,
+    enabled: false,
+  });
+
+  useEffect(() => {
+    if (getProfile) {
+      refetch();
+    }
+  }, [getProfile]);
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
