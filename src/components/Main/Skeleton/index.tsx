@@ -4,7 +4,7 @@ import uuid from "react-uuid";
 function MainSkeleton() {
   const skeleton = () => {
     const returnList: any[] = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 12; i++) {
       returnList.push(<S.Skeleton key={uuid()} />);
     }
     return returnList;

@@ -9,33 +9,23 @@ import * as S from "./style";
 import uuid from "react-uuid";
 
 export default function Main() {
+  const page = useRef<number>(0);
   const [list, setList] = useState<any[]>([]);
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
-  const page = useRef<number>(0);
   const observerTargetEl = useRef<HTMLDivElement>(null);
-  const [isEnter, setIsEnter] = useState<boolean>(false);
   const [isLoad, setIsLoad] = useState<boolean>(false);
   const [search] = useRecoilState(searchAtom);
 
-  const getFeedList = useCallback(async (keyword?: string) => {
-    if (keyword) {
-      page.current = 0;
-    }
-    console.log(keyword);
-
+  const getFeedList = useCallback(async () => {
     try {
       setIsLoad(true);
       const res: any = await feed.getFeedList({
         size: 12,
         page: page.current,
-        keyword: keyword && keyword,
+        keyword: search && search,
       });
 
-      setList(
-        keyword
-          ? res.data.list
-          : (prevPosts) => [...prevPosts, ...res.data.list]
-      );
+      setList((prevPosts) => [...prevPosts, ...res.data.list]);
       setHasNextPage(res.data.list.length === 12);
       setIsLoad(false);
 
@@ -45,7 +35,7 @@ export default function Main() {
     } catch (e: any) {
       console.error(e);
     }
-  }, []);
+  }, [search]);
 
   useEffect(() => {
     if (!observerTargetEl.current || !hasNextPage) return;
@@ -62,22 +52,11 @@ export default function Main() {
 
   const onSearch = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") {
-      setIsEnter(true);
+      page.current = 0;
+      setList([]);
+      getFeedList();
     }
   };
-
-  useEffect(() => {
-    if (isEnter) {
-      if (search === "") {
-        page.current = 0;
-        setList([]);
-        getFeedList(search);
-      }
-      getFeedList(search);
-      setIsEnter(false);
-      page.current = 0;
-    }
-  }, [isEnter]);
 
   return (
     <>
