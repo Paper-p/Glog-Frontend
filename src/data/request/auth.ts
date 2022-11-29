@@ -61,20 +61,6 @@ class Auth {
       return error;
     }
   }
-
-  tokenReissuance() {
-    try {
-      return AxiosInstance(
-        {
-          method: "PATCH",
-          url: getAuth.tokenReissuance(),
-        },
-        JSON.parse(localStorage.getItem("token") || "{}").refreshToken
-      );
-    } catch (error) {
-      return error;
-    }
-  }
 }
 
 export default new Auth();

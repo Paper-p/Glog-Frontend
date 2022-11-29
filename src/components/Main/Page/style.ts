@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const CategoryBox = styled.div`
   width: 72.5%;
   margin: auto;
-  padding: 400px 0 22.5px 0;
+  padding: 90px 0 22.5px 0;
 `;
 
 export const PostListSection = styled.div`
@@ -12,6 +12,5 @@ export const PostListSection = styled.div`
   margin: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 1rem;
 `;
-
-export const PostWrapper = styled.div``;

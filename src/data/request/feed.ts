@@ -1,8 +1,14 @@
-import { loggedAtom } from "atoms";
 import { getFeed } from "data/url/getUrl";
-import { useRecoilState } from "recoil";
 import { WriteType } from "types/feedType";
 import AxiosInstance from "util/AxiosInstance";
+import TokenService from "util/TokenService";
+
+interface IGetFeed {
+  size: number;
+  page: number;
+  keyword?: string;
+  token?: string;
+}
 
 class Feed {
   writeFeed(data: WriteType) {
@@ -25,7 +31,7 @@ class Feed {
     }
   }
 
-  getFeedList(size: number, page: number, keyword?: string, token?: string) {
+  getFeedList({ size, page, keyword, token }: IGetFeed) {
     try {
       return AxiosInstance(
         {
@@ -37,7 +43,7 @@ class Feed {
             keyword: keyword,
           },
         },
-        token
+        token ? TokenService.getLocalAccessToken() : ""
       );
     } catch (error) {
       return error;
@@ -52,6 +58,20 @@ class Feed {
           url: getFeed.feed() + `/${id}`,
         },
         token
+      );
+    } catch (error) {
+      return error;
+    }
+  }
+
+  deletePost(id: number) {
+    try {
+      return AxiosInstance(
+        {
+          method: "DELETE",
+          url: getFeed.feed() + `/${id}`,
+        },
+        JSON.parse(localStorage.getItem("token") || "{}").accessToken
       );
     } catch (error) {
       return error;

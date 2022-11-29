@@ -17,6 +17,7 @@ import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../Textarea";
 import { useQuery } from "react-query";
 import RemoveCommentModal from "components/Modal/CommentDeleteModal";
+import TokenService from "util/TokenService";
 
 function DetailsPostPage() {
   const [logged] = useRecoilState(loggedAtom);
@@ -45,9 +46,7 @@ function DetailsPostPage() {
       try {
         const res: any = await feed.getDetailsPost(
           Number(params.postId),
-          logged
-            ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-            : ""
+          logged ? TokenService.getLocalAccessToken() : ""
         );
         setResponse(res.data);
         setLoading(true);
@@ -59,7 +58,7 @@ function DetailsPostPage() {
     getDetailsPostData();
   }, []);
 
-  const commentsQuery = useQuery({
+  const { isLoading } = useQuery({
     queryKey: "feed",
     queryFn: fetching,
     refetchOnWindowFocus: false,
@@ -70,7 +69,7 @@ function DetailsPostPage() {
       <Header isNeedSearch={false} />
       <S.DetailsPostLayout>
         {removeCommentModal && <RemoveCommentModal />}
-        {loading ? (
+        {!isLoading ? (
           <>
             <S.Title>{response.title}</S.Title>
             <DetailsPostTag tagList={response.tagList} />

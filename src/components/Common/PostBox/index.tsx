@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import * as S from "./style";
-import React from "react";
+import React, { useState } from "react";
 import InfoBox from "./Common";
+import * as I from "assets/svg";
+import { useRecoilState } from "recoil";
+import { deletePostId, deletePostModalAtom } from "atoms";
 
 interface Props {
   isDefault: boolean;
@@ -11,6 +14,7 @@ interface Props {
   content: string;
   like: number;
   view: number;
+  isMine?: boolean;
   isPreview?: boolean;
 }
 
@@ -22,29 +26,66 @@ function PostBox({
   content,
   like,
   view,
+  isMine,
   isPreview,
 }: Props) {
+  const [modify, setModify] = useState<boolean>(false);
+  const [, setDeletePostModal] = useRecoilState(deletePostModalAtom);
+  const [postId, setPostId] = useRecoilState(deletePostId);
+  const onDeletePost = () => {
+    setDeletePostModal(true);
+    setPostId(Number(id));
+  };
   return (
     <React.Fragment>
       <S.PostBoxLayout isPreview={isPreview}>
-        <Link to={`/post/${id}`}>
+        <div>
           {isDefault ? (
-            <S.PostBox url={imageUrl} className="preview">
-              <S.PostTitle className="default">{title}</S.PostTitle>
-              <S.PostContent className="default">{content}</S.PostContent>
-              <InfoBox like={like} hit={view} />
-            </S.PostBox>
+            <Link to={`post/${id}`}>
+              <S.PostBox url={imageUrl} className="preview">
+                <S.PostTitle className="default">{title}</S.PostTitle>
+                <S.PostContent className="default">{content}</S.PostContent>
+                <S.InfoBox>
+                  <InfoBox like={like} hit={view} />
+                </S.InfoBox>
+              </S.PostBox>
+            </Link>
           ) : (
             <S.PostBox className="not-default">
-              <S.Thumbnail src={imageUrl} />
+              <Link to={`/post/${id}`}>
+                <S.Thumbnail src={imageUrl} />
+              </Link>
               <S.TextBox>
-                <S.PostTitle>{title}</S.PostTitle>
-                <S.PostContent>{content}</S.PostContent>
-                <InfoBox like={like} hit={view} />
+                <Link to={`/post/${id}`}>
+                  <S.PostTitle>{title}</S.PostTitle>
+                </Link>
+                <Link to={`/post/${id}`}>
+                  <S.PostContent>{content}</S.PostContent>
+                </Link>
+                <S.PostFooter>
+                  <InfoBox like={like} hit={view} />
+                  {isMine ? (
+                    <S.ModifyBox modify={modify}>
+                      <div>
+                        <S.Modify>수정</S.Modify>
+                        <S.Delete onClick={onDeletePost}>삭제 </S.Delete>
+                      </div>
+                      <S.KebobBox
+                        onClick={() => {
+                          setModify(!modify);
+                        }}
+                      >
+                        <I.Kebob />
+                      </S.KebobBox>
+                    </S.ModifyBox>
+                  ) : (
+                    <></>
+                  )}
+                </S.PostFooter>
               </S.TextBox>
             </S.PostBox>
           )}
-        </Link>
+        </div>
       </S.PostBoxLayout>
     </React.Fragment>
   );
