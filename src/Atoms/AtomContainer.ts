@@ -53,10 +53,8 @@ export const searchAtom = atom({
   default: "",
 });
 
-export const miniProfileAtom = atom({
-  key: "miniProfile",
-  default: {
-    nickname: "",
-    profileImageUrl: "",
-  },
+export const getProfileAtom = atom({
+  key: "getProfile",
+  default: false,
+  effects_UNSTABLE: [persistAtom], //새로고침시에도 데이터유지
 });
