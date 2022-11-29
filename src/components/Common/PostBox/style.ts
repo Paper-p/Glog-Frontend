@@ -132,6 +132,7 @@ export const KebobBox = styled.span`
   cursor: pointer;
 `;
 export const Modify = styled.p`
+  cursor: pointer;
   color: #9a9a9a;
   font-family: "Pretendard";
   font-style: normal;
@@ -142,6 +143,7 @@ export const Modify = styled.p`
 `;
 
 export const Delete = styled.p`
+  cursor: pointer;
   color: #e22e2e;
   font-family: "Pretendard";
   font-style: normal;
