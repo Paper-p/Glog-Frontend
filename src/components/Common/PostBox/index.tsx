@@ -3,6 +3,8 @@ import * as S from "./style";
 import React, { useState } from "react";
 import InfoBox from "./Common";
 import * as I from "assets/svg";
+import { useRecoilState } from "recoil";
+import { deletePostModalAtom } from "atoms";
 
 interface Props {
   isDefault: boolean;
@@ -28,7 +30,10 @@ function PostBox({
   isPreview,
 }: Props) {
   const [modify, setModify] = useState<boolean>(false);
-
+  const [, setDeletePostModal] = useRecoilState(deletePostModalAtom);
+  const onDeletePost = () => {
+    setDeletePostModal(true);
+  };
   return (
     <React.Fragment>
       <S.PostBoxLayout isPreview={isPreview}>
@@ -61,7 +66,7 @@ function PostBox({
                     <S.ModifyBox modify={modify}>
                       <div>
                         <S.Modify>수정</S.Modify>
-                        <S.Delete>삭제 </S.Delete>
+                        <S.Delete onClick={onDeletePost}>삭제 </S.Delete>
                       </div>
                       <S.KebobBox
                         onClick={() => {

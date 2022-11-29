@@ -6,4 +6,5 @@ export { thumbnailUrlAtom } from "./AtomContainer";
 export { tagAtom } from "./AtomContainer";
 export { searchAtom } from "./AtomContainer";
 export { removeCommentModalAtom } from "./AtomContainer";
+export { deletePostModalAtom } from "./AtomContainer";
 export { commentIdAtom } from "./AtomContainer";

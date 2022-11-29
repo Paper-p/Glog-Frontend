@@ -1,6 +1,7 @@
-import { loggedAtom } from "atoms";
+import { deletePostModalAtom, loggedAtom } from "atoms";
 import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
+import DeletePostModal from "components/Modal/DeletePostModal";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,6 +13,8 @@ export default function UserPropfile() {
   const [feedList, setFeedList] = useState<any[]>([]);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [logged] = useRecoilState(loggedAtom);
+  const [deletePostModal, setDeletePostModal] =
+    useRecoilState(deletePostModalAtom);
   const navigator = useNavigate();
   const params = useParams();
 
@@ -42,6 +45,7 @@ export default function UserPropfile() {
   return (
     <>
       <S.ProfileLayout>
+        {deletePostModal && <DeletePostModal />}
         <S.ProfileBox>
           <S.ProfileImage src={userInfo.profileImageUrl} />
           <S.ProfileName>{userInfo.nickname}</S.ProfileName>

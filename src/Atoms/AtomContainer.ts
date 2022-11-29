@@ -28,6 +28,11 @@ export const removeCommentModalAtom = atom({
   default: false,
 });
 
+export const deletePostModalAtom = atom({
+  key: "deletePostModal",
+  default: false,
+});
+
 export const titleAtom = atom({
   key: "title",
   default: "",
