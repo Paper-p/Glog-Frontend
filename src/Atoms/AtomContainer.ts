@@ -52,3 +52,11 @@ export const searchAtom = atom({
   key: "search",
   default: "",
 });
+
+export const miniProfileAtom = atom({
+  key: "miniProfile",
+  default: {
+    nickname: "",
+    profileImageUrl: "",
+  },
+});
