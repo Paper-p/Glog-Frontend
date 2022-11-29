@@ -63,6 +63,20 @@ class Feed {
       return error;
     }
   }
+
+  deletePost(id: number) {
+    try {
+      return AxiosInstance(
+        {
+          method: "DELETE",
+          url: getFeed.feed() + `/${id}`,
+        },
+        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+      );
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new Feed();
