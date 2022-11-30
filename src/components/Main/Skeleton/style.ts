@@ -73,6 +73,7 @@ export const Skeleton = styled.div`
 
   @media screen and (max-width: 850px) {
     width: 80vw;
+    margin: auto;
   }
 
   @media screen and (max-width: 600px) {
