@@ -26,6 +26,22 @@ export const PostBox = styled.div<{ url?: string }>`
     background: none;
     padding: 0;
   }
+
+  @media screen and (max-width: 1350px) {
+    width: 43vw;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 45vw;
+  }
+
+  @media screen and (max-width: 850px) {
+    width: 80vw;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 90vw;
+  }
 `;
 
 export const PostTitle = styled.p`
