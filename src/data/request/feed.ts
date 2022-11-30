@@ -77,6 +77,20 @@ class Feed {
       return error;
     }
   }
+
+  getHotPostsList(token?: string) {
+    try {
+      return AxiosInstance(
+        {
+          method: "GET",
+          url: getFeed.getHotPostsList(),
+        },
+        token
+      );
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new Feed();

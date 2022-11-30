@@ -25,6 +25,26 @@ export const PostBox = styled.div<{ url?: string }>`
     position: relative;
     background: none;
     padding: 0;
+
+    @media screen and (max-width: 1350px) {
+      width: 20.5vw;
+    }
+
+    @media screen and (max-width: 1000px) {
+      width: 45vw;
+    }
+
+    @media screen and (max-width: 850px) {
+      width: 38vw;
+    }
+
+    @media screen and (max-width: 650px) {
+      width: 45vw;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 90vw;
+    }
   }
 
   @media screen and (max-width: 1350px) {
