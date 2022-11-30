@@ -1,5 +1,5 @@
 import { getFeed } from "data/url/getUrl";
-import { WriteType } from "types/feedType";
+import { WriteType } from "interfaces/IFeed";
 import AxiosInstance from "util/AxiosInstance";
 import TokenService from "util/TokenService";
 

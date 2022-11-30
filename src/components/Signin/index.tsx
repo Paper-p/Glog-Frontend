@@ -10,7 +10,7 @@ import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
-import { LoginType } from "types/authType";
+import { LoginType } from "interfaces/IAuth";
 import { toast } from "react-toastify";
 
 export default function Signin() {

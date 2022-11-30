@@ -11,7 +11,7 @@ import {
   DetailsPostTag,
 } from "components/DetailsPost";
 import * as S from "./style";
-import { CommentType } from "types/commentType";
+import { CommentType } from "interfaces/IComment";
 import { loggedAtom, removeCommentModalAtom } from "atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../Textarea";
@@ -58,7 +58,7 @@ function DetailsPostPage() {
     getDetailsPostData();
   }, []);
 
-  const { isLoading } = useQuery({
+  const commentQuery = useQuery({
     queryKey: "feed",
     queryFn: fetching,
     refetchOnWindowFocus: false,
@@ -69,7 +69,7 @@ function DetailsPostPage() {
       <Header isNeedSearch={false} />
       <S.DetailsPostLayout>
         {removeCommentModal && <RemoveCommentModal />}
-        {!isLoading ? (
+        {loading ? (
           <>
             <S.Title>{response.title}</S.Title>
             <DetailsPostTag tagList={response.tagList} />

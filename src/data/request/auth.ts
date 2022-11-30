@@ -1,6 +1,6 @@
 import { getAuth } from "data/url/getUrl";
 import AxiosInstance from "util/AxiosInstance";
-import { LoginType, JoinType } from "types/authType";
+import { LoginType, JoinType } from "interfaces/IAuth";
 
 class Auth {
   confirmName(name: string) {
