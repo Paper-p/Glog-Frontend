@@ -75,7 +75,10 @@ export function WriteModal() {
 
   const imgHandler = async (e: any) => {
     try {
-      setThumbnailUrl(URL.createObjectURL(e.target.files[0]));
+      let blob = new Blob([new ArrayBuffer(e.target.files[0])], {
+        type: "image/png",
+      });
+      setThumbnailUrl(URL.createObjectURL(blob));
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
       const res: any = await image.uploadImage(
