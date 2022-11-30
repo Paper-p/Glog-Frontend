@@ -11,7 +11,7 @@ import {
   DetailsPostTag,
 } from "components/DetailsPost";
 import * as S from "./style";
-import { CommentType } from "types/commentType";
+import { CommentType } from "interfaces/IComment";
 import { loggedAtom, removeCommentModalAtom } from "atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../Textarea";
