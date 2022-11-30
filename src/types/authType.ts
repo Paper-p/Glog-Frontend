@@ -8,3 +8,9 @@ export interface JoinType {
   userId: string;
   password: string;
 }
+
+export interface TokenType {
+  accessToken: string;
+  refreshToken: string;
+  expiredAt: Date;
+}

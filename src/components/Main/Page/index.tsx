@@ -24,7 +24,6 @@ export default function Main() {
         page: page.current,
         keyword: search && search,
       });
-
       setList((prevPosts) => [...prevPosts, ...res.data.list]);
       setHasNextPage(res.data.list.length === 12);
       setIsLoad(false);

@@ -27,8 +27,8 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
 
-  useEffect(() => {
-    const getMiniProfile = async () => {
+  const getMiniProfile = async () => {
+    if (logged) {
       try {
         const res: any = await user.getMiniProfile(
           TokenService.getLocalAccessToken()
@@ -38,14 +38,14 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
       } catch (e: any) {
         console.log(e);
       }
-    };
-
-    if (logged) {
-      getMiniProfile();
     } else {
       setLogged(false);
       TokenService.removeUser();
     }
+  };
+
+  useEffect(() => {
+    getMiniProfile();
   }, []);
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
