@@ -91,7 +91,6 @@ export default function UserPropfile() {
           <S.MyPostsBox>
             {feedList.map((post) => (
               <PostBox
-                isDefault={false}
                 key={post.id}
                 id={post.id}
                 title={post.title}
@@ -100,6 +99,8 @@ export default function UserPropfile() {
                 view={post.hit}
                 like={post.likeCount}
                 isMine={isMine}
+                isDefault={false}
+                inUserPage={true}
               />
             ))}
           </S.MyPostsBox>

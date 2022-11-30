@@ -15,6 +15,24 @@ export const MyPostsBox = styled.div`
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25vw 1.25vw;
+
+  @media screen and (max-width: 1100px) {
+    width: 75vw;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 850px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 750px) {
+    width: 70vw;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 70vw;
+  }
 `;
 
 export const ProfileLayout = styled.div`

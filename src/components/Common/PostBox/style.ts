@@ -6,7 +6,8 @@ export const PostBoxLayout = styled.div<{ isPreview: boolean | undefined }>`
   pointer-events: ${(e) => (e.isPreview ? "none" : "")};
 `;
 
-export const PostBox = styled.div<{ url?: string }>`
+//inUserPage 을 이용해 유저페이지 Postbox 와 인기글 Postbox 반응형 구분
+export const PostBox = styled.div<{ url?: string; inUserPage?: boolean }>`
   width: 35.63vw;
   height: 150px;
   border-radius: 10px;
@@ -26,27 +27,37 @@ export const PostBox = styled.div<{ url?: string }>`
     background: none;
     padding: 0;
 
+    // true === 유저페이지글
     @media screen and (max-width: 1350px) {
       width: 20.5vw;
     }
 
+    @media screen and (max-width: 1100px) {
+      width: ${(e) => (e.inUserPage ? "25vw" : "20vw")};
+    }
+
     @media screen and (max-width: 1000px) {
-      width: 45vw;
+      width: ${(e) => (e.inUserPage ? "25vw" : "40vw")};
     }
 
     @media screen and (max-width: 850px) {
-      width: 38vw;
+      width: ${(e) => (e.inUserPage ? "40vw" : "38vw")};
+    }
+
+    @media screen and (max-width: 750px) {
+      width: ${(e) => (e.inUserPage ? "70vw" : "38vw")};
     }
 
     @media screen and (max-width: 650px) {
-      width: 45vw;
+      width: ${(e) => (e.inUserPage ? "70vw" : "38vw")};
     }
 
     @media screen and (max-width: 600px) {
-      width: 90vw;
+      width: ${(e) => (e.inUserPage ? "80vw" : "38vw")};
     }
   }
 
+  // 기본게시물
   @media screen and (max-width: 1350px) {
     width: 43vw;
   }
