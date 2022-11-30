@@ -35,6 +35,25 @@ export const SkeletonLayout = styled.div`
       background-color: rgba(165, 165, 165, 0.1);
     }
   }
+
+  @media screen and (max-width: 1350px) {
+    width: 90vw;
+    gap: 1.3vw 0.6vw;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 95vw;
+  }
+
+  @media screen and (max-width: 850px) {
+    width: 85vw;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 95vw;
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export const Skeleton = styled.div`
@@ -43,4 +62,21 @@ export const Skeleton = styled.div`
   border-radius: 10px;
   -webkit-animation: skeleton-gradient 1.5s infinite ease-in-out;
   animation: skeleton-gradient 1.5s infinite ease-in-out;
+
+  @media screen and (max-width: 1350px) {
+    width: 43vw;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 45vw;
+  }
+
+  @media screen and (max-width: 850px) {
+    width: 80vw;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 90vw;
+  }
 `;
