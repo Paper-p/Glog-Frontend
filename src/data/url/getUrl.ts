@@ -39,6 +39,10 @@ export const getFeed = {
   getFeedlist: () => {
     return REACT_APP_BASE_URL + "/feed/list";
   },
+
+  getHotPostsList: () => {
+    return REACT_APP_BASE_URL + "/feed/hot";
+  },
 };
 
 export const getComment = {
