@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import MainSkeleton from "../Skeleton";
 import * as S from "./style";
 import uuid from "react-uuid";
+import MainPageHotPosts from "../HotPosts";
 
 export default function Main() {
   const page = useRef<number>(0);
@@ -60,6 +61,7 @@ export default function Main() {
   return (
     <>
       <Header isNeedSearch={true} onKeyPress={onSearch} />
+      <MainPageHotPosts />
       <S.CategoryBox>
         <Category>💻 게시물’s</Category>
       </S.CategoryBox>

@@ -49,7 +49,3 @@ export const PostListSection = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
-
-// mobile: '640px',
-// tablet: '960px',
-// laptop: '1080px',
