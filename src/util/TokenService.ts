@@ -1,8 +1,4 @@
-interface IToken {
-  accessToken: string;
-  refreshToken: string;
-  expiredAt: Date;
-}
+import { TokenType } from "types/authType";
 
 class TokenService {
   getLocalRefreshToken() {
@@ -25,7 +21,7 @@ class TokenService {
     return JSON.parse(localStorage.getItem("token") || "{}");
   }
 
-  setUser(user: IToken) {
+  setUser(user: TokenType) {
     localStorage.setItem("token", JSON.stringify(user));
   }
 
