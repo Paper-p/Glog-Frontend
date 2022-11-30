@@ -62,9 +62,3 @@ export const searchAtom = atom({
   key: "search",
   default: "",
 });
-
-export const getProfileAtom = atom({
-  key: "getProfile",
-  default: false,
-  effects_UNSTABLE: [persistAtom], //새로고침시에도 데이터유지
-});

@@ -8,5 +8,4 @@ export { searchAtom } from "./AtomContainer";
 export { removeCommentModalAtom } from "./AtomContainer";
 export { deletePostModalAtom } from "./AtomContainer";
 export { commentIdAtom } from "./AtomContainer";
-export { getProfileAtom } from "./AtomContainer";
 export { deletePostId } from "./AtomContainer";
