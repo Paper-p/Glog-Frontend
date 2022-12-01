@@ -3,18 +3,44 @@ import styled from "@emotion/styled";
 export const MyPostsLayout = styled.div`
   width: 72.5%;
   margin: auto;
+
+  @media screen and (max-width: 1350px) {
+    width: 90vw;
+  }
+
+  @media screen and (max-width: 1100px) {
+    width: 95vw;
+  }
+
+  @media screen and (max-width: 750px) {
+    width: 75vw;
+  }
 `;
 
 export const CategoryBox = styled.div`
+  width: 100%;
   padding-top: 30px;
   padding-bottom: 16px;
 `;
 
 export const MyPostsBox = styled.div`
+  width: 100%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25vw 1.25vw;
+  gap: 2vw 1.5vw;
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 850px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 650px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export const ProfileLayout = styled.div`

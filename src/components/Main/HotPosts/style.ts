@@ -39,11 +39,12 @@ export const HotPostList = styled.div`
   @media screen and (max-width: 1000px) {
     width: 95vw;
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.6vw 1.3vw;
   }
 
   @media screen and (max-width: 850px) {
     width: 85vw;
-    gap: 0.83vw 0;
+    gap: 3vw 0;
   }
 
   @media screen and (max-width: 650px) {
@@ -52,6 +53,9 @@ export const HotPostList = styled.div`
     overflow: auto;
     white-space: nowrap;
     display: flex;
+
+    &::-webkit-scrollbar{
+    display: none; 
   }
 
   @media screen and (max-width: 600px) {

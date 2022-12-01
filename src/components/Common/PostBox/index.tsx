@@ -16,6 +16,7 @@ interface Props {
   view: number;
   isMine?: boolean;
   isPreview?: boolean;
+  inUserPage?: boolean;
 }
 
 function PostBox({
@@ -28,6 +29,7 @@ function PostBox({
   view,
   isMine,
   isPreview,
+  inUserPage,
 }: Props) {
   const [modify, setModify] = useState<boolean>(false);
   const [, setDeletePostModal] = useRecoilState(deletePostModalAtom);
@@ -51,7 +53,7 @@ function PostBox({
               </S.PostBox>
             </Link>
           ) : (
-            <S.PostBox className="not-default">
+            <S.PostBox inUserPage={inUserPage} className="not-default">
               <Link to={`/post/${id}`}>
                 <S.Thumbnail src={imageUrl} />
               </Link>
