@@ -21,39 +21,42 @@ export const PostBox = styled.div<{ url?: string; inUserPage?: boolean }>`
   background-size: cover;
 
   &.not-default {
-    width: 17.19vw;
+    width: ${(e) => (e.inUserPage ? "17vw" : "17.19vw")};
     height: 330px;
     position: relative;
     background: none;
     padding: 0;
 
-    // true === 유저페이지글
+    /**
+    * true === 유저페이지 게시글
+    */
+
     @media screen and (max-width: 1350px) {
-      width: 20.5vw;
+      width: ${(e) => (e.inUserPage ? "21vw" : "20vw")};
     }
 
     @media screen and (max-width: 1100px) {
-      width: ${(e) => (e.inUserPage ? "25vw" : "20vw")};
+      width: ${(e) => (e.inUserPage ? "30vw" : "20vw")};
     }
 
     @media screen and (max-width: 1000px) {
-      width: ${(e) => (e.inUserPage ? "25vw" : "40vw")};
+      width: ${(e) => (e.inUserPage ? "30vw" : "45vw")};
     }
 
     @media screen and (max-width: 850px) {
-      width: ${(e) => (e.inUserPage ? "40vw" : "38vw")};
+      width: ${(e) => (e.inUserPage ? "46vw" : "38vw")};
     }
 
     @media screen and (max-width: 750px) {
-      width: ${(e) => (e.inUserPage ? "70vw" : "38vw")};
+      width: ${(e) => (e.inUserPage ? "37vw" : "38vw")};
     }
 
     @media screen and (max-width: 650px) {
-      width: ${(e) => (e.inUserPage ? "70vw" : "38vw")};
+      width: ${(e) => (e.inUserPage ? "75vw" : "45vw")};
     }
 
     @media screen and (max-width: 600px) {
-      width: ${(e) => (e.inUserPage ? "80vw" : "38vw")};
+      width: ${(e) => (e.inUserPage ? "75vw" : "90vw")};
     }
   }
 
