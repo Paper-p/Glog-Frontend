@@ -18,8 +18,7 @@ export default function UserPropfile() {
   const [postsNull, setPostsNull] = useState<boolean>(false);
   const navigator = useNavigate();
   const params = useParams();
-  const [deletePostModal, setDeletePostModal] =
-    useRecoilState(deletePostModalAtom);
+  const [deletePostModal] = useRecoilState(deletePostModalAtom);
 
   useEffect(() => {
     const getUserInfo = async () => {

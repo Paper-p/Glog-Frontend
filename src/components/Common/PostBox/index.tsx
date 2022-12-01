@@ -33,7 +33,7 @@ function PostBox({
 }: Props) {
   const [modify, setModify] = useState<boolean>(false);
   const [, setDeletePostModal] = useRecoilState(deletePostModalAtom);
-  const [postId, setPostId] = useRecoilState(deletePostId);
+  const [, setPostId] = useRecoilState(deletePostId);
   const onDeletePost = () => {
     setDeletePostModal(true);
     setPostId(Number(id));
