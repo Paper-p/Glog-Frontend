@@ -37,11 +37,13 @@ export const PostListSection = styled.div`
 
   @media screen and (max-width: 1000px) {
     width: 95vw;
+    gap: 2vw 0;
   }
 
   @media screen and (max-width: 850px) {
     width: 85vw;
     grid-template-columns: repeat(1, 1fr);
+    gap: 3vw 0;
   }
 
   @media screen and (max-width: 600px) {
