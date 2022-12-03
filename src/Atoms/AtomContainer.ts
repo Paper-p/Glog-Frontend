@@ -62,3 +62,8 @@ export const searchAtom = atom({
   key: "search",
   default: "",
 });
+
+export const MyCategoryAtom = atom({
+  key: "myCategory",
+  default: false,
+});
