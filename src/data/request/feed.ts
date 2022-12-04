@@ -36,7 +36,7 @@ class Feed {
       return AxiosInstance(
         {
           method: "PATCH",
-          url: getFeed.feed(),
+          url: getFeed.feed() + `/${id}`,
           data: {
             title: data.title,
             content: data.content,
