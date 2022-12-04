@@ -21,6 +21,7 @@ export const TextareaLayout = styled.div`
 
   textarea {
     width: 100%;
+    min-height: 70px;
     background: #27282b;
     color: #fff;
     font-family: "Pretendard";
@@ -29,6 +30,7 @@ export const TextareaLayout = styled.div`
     resize: none;
     border: none;
     outline: none;
+    margin-bottom: 20px;
   }
 `;
 
