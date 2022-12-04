@@ -33,8 +33,8 @@ export const deletePostModalAtom = atom({
   default: false,
 });
 
-export const editUserProfileModalAtom = atom({
-  key: "editUserProfileModal",
+export const editProfileModalAtom = atom({
+  key: "editProfileModal",
   default: false,
 });
 
