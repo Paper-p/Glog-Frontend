@@ -1,4 +1,4 @@
-import { deletePostModalAtom, loggedAtom } from "atoms";
+import { deletePostModalAtom, editProfileModalAtom, loggedAtom } from "atoms";
 import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
 import PostIsNull from "components/PostIsNull";
@@ -9,6 +9,7 @@ import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
+import EditProfileModal from "components/Modal/EditProfileAtom";
 
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
@@ -18,8 +19,9 @@ export default function UserPropfile() {
   const [postsNull, setPostsNull] = useState<boolean>(false);
   const navigator = useNavigate();
   const params = useParams();
-  const [deletePostModal, setDeletePostModal] =
-    useRecoilState(deletePostModalAtom);
+  const [deletePostModal] = useRecoilState(deletePostModalAtom);
+  const [editProfileModal, setEditProfileModal] =
+    useRecoilState(editProfileModalAtom);
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -74,10 +76,15 @@ export default function UserPropfile() {
     <>
       <S.ProfileLayout>
         {deletePostModal && <DeletePostModal />}
+        {editProfileModal && <EditProfileModal />}
         <S.ProfileBox>
           <S.ProfileImage src={userInfo.profileImageUrl} />
           <S.ProfileName>{userInfo.nickname}</S.ProfileName>
-          {isMine && <S.EditProfileButton>프로필 변경하기</S.EditProfileButton>}
+          {isMine && (
+            <S.EditProfileButton onClick={() => setEditProfileModal(true)}>
+              프로필 변경하기
+            </S.EditProfileButton>
+          )}
         </S.ProfileBox>
       </S.ProfileLayout>
       <S.MyPostsLayout>
