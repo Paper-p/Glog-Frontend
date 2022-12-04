@@ -18,8 +18,10 @@ function DetailsPostTextarea() {
   });
 
   const onAddComment = async () => {
-    setNull("content");
-    return comment.addComment(Number(params.postId), content);
+    if (content !== "") {
+      setNull("content");
+      return comment.addComment(Number(params.postId), content);
+    }
   };
 
   const { mutate: addComment } = useMutation(onAddComment, {

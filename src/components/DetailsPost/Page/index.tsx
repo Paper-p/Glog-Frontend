@@ -14,7 +14,7 @@ import * as S from "./style";
 import { CommentType } from "interfaces/IComment";
 import { loggedAtom, removeCommentModalAtom } from "atoms";
 import { useRecoilState } from "recoil";
-import DetailsPostTextarea from "../Textarea";
+import DetailsPostTextarea from "../CommentTextarea";
 import { useQuery } from "react-query";
 import RemoveCommentModal from "components/Modal/CommentDeleteModal";
 import TokenService from "util/TokenService";
