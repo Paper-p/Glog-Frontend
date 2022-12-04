@@ -71,7 +71,24 @@ export const ProfileName = styled.p`
   font-weight: 600;
   font-size: 18px;
   color: #ffffff;
-  margin-top: 16px;
+  margin: 16px 0 20px 0;
   text-align: center;
   cursor: pointer;
+`;
+
+export const EditProfileButton = styled.div`
+  width: 130px;
+  height: 40px;
+  margin: 0 auto;
+  background: #1a1b1e;
+  color: #cccccc;
+  font-size: 14px;
+  text-align: center;
+  line-height: 36px;
+  border: #cccccc 1px solid;
+  cursor: pointer;
+
+  &:hover {
+    background: #25262b;
+  }
 `;

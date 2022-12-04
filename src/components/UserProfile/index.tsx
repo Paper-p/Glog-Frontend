@@ -77,6 +77,7 @@ export default function UserPropfile() {
         <S.ProfileBox>
           <S.ProfileImage src={userInfo.profileImageUrl} />
           <S.ProfileName>{userInfo.nickname}</S.ProfileName>
+          {isMine && <S.EditProfileButton>프로필 변경하기</S.EditProfileButton>}
         </S.ProfileBox>
       </S.ProfileLayout>
       <S.MyPostsLayout>
