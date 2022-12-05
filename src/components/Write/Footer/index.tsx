@@ -1,6 +1,6 @@
 import * as S from "./style";
 import { useRecoilState } from "recoil";
-import { tagAtom } from "atoms";
+import { tagAtom } from "Atoms";
 import { useNavigate } from "react-router-dom";
 
 interface Props

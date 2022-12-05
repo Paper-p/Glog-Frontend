@@ -12,7 +12,7 @@ import {
 } from "components/DetailsPost";
 import * as S from "./style";
 import { CommentType } from "interfaces/IComment";
-import { loggedAtom, removeCommentModalAtom } from "atoms";
+import { loggedAtom, removeCommentModalAtom } from "Atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../CommentTextarea";
 import { useQuery } from "react-query";

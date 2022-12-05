@@ -1,4 +1,4 @@
-import { loggedAtom, logoutModalAtom } from "atoms";
+import { loggedAtom, logoutModalAtom } from "Atoms";
 import { Button, ModalLayout } from "components/Common";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";

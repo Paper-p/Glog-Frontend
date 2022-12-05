@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import useInputs from "hooks/useInputs";
 import { useRecoilState } from "recoil";
-import { tagAtom } from "atoms";
+import { tagAtom } from "Atoms";
 import React from "react";
 
 interface TagType {

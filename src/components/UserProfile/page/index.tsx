@@ -3,7 +3,7 @@ import {
   editProfileModalAtom,
   loggedAtom,
   logoutModalAtom,
-} from "atoms";
+} from "Atoms";
 import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
 import PostIsNull from "components/PostIsNull";

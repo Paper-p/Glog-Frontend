@@ -2,9 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import * as S from "./style";
 import React, { useState } from "react";
 import InfoBox from "./Common";
-import * as I from "assets/svg";
+import * as I from "Assets/svg";
 import { useRecoilState } from "recoil";
-import { deletePostId, deletePostModalAtom } from "atoms";
+import { deletePostId, deletePostModalAtom } from "Atoms";
 
 interface Props {
   isDefault: boolean;

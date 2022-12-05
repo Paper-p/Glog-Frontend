@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import * as I from "assets/svg";
+import * as I from "Assets/svg";
 
 interface Props {
   like: number;

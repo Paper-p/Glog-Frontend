@@ -6,10 +6,10 @@ import { css } from "@emotion/react";
 import Logo from "../Logo";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { loggedAtom } from "atoms";
+import { loggedAtom } from "Atoms";
 import user from "data/request/user";
 import Input from "../Input";
-import { searchAtom } from "atoms/AtomContainer";
+import { searchAtom } from "Atoms/AtomContainer";
 import TokenService from "util/TokenService";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 

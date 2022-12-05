@@ -7,7 +7,7 @@ import Header from "components/Common/Header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { loggedAtom } from "atoms";
+import { loggedAtom } from "Atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
 import { LoginType } from "interfaces/IAuth";

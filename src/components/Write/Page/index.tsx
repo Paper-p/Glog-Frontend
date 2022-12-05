@@ -8,7 +8,7 @@ import {
   titleAtom,
   tagAtom,
   thumbnailUrlAtom,
-} from "atoms";
+} from "Atoms";
 import WriteFooter from "../Footer";
 import WriteContent from "../Content";
 import WriteTag from "../Tag";
