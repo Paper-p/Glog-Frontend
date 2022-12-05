@@ -94,9 +94,12 @@ export default function UserPropfile() {
           <S.ProfileImage src={profileImg} />
           <S.ProfileName>{userInfo.nickname}</S.ProfileName>
           {isMine && (
-            <S.EditProfileButton onClick={() => setEditProfileModal(true)}>
-              프로필 변경하기
-            </S.EditProfileButton>
+            <>
+              <S.EditProfileButton onClick={() => setEditProfileModal(true)}>
+                프로필 변경하기
+              </S.EditProfileButton>
+              <S.Logout>로그아웃</S.Logout>
+            </>
           )}
         </S.ProfileBox>
       </S.ProfileLayout>
