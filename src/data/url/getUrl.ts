@@ -47,6 +47,10 @@ export const getFeed = {
   getHotPostsList: () => {
     return REACT_APP_BASE_URL + "/feed/hot";
   },
+
+  getMyLikeFeedList: () => {
+    return REACT_APP_BASE_URL + "/feed/like";
+  },
 };
 
 export const getComment = {

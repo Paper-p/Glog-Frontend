@@ -51,6 +51,20 @@ class Feed {
     }
   }
 
+  getMyLikeFeedList(token: string) {
+    try {
+      return AxiosInstance(
+        {
+          method: "GET",
+          url: getFeed.getMyLikeFeedList(),
+        },
+        token
+      );
+    } catch (error) {
+      return error;
+    }
+  }
+
   deletePost(id: number) {
     try {
       return AxiosInstance(
