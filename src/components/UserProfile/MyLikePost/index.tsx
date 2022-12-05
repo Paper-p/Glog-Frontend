@@ -22,12 +22,26 @@ export default function MyLikePost() {
   const [likeList, setLikeList] = useState<any[]>([]);
 
   useEffect(() => {
+    console.log("asdasdassd");
+  }, []);
+
+  useEffect(() => {
+    console.log("he");
+
+    if (myLike) {
+      console.log("hasdas");
+    }
+
     const getMyLikePosts = async () => {
       try {
         const res: any = await feed.getMyLikeFeedList(
-          logged && TokenService.getLocalAccessToken()
+          TokenService.getLocalAccessToken()
         );
+
+        console.log(res);
+
         setLikeList(res.data.list);
+
         if (res.data.list.length === 0) {
           setPostsNull(true);
         }
@@ -36,10 +50,11 @@ export default function MyLikePost() {
       }
     };
     getMyLikePosts();
-  }, [myLike]);
+  }, []);
 
   return (
     <>
+      <LikePostIsNull />
       {postsNull ? (
         <LikePostIsNull />
       ) : (

@@ -17,6 +17,23 @@ export const MyPostsLayout = styled.div`
   }
 `;
 
+export const MyPostsBox = styled.div`
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2vw 1.5vw;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 850px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 650px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
+
 export const CategoryBox = styled.div`
   width: 100%;
   padding: 30px 0 22.5px 0;
@@ -84,6 +101,7 @@ export const Logout = styled.p`
 export const MyCategoryBox = styled.div`
   display: flex;
   gap: 12px;
+  margin-bottom: 20px;
 `;
 
 export const MyCategory = styled.div<{ clicked?: boolean | undefined }>`

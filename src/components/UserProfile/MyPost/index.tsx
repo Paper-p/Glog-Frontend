@@ -10,34 +10,52 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 import * as I from "Assets/svg";
+import TokenService from "util/TokenService";
 
 export default function MyLikePost() {
-  const [userInfo, setUserInfo] = useState<any>({});
   const [feedList, setFeedList] = useState<any[]>([]);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [postsNull, setPostsNull] = useState<boolean>(false);
   const params = useParams();
 
-  const getUserInfo = async () => {
+  useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const res: any = await user.getUserInfo(
+          TokenService.getLocalAccessToken(),
+          String(params.nickname)
+        );
+
+        setIsMine(res.data.isMine);
+        setFeedList(res.data.feedList);
+
+        if (res.data.feedList.length === 0) {
+          setPostsNull(true);
+        }
+      } catch (e: any) {
+        console.log(e);
+      }
+    };
+
+    getUserInfo();
+  }, []);
+
+  const fetch = async () => {
     try {
       const res: any = await user.getUserInfo(
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken,
+        TokenService.getLocalAccessToken(),
         String(params.nickname)
       );
       setIsMine(res.data.isMine);
       setFeedList(res.data.feedList);
-      setUserInfo(res.data);
-      if (res.data.feedList.length === 0) {
-        setPostsNull(true);
-      }
     } catch (e: any) {
       console.log(e);
     }
   };
 
-  const postsQuery = useQuery({
-    queryKey: "posts",
-    queryFn: getUserInfo,
+  const userProfileQuery = useQuery({
+    queryKey: "UserProfile",
+    queryFn: fetch,
     refetchOnWindowFocus: false,
   });
 
