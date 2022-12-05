@@ -19,26 +19,6 @@ export default function MyLikePost() {
   const [postsNull, setPostsNull] = useState<boolean>(false);
   const params = useParams();
 
-  useEffect(() => {
-    const getUserInfo = async () => {
-      try {
-        const res: any = await user.getUserInfo(
-          JSON.parse(localStorage.getItem("token") || "{}").accessToken,
-          String(params.nickname)
-        );
-        setIsMine(res.data.isMine);
-        setFeedList(res.data.feedList);
-        setUserInfo(res.data);
-        if (res.data.feedList.length === 0) {
-          setPostsNull(true);
-        }
-      } catch (e: any) {
-        console.log(e);
-      }
-    };
-    getUserInfo();
-  }, [params.ninkname]);
-
   const getUserInfo = async () => {
     try {
       const res: any = await user.getUserInfo(
