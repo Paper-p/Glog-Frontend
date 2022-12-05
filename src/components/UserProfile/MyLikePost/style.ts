@@ -80,15 +80,3 @@ export const MyCategoryBox = styled.div`
   display: flex;
   gap: 12px;
 `;
-
-export const MyCategory = styled.div<{ clicked?: boolean | undefined }>`
-  cursor: pointer;
-  background-color: ${(e) => (e.clicked ? "#969696" : "#33333399")};
-  width: fit-content;
-  padding: 8px 13px;
-  text-align: center;
-  border-radius: 10px;
-  color: ${(e) => (e.clicked ? "black" : "#969696")};
-  transition: 0.6s;
-  transform: ${(e) => (e.clicked ? "" : "translateY(10px)")};
-`;

@@ -17,9 +17,6 @@ export default function MyLikePost() {
   const [isMine, setIsMine] = useState<boolean>(false);
   const [postsNull, setPostsNull] = useState<boolean>(false);
   const params = useParams();
-  const [deletePostModal] = useRecoilState(deletePostModalAtom);
-  const [myPost, setMyPost] = useRecoilState(MyPostAtom);
-  const [myLike, setMyLike] = useRecoilState(MyLikeAtom);
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -61,57 +58,28 @@ export default function MyLikePost() {
     refetchOnWindowFocus: false,
   });
 
-  const clickMyPost = () => {
-    setMyPost(true);
-    setMyLike(false);
-  };
-  const clickMyLike = () => {
-    setMyPost(false);
-    setMyLike(true);
-  };
-
   return (
     <>
-      <S.MyPostsLayout>
-        <S.CategoryBox>
-          {isMine ? (
-            <S.MyCategoryBox>
-              <S.MyCategory clicked={myPost} onClick={clickMyPost}>
-                💻내 게시물's
-              </S.MyCategory>
-              <S.MyCategory clicked={myLike} onClick={clickMyLike}>
-                <I.Like /> 하트
-              </S.MyCategory>
-            </S.MyCategoryBox>
-          ) : (
-            <Category>
-              {isMine
-                ? "💻내 게시물's"
-                : `💻 ${userInfo.nickname}님의 게시물's`}
-            </Category>
-          )}
-        </S.CategoryBox>
-        {postsNull ? (
-          <PostIsNull />
-        ) : (
-          <S.MyPostsBox>
-            {feedList.map((post) => (
-              <PostBox
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                imageUrl={post.thumbnail}
-                content={post.previewContent}
-                view={post.hit}
-                like={post.likeCount}
-                isMine={isMine}
-                isDefault={false}
-                inUserPage={true}
-              />
-            ))}
-          </S.MyPostsBox>
-        )}
-      </S.MyPostsLayout>
+      {postsNull ? (
+        <PostIsNull />
+      ) : (
+        <S.MyPostsBox>
+          {feedList.map((post) => (
+            <PostBox
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              imageUrl={post.thumbnail}
+              content={post.previewContent}
+              view={post.hit}
+              like={post.likeCount}
+              isMine={isMine}
+              isDefault={false}
+              inUserPage={true}
+            />
+          ))}
+        </S.MyPostsBox>
+      )}
     </>
   );
 }

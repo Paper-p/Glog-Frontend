@@ -1,4 +1,4 @@
-import { deletePostModalAtom, loggedAtom, MyPostAtom } from "atoms";
+import { deletePostModalAtom, loggedAtom, MyLikeAtom, MyPostAtom } from "atoms";
 import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
 import PostIsNull from "components/PostIsNull";
@@ -19,8 +19,9 @@ export default function UserPropfile() {
   const [logged] = useRecoilState(loggedAtom);
   const navigator = useNavigate();
   const [userInfo, setUserInfo] = useState<any>({});
-  const [myPost] = useRecoilState(MyPostAtom);
   const [deletePostModal] = useRecoilState(deletePostModalAtom);
+  const [myPost, setMyPost] = useRecoilState(MyPostAtom);
+  const [myLike, setMyLike] = useRecoilState(MyLikeAtom);
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -46,6 +47,16 @@ export default function UserPropfile() {
     }
   }, [params.nickname]);
 
+  const clickMyPost = () => {
+    setMyPost(true);
+    setMyLike(false);
+  };
+
+  const clickMyLike = () => {
+    setMyPost(false);
+    setMyLike(true);
+  };
+
   return (
     <>
       <S.ProfileLayout>
@@ -55,7 +66,27 @@ export default function UserPropfile() {
           <S.ProfileName>{userInfo.nickname}</S.ProfileName>
         </S.ProfileBox>
       </S.ProfileLayout>
-      {myPost ? <MyPost /> : <MyLikePost></MyLikePost>}
+      <S.MyPostsLayout>
+        <S.CategoryBox>
+          {isMine ? (
+            <S.MyCategoryBox>
+              <S.MyCategory clicked={myPost} onClick={clickMyPost}>
+                💻내 게시물's
+              </S.MyCategory>
+              <S.MyCategory clicked={myLike} onClick={clickMyLike}>
+                <I.Like /> 하트
+              </S.MyCategory>
+            </S.MyCategoryBox>
+          ) : (
+            <Category>
+              {isMine
+                ? "💻내 게시물's"
+                : `💻 ${userInfo.nickname}님의 게시물's`}
+            </Category>
+          )}
+        </S.CategoryBox>
+        {myPost ? <MyPost /> : <MyLikePost />}
+      </S.MyPostsLayout>
     </>
   );
 }
