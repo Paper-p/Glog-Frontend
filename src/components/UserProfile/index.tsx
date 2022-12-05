@@ -43,7 +43,7 @@ export default function UserPropfile() {
     getUserInfo();
   }, [params.ninkname]);
 
-  const getUserInfo = async () => {
+  const fetch = async () => {
     try {
       const res: any = await user.getUserInfo(
         JSON.parse(localStorage.getItem("token") || "{}").accessToken,
@@ -57,20 +57,20 @@ export default function UserPropfile() {
     }
   };
 
+  const userProfileQuery = useQuery({
+    queryKey: "UserProfile",
+    queryFn: fetch,
+    refetchOnWindowFocus: false,
+  });
+
   useEffect(() => {
     if (isMine) {
       if (!logged) {
         navigator("/signin");
       }
     }
-    getUserInfo();
+    fetch();
   }, [params.nickname]);
-
-  const postsQuery = useQuery({
-    queryKey: "posts",
-    queryFn: getUserInfo,
-    refetchOnWindowFocus: false,
-  });
 
   return (
     <>

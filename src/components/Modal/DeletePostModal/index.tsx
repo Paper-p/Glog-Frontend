@@ -16,7 +16,7 @@ function DeletePostModal() {
 
   const { mutate: deletePost } = useMutation(() => onDeletePost(), {
     onSettled: () => {
-      queryClient.invalidateQueries("posts");
+      queryClient.invalidateQueries("UserProfile");
       setDeletePostModal(false);
     },
   });
