@@ -10,3 +10,4 @@ export { deletePostModalAtom } from "./AtomContainer";
 export { commentIdAtom } from "./AtomContainer";
 export { deletePostId } from "./AtomContainer";
 export { editProfileModalAtom } from "./AtomContainer";
+export { logoutModalAtom } from "./AtomContainer";
