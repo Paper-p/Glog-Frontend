@@ -28,13 +28,14 @@ export const ImageChangeBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 60px;
+  width: 65px;
   height: 30px;
   background: #1a1b1e;
   position: absolute;
   bottom: 10%;
-  left: 30%;
+  left: 30.5%;
   cursor: pointer;
+  border-radius: 5px;
 
   p {
     color: white;
