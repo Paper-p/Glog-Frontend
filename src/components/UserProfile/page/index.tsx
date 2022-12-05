@@ -13,6 +13,7 @@ import EditProfileModal from "components/Modal/EditProfileAtom";
 
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [feedList, setFeedList] = useState<any[]>([]);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [logged] = useRecoilState(loggedAtom);
@@ -25,14 +26,17 @@ export default function UserPropfile() {
 
   useEffect(() => {
     const getUserInfo = async () => {
+      setIsLoading(true);
       try {
         const res: any = await user.getUserInfo(
           JSON.parse(localStorage.getItem("token") || "{}").accessToken,
           String(params.nickname)
         );
+
         setIsMine(res.data.isMine);
         setFeedList(res.data.feedList);
         setUserInfo(res.data);
+        setIsLoading(false);
         if (res.data.feedList.length === 0) {
           setPostsNull(true);
         }
