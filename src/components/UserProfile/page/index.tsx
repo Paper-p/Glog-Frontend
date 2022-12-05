@@ -11,6 +11,7 @@ import { useRecoilState } from "recoil";
 import * as S from "./style";
 import EditProfileModal from "components/Modal/EditProfileAtom";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
+import UserProfilePageSkeleton from "../skeleton";
 
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
@@ -105,6 +106,7 @@ export default function UserPropfile() {
             {isMine ? "💻내 게시물's" : `💻 ${userInfo.nickname}님의 게시물's`}
           </Category>
         </S.CategoryBox>
+        {isLoading && <UserProfilePageSkeleton />}
         {postsNull ? (
           <PostIsNull />
         ) : (
