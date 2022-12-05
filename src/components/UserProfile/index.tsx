@@ -76,7 +76,12 @@ export default function UserPropfile() {
     <>
       <S.ProfileLayout>
         {deletePostModal && <DeletePostModal />}
-        {editProfileModal && <EditProfileModal />}
+        {editProfileModal && (
+          <EditProfileModal
+            userImage={userInfo.profileImageUrl}
+            nickname={userInfo.nickname}
+          />
+        )}
         <S.ProfileBox>
           <S.ProfileImage src={userInfo.profileImageUrl} />
           <S.ProfileName>{userInfo.nickname}</S.ProfileName>
