@@ -1,4 +1,4 @@
-import { loggedAtom } from "atoms";
+import { loggedAtom } from "Atoms";
 import { useRecoilState } from "recoil";
 import IsNotLogin from "components/IsNotLogin";
 import Write from "../components/Write/Page";

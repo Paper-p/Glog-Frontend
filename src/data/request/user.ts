@@ -29,6 +29,23 @@ class User {
       return error;
     }
   }
+
+  editProfileImage(url: string, token: string) {
+    try {
+      return AxiosInstance(
+        {
+          method: "PUT",
+          url: getUser.editProfile(),
+          data: {
+            imageUrl: url,
+          },
+        },
+        token
+      );
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new User();

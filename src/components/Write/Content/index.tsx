@@ -1,6 +1,6 @@
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import MDEditor from "@uiw/react-md-editor";
-import { contentAtom } from "atoms";
+import { contentAtom } from "Atoms";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import * as S from "./style";

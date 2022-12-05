@@ -1,4 +1,4 @@
-import { loggedAtom } from "atoms";
+import { loggedAtom } from "Atoms";
 import { Button } from "components/Common";
 import comment from "data/request/comment";
 import useInputs from "hooks/useInputs";
@@ -18,8 +18,10 @@ function DetailsPostTextarea() {
   });
 
   const onAddComment = async () => {
-    setNull("content");
-    return comment.addComment(Number(params.postId), content);
+    if (content !== "") {
+      setNull("content");
+      return comment.addComment(Number(params.postId), content);
+    }
   };
 
   const { mutate: addComment } = useMutation(onAddComment, {

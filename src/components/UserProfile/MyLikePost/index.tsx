@@ -1,4 +1,4 @@
-import { deletePostModalAtom, loggedAtom, MyLikeAtom, MyPostAtom } from "atoms";
+import { deletePostModalAtom, loggedAtom, MyLikeAtom, MyPostAtom } from "Atoms";
 import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
 import PostIsNull from "components/PostIsNull";
@@ -9,7 +9,7 @@ import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
-import * as I from "assets/svg";
+import * as I from "Assets/svg";
 import LikePostIsNull from "components/PostIsNull/LikePostIsNull";
 import feed from "data/request/feed";
 import TokenService from "util/TokenService";

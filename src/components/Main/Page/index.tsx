@@ -1,4 +1,4 @@
-import { searchAtom } from "atoms";
+import { searchAtom } from "Atoms";
 import { PostBox, Category, Header } from "components/Common";
 import feed from "data/request/feed";
 import { marked } from "marked";

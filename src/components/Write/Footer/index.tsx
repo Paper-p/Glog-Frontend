@@ -1,14 +1,15 @@
 import * as S from "./style";
 import { useRecoilState } from "recoil";
-import { tagAtom } from "atoms";
+import { tagAtom } from "Atoms";
 import { useNavigate } from "react-router-dom";
 
 interface Props
   extends React.HTMLAttributes<HTMLDivElement | HTMLParagraphElement> {
   errorMessage: string;
+  mode: "작성하기" | "수정하기";
 }
 
-function WriteFooter({ errorMessage, ...rest }: Props) {
+function WriteFooter({ mode, errorMessage, ...rest }: Props) {
   const [, setTag] = useRecoilState(tagAtom);
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ function WriteFooter({ errorMessage, ...rest }: Props) {
       <S.ButtonBox>
         <p onClick={onExit}>취소</p>
         <div {...rest}>
-          <p>작성하기</p>
+          <p>{mode}</p>
         </div>
       </S.ButtonBox>
     </S.FooterLayout>

@@ -1,4 +1,4 @@
-import { deletePostId, deletePostModalAtom } from "atoms";
+import { deletePostId, deletePostModalAtom } from "Atoms";
 import { Button, ModalLayout } from "components/Common";
 import feed from "data/request/feed";
 import React from "react";
@@ -16,7 +16,7 @@ function DeletePostModal() {
 
   const { mutate: deletePost } = useMutation(() => onDeletePost(), {
     onSettled: () => {
-      queryClient.invalidateQueries("posts");
+      queryClient.invalidateQueries("UserProfile");
       setDeletePostModal(false);
     },
   });

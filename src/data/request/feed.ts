@@ -31,19 +31,20 @@ class Feed {
     }
   }
 
-  getFeedList({ size, page, keyword, token }: IGetFeed) {
+  editPost(id: number, data: WriteType) {
     try {
       return AxiosInstance(
         {
-          method: "GET",
-          url: getFeed.getFeedlist(),
-          params: {
-            size: size,
-            page: page,
-            keyword: keyword,
+          method: "PATCH",
+          url: getFeed.feed() + `/${id}`,
+          data: {
+            title: data.title,
+            content: data.content,
+            thumbnail: data.thumbnail,
+            tags: data.tags,
           },
         },
-        token ? TokenService.getLocalAccessToken() : ""
+        data.token
       );
     } catch (error) {
       return error;
@@ -56,20 +57,6 @@ class Feed {
         {
           method: "GET",
           url: getFeed.getMyLikeFeedList(),
-        },
-        token
-      );
-    } catch (error) {
-      return error;
-    }
-  }
-
-  getDetailsPost(id: number, token?: string) {
-    try {
-      return AxiosInstance(
-        {
-          method: "GET",
-          url: getFeed.feed() + `/${id}`,
         },
         token
       );
@@ -92,12 +79,45 @@ class Feed {
     }
   }
 
+  getFeedList({ size, page, keyword, token }: IGetFeed) {
+    try {
+      return AxiosInstance(
+        {
+          method: "GET",
+          url: getFeed.getFeedlist(),
+          params: {
+            size: size,
+            page: page,
+            keyword: keyword,
+          },
+        },
+        token ? TokenService.getLocalAccessToken() : ""
+      );
+    } catch (error) {
+      return error;
+    }
+  }
+
   getHotPostsList(token?: string) {
     try {
       return AxiosInstance(
         {
           method: "GET",
           url: getFeed.getHotPostsList(),
+        },
+        token
+      );
+    } catch (error) {
+      return error;
+    }
+  }
+
+  getDetailsPost(id: number, token?: string) {
+    try {
+      return AxiosInstance(
+        {
+          method: "GET",
+          url: getFeed.feed() + `/${id}`,
         },
         token
       );

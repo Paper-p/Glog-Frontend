@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./style";
 import React, { useState } from "react";
 import InfoBox from "./Common";
-import * as I from "assets/svg";
+import * as I from "Assets/svg";
 import { useRecoilState } from "recoil";
-import { deletePostId, deletePostModalAtom } from "atoms";
+import { deletePostId, deletePostModalAtom } from "Atoms";
 
 interface Props {
   isDefault: boolean;
@@ -33,11 +33,21 @@ function PostBox({
 }: Props) {
   const [modify, setModify] = useState<boolean>(false);
   const [, setDeletePostModal] = useRecoilState(deletePostModalAtom);
-  const [, setPostId] = useRecoilState(deletePostId);
+  const [postId, setPostId] = useRecoilState(deletePostId);
+  const navigate = useNavigate();
   const onDeletePost = () => {
     setDeletePostModal(true);
     setPostId(Number(id));
   };
+
+  const onEditPost = () => {
+    navigate("/write", {
+      state: {
+        id: id,
+      },
+    });
+  };
+
   return (
     <React.Fragment>
       <S.PostBoxLayout isPreview={isPreview}>
@@ -69,7 +79,7 @@ function PostBox({
                   {isMine ? (
                     <S.ModifyBox modify={modify}>
                       <div>
-                        <S.Modify>수정</S.Modify>
+                        <S.Modify onClick={onEditPost}>수정</S.Modify>
                         <S.Delete onClick={onDeletePost}>삭제 </S.Delete>
                       </div>
                       <S.KebobBox
