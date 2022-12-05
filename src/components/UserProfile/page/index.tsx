@@ -10,10 +10,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 import EditProfileModal from "components/Modal/EditProfileAtom";
+import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [profileImg, setProfileImg] = useState<string>(DEFAULT_PROFILE_IMAGE);
   const [feedList, setFeedList] = useState<any[]>([]);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [logged] = useRecoilState(loggedAtom);
@@ -33,6 +35,7 @@ export default function UserPropfile() {
           String(params.nickname)
         );
 
+        setProfileImg(res.data.profileImageUrl);
         setIsMine(res.data.isMine);
         setFeedList(res.data.feedList);
         setUserInfo(res.data);
@@ -87,7 +90,7 @@ export default function UserPropfile() {
           />
         )}
         <S.ProfileBox>
-          <S.ProfileImage src={userInfo.profileImageUrl} />
+          <S.ProfileImage src={profileImg} />
           <S.ProfileName>{userInfo.nickname}</S.ProfileName>
           {isMine && (
             <S.EditProfileButton onClick={() => setEditProfileModal(true)}>
