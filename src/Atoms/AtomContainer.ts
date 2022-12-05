@@ -38,6 +38,11 @@ export const editProfileModalAtom = atom({
   default: false,
 });
 
+export const logoutModalAtom = atom({
+  key: "logoutModal",
+  default: false,
+});
+
 export const deletePostId = atom({
   key: "postId",
   default: 0,

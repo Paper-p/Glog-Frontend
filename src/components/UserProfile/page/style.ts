@@ -55,6 +55,7 @@ export const ProfileBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 `;
 
 export const ProfileImage = styled.img`
@@ -91,4 +92,12 @@ export const EditProfileButton = styled.div`
   &:hover {
     background: #25262b;
   }
+`;
+
+export const Logout = styled.p`
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
 `;
