@@ -1,4 +1,9 @@
-import { deletePostModalAtom, editProfileModalAtom, loggedAtom } from "atoms";
+import {
+  deletePostModalAtom,
+  editProfileModalAtom,
+  loggedAtom,
+  logoutModalAtom,
+} from "atoms";
 import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
 import PostIsNull from "components/PostIsNull";
@@ -12,6 +17,7 @@ import * as S from "./style";
 import EditProfileModal from "components/Modal/EditProfileAtom";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import UserProfilePageSkeleton from "../skeleton";
+import LogoutModal from "components/Modal/LogoutModal";
 
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
@@ -23,6 +29,7 @@ export default function UserPropfile() {
   const [postsNull, setPostsNull] = useState<boolean>(false);
   const navigator = useNavigate();
   const params = useParams();
+  const [logoutModal, setLogoutModal] = useRecoilState(logoutModalAtom);
   const [deletePostModal] = useRecoilState(deletePostModalAtom);
   const [editProfileModal, setEditProfileModal] =
     useRecoilState(editProfileModalAtom);
@@ -83,6 +90,7 @@ export default function UserPropfile() {
   return (
     <>
       <S.ProfileLayout>
+        {logoutModal && <LogoutModal />}
         {deletePostModal && <DeletePostModal />}
         {editProfileModal && (
           <EditProfileModal
@@ -98,7 +106,7 @@ export default function UserPropfile() {
               <S.EditProfileButton onClick={() => setEditProfileModal(true)}>
                 프로필 변경하기
               </S.EditProfileButton>
-              <S.Logout>로그아웃</S.Logout>
+              <S.Logout onClick={() => setLogoutModal(true)}>로그아웃</S.Logout>
             </>
           )}
         </S.ProfileBox>
