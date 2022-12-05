@@ -9,4 +9,5 @@ export { removeCommentModalAtom } from "./AtomContainer";
 export { deletePostModalAtom } from "./AtomContainer";
 export { commentIdAtom } from "./AtomContainer";
 export { deletePostId } from "./AtomContainer";
-export { MyCategoryAtom } from "./AtomContainer";
+export { MyPostAtom } from "./AtomContainer";
+export { MyLikeAtom } from "./AtomContainer";

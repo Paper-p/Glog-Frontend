@@ -63,7 +63,12 @@ export const searchAtom = atom({
   default: "",
 });
 
-export const MyCategoryAtom = atom({
-  key: "myCategory",
+export const MyPostAtom = atom({
+  key: "myPost",
+  default: true,
+});
+
+export const MyLikeAtom = atom({
+  key: "myLike",
   default: false,
 });
