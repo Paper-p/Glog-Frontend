@@ -19,28 +19,7 @@ export const MyPostsLayout = styled.div`
 
 export const CategoryBox = styled.div`
   width: 100%;
-  padding-top: 30px;
-  padding-bottom: 16px;
-`;
-
-export const MyPostsBox = styled.div`
-  width: 100%;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2vw 1.5vw;
-
-  @media screen and (max-width: 1100px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media screen and (max-width: 850px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media screen and (max-width: 650px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
+  padding: 30px 0 22.5px 0;
 `;
 
 export const ProfileLayout = styled.div`
