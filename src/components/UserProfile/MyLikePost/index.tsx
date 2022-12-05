@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 import * as I from "assets/svg";
+import LikePostIsNull from "components/PostIsNull/LikePostIsNull";
 
 export default function MyLikePost() {
   const [userInfo, setUserInfo] = useState<any>({});
@@ -61,7 +62,7 @@ export default function MyLikePost() {
   return (
     <>
       {postsNull ? (
-        <PostIsNull />
+        <LikePostIsNull />
       ) : (
         <S.MyPostsBox>
           {feedList.map((post) => (
