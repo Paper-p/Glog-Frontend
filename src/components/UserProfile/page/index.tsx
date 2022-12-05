@@ -18,6 +18,7 @@ import EditProfileModal from "components/Modal/EditProfileAtom";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import UserProfilePageSkeleton from "../skeleton";
 import LogoutModal from "components/Modal/LogoutModal";
+import { marked } from "marked";
 
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
@@ -128,7 +129,9 @@ export default function UserPropfile() {
                 id={post.id}
                 title={post.title}
                 imageUrl={post.thumbnail}
-                content={post.previewContent}
+                content={
+                  marked(post.previewContent).replace(/<[^>]+>/g, "") + "..."
+                }
                 view={post.hit}
                 like={post.likeCount}
                 isMine={isMine}
