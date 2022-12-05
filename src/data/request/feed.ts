@@ -50,6 +50,20 @@ class Feed {
     }
   }
 
+  getMyLikeFeedList(token: string) {
+    try {
+      return AxiosInstance(
+        {
+          method: "GET",
+          url: getFeed.getMyLikeFeedList(),
+        },
+        token
+      );
+    } catch (error) {
+      return error;
+    }
+  }
+
   getDetailsPost(id: number, token?: string) {
     try {
       return AxiosInstance(

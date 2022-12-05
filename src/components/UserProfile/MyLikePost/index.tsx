@@ -11,33 +11,32 @@ import { useRecoilState } from "recoil";
 import * as S from "./style";
 import * as I from "assets/svg";
 import LikePostIsNull from "components/PostIsNull/LikePostIsNull";
+import feed from "data/request/feed";
+import TokenService from "util/TokenService";
 
 export default function MyLikePost() {
-  const [userInfo, setUserInfo] = useState<any>({});
-  const [feedList, setFeedList] = useState<any[]>([]);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [postsNull, setPostsNull] = useState<boolean>(false);
-  const params = useParams();
+  const [myLike] = useRecoilState(MyLikeAtom);
+  const [logged] = useRecoilState(loggedAtom);
+  const [likeList, setLikeList] = useState<any[]>([]);
 
-  const getUserInfo = async () => {
-    try {
-      const res: any = await user.getUserInfo(
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken,
-        String(params.nickname)
-      );
-      setIsMine(res.data.isMine);
-      setFeedList(res.data.feedList);
-      setUserInfo(res.data);
-    } catch (e: any) {
-      console.log(e);
-    }
-  };
-
-  const postsQuery = useQuery({
-    queryKey: "posts",
-    queryFn: getUserInfo,
-    refetchOnWindowFocus: false,
-  });
+  useEffect(() => {
+    const getMyLikePosts = async () => {
+      try {
+        const res: any = await feed.getMyLikeFeedList(
+          logged && TokenService.getLocalAccessToken()
+        );
+        setLikeList(res.data.list);
+        if (res.data.list.length === 0) {
+          setPostsNull(true);
+        }
+      } catch (e: any) {
+        console.log(e);
+      }
+    };
+    getMyLikePosts();
+  }, [myLike]);
 
   return (
     <>
@@ -45,7 +44,7 @@ export default function MyLikePost() {
         <LikePostIsNull />
       ) : (
         <S.MyPostsBox>
-          {feedList.map((post) => (
+          {likeList.map((post) => (
             <PostBox
               key={post.id}
               id={post.id}

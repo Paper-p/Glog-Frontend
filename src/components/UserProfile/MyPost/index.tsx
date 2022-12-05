@@ -27,6 +27,9 @@ export default function MyLikePost() {
       setIsMine(res.data.isMine);
       setFeedList(res.data.feedList);
       setUserInfo(res.data);
+      if (res.data.feedList.length === 0) {
+        setPostsNull(true);
+      }
     } catch (e: any) {
       console.log(e);
     }
