@@ -56,7 +56,7 @@ function WritePage() {
       const getEditPostData = async () => {
         try {
           const res: any = await feed.getDetailsPost(
-            Number(editPostId.id),
+            Number(editPostId?.id),
             TokenService.getLocalAccessToken()
           );
 
@@ -116,7 +116,7 @@ function WritePage() {
       {writeModal && (
         <WriteModal
           mode={mode}
-          editPostId={Number(editPostId.id)}
+          editPostId={Number(editPostId?.id)}
           editor={editor}
         />
       )}
