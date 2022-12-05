@@ -11,6 +11,7 @@ import user from "data/request/user";
 import Input from "../Input";
 import { searchAtom } from "atoms/AtomContainer";
 import TokenService from "util/TokenService";
+import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 
 interface Props {
   isNeedSearch?: boolean;
@@ -22,7 +23,7 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
   const [, setSearch] = useRecoilState(searchAtom);
   const [logged, setLogged] = useRecoilState(loggedAtom);
   const [nickname, setNickname] = useState<string>("");
-  const [profileImg, setprofileImg] = useState<string>("");
+  const [profileImg, setprofileImg] = useState<string>(DEFAULT_PROFILE_IMAGE);
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
