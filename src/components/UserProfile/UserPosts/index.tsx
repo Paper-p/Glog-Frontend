@@ -1,18 +1,13 @@
-import { deletePostModalAtom, loggedAtom, MyLikeAtom, MyPostAtom } from "Atoms";
 import { PostBox } from "components/Common";
-import Category from "components/Common/Category";
 import PostIsNull from "components/PostIsNull";
-import DeletePostModal from "components/Modal/DeletePostModal";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useParams } from "react-router-dom";
 import * as S from "./style";
-import * as I from "Assets/svg";
 import TokenService from "util/TokenService";
 
-export default function MyLikePost() {
+export default function UserPosts() {
   const [feedList, setFeedList] = useState<any[]>([]);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [postsNull, setPostsNull] = useState<boolean>(false);
@@ -25,10 +20,8 @@ export default function MyLikePost() {
           TokenService.getLocalAccessToken(),
           String(params.nickname)
         );
-
         setIsMine(res.data.isMine);
         setFeedList(res.data.feedList);
-
         if (res.data.feedList.length === 0) {
           setPostsNull(true);
         }
@@ -64,7 +57,7 @@ export default function MyLikePost() {
       {postsNull ? (
         <PostIsNull />
       ) : (
-        <S.MyPostsBox>
+        <S.UserPostsBox>
           {feedList.map((post) => (
             <PostBox
               key={post.id}
@@ -79,7 +72,7 @@ export default function MyLikePost() {
               inUserPage={true}
             />
           ))}
-        </S.MyPostsBox>
+        </S.UserPostsBox>
       )}
     </>
   );

@@ -6,14 +6,10 @@ import {
   MyLikeAtom,
   MyPostAtom,
 } from "Atoms";
-import { PostBox } from "components/Common";
 import Category from "components/Common/Category";
-import PostIsNull from "components/PostIsNull";
 import DeletePostModal from "components/Modal/DeletePostModal";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
 import * as I from "Assets/svg";
@@ -21,10 +17,11 @@ import EditProfileModal from "components/Modal/EditProfileAtom";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import UserProfilePageSkeleton from "../skeleton";
 import LogoutModal from "components/Modal/LogoutModal";
-import { marked } from "marked";
 import Page404 from "components/404";
-import MyPost from "../MyPost";
-import MyLikePost from "../MyPost";
+import UserPost from "../UserPosts";
+import MyLikePost from "../MyLikePost";
+import { useParams } from "react-router-dom";
+import TokenService from "util/TokenService";
 
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
@@ -48,7 +45,7 @@ export default function UserPropfile() {
       setIsLoading(true);
       try {
         const res: any = await user.getUserInfo(
-          JSON.parse(localStorage.getItem("token") || "{}").accessToken,
+          TokenService.getLocalAccessToken(),
           String(params.nickname)
         );
 
@@ -114,7 +111,7 @@ export default function UserPropfile() {
           <S.MyPostsLayout>
             <S.CategoryBox>
               {isMine ? (
-                // 마이페이지일때 좋아요 누른 게시물이 보이게하기
+                // 마이페이지일때
                 <S.MyCategoryBox>
                   <S.MyCategory clicked={myPost} onClick={clickMyPost}>
                     💻내 게시물's
@@ -128,7 +125,7 @@ export default function UserPropfile() {
               )}
             </S.CategoryBox>
             {isLoading && <UserProfilePageSkeleton />}
-            {myLike ? <MyLikePost /> : <MyPost />}
+            {myLike ? <MyLikePost /> : <UserPost />}
           </S.MyPostsLayout>
         </>
       )}

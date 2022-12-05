@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const MyPostsBox = styled.div`
+export const UserPostsBox = styled.div`
   width: 100%;
   display: grid;
   justify-content: center;
