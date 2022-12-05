@@ -113,6 +113,8 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
       );
       setThumbnailUrl(res.data.imageUrl);
     } catch (e: any) {
+      setErrorMessage("잘못된 이미지에요");
+      setThumbnailUrl("");
       console.log(e);
     }
   };
