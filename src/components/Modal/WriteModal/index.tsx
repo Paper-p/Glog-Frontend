@@ -15,8 +15,15 @@ import feed from "data/request/feed";
 import { useNavigate } from "react-router-dom";
 import { marked } from "marked";
 import { toast } from "react-toastify";
+import TokenService from "util/TokenService";
 
-export function WriteModal() {
+interface Props {
+  mode: "작성하기" | "수정하기";
+  editPostId?: number;
+  editor?: string;
+}
+
+export function WriteModal({ mode, editPostId, editor }: Props) {
   const [thumbnailUrl, setThumbnailUrl] = useRecoilState(thumbnailUrlAtom);
   const [, setWriteModal] = useRecoilState(writeModalAtom);
   const [title, setTitle] = useRecoilState(titleAtom);
@@ -49,22 +56,40 @@ export function WriteModal() {
   const request = async () => {
     if (thumbnailUrl !== "") {
       try {
-        await feed.writeFeed({
-          title,
-          content,
-          thumbnail: thumbnailUrl,
-          tags: onlyNameList,
-          token: JSON.parse(localStorage.getItem("token") || "{}").accessToken,
-        });
+        if (mode === "작성하기") {
+          await feed.writeFeed({
+            title,
+            content,
+            thumbnail: thumbnailUrl,
+            tags: onlyNameList,
+            token: TokenService.getLocalAccessToken(),
+          });
+
+          toast.success("게시물이 출간되었습니다", {
+            autoClose: 2000,
+          });
+        }
+
+        if (mode === "수정하기") {
+          await feed.editPost(Number(editPostId), {
+            title: title,
+            content: content,
+            thumbnail: thumbnailUrl,
+            tags: onlyNameList,
+            token: TokenService.getLocalAccessToken(),
+          });
+
+          toast.success("게시물이 수정되었습니다", {
+            autoClose: 2000,
+          });
+          navigate(`/${editor}`);
+        }
+
         setWriteModal(false);
         setTitle("");
         setContent("");
         setTag([]);
         setThumbnailUrl("");
-        toast.success("게시물이 출간되었습니다", {
-          autoClose: 2000,
-        });
-        navigate("/");
       } catch (e: any) {
         console.log(e);
       }
@@ -124,7 +149,7 @@ export function WriteModal() {
             name={"file"}
             onChange={imgHandler}
           />
-          <Button onClick={saveTag}>작성하기</Button>
+          <Button onClick={saveTag}>{mode}</Button>
         </S.UploadThumbnail>
         <S.ErrorMessage>{errorMessage}</S.ErrorMessage>
       </S.WriteModal>
