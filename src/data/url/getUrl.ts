@@ -29,6 +29,10 @@ export const getUser = {
   getUserInfo: () => {
     return REACT_APP_BASE_URL + "/user/";
   },
+
+  editProfile: () => {
+    return REACT_APP_BASE_URL + "/user";
+  },
 };
 
 export const getFeed = {
