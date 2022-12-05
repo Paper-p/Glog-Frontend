@@ -68,6 +68,7 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
           toast.success("게시물이 출간되었습니다", {
             autoClose: 2000,
           });
+          navigate("/");
         }
 
         if (mode === "수정하기") {
