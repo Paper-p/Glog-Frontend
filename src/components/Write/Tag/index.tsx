@@ -18,6 +18,13 @@ function WriteTag() {
     content: "",
   });
 
+  useEffect(() => {
+    if (tag) {
+      // 수정할때 tag가 존재하면 추후 추가, 삭제가 가능하도록 nextId 변경
+      nextId.current = tag.length;
+    }
+  }, [tag]);
+
   // useEffect 에 tag 추가 요청을 감지시켜주기 위한 boolean state
   const [isRight, setIsRight] = useState<boolean>(false);
 
