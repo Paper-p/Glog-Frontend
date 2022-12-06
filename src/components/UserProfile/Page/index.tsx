@@ -12,7 +12,7 @@ import Category from "components/Common/Category";
 import DeletePostModal from "components/Modal/DeletePostModal";
 import EditProfileModal from "components/Modal/EditProfileAtom";
 import LogoutModal from "components/Modal/LogoutModal";
-import Page404 from "components/Error/404";
+import Page404 from "components/NotFound";
 import user from "data/request/user";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import UserPost from "../UserPost";
