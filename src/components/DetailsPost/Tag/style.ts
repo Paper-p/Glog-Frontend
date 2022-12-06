@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 
 export const TagList = styled.div`
+  width: 50vw;
   display: flex;
   flex-wrap: wrap;
-  width: 72.5vw;
   height: content;
   display: flex;
   gap: 8px;
