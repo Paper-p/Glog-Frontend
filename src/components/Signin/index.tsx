@@ -12,6 +12,7 @@ import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
 import { LoginInterface } from "interfaces/IAuth";
 import { toast } from "react-toastify";
+import TokenService from "util/TokenService";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -31,34 +32,20 @@ export default function Signin() {
       const res: any = await auth.signin(data);
 
       setLogged(true);
+      TokenService.setUser(res.data);
 
-      localStorage.setItem("token", JSON.stringify(res.data));
-      const expiredAtDate = new Date(
-        JSON.parse(localStorage.getItem("token") || "{}").expiredAt
-      );
-
-      // 만료시간 변형
-      localStorage.setItem(
-        "expiredAt",
-        expiredAtDate.setHours(expiredAtDate.getHours() + 9).toString()
-      );
-
-      console.log(
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken
-      );
       toast.success("로그인에 성공했어요", {
         autoClose: 2000,
       });
+
       navigate("/");
     } catch (error: any) {
-      if (error.response.status === 404) {
-        setError(
-          "userId",
-          { message: "아이디 혹은 비밀번호를 다시 확인해주세요" },
-          { shouldFocus: true }
-        );
-        setIsError(true);
-      }
+      setError(
+        "userId",
+        { message: "아이디 혹은 비밀번호를 다시 확인해주세요" },
+        { shouldFocus: true }
+      );
+      setIsError(true);
     }
   };
 
