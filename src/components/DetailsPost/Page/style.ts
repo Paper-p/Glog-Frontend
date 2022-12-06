@@ -31,10 +31,13 @@ export const Box = styled.div`
   justify-content: space-between;
 `;
 
-export const SvgBox = styled.div`
+export const SvgBox = styled.div<{ isLiked: boolean }>`
   cursor: pointer;
   height: 100%;
   width: 57px;
+  transition: 0.7s;
+  transform: ${(e) => (e.isLiked ? "rotate(360deg)" : "")};
+
   & > svg {
     margin-bottom: -36px;
     height: 100%;

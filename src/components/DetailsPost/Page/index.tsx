@@ -91,7 +91,7 @@ function DetailsPostPage() {
           <>
             <S.Box>
               <S.Title>{response.title}</S.Title>
-              <S.SvgBox onClick={Like}>
+              <S.SvgBox onClick={Like} isLiked={isLiked}>
                 {isLiked ? <I.PostLiked /> : <I.PostLike />}
               </S.SvgBox>
             </S.Box>
