@@ -10,7 +10,7 @@ import { useRecoilState } from "recoil";
 import { loggedAtom } from "Atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
-import { LoginType } from "interfaces/IAuth";
+import { LoginInterface } from "interfaces/IAuth";
 import { toast } from "react-toastify";
 
 export default function Signin() {
@@ -22,11 +22,11 @@ export default function Signin() {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<LoginType>();
+  } = useForm<LoginInterface>();
 
   const [, setLogged] = useRecoilState(loggedAtom);
 
-  const onValid = async (data: LoginType) => {
+  const onValid = async (data: LoginInterface) => {
     try {
       const res: any = await auth.signin(data);
 

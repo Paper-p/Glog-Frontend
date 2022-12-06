@@ -1,6 +1,6 @@
 import { getAuth } from "data/url/getUrl";
 import AxiosInstance from "util/AxiosInstance";
-import { LoginType, JoinType } from "interfaces/IAuth";
+import { LoginInterface, JoinInterface } from "interfaces/IAuth";
 
 class Auth {
   confirmName(name: string) {
@@ -31,7 +31,7 @@ class Auth {
     }
   }
 
-  signin(data: LoginType) {
+  signin(data: LoginInterface) {
     try {
       return AxiosInstance({
         method: "POST",
@@ -46,7 +46,7 @@ class Auth {
     }
   }
 
-  signup(data: JoinType) {
+  signup(data: JoinInterface) {
     try {
       return AxiosInstance({
         method: "POST",

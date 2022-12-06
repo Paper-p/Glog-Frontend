@@ -10,10 +10,10 @@ import { useQueryClient, useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
 import { useRecoilState } from "recoil";
-import { CommentType } from "interfaces/IComment";
+import { CommentInterface } from "interfaces/IComment";
 import * as S from "./style";
 
-interface Props extends CommentType {
+interface Props extends CommentInterface {
   setState: (x: boolean) => void;
 }
 

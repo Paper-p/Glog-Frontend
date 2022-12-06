@@ -1,4 +1,4 @@
-import { TokenType } from "interfaces/IAuth";
+import { TokenInterface } from "interfaces/IAuth";
 
 class TokenService {
   getLocalRefreshToken() {
@@ -21,7 +21,7 @@ class TokenService {
     return JSON.parse(localStorage.getItem("token") || "{}");
   }
 
-  setUser(user: TokenType) {
+  setUser(user: TokenInterface) {
     localStorage.setItem("token", JSON.stringify(user));
   }
 

@@ -1,4 +1,4 @@
-export interface WriteType {
+export interface WriteInterface {
   title: string;
   content: string;
   thumbnail: string;

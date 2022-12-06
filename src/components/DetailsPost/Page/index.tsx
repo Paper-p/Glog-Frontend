@@ -11,7 +11,7 @@ import {
   DetailsPostTag,
 } from "components/DetailsPost";
 import * as S from "./style";
-import { CommentType } from "interfaces/IComment";
+import { CommentInterface } from "interfaces/IComment";
 import { loggedAtom, removeCommentModalAtom } from "Atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../CommentTextarea";
@@ -87,7 +87,7 @@ function DetailsPostPage() {
         ) : (
           <DetailsPostSkeleton />
         )}
-        {response.comments?.map((idx: CommentType) => (
+        {response.comments?.map((idx: CommentInterface) => (
           <DetailsPostComment
             key={idx.id}
             id={idx.id}

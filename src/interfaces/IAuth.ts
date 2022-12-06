@@ -1,15 +1,15 @@
-export interface LoginType {
+export interface LoginInterface {
   userId: string;
   password: string;
 }
 
-export interface JoinType {
+export interface JoinInterface {
   nickname: string;
   userId: string;
   password: string;
 }
 
-export interface TokenType {
+export interface TokenInterface {
   accessToken: string;
   refreshToken: string;
   expiredAt: Date;

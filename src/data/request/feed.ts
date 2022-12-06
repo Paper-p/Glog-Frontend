@@ -1,5 +1,5 @@
 import { getFeed } from "data/url/getUrl";
-import { WriteType } from "interfaces/IFeed";
+import { WriteInterface } from "interfaces/IFeed";
 import AxiosInstance from "util/AxiosInstance";
 import TokenService from "util/TokenService";
 
@@ -11,7 +11,7 @@ interface IGetFeed {
 }
 
 class Feed {
-  writeFeed(data: WriteType) {
+  writeFeed(data: WriteInterface) {
     try {
       return AxiosInstance(
         {
@@ -31,7 +31,7 @@ class Feed {
     }
   }
 
-  editPost(id: number, data: WriteType) {
+  editPost(id: number, data: WriteInterface) {
     try {
       return AxiosInstance(
         {
