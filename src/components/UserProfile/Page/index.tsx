@@ -10,7 +10,7 @@ import * as S from "./style";
 import * as I from "Assets/svg";
 import Category from "components/Common/Category";
 import DeletePostModal from "components/Modal/DeletePostModal";
-import EditProfileModal from "components/Modal/EditProfileAtom";
+import EditProfileModal from "components/Modal/EditProfileModal";
 import LogoutModal from "components/Modal/LogoutModal";
 import Page404 from "components/NotFound";
 import user from "data/request/user";
