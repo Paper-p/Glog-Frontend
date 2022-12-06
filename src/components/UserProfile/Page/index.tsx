@@ -126,7 +126,8 @@ export default function UserPropfile() {
               )}
             </S.CategoryBox>
             {isLoading && <UserProfilePageSkeleton />}
-            {postType === "내 게시물" ? <UserPost /> : <MyLikePost />}
+            {postType === "내 게시물" && <UserPost />}
+            {postType === "좋아요 한 게시물" && <MyLikePost />}
           </S.UserPostsLayout>
         </>
       )}

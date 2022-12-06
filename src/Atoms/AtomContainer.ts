@@ -1,13 +1,7 @@
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
+import { TagType } from "types/WritePostType";
 const { persistAtom } = recoilPersist();
-
-interface TagType {
-  id: number;
-  name: string;
-}
-
-type PostsType = "내 게시물" | "좋아요 한 게시물";
 
 export const loggedAtom = atom({
   key: "logged",

@@ -28,21 +28,6 @@ function DetailsPostPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
-  const fetching = async () => {
-    try {
-      const res: any = await feed.getDetailsPost(
-        Number(params.postId),
-        logged
-          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          : ""
-      );
-      setIsLiked(res.data.isLiked);
-      setResponse(res.data);
-    } catch (e: any) {
-      console.log(e);
-    }
-  };
-
   useEffect(() => {
     const getDetailsPostData = async () => {
       setLoading(false);
@@ -65,13 +50,28 @@ function DetailsPostPage() {
   const Like = async () => {
     try {
       if (isLiked) {
-        const res: any = await feed.CancleLikePost(Number(params.postId));
+        await feed.CancleLikePost(Number(params.postId));
         setIsLiked(!isLiked);
       } else {
-        const res: any = await feed.LikePost(Number(params.postId));
+        await feed.LikePost(Number(params.postId));
         setIsLiked(!isLiked);
       }
     } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const fetching = async () => {
+    try {
+      const res: any = await feed.getDetailsPost(
+        Number(params.postId),
+        logged
+          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
+          : ""
+      );
+      setIsLiked(res.data.isLiked);
+      setResponse(res.data);
+    } catch (e: any) {
       console.log(e);
     }
   };
