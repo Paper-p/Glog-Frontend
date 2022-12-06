@@ -1,5 +1,5 @@
 import { PostBox } from "components/Common";
-import PostIsNull from "components/Error/PostIsNull";
+import PostIsNull from "components/PostIsNull/PostIsNull";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";

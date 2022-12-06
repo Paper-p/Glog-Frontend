@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import MainSkeleton from "../Skeleton";
 import * as S from "./style";
 import uuid from "react-uuid";
-import MainPageHotPosts from "../HotPosts";
+import MainPageHotPosts from "../HotPost";
 
 export default function Main() {
   const page = useRef<number>(0);
