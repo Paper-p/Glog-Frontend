@@ -56,7 +56,7 @@ class Feed {
       return AxiosInstance(
         {
           method: "GET",
-          url: getFeed.getMyLikeFeedList(),
+          url: getFeed.getLikeURL(),
         },
         token
       );
@@ -130,7 +130,7 @@ class Feed {
     try {
       return AxiosInstance({
         method: "POST",
-        url: getFeed.getMyLikeFeedList() + `/${id}`,
+        url: getFeed.getLikeURL() + `/${id}`,
       });
     } catch (error) {
       return error;
