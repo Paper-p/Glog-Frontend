@@ -53,9 +53,6 @@ export const HotPostList = styled.div`
     overflow: auto;
     white-space: nowrap;
     display: flex;
-
-    &::-webkit-scrollbar{
-    display: none; 
   }
 
   @media screen and (max-width: 600px) {
