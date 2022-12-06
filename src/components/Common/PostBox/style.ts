@@ -19,7 +19,13 @@ export const PostBox = styled.div<{ url?: string; inUserPage?: boolean }>`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  transition: 0.2s;
 
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  // not-default === 인기글 or 유저페이지
   &.not-default {
     width: ${(e) => (e.inUserPage ? "17vw" : "17.19vw")};
     height: 330px;
@@ -27,10 +33,7 @@ export const PostBox = styled.div<{ url?: string; inUserPage?: boolean }>`
     background: none;
     padding: 0;
 
-    /**
-    * true === 유저페이지 게시글
-    */
-
+    // true === 유저페이지 게시글
     @media screen and (max-width: 1350px) {
       width: ${(e) => (e.inUserPage ? "21vw" : "20vw")};
     }
@@ -125,6 +128,11 @@ export const PostContent = styled.p`
     -webkit-line-clamp: 1;
     line-height: 21px;
     margin-bottom: 34.5px;
+  }
+
+  &:hover {
+    color: white;
+    transition: 0.2s;
   }
 `;
 
