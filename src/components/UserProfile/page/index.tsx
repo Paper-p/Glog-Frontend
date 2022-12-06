@@ -2,7 +2,6 @@ import {
   deletePostModalAtom,
   editProfileModalAtom,
   logoutModalAtom,
-  PostsTypeAtom,
 } from "Atoms";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -21,6 +20,8 @@ import MyLikePost from "../MyLikePost";
 import UserProfilePageSkeleton from "../Skeleton";
 import TokenService from "util/TokenService";
 
+type PostType = "내 게시물" | "좋아요 한 게시물";
+
 export default function UserPropfile() {
   const [userInfo, setUserInfo] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,9 +29,9 @@ export default function UserPropfile() {
   const [isMine, setIsMine] = useState<boolean>(false);
   const [, setPostsNull] = useState<boolean>(false);
   const [is404, setIs404] = useState<boolean>(false);
+  const [postType, setPostType] = useState<PostType>("내 게시물");
   const params = useParams();
 
-  const [postsType, setPostsType] = useRecoilState(PostsTypeAtom);
   const [logoutModal, setLogoutModal] = useRecoilState(logoutModalAtom);
   const [deletePostModal] = useRecoilState(deletePostModalAtom);
   const [editProfileModal, setEditProfileModal] =
@@ -63,11 +64,11 @@ export default function UserPropfile() {
   }, [params.nickname, params.ninkname]);
 
   const clickMyPost = () => {
-    setPostsType("내 게시물");
+    setPostType("내 게시물");
   };
 
   const clickMyLike = () => {
-    setPostsType("좋아요 한 게시물");
+    setPostType("좋아요 한 게시물");
   };
 
   return (
@@ -108,13 +109,13 @@ export default function UserPropfile() {
                 // 마이페이지일때
                 <S.MyCategoryBox>
                   <S.MyCategory
-                    clicked={postsType === "내 게시물"}
+                    clicked={postType === "내 게시물"}
                     onClick={clickMyPost}
                   >
                     💻내 게시물's
                   </S.MyCategory>
                   <S.MyCategory
-                    clicked={postsType === "좋아요 한 게시물"}
+                    clicked={postType === "좋아요 한 게시물"}
                     onClick={clickMyLike}
                   >
                     <I.Like /> 하트
@@ -125,7 +126,7 @@ export default function UserPropfile() {
               )}
             </S.CategoryBox>
             {isLoading && <UserProfilePageSkeleton />}
-            {postsType === "내 게시물" ? <UserPost /> : <MyLikePost />}
+            {postType === "내 게시물" ? <UserPost /> : <MyLikePost />}
           </S.UserPostsLayout>
         </>
       )}
