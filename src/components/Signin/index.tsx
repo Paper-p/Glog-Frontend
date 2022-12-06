@@ -16,7 +16,6 @@ import TokenService from "util/TokenService";
 
 export default function Signin() {
   const navigate = useNavigate();
-  const [Focused, setFocused] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const {
     register,

@@ -65,9 +65,7 @@ function DetailsPostPage() {
     try {
       const res: any = await feed.getDetailsPost(
         Number(params.postId),
-        logged
-          ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
-          : ""
+        logged ? TokenService.getLocalAccessToken() : ""
       );
       setIsLiked(res.data.isLiked);
       setResponse(res.data);

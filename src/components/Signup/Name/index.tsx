@@ -28,8 +28,7 @@ export default function SetName() {
 
   const onValid = async (data: any) => {
     try {
-      const res: any = await auth.confirmName(data.nickname);
-      console.log(res);
+      await auth.confirmName(data.nickname);
       createUser(data.nickname);
     } catch (error: any) {
       console.log(error);
@@ -42,8 +41,6 @@ export default function SetName() {
   };
 
   const inValid = (error: any) => {
-    console.log(error);
-
     error && setIsError(true);
   };
 
