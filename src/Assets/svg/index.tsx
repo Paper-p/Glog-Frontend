@@ -9,3 +9,5 @@ export { Search } from "./Search";
 export { Kebob } from "./Kebob";
 export { Control } from "./Control";
 export { Edit } from "./Edit";
+export { PostLike } from "./PostLike";
+export { PostLiked } from "./PostLiked";

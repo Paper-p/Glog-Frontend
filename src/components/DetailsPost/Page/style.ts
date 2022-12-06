@@ -25,3 +25,22 @@ export const Title = styled.p`
   line-height: 57px;
   color: #ffffff;
 `;
+
+export const Box = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SvgBox = styled.div<{ isLiked: boolean }>`
+  cursor: pointer;
+  height: 100%;
+  width: 57px;
+  transition: 0.7s;
+  transform: ${(e) => (e.isLiked ? "rotate(360deg)" : "")};
+
+  & > svg {
+    margin-bottom: -36px;
+    height: 100%;
+    width: 100%;
+  }
+`;

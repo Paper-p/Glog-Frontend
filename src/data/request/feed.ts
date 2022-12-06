@@ -56,7 +56,7 @@ class Feed {
       return AxiosInstance(
         {
           method: "GET",
-          url: getFeed.getMyLikeFeedList(),
+          url: getFeed.getLikeURL(),
         },
         token
       );
@@ -121,6 +121,28 @@ class Feed {
         },
         token
       );
+    } catch (error) {
+      return error;
+    }
+  }
+
+  LikePost(id: number) {
+    try {
+      return AxiosInstance({
+        method: "POST",
+        url: getFeed.getLikeURL() + `/${id}`,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  CancleLikePost(id: number) {
+    try {
+      return AxiosInstance({
+        method: "DELETE",
+        url: getFeed.getLikeURL() + `/${id}`,
+      });
     } catch (error) {
       return error;
     }
