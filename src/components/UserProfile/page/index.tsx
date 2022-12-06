@@ -1,26 +1,24 @@
 import {
   deletePostModalAtom,
   editProfileModalAtom,
-  loggedAtom,
   logoutModalAtom,
-  MyLikeAtom,
-  MyPostAtom,
+  PostsTypeAtom,
 } from "Atoms";
-import Category from "components/Common/Category";
-import DeletePostModal from "components/Modal/DeletePostModal";
-import user from "data/request/user";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+import { useParams } from "react-router-dom";
 import * as S from "./style";
 import * as I from "Assets/svg";
+import Category from "components/Common/Category";
+import DeletePostModal from "components/Modal/DeletePostModal";
 import EditProfileModal from "components/Modal/EditProfileAtom";
-import { DEFAULT_PROFILE_IMAGE } from "shared/config";
-import UserProfilePageSkeleton from "../skeleton";
 import LogoutModal from "components/Modal/LogoutModal";
 import Page404 from "components/404";
+import user from "data/request/user";
+import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import UserPost from "../UserPosts";
 import MyLikePost from "../MyLikePost";
-import { useParams } from "react-router-dom";
+import UserProfilePageSkeleton from "../skeleton";
 import TokenService from "util/TokenService";
 
 export default function UserPropfile() {
@@ -28,13 +26,11 @@ export default function UserPropfile() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [profileImg, setProfileImg] = useState<string>(DEFAULT_PROFILE_IMAGE);
   const [isMine, setIsMine] = useState<boolean>(false);
-  const [postsNull, setPostsNull] = useState<boolean>(false);
+  const [, setPostsNull] = useState<boolean>(false);
   const [is404, setIs404] = useState<boolean>(false);
   const params = useParams();
 
-  const [myPost, setMyPost] = useRecoilState(MyPostAtom);
-  const [myLike, setMyLike] = useRecoilState(MyLikeAtom);
-  const [logged] = useRecoilState(loggedAtom);
+  const [postsType, setPostsType] = useRecoilState(PostsTypeAtom);
   const [logoutModal, setLogoutModal] = useRecoilState(logoutModalAtom);
   const [deletePostModal] = useRecoilState(deletePostModalAtom);
   const [editProfileModal, setEditProfileModal] =
@@ -64,16 +60,14 @@ export default function UserPropfile() {
       }
     };
     getUserInfo();
-  }, [params.ninkname]);
+  }, [params.nickname, params.ninkname]);
 
   const clickMyPost = () => {
-    setMyPost(true);
-    setMyLike(false);
+    setPostsType("내 게시물");
   };
 
   const clickMyLike = () => {
-    setMyPost(false);
-    setMyLike(true);
+    setPostsType("좋아요 한 게시물");
   };
 
   return (
@@ -108,15 +102,21 @@ export default function UserPropfile() {
               )}
             </S.ProfileBox>
           </S.ProfileLayout>
-          <S.MyPostsLayout>
+          <S.UserPostsLayout>
             <S.CategoryBox>
               {isMine ? (
                 // 마이페이지일때
                 <S.MyCategoryBox>
-                  <S.MyCategory clicked={myPost} onClick={clickMyPost}>
+                  <S.MyCategory
+                    clicked={postsType === "내 게시물"}
+                    onClick={clickMyPost}
+                  >
                     💻내 게시물's
                   </S.MyCategory>
-                  <S.MyCategory clicked={myLike} onClick={clickMyLike}>
+                  <S.MyCategory
+                    clicked={postsType === "좋아요 한 게시물"}
+                    onClick={clickMyLike}
+                  >
                     <I.Like /> 하트
                   </S.MyCategory>
                 </S.MyCategoryBox>
@@ -125,8 +125,8 @@ export default function UserPropfile() {
               )}
             </S.CategoryBox>
             {isLoading && <UserProfilePageSkeleton />}
-            {myLike ? <MyLikePost /> : <UserPost />}
-          </S.MyPostsLayout>
+            {postsType === "내 게시물" ? <UserPost /> : <MyLikePost />}
+          </S.UserPostsLayout>
         </>
       )}
     </>

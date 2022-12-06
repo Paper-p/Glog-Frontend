@@ -11,5 +11,4 @@ export { commentIdAtom } from "./AtomContainer";
 export { deletePostId } from "./AtomContainer";
 export { editProfileModalAtom } from "./AtomContainer";
 export { logoutModalAtom } from "./AtomContainer";
-export { MyPostAtom } from "./AtomContainer";
-export { MyLikeAtom } from "./AtomContainer";
+export { PostsTypeAtom } from "./AtomContainer";

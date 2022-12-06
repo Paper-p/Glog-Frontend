@@ -7,6 +7,8 @@ interface TagType {
   name: string;
 }
 
+type PostsType = "내 게시물" | "좋아요 한 게시물";
+
 export const loggedAtom = atom({
   key: "logged",
   default: false,
@@ -73,12 +75,7 @@ export const searchAtom = atom({
   default: "",
 });
 
-export const MyPostAtom = atom({
-  key: "myPost",
-  default: true,
-});
-
-export const MyLikeAtom = atom({
-  key: "myLike",
-  default: false,
+export const PostsTypeAtom = atom<PostsType>({
+  key: "postsType",
+  default: "내 게시물",
 });

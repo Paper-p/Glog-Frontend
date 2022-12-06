@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const MyPostsLayout = styled.div`
+export const UserPostsLayout = styled.div`
   width: 72.5%;
   margin: auto;
 
@@ -17,7 +17,7 @@ export const MyPostsLayout = styled.div`
   }
 `;
 
-export const MyPostsBox = styled.div`
+export const UserPostsBox = styled.div`
   width: 100%;
   display: grid;
   justify-content: center;
@@ -37,6 +37,24 @@ export const MyPostsBox = styled.div`
 export const CategoryBox = styled.div`
   width: 100%;
   padding: 30px 0 22.5px 0;
+`;
+
+export const MyCategoryBox = styled.div`
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+`;
+
+export const MyCategory = styled.div<{ clicked?: boolean | undefined }>`
+  cursor: pointer;
+  background-color: ${(e) => (e.clicked ? "#969696" : "#33333399")};
+  width: fit-content;
+  padding: 8px 13px;
+  text-align: center;
+  border-radius: 10px;
+  color: ${(e) => (e.clicked ? "black" : "#969696")};
+  transition: 0.6s;
+  transform: ${(e) => (e.clicked ? "" : "translateY(10px)")};
 `;
 
 export const ProfileLayout = styled.div`
@@ -96,22 +114,4 @@ export const Logout = styled.p`
   font-weight: bold;
   font-size: 14px;
   margin-top: 10px;
-`;
-
-export const MyCategoryBox = styled.div`
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-`;
-
-export const MyCategory = styled.div<{ clicked?: boolean | undefined }>`
-  cursor: pointer;
-  background-color: ${(e) => (e.clicked ? "#969696" : "#33333399")};
-  width: fit-content;
-  padding: 8px 13px;
-  text-align: center;
-  border-radius: 10px;
-  color: ${(e) => (e.clicked ? "black" : "#969696")};
-  transition: 0.6s;
-  transform: ${(e) => (e.clicked ? "" : "translateY(10px)")};
 `;
