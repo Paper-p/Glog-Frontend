@@ -2,11 +2,12 @@ import * as S from "./style";
 import { useRecoilState } from "recoil";
 import { tagAtom } from "Atoms";
 import { useNavigate } from "react-router-dom";
+import { WriteMode } from "types/WritePostType";
 
 interface Props
   extends React.HTMLAttributes<HTMLDivElement | HTMLParagraphElement> {
   errorMessage: string;
-  mode: "작성하기" | "수정하기";
+  mode: WriteMode;
 }
 
 function WriteFooter({ mode, errorMessage, ...rest }: Props) {
