@@ -1,7 +1,7 @@
 import { PostBox } from "components/Common";
 import { useEffect, useState } from "react";
 import * as S from "./style";
-import LikePostIsNull from "components/PostIsNull/LikePostIsNull";
+import LikePostIsNull from "components/Error/LikePostIsNull";
 import TokenService from "util/TokenService";
 import feed from "data/request/feed";
 

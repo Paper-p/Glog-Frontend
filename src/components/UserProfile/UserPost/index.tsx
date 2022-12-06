@@ -1,5 +1,5 @@
 import { PostBox } from "components/Common";
-import PostIsNull from "components/PostIsNull";
+import PostIsNull from "components/Error/PostIsNull";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import * as S from "./style";
 import TokenService from "util/TokenService";
 
-export default function UserPosts() {
+export default function UserPost() {
   const [feedList, setFeedList] = useState<any[]>([]);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [postsNull, setPostsNull] = useState<boolean>(false);
