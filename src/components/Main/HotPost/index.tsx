@@ -1,4 +1,4 @@
-import { loggedAtom } from "Atoms";
+import { loggedAtom } from "atoms";
 import { Category, PostBox } from "components/Common";
 import feed from "data/request/feed";
 import { marked } from "marked";

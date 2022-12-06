@@ -1,6 +1,6 @@
-import { Control, Kebob } from "Assets/svg";
-import { removeCommentModalAtom } from "Atoms";
-import { commentIdAtom } from "Atoms/AtomContainer";
+import { Control, Kebob } from "assets/svg";
+import { removeCommentModalAtom } from "atoms";
+import { commentIdAtom } from "atoms/AtomContainer";
 import { Button } from "components/Common";
 import comment from "data/request/comment";
 import { useDate } from "hooks/useDate";

@@ -1,5 +1,5 @@
-import { Edit } from "Assets/svg";
-import { editProfileModalAtom } from "Atoms/AtomContainer";
+import { Edit } from "assets/svg";
+import { editProfileModalAtom } from "atoms/AtomContainer";
 import { ModalLayout } from "components/Common";
 import useInputs from "hooks/useInputs";
 import React, { useRef, useState } from "react";

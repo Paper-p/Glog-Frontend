@@ -1,4 +1,4 @@
-import { deletePostId, deletePostModalAtom } from "Atoms";
+import { deletePostId, deletePostModalAtom } from "atoms";
 import { Button, ModalLayout } from "components/Common";
 import feed from "data/request/feed";
 import React from "react";

@@ -11,9 +11,9 @@ import {
   DetailsPostTag,
 } from "components/DetailsPost";
 import * as S from "./style";
-import * as I from "Assets/svg";
+import * as I from "assets/svg";
 import { CommentInterface } from "interfaces/IComment";
-import { loggedAtom, removeCommentModalAtom } from "Atoms";
+import { loggedAtom, removeCommentModalAtom } from "atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../CommentTextarea";
 import { useQuery } from "react-query";

@@ -2,12 +2,12 @@ import {
   deletePostModalAtom,
   editProfileModalAtom,
   logoutModalAtom,
-} from "Atoms";
+} from "atoms";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
 import * as S from "./style";
-import * as I from "Assets/svg";
+import * as I from "assets/svg";
 import Category from "components/Common/Category";
 import DeletePostModal from "components/Modal/DeletePostModal";
 import EditProfileModal from "components/Modal/EditProfileModal";

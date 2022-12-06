@@ -1,4 +1,4 @@
-import { loggedAtom } from "Atoms";
+import { loggedAtom } from "atoms";
 import axios from "axios";
 import { getAuth } from "data/url/getUrl";
 import { useNavigate } from "react-router-dom";

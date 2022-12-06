@@ -1,4 +1,4 @@
-import { removeCommentModalAtom, commentIdAtom } from "Atoms";
+import { removeCommentModalAtom, commentIdAtom } from "atoms";
 import { Button, ModalLayout } from "components/Common";
 import comment from "data/request/comment";
 import React from "react";

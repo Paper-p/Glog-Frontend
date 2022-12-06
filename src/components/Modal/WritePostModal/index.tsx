@@ -8,8 +8,8 @@ import {
   tagAtom,
   contentAtom,
   titleAtom,
-} from "Atoms";
-import { Upload } from "Assets/svg";
+} from "atoms";
+import { Upload } from "assets/svg";
 import image from "data/request/image";
 import feed from "data/request/feed";
 import { useNavigate } from "react-router-dom";

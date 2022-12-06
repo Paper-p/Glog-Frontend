@@ -1,4 +1,4 @@
-import { loggedAtom } from "Atoms";
+import { loggedAtom } from "atoms";
 import { Button } from "components/Common";
 import comment from "data/request/comment";
 import useInputs from "hooks/useInputs";
