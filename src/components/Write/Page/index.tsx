@@ -42,6 +42,7 @@ function WritePage() {
   useEffect(() => {
     setTitle("");
     setContent("");
+    setTag([]);
 
     // state로 넘겨받은 id가 존재한다면 (수정요청을 받았다면)
     if (editPostId) {
