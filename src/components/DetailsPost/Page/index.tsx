@@ -65,6 +65,7 @@ function DetailsPostPage() {
   const Like = async () => {
     try {
       const res: any = await feed.LikePost(Number(params.postId));
+      setIsLiked(!isLiked);
     } catch (e) {
       console.log(e);
     }
@@ -86,7 +87,7 @@ function DetailsPostPage() {
             <S.Box>
               <S.Title>{response.title}</S.Title>
               <S.SvgBox onClick={Like}>
-                {isLiked ? <I.PostLike /> : <I.PostLiked />}
+                {isLiked ? <I.PostLiked /> : <I.PostLike />}
               </S.SvgBox>
             </S.Box>
             <DetailsPostTag tagList={response.tagList} />

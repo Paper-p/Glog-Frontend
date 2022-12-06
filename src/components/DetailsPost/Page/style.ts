@@ -25,3 +25,19 @@ export const Title = styled.p`
   line-height: 57px;
   color: #ffffff;
 `;
+
+export const Box = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SvgBox = styled.div`
+  cursor: pointer;
+  height: 100%;
+  width: 57px;
+  & > svg {
+    margin-bottom: -36px;
+    height: 100%;
+    width: 100%;
+  }
+`;
