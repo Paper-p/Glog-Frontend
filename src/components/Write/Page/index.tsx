@@ -12,7 +12,7 @@ import {
 import WriteFooter from "../Footer";
 import WriteContent from "../Content";
 import WriteTag from "../Tag";
-import { WriteModal } from "components/Modal/WriteModal";
+import { WriteModal } from "components/Modal/WritePostModal";
 import WriteTitle from "../Title";
 import { useLocation } from "react-router-dom";
 import feed from "data/request/feed";
