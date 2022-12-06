@@ -31,7 +31,7 @@ export default function UserPosts() {
     };
 
     getUserInfo();
-  }, []);
+  }, [params.nickname]);
 
   const fetch = async () => {
     try {
