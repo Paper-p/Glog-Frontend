@@ -1,5 +1,8 @@
+import { loggedAtom } from "Atoms";
 import axios from "axios";
 import { getAuth } from "data/url/getUrl";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import { REACT_APP_BASE_URL } from "shared/config";
 import TokenService from "./TokenService";
 
@@ -44,7 +47,12 @@ let authTokenRequest: any;
 function getAuthToken() {
   if (!authTokenRequest) {
     authTokenRequest = makeActualAuthenticationRequest();
-    authTokenRequest.then(resetAuthTokenRequest, resetAuthTokenRequest);
+    authTokenRequest
+      .catch(function () {
+        TokenService.removeUser();
+        window.location.replace("/signin");
+      })
+      .then(resetAuthTokenRequest, resetAuthTokenRequest);
   }
 
   return authTokenRequest;

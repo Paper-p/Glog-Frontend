@@ -46,6 +46,10 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
   };
 
   useEffect(() => {
+    if (TokenService.getLocalAccessToken() === undefined) {
+      setLogged(false);
+    }
+
     getMiniProfile();
   }, []);
 
