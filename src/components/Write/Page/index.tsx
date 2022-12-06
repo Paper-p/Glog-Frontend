@@ -17,15 +17,10 @@ import WriteTitle from "../Title";
 import { useLocation } from "react-router-dom";
 import feed from "data/request/feed";
 import TokenService from "util/TokenService";
-import { WriteMode } from "types/WritePostType";
+import { TagType, WriteMode } from "types/WritePostType";
 
 interface Location {
   id: number;
-}
-
-interface TagType {
-  id: number;
-  name: string;
 }
 
 function WritePage() {

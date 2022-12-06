@@ -4,11 +4,7 @@ import useInputs from "hooks/useInputs";
 import { useRecoilState } from "recoil";
 import { tagAtom } from "Atoms";
 import React from "react";
-
-interface TagType {
-  id: number;
-  name: string;
-}
+import { TagType } from "types/WritePostType";
 
 function WriteTag() {
   const [onlyNameList, setOnlyNameList] = useState<string[]>([]);
