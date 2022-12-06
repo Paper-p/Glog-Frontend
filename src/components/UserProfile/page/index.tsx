@@ -18,7 +18,7 @@ import user from "data/request/user";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import UserPost from "../UserPosts";
 import MyLikePost from "../MyLikePost";
-import UserProfilePageSkeleton from "../skeleton";
+import UserProfilePageSkeleton from "../Skeleton";
 import TokenService from "util/TokenService";
 
 export default function UserPropfile() {

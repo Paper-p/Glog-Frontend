@@ -1,5 +1,5 @@
 import Header from "components/Common/Header";
-import UserPropfile from "components/UserProfile/page";
+import UserPropfile from "components/UserProfile/Page";
 
 export default function UserProfilePage() {
   return (
