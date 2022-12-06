@@ -17,8 +17,7 @@ import WriteTitle from "../Title";
 import { useLocation } from "react-router-dom";
 import feed from "data/request/feed";
 import TokenService from "util/TokenService";
-
-type Mode = "작성하기" | "수정하기";
+import { WriteMode } from "types/WritePostType";
 
 interface Location {
   id: number;
@@ -30,7 +29,7 @@ interface TagType {
 }
 
 function WritePage() {
-  const [mode, setMode] = useState<Mode>("작성하기");
+  const [mode, setMode] = useState<WriteMode>("작성하기");
 
   const [isTitleNull, setIsTitleError] = useState<boolean>(false);
   const [isContentNull, setIsContentError] = useState<boolean>(false);

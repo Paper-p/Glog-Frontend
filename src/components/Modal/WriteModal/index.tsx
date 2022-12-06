@@ -16,9 +16,10 @@ import { useNavigate } from "react-router-dom";
 import { marked } from "marked";
 import { toast } from "react-toastify";
 import TokenService from "util/TokenService";
+import { WriteMode } from "types/WritePostType";
 
 interface Props {
-  mode: "작성하기" | "수정하기";
+  mode: WriteMode;
   editPostId?: number;
   editor?: string;
 }
