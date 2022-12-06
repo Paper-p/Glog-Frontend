@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import * as S from "./style";
 import TokenService from "util/TokenService";
+import { marked } from "marked";
 
 export default function UserPost() {
   const [feedList, setFeedList] = useState<any[]>([]);
@@ -64,7 +65,9 @@ export default function UserPost() {
               id={post.id}
               title={post.title}
               imageUrl={post.thumbnail}
-              content={post.previewContent}
+              content={
+                marked(post.previewContent).replace(/<[^>]+>/g, "") + "..."
+              }
               view={post.hit}
               like={post.likeCount}
               isMine={isMine}

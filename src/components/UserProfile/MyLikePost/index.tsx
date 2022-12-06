@@ -4,6 +4,7 @@ import * as S from "./style";
 import LikePostIsNull from "components/PostIsNull/LikePostIsNull";
 import TokenService from "util/TokenService";
 import feed from "data/request/feed";
+import { marked } from "marked";
 
 export default function MyLikePost() {
   const [isMine] = useState<boolean>(false);
@@ -41,7 +42,9 @@ export default function MyLikePost() {
               id={post.id}
               title={post.title}
               imageUrl={post.thumbnail}
-              content={post.previewContent}
+              content={
+                marked(post.previewContent).replace(/<[^>]+>/g, "") + "..."
+              }
               view={post.hit}
               like={post.likeCount}
               isMine={isMine}
