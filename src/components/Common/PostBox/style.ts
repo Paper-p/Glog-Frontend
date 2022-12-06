@@ -33,7 +33,7 @@ export const PostBox = styled.div<{ url?: string; inUserPage?: boolean }>`
     background: none;
     padding: 0;
 
-    // true === 유저페이지 게시글
+    // true === 유저페이지 게시글 , false === 인기게시글
     @media screen and (max-width: 1350px) {
       width: ${(e) => (e.inUserPage ? "21vw" : "20vw")};
     }
@@ -60,6 +60,10 @@ export const PostBox = styled.div<{ url?: string; inUserPage?: boolean }>`
 
     @media screen and (max-width: 600px) {
       width: ${(e) => (e.inUserPage ? "75vw" : "90vw")};
+
+      &:hover {
+        transform: scale(1);
+      }
     }
   }
 

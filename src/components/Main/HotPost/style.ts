@@ -47,6 +47,11 @@ export const HotPostList = styled.div`
     gap: 3vw 0;
   }
 
+  @media screen and (max-width: 750px) {
+    width: 85vw;
+    gap: 4vw 0;
+  }
+
   @media screen and (max-width: 650px) {
     width: 80vw;
     gap: 2vw;
@@ -61,7 +66,7 @@ export const HotPostList = styled.div`
 
   @media screen and (max-width: 600px) {
     width: 90vw;
-    gap: 2vw;
+    gap: 6vw;
     overflow: auto;
     white-space: nowrap;
     display: flex;
