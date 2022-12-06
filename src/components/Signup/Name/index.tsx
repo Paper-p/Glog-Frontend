@@ -42,16 +42,27 @@ export default function SetName() {
   };
 
   const inValid = (error: any) => {
+    console.log(error);
+
     error && setIsError(true);
   };
 
   const createUser = async (nickname: string) => {
+    if (!location) {
+      toast.error("회원가입을 다시 시도해주세요", {
+        autoClose: 2000,
+      });
+
+      navigate("/signup/main");
+    }
+
     try {
       await auth.signup({
         nickname: nickname,
         userId: location.userId,
         password: location.password,
       });
+
       toast.success("회원가입을 성공했어요", {
         autoClose: 2000,
       });
