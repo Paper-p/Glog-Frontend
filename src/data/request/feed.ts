@@ -136,6 +136,17 @@ class Feed {
       return error;
     }
   }
+
+  CancleLikePost(id: number) {
+    try {
+      return AxiosInstance({
+        method: "DELETE",
+        url: getFeed.getLikeURL() + `/${id}`,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new Feed();

@@ -64,8 +64,13 @@ function DetailsPostPage() {
 
   const Like = async () => {
     try {
-      const res: any = await feed.LikePost(Number(params.postId));
-      setIsLiked(!isLiked);
+      if (isLiked) {
+        const res: any = await feed.CancleLikePost(Number(params.postId));
+        setIsLiked(!isLiked);
+      } else {
+        const res: any = await feed.LikePost(Number(params.postId));
+        setIsLiked(!isLiked);
+      }
     } catch (e) {
       console.log(e);
     }
