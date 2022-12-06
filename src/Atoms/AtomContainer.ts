@@ -74,8 +74,3 @@ export const searchAtom = atom({
   key: "search",
   default: "",
 });
-
-export const PostsTypeAtom = atom<PostsType>({
-  key: "postsType",
-  default: "내 게시물",
-});
