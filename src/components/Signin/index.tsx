@@ -10,7 +10,7 @@ import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
 import auth from "data/request/auth";
 import { useForm } from "react-hook-form";
-import { LoginInterface } from "interfaces/IAuth";
+import { LoginInterface } from "interfaces/AuthInterface";
 import { toast } from "react-toastify";
 import TokenService from "util/TokenService";
 

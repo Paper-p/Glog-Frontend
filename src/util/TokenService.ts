@@ -1,4 +1,4 @@
-import { TokenInterface } from "interfaces/IAuth";
+import { TokenInterface } from "interfaces/AuthInterface";
 
 class TokenService {
   getLocalRefreshToken() {

@@ -10,7 +10,7 @@ import { useQueryClient, useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
 import { useRecoilState } from "recoil";
-import { CommentInterface } from "interfaces/IComment";
+import { CommentInterface } from "interfaces/CommentInterface";
 import * as S from "./style";
 
 interface Props extends CommentInterface {

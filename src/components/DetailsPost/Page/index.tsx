@@ -12,7 +12,7 @@ import {
 } from "components/DetailsPost";
 import * as S from "./style";
 import * as I from "assets/svg";
-import { CommentInterface } from "interfaces/IComment";
+import { CommentInterface } from "interfaces/CommentInterface";
 import { loggedAtom, removeCommentModalAtom } from "atoms";
 import { useRecoilState } from "recoil";
 import DetailsPostTextarea from "../CommentTextarea";
