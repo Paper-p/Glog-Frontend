@@ -11,6 +11,7 @@ import {
   DetailsPostTag,
 } from "components/DetailsPost";
 import * as S from "./style";
+import * as I from "Assets/svg";
 import { CommentInterface } from "interfaces/IComment";
 import { loggedAtom, removeCommentModalAtom } from "Atoms";
 import { useRecoilState } from "recoil";
@@ -25,6 +26,7 @@ function DetailsPostPage() {
   const params = useParams();
   const [response, setResponse] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
 
   const fetching = async () => {
     try {
@@ -34,6 +36,7 @@ function DetailsPostPage() {
           ? JSON.parse(localStorage.getItem("token") || "{}").accessToken
           : ""
       );
+      setIsLiked(res.data.isLiked);
       setResponse(res.data);
     } catch (e: any) {
       console.log(e);
@@ -48,6 +51,7 @@ function DetailsPostPage() {
           Number(params.postId),
           logged ? TokenService.getLocalAccessToken() : ""
         );
+        setIsLiked(res.data.isLiked);
         setResponse(res.data);
         setLoading(true);
       } catch (e: any) {
@@ -57,6 +61,14 @@ function DetailsPostPage() {
 
     getDetailsPostData();
   }, []);
+
+  const Like = async () => {
+    try {
+      const res: any = await feed.LikePost(Number(params.postId));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const commentQuery = useQuery({
     queryKey: "feed",
@@ -71,7 +83,12 @@ function DetailsPostPage() {
         {removeCommentModal && <RemoveCommentModal />}
         {loading ? (
           <>
-            <S.Title>{response.title}</S.Title>
+            <S.Box>
+              <S.Title>{response.title}</S.Title>
+              <S.SvgBox onClick={Like}>
+                {isLiked ? <I.PostLike /> : <I.PostLiked />}
+              </S.SvgBox>
+            </S.Box>
             <DetailsPostTag tagList={response.tagList} />
             <DetailsPostInfo
               author={response.author}

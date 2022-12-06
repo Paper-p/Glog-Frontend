@@ -125,6 +125,17 @@ class Feed {
       return error;
     }
   }
+
+  LikePost(id: number) {
+    try {
+      return AxiosInstance({
+        method: "POST",
+        url: getFeed.getMyLikeFeedList() + `/${id}`,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new Feed();
