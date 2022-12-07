@@ -19,6 +19,7 @@ import DetailsPostTextarea from "../CommentTextarea";
 import { useQuery } from "react-query";
 import RemoveCommentModal from "components/Modal/CommentDeleteModal";
 import TokenService from "util/TokenService";
+import Page404 from "components/NotFound";
 
 function DetailsPostPage() {
   const [logged] = useRecoilState(loggedAtom);
@@ -27,6 +28,7 @@ function DetailsPostPage() {
   const [response, setResponse] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [is404, setIs404] = useState<boolean>(false);
 
   useEffect(() => {
     const getDetailsPostData = async () => {
@@ -40,6 +42,9 @@ function DetailsPostPage() {
         setResponse(res.data);
         setLoading(true);
       } catch (e: any) {
+        if (e.response.status === 404 || e.response.status === 400) {
+          setIs404(true);
+        }
         console.log(e);
       }
     };
@@ -83,43 +88,49 @@ function DetailsPostPage() {
   return (
     <React.Fragment>
       <Header isNeedSearch={false} />
-      <S.DetailsPostLayout>
-        {removeCommentModal && <RemoveCommentModal />}
-        {loading ? (
-          <>
-            <S.Box>
-              <S.Title>{response.title}</S.Title>
-              <S.SvgBox onClick={Like} isLiked={isLiked}>
-                {isLiked ? <I.PostLiked /> : <I.PostLike />}
-              </S.SvgBox>
-            </S.Box>
-            <DetailsPostTag tagList={response.tagList} />
-            <DetailsPostInfo
-              author={response.author}
-              createdAt={response.createdAt}
-              like={response.likeCount}
-              hit={response.hit}
-            />
-            <DetailsPostThumbnail imageUrl={response.thumbnail} />
-            <DetailsPostContent content={response.content} />
-            <Category>📖 댓글</Category>
-            <DetailsPostTextarea />
-          </>
-        ) : (
-          <DetailsPostSkeleton />
-        )}
-        {response.comments?.map((idx: CommentInterface) => (
-          <DetailsPostComment
-            key={idx.id}
-            id={idx.id}
-            author={idx.author}
-            content={idx.content}
-            createdAt={idx.createdAt}
-            isMine={idx.isMine}
-            setState={setResponse}
-          />
-        ))}
-      </S.DetailsPostLayout>
+      {is404 ? (
+        <Page404 />
+      ) : (
+        <>
+          <S.DetailsPostLayout>
+            {removeCommentModal && <RemoveCommentModal />}
+            {loading ? (
+              <>
+                <S.Box>
+                  <S.Title>{response.title}</S.Title>
+                  <S.SvgBox onClick={Like} isLiked={isLiked}>
+                    {isLiked ? <I.PostLiked /> : <I.PostLike />}
+                  </S.SvgBox>
+                </S.Box>
+                <DetailsPostTag tagList={response.tagList} />
+                <DetailsPostInfo
+                  author={response.author}
+                  createdAt={response.createdAt}
+                  like={response.likeCount}
+                  hit={response.hit}
+                />
+                <DetailsPostThumbnail imageUrl={response.thumbnail} />
+                <DetailsPostContent content={response.content} />
+                <Category>📖 댓글</Category>
+                <DetailsPostTextarea />
+              </>
+            ) : (
+              <DetailsPostSkeleton />
+            )}
+            {response.comments?.map((idx: CommentInterface) => (
+              <DetailsPostComment
+                key={idx.id}
+                id={idx.id}
+                author={idx.author}
+                content={idx.content}
+                createdAt={idx.createdAt}
+                isMine={idx.isMine}
+                setState={setResponse}
+              />
+            ))}
+          </S.DetailsPostLayout>
+        </>
+      )}
     </React.Fragment>
   );
 }
