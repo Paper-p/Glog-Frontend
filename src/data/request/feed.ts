@@ -72,7 +72,7 @@ class Feed {
           method: "DELETE",
           url: getFeed.feed() + `/${id}`,
         },
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+        TokenService.getLocalAccessToken()
       );
     } catch (error) {
       return error;

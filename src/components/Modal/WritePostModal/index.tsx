@@ -110,7 +110,7 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
       formData.append("image", e.target.files[0]);
       const res: any = await image.uploadImage(
         formData,
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+        TokenService.getLocalAccessToken()
       );
       setThumbnailUrl(res.data.imageUrl);
     } catch (e: any) {

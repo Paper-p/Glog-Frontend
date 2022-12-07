@@ -1,5 +1,6 @@
 import { getComment } from "data/url/getUrl";
 import AxiosInstance from "util/AxiosInstance";
+import TokenService from "util/TokenService";
 
 class Comment {
   addComment(feedId: number, comment: string) {
@@ -12,7 +13,7 @@ class Comment {
             content: comment,
           },
         },
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+        TokenService.getLocalAccessToken()
       );
     } catch (error) {
       return error;
@@ -29,7 +30,7 @@ class Comment {
             content: text,
           },
         },
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+        TokenService.getLocalAccessToken()
       );
     } catch (error) {
       return error;
@@ -43,7 +44,7 @@ class Comment {
           method: "DELETE",
           url: getComment.commentUrl() + `/${commentId}`,
         },
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+        TokenService.getLocalAccessToken()
       );
     } catch (error) {
       return error;
