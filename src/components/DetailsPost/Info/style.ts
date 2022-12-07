@@ -8,7 +8,7 @@ export const DetailsPostInfoLayout = styled.div`
   margin-top: 24px;
 `;
 
-export const AuthorInfo = styled.div`
+export const AuthorInfoSection = styled.section`
   display: flex;
   gap: 8px;
 `;
@@ -23,12 +23,14 @@ export const Profile = styled.div`
 export const Author = styled.div`
   text-align: justify;
 `;
+
 export const Name = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   color: #ffffff;
 `;
+
 export const createdAt = styled.p`
   font-weight: 500;
   font-size: 14px;
@@ -36,7 +38,34 @@ export const createdAt = styled.p`
   color: #999999;
 `;
 
-export const PostInfo = styled.div`
+export const PostInfoSection = styled.div`
   display: flex;
   align-items: center;
+  gap: 8px;
+`;
+
+export const ItemBox = styled.div`
+  display: flex;
+  gap: 4.4px;
+`;
+
+export const Svg = styled.div`
+  & > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.like {
+    margin-bottom: 1.4px;
+  }
+`;
+
+export const ItemValue = styled.p`
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #929292;
+  margin-top: 2px;
 `;

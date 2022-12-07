@@ -1,8 +1,7 @@
-import BottomSection from "components/Common/PostBox/Common/BottomSection";
 import { useDate } from "hooks/useDate";
-import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
+import * as I from "assets/svg";
 
 interface Props {
   author: {
@@ -20,7 +19,7 @@ function DetailsPostInfo({ author, createdAt, like, hit }: Props) {
 
   return (
     <S.DetailsPostInfoLayout>
-      <S.AuthorInfo>
+      <S.AuthorInfoSection>
         <S.Profile>
           <Link to={`/${author?.nickname}`}>
             <img src={author?.profileImageUrl} alt="" />
@@ -30,10 +29,21 @@ function DetailsPostInfo({ author, createdAt, like, hit }: Props) {
           <S.Name>{author?.nickname}</S.Name>
           <S.createdAt>{formatDate}</S.createdAt>
         </S.Author>
-      </S.AuthorInfo>
-      <S.PostInfo>
-        <BottomSection like={like} hit={hit} />
-      </S.PostInfo>
+      </S.AuthorInfoSection>
+      <S.PostInfoSection>
+        <S.ItemBox>
+          <S.Svg className="like">
+            <I.Like />
+          </S.Svg>
+          <S.ItemValue>{like}</S.ItemValue>
+        </S.ItemBox>
+        <S.ItemBox>
+          <S.Svg>
+            <I.Hit />
+          </S.Svg>
+          <S.ItemValue>{hit}</S.ItemValue>
+        </S.ItemBox>
+      </S.PostInfoSection>
     </S.DetailsPostInfoLayout>
   );
 }
