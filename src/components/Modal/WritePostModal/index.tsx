@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as S from "./style";
-import { Button, ModalLayout } from "components/Common";
+import { Button, ModalLayout, NormalPostBox } from "components/Common";
 import { useRecoilState } from "recoil";
 import {
   writeModalAtom,
@@ -17,7 +17,6 @@ import { marked } from "marked";
 import { toast } from "react-toastify";
 import TokenService from "util/TokenService";
 import { WriteMode } from "types/WritePostType";
-import NormalPostBox from "components/Common/PostBox/NormalPostBox";
 
 interface Props {
   mode: WriteMode;

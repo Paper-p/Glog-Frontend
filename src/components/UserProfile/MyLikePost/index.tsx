@@ -4,7 +4,7 @@ import LikePostIsNull from "components/PostIsNull/LikePostIsNull";
 import TokenService from "util/TokenService";
 import feed from "data/request/feed";
 import { marked } from "marked";
-import UserPagePostBox from "components/Common/PostBox/UserPagePost/Box";
+import { UserPagePostBox } from "components/Common";
 
 export default function MyLikePost() {
   const [isMine] = useState<boolean>(false);

@@ -1,9 +1,8 @@
 import { loggedAtom } from "atoms";
-import { Category } from "components/Common";
-import HotPostBox from "components/Common/PostBox/HotPostBox";
+import { Category, HotPostBox } from "components/Common";
 import feed from "data/request/feed";
 import { marked } from "marked";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import TokenService from "util/TokenService";
 import * as S from "./style";

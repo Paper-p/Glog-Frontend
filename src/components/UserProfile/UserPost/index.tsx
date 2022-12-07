@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import * as S from "./style";
 import TokenService from "util/TokenService";
 import { marked } from "marked";
-import UserPagePostBox from "components/Common/PostBox/UserPagePost/Box";
+import { UserPagePostBox } from "components/Common";
 
 export default function UserPost() {
   const [feedList, setFeedList] = useState<any[]>([]);
