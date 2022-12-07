@@ -56,6 +56,10 @@ export const PostBox = styled.div<{ url?: string; inUserPage?: boolean }>`
 
     @media screen and (max-width: 650px) {
       width: ${(e) => (e.inUserPage ? "75vw" : "45vw")};
+
+      &:hover {
+        transform: scale(1);
+      }
     }
 
     @media screen and (max-width: 600px) {

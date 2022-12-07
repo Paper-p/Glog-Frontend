@@ -6,6 +6,7 @@ export const UserPostsBox = styled.div`
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 2vw 1.5vw;
+  margin-bottom: 1rem;
 
   @media screen and (max-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
