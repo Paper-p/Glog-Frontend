@@ -17,6 +17,14 @@ export const FooterLayout = styled.footer`
 
   p.error {
     color: #e83f28;
+
+    @media screen and (max-width: 900px) {
+      margin-right: 250px;
+    }
+
+    @media screen and (max-width: 600px) {
+      margin-right: 180px;
+    }
   }
 `;
 
@@ -28,6 +36,14 @@ export const ButtonBox = styled.div`
   right: 5px;
   color: #18d570;
   transform: translate(-50%, -50%);
+
+  @media screen and (max-width: 900px) {
+    gap: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    gap: 10px;
+    right: -30px;
+  }
 
   p {
     cursor: pointer;

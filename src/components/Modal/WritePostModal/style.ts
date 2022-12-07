@@ -6,8 +6,12 @@ export const WriteModal = styled.div`
   background: #252727;
   border-radius: 15px;
 
-  .preview {
-    width: 684px;
+  @media screen and (max-width: 900px) {
+    width: 600px;
+  }
+
+  @media screen and (max-width: 650px) {
+    width: 450px;
   }
 `;
 
@@ -32,6 +36,14 @@ export const UploadSvgBox = styled.div`
     line-height: 20px;
     color: #18d570;
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 524px;
+  }
+
+  @media screen and (max-width: 650px) {
+    width: 390px;
   }
 `;
 
@@ -62,6 +74,14 @@ export const UploadThumbnail = styled.div`
     height: 45px;
     font-size: 17px;
     margin-top: 20px;
+
+    @media screen and (max-width: 900px) {
+      width: 524px;
+    }
+
+    @media screen and (max-width: 650px) {
+      width: 390px;
+    }
   }
 `;
 
