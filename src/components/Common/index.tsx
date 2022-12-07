@@ -5,3 +5,6 @@ export { default as Logo } from "./Logo";
 export { default as AuthLayout } from "./Layout/Auth";
 export { default as ModalLayout } from "./Layout/Modal";
 export { default as Category } from "./Category";
+export { default as HotPostBox } from "./PostBox/HotPostBox";
+export { default as NormalPostBox } from "./PostBox/NormalPostBox";
+export { default as UserPagePostBox } from "./PostBox/UserPagePost/Box";
