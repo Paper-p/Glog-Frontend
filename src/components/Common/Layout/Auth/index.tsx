@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./style";
 
 interface Props extends React.HTMLAttributes<HTMLFormElement> {
-  onSubmit?: any;
+  onSubmit?: React.FormEventHandler<HTMLFormElement> | undefined;
 }
 
 function AuthLayout({ children, onSubmit }: Props) {
