@@ -50,6 +50,7 @@ function DetailsPostPage() {
     };
 
     getDetailsPostData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const Like = async () => {
@@ -79,6 +80,7 @@ function DetailsPostPage() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const commentQuery = useQuery({
     queryKey: "feed",
     queryFn: fetching,

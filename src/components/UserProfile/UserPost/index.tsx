@@ -47,6 +47,7 @@ export default function UserPost() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const userProfileQuery = useQuery({
     queryKey: "UserProfile",
     queryFn: fetch,

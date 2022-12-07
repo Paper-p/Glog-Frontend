@@ -43,6 +43,7 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
       request();
       setIsClick(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isClick]);
 
   const saveTag = () => {
