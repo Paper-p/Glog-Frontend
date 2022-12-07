@@ -1,4 +1,4 @@
-import InfoBox from "components/Common/PostBox/Common";
+import BottomSection from "components/Common/PostBox/Common/BottomSection";
 import { useDate } from "hooks/useDate";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -32,7 +32,7 @@ function DetailsPostInfo({ author, createdAt, like, hit }: Props) {
         </S.Author>
       </S.AuthorInfo>
       <S.PostInfo>
-        <InfoBox like={like} hit={hit} />
+        <BottomSection like={like} hit={hit} />
       </S.PostInfo>
     </S.DetailsPostInfoLayout>
   );

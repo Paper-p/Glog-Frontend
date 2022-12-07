@@ -1,10 +1,10 @@
-import { PostBox } from "components/Common";
 import { useEffect, useState } from "react";
 import * as S from "./style";
 import LikePostIsNull from "components/PostIsNull/LikePostIsNull";
 import TokenService from "util/TokenService";
 import feed from "data/request/feed";
 import { marked } from "marked";
+import UserPagePostBox from "components/Common/PostBox/UserPagePost/Box";
 
 export default function MyLikePost() {
   const [isMine] = useState<boolean>(false);
@@ -37,19 +37,17 @@ export default function MyLikePost() {
       ) : (
         <S.MyLikesPostsBox>
           {likeList.map((post) => (
-            <PostBox
+            <UserPagePostBox
               key={post.id}
               id={post.id}
               title={post.title}
-              imageUrl={post.thumbnail}
+              thumbnail={post.thumbnail}
               content={
                 marked(post.previewContent).replace(/<[^>]+>/g, "") + "..."
               }
-              view={post.hit}
+              hit={post.hit}
               like={post.likeCount}
               isMine={isMine}
-              isDefault={false}
-              inUserPage={true}
             />
           ))}
         </S.MyLikesPostsBox>

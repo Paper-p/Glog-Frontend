@@ -1,5 +1,6 @@
 import { loggedAtom } from "atoms";
-import { Category, PostBox } from "components/Common";
+import { Category } from "components/Common";
+import HotPostBox from "components/Common/PostBox/HotPostBox";
 import feed from "data/request/feed";
 import { marked } from "marked";
 import React, { useEffect, useState } from "react";
@@ -34,16 +35,15 @@ function MainPageHotPosts() {
         <>
           {list.map((idx) => (
             <div key={idx.id}>
-              <PostBox
-                isDefault={false}
+              <HotPostBox
                 id={idx.id}
-                imageUrl={idx.thumbnail}
+                thumbnail={idx.thumbnail}
                 title={idx.title}
                 content={
                   marked(idx.previewContent).replace(/<[^>]+>/g, "") + "..."
                 }
                 like={idx.likeCount}
-                view={idx.hit}
+                hit={idx.hit}
               />
             </div>
           ))}

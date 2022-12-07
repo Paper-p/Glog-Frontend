@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as S from "./style";
-import { PostBox, Button, ModalLayout } from "components/Common";
+import { Button, ModalLayout } from "components/Common";
 import { useRecoilState } from "recoil";
 import {
   writeModalAtom,
@@ -17,6 +17,7 @@ import { marked } from "marked";
 import { toast } from "react-toastify";
 import TokenService from "util/TokenService";
 import { WriteMode } from "types/WritePostType";
+import NormalPostBox from "components/Common/PostBox/NormalPostBox";
 
 interface Props {
   mode: WriteMode;
@@ -135,14 +136,12 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
           </S.UploadSvg>
           <p>썸네일 변경</p>
         </S.UploadSvgBox>
-        <PostBox
-          isDefault={true}
-          imageUrl={thumbnailUrl}
+        <NormalPostBox
+          thumbnail={"PREVIEW"}
           title={title}
           content={contentPreview}
           like={3192}
-          view={8321}
-          isPreview={true}
+          hit={8321}
         />
         <S.UploadThumbnail>
           <input

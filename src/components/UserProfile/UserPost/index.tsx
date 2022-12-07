@@ -1,4 +1,3 @@
-import { PostBox } from "components/Common";
 import PostIsNull from "components/PostIsNull/PostIsNull";
 import user from "data/request/user";
 import { useEffect, useState } from "react";
@@ -7,6 +6,7 @@ import { useParams } from "react-router-dom";
 import * as S from "./style";
 import TokenService from "util/TokenService";
 import { marked } from "marked";
+import UserPagePostBox from "components/Common/PostBox/UserPagePost/Box";
 
 export default function UserPost() {
   const [feedList, setFeedList] = useState<any[]>([]);
@@ -60,19 +60,17 @@ export default function UserPost() {
       ) : (
         <S.UserPostsBox>
           {feedList.map((post) => (
-            <PostBox
+            <UserPagePostBox
               key={post.id}
               id={post.id}
               title={post.title}
-              imageUrl={post.thumbnail}
+              thumbnail={post.thumbnail}
               content={
                 marked(post.previewContent).replace(/<[^>]+>/g, "") + "..."
               }
-              view={post.hit}
+              hit={post.hit}
               like={post.likeCount}
               isMine={isMine}
-              isDefault={false}
-              inUserPage={true}
             />
           ))}
         </S.UserPostsBox>

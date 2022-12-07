@@ -6,19 +6,19 @@ export const CategoryBox = styled.div`
   padding: 90px 0 22.5px 0;
 
   @media screen and (max-width: 1350px) {
-    width: 88.5vw;
+    width: 90vw;
   }
 
   @media screen and (max-width: 1000px) {
-    width: 93vw;
+    width: 95vw;
   }
 
   @media screen and (max-width: 850px) {
-    width: 80vw;
+    width: 85vw;
   }
 
   @media screen and (max-width: 600px) {
-    width: 90vw;
+    width: 95vw;
   }
 `;
 

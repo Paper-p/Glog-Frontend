@@ -1,5 +1,5 @@
 import { searchAtom } from "atoms";
-import { PostBox, Category, Header } from "components/Common";
+import { Category, Header } from "components/Common";
 import feed from "data/request/feed";
 import { marked } from "marked";
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -8,6 +8,7 @@ import MainSkeleton from "../Skeleton";
 import * as S from "./style";
 import uuid from "react-uuid";
 import MainPageHotPosts from "../HotPost";
+import NormalPostBox from "components/Common/PostBox/NormalPostBox";
 
 export default function Main() {
   const page = useRef<number>(0);
@@ -69,16 +70,15 @@ export default function Main() {
         <>
           {list.map((idx) => (
             <div key={uuid()}>
-              <PostBox
-                isDefault={true}
+              <NormalPostBox
                 id={idx.id}
-                imageUrl={idx.thumbnail}
+                thumbnail={idx.thumbnail}
                 title={idx.title}
                 content={
                   marked(idx.previewContent).replace(/<[^>]+>/g, "") + "..."
                 }
                 like={idx.likeCount}
-                view={idx.hit}
+                hit={idx.hit}
               />
             </div>
           ))}
