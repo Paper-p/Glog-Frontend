@@ -14,12 +14,14 @@ function NormalPostBox({
   hit,
 }: PostInterface) {
   const [image, setImage] = useState<string>("");
+  const [isPreview, setIsPreview] = useState<boolean>(false);
   const writePostModalPreviewThumbnail: string =
     "https://cdn.head-fi.org/assets/classifieds/hf-classifieds_no-image-available_2.jpg";
 
   useEffect(() => {
     if (thumbnail === "PREVIEW") {
       setImage(writePostModalPreviewThumbnail);
+      setIsPreview(true);
     } else {
       setImage(thumbnail);
     }
@@ -27,7 +29,10 @@ function NormalPostBox({
 
   return (
     <Link to={`post/${id}`}>
-      <S.NormalPostBoxLayout backgroundImage={image}>
+      <S.NormalPostBoxLayout
+        className={isPreview ? "preview" : ""}
+        backgroundImage={image}
+      >
         <TextSection title={title} content={content} />
         <BottomSection isNormal={true} like={like} hit={hit} />
       </S.NormalPostBoxLayout>
