@@ -124,7 +124,9 @@ export default function UserPropfile() {
                   </S.MyCategory>
                 </S.MyCategoryBox>
               ) : (
-                <Category>{`💻 ${userInfo.nickname}님의 게시물's`}</Category>
+                <Category>{`💻 ${
+                  userInfo.nickname ? userInfo.nickname : "익명의 개발자"
+                }님의 게시물's`}</Category>
               )}
             </S.CategoryBox>
             {isLoading && <UserProfilePageSkeleton />}
