@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const ControlBoxLayout = styled.div<{ control: boolean | undefined }>`
   display: flex;
   position: absolute;
-  right: 27px;
+  right: 0;
   gap: 15px;
 
   & > div {

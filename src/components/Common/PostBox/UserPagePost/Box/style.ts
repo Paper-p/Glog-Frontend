@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const UserPagePostBoxLayout = styled.div`
   position: relative;
-  width: 17vw;
+  width: 100%;
   height: 330px;
   background: none;
   transition: 0.2s;
@@ -12,25 +12,7 @@ export const UserPagePostBoxLayout = styled.div`
     transform: scale(1.02);
   }
 
-  @media screen and (max-width: 1350px) {
-    width: 21vw;
-  }
-
-  @media screen and (max-width: 1100px) {
-    width: 30vw;
-  }
-
-  @media screen and (max-width: 850px) {
-    width: 46vw;
-  }
-
-  @media screen and (max-width: 750px) {
-    width: 37vw;
-  }
-
   @media screen and (max-width: 650px) {
-    width: 75vw;
-
     &:hover {
       transform: scale(1);
     }

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const HotPostBoxLayout = styled.div`
   position: relative;
-  width: 17vw;
+  width: 100%;
   height: 330px;
   background: none;
   transition: 0.2s;
@@ -12,29 +12,7 @@ export const HotPostBoxLayout = styled.div`
     transform: scale(1.02);
   }
 
-  @media screen and (max-width: 1350px) {
-    width: 20vw;
-  }
-
-  @media screen and (max-width: 1000px) {
-    width: 45vw;
-  }
-
-  @media screen and (max-width: 850px) {
-    width: 38vw;
-  }
-
   @media screen and (max-width: 650px) {
-    width: 45vw;
-
-    &:hover {
-      transform: scale(1);
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    width: 90vw;
-
     &:hover {
       transform: scale(1);
     }

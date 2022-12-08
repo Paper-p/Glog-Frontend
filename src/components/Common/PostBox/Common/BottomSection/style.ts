@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const BottomSectionLayout = styled.div`
-  width: 100%;
+  width: 91.5%;
   display: flex;
   position: absolute;
   bottom: 12px;
