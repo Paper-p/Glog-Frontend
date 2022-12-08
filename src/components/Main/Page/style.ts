@@ -20,7 +20,7 @@ export const MainPageNormalPosts = styled.div`
 
 export const CategoryBox = styled.div`
   width: 100%;
-  padding: 90px 0 15px 0;
+  padding: 70px 0 15px 0;
 `;
 
 export const PostListSection = styled.section`

@@ -12,14 +12,14 @@ export const HotPostsLayout = styled.div`
 export const CategoryBox = styled.div`
   width: 100%;
   margin: auto;
-  padding: 90px 0 15px 0;
+  padding: 60px 0 15px 0;
 `;
 
 export const HotPostList = styled.div`
   width: 100%;
+  display: grid;
   gap: 0.83vw 0.83vw;
   margin: auto;
-  display: grid;
   grid-template-columns: repeat(4, 1fr);
 
   @media screen and (max-width: 1350px) {
