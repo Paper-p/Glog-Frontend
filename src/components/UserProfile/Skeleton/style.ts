@@ -49,29 +49,9 @@ export const SkeletonLayout = styled.div`
 `;
 
 export const Skeleton = styled.div`
-  width: 17vw;
+  width: 100%;
   height: 330px;
   border-radius: 10px;
   -webkit-animation: skeleton-gradient 1.5s infinite ease-in-out;
   animation: skeleton-gradient 1.5s infinite ease-in-out;
-
-  @media screen and (max-width: 1350px) {
-    width: 21vw;
-  }
-
-  @media screen and (max-width: 1100px) {
-    width: 30vw;
-  }
-
-  @media screen and (max-width: 850px) {
-    width: 46vw;
-  }
-
-  @media screen and (max-width: 750px) {
-    width: 37vw;
-  }
-
-  @media screen and (max-width: 650px) {
-    width: 75vw;
-  }
 `;

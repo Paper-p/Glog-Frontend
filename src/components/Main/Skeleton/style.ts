@@ -37,46 +37,19 @@ export const SkeletonLayout = styled.div`
   }
 
   @media screen and (max-width: 1350px) {
-    width: 90vw;
+    width: 95vw;
     gap: 1.3vw 0.6vw;
   }
 
-  @media screen and (max-width: 1000px) {
-    width: 95vw;
-  }
-
   @media screen and (max-width: 850px) {
-    width: 85vw;
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  @media screen and (max-width: 600px) {
-    width: 95vw;
     grid-template-columns: repeat(1, 1fr);
   }
 `;
 
 export const Skeleton = styled.div`
-  width: 35.63vw;
+  width: 100%;
   height: 150px;
   border-radius: 10px;
   -webkit-animation: skeleton-gradient 1.5s infinite ease-in-out;
   animation: skeleton-gradient 1.5s infinite ease-in-out;
-
-  @media screen and (max-width: 1350px) {
-    width: 43vw;
-  }
-
-  @media screen and (max-width: 1000px) {
-    width: 45vw;
-  }
-
-  @media screen and (max-width: 850px) {
-    width: 80vw;
-    margin: auto;
-  }
-
-  @media screen and (max-width: 600px) {
-    width: 90vw;
-  }
 `;
