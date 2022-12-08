@@ -10,7 +10,7 @@ export const DetailsPostLayout = styled.div`
   }
 
   @media screen and (max-width: 900px) {
-    width: 95vw;
+    width: 93vw;
     padding: 65px 0px;
   }
 `;
