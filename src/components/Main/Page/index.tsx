@@ -59,32 +59,35 @@ export default function Main() {
   };
 
   return (
-    <>
+    <S.MainPageLayout>
       <Header isNeedSearch={true} onKeyPress={onSearch} />
       <MainPageHotPosts />
-      <S.CategoryBox>
-        <Category>💻 게시물’s</Category>
-      </S.CategoryBox>
-      <S.PostListSection>
-        <>
-          {list.map((idx) => (
-            <div key={uuid()}>
-              <NormalPostBox
-                id={idx.id}
-                thumbnail={idx.thumbnail}
-                title={idx.title}
-                content={
-                  marked(idx.previewContent).replace(/<[^>]+>/g, "") + "..."
-                }
-                like={idx.likeCount}
-                hit={idx.hit}
-              />
-            </div>
-          ))}
-          <div ref={observerTargetEl} />
-        </>
-      </S.PostListSection>
+      <S.MainPageNormalPosts>
+        <S.CategoryBox>
+          <Category>💻 게시물’s</Category>
+        </S.CategoryBox>
+        <S.PostListSection>
+          <>
+            {list.map((idx) => (
+              <div key={uuid()}>
+                <NormalPostBox
+                  id={idx.id}
+                  thumbnail={idx.thumbnail}
+                  title={idx.title}
+                  content={
+                    marked(idx.previewContent).replace(/<[^>]+>/g, "") + "..."
+                  }
+                  like={idx.likeCount}
+                  hit={idx.hit}
+                />
+              </div>
+            ))}
+            <div ref={observerTargetEl} />
+          </>
+        </S.PostListSection>
+      </S.MainPageNormalPosts>
+
       {isLoad && <MainSkeleton />}
-    </>
+    </S.MainPageLayout>
   );
 }

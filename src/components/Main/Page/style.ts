@@ -1,53 +1,41 @@
 import styled from "@emotion/styled";
 
-export const CategoryBox = styled.div`
-  width: 72.5%;
+export const MainPageLayout = styled.div`
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const MainPageNormalPosts = styled.div`
+  width: 72.5vw;
   margin: auto;
-  padding: 90px 0 22.5px 0;
 
   @media screen and (max-width: 1350px) {
-    width: 90vw;
-  }
-
-  @media screen and (max-width: 1000px) {
-    width: 95vw;
-  }
-
-  @media screen and (max-width: 850px) {
-    width: 85vw;
-  }
-
-  @media screen and (max-width: 600px) {
     width: 95vw;
   }
 `;
 
-export const PostListSection = styled.div`
-  width: 72.5%;
+export const CategoryBox = styled.div`
+  width: 100%;
+  padding: 90px 0 15px 0;
+`;
+
+export const PostListSection = styled.section`
+  width: 100%;
   gap: 0.83vw 0.83vw;
-  margin: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin-bottom: 1rem;
 
   @media screen and (max-width: 1350px) {
-    width: 90vw;
     gap: 1.3vw 0.6vw;
   }
 
-  @media screen and (max-width: 1000px) {
-    width: 95vw;
-    gap: 2vw 0;
-  }
-
   @media screen and (max-width: 850px) {
-    width: 85vw;
-    grid-template-columns: repeat(1, 1fr);
     gap: 3vw 0;
-  }
-
-  @media screen and (max-width: 600px) {
-    width: 95vw;
     grid-template-columns: repeat(1, 1fr);
   }
 `;

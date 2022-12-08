@@ -5,15 +5,7 @@ export const UserPostsLayout = styled.div`
   margin: auto;
 
   @media screen and (max-width: 1350px) {
-    width: 90vw;
-  }
-
-  @media screen and (max-width: 1100px) {
     width: 95vw;
-  }
-
-  @media screen and (max-width: 750px) {
-    width: 75vw;
   }
 `;
 
@@ -23,6 +15,7 @@ export const UserPostsBox = styled.div`
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 2vw 1.5vw;
+
   @media screen and (max-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -36,7 +29,7 @@ export const UserPostsBox = styled.div`
 
 export const CategoryBox = styled.div`
   width: 100%;
-  padding: 30px 0 22.5px 0;
+  padding: 30px 0 15px 0;
 `;
 
 export const MyCategoryBox = styled.div`
