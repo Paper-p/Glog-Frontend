@@ -23,7 +23,7 @@ export default function Main() {
     try {
       setIsLoad(true);
       const res: any = await feed.getFeedList({
-        size: 12,
+        size: 6,
         page: page.current,
         keyword: search && search,
       });
@@ -35,7 +35,7 @@ export default function Main() {
         setSearchText("");
       }
       setList((prevPosts) => [...prevPosts, ...res.data.list]);
-      setHasNextPage(res.data.list.length === 12);
+      setHasNextPage(res.data.list.length === 6);
       setIsLoad(false);
 
       if (res.data.list.length) {
