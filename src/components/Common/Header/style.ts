@@ -14,12 +14,8 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  @media screen and (max-width: 1000px) {
-    width: 85%;
-  }
-
-  @media screen and (max-width: 700px) {
-    width: 90%;
+  @media screen and (max-width: 1350px) {
+    width: 95vw;
   }
 `;
 
@@ -73,12 +69,20 @@ export const HeaderBox = styled.div`
   color: #9d9d9d;
   gap: 16px;
 
+  @media screen and (max-width: 1350px) {
+    gap: 8px;
+  }
+
   p {
     cursor: pointer;
   }
 
   p.home {
     margin-left: 10px;
+
+    @media screen and (max-width: 1350px) {
+      margin-left: 0px;
+    }
   }
 
   p.user-name {
