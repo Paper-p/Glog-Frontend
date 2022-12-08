@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const HeaderLayout = styled.div`
   width: 100%;
   height: 70px;
-  margin-top: 50px;
+  margin-top: 30px;
 `;
 
 export const Header = styled.header`
