@@ -15,6 +15,8 @@ export default function Main() {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const observerTargetEl = useRef<HTMLDivElement>(null);
   const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [searchFailed, setSearchFailed] = useState<boolean>(false);
+  const [searchText, setSearchText] = useState<string>("");
   const [search] = useRecoilState(searchAtom);
 
   const getFeedList = useCallback(async () => {
@@ -25,6 +27,13 @@ export default function Main() {
         page: page.current,
         keyword: search && search,
       });
+      if (search && res.data.list.length < 1) {
+        setSearchFailed(true);
+        setSearchText(`"${search}"`);
+      } else {
+        setSearchFailed(false);
+        setSearchText("");
+      }
       setList((prevPosts) => [...prevPosts, ...res.data.list]);
       setHasNextPage(res.data.list.length === 12);
       setIsLoad(false);
@@ -85,6 +94,12 @@ export default function Main() {
             <div ref={observerTargetEl} />
           </>
         </S.PostListSection>
+        {searchFailed && (
+          <S.SearchResultIsNone>
+            <S.SearchText>{searchText}</S.SearchText>
+            <p>에 대한 검색결과가 없습니다</p>
+          </S.SearchResultIsNone>
+        )}
       </S.MainPageNormalPosts>
 
       {isLoad && <MainSkeleton />}

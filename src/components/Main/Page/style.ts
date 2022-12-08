@@ -39,3 +39,16 @@ export const PostListSection = styled.section`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
+export const SearchResultIsNone = styled.div`
+  display: flex;
+  gap: 10px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+export const SearchText = styled.p`
+  color: #fa3830;
+  font-weight: 400;
+`;
