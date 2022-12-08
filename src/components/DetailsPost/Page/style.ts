@@ -5,17 +5,13 @@ export const DetailsPostLayout = styled.div`
   margin: auto;
   padding: 65px 65px;
 
-  @media screen and (max-width: 1430px) {
+  @media screen and (max-width: 1350px) {
     width: 70vw;
   }
 
-  @media screen and (max-width: 1000px) {
-    width: 85vw;
-  }
-
-  @media screen and (max-width: 700px) {
-    width: 100vw;
-    padding: 65px 30px;
+  @media screen and (max-width: 900px) {
+    width: 95vw;
+    padding: 65px 0px;
   }
 `;
 
