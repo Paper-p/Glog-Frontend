@@ -19,6 +19,7 @@ import UserPost from "../UserPost";
 import MyLikePost from "../MyLikePost";
 import UserProfilePageSkeleton from "../Skeleton";
 import TokenService from "util/TokenService";
+import Header from "components/Common/Header";
 
 type PostType = "내 게시물" | "좋아요 한 게시물";
 
@@ -73,6 +74,7 @@ export default function UserPropfile() {
 
   return (
     <>
+      <Header />
       {is404 ? (
         <Page404 />
       ) : (
