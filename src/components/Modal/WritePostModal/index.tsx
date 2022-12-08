@@ -137,6 +137,7 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
           <p>썸네일 변경</p>
         </S.UploadSvgBox>
         <NormalPostBox
+          isPreview={true}
           thumbnail={thumbnailUrl}
           title={title}
           content={contentPreview}

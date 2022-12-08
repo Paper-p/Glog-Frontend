@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
 
-export const NormalPostBoxLayout = styled.div<{ backgroundImage: string }>`
+export const NormalPostBoxLayout = styled.div`
+  &.preview {
+    pointer-events: none;
+  }
+`;
+
+export const NormalPost = styled.div<{ backgroundImage: string }>`
   position: relative;
   width: 100%;
   height: 150px;
@@ -17,7 +23,6 @@ export const NormalPostBoxLayout = styled.div<{ backgroundImage: string }>`
   &.preview {
     width: 684px;
     margin: auto;
-    pointer-events: none;
 
     @media screen and (max-width: 900px) {
       width: 524px;
