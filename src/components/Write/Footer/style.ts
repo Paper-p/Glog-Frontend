@@ -19,12 +19,19 @@ export const FooterLayout = styled.footer`
     color: #e83f28;
 
     @media screen and (max-width: 900px) {
-      margin-right: 250px;
+      position: absolute;
+      left: 50px;
     }
 
     @media screen and (max-width: 600px) {
-      margin-right: 180px;
+      position: absolute;
+      left: 15px;
     }
+  }
+
+  @media screen and (max-width: 1350px) {
+    width: 95vw;
+    margin-left: -47.5%;
   }
 `;
 
