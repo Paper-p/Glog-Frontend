@@ -72,7 +72,11 @@ function DetailsPostComment({
             <>
               <S.UserProfile>
                 <Link to={`/${author.nickname}`}>
-                  <img src={author.profileImageUrl} alt="" />
+                  <img
+                    src={author.profileImageUrl}
+                    alt=""
+                    style={{ objectFit: "cover" }}
+                  />
                 </Link>
               </S.UserProfile>
               <div>

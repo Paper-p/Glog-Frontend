@@ -28,6 +28,7 @@ export default function UserPropfile() {
   const [, setPostsNull] = useState<boolean>(false);
   const [postType, setPostType] = useState<PostType>("내 게시물");
   const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+  const [anotherPersons, setAnotherPersons] = useState<any>({});
   const params = useParams();
   const navigate = useNavigate();
 
@@ -44,10 +45,14 @@ export default function UserPropfile() {
         String(params.nickname)
       );
 
-      setUserInfo({
-        nickname: res.data.nickname,
-        profileUrl: res.data.profileImageUrl,
-      });
+      if (res.data.isMine) {
+        setUserInfo({
+          nickname: res.data.nickname,
+          profileUrl: res.data.profileImageUrl,
+        });
+      } else {
+        setAnotherPersons(res.data);
+      }
 
       setIsMine(res.data.isMine);
       setIsLoading(false);
@@ -77,7 +82,6 @@ export default function UserPropfile() {
   return (
     <>
       <Header />
-
       <S.ProfileLayout>
         {logoutModal && <LogoutModal />}
         {deletePostModal && <DeletePostModal />}
@@ -88,8 +92,12 @@ export default function UserPropfile() {
           />
         )}
         <S.ProfileBox>
-          <S.ProfileImage src={userInfo.profileUrl} />
-          <S.ProfileName>{userInfo.nickname}</S.ProfileName>
+          <S.ProfileImage
+            src={isMine ? userInfo.profileUrl : anotherPersons.profileImageUrl}
+          />
+          <S.ProfileName>
+            {isMine ? userInfo.nickname : anotherPersons.nickname}
+          </S.ProfileName>
           {isMine && (
             <>
               <S.EditProfileButton onClick={() => setEditProfileModal(true)}>
@@ -120,7 +128,9 @@ export default function UserPropfile() {
             </S.MyCategoryBox>
           ) : (
             <Category>{`💻 ${
-              userInfo.nickname ? userInfo.nickname : "익명의 개발자"
+              anotherPersons.nickname
+                ? anotherPersons.nickname
+                : "익명의 개발자"
             }님의 게시물's`}</Category>
           )}
         </S.CategoryBox>
