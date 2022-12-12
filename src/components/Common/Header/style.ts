@@ -94,4 +94,5 @@ export const Profile = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 20px;
+  object-fit: cover;
 `;
