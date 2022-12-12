@@ -35,3 +35,11 @@ export const HotPostList = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
+export const Post = styled.div`
+  width: 100%;
+  height: 330px;
+  border-radius: 8px;
+  -webkit-animation: skeleton-gradient 1.5s infinite ease-in-out;
+  animation: skeleton-gradient 1.5s infinite ease-in-out;
+`;

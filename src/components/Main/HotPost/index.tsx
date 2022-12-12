@@ -5,19 +5,22 @@ import { marked } from "marked";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import TokenService from "util/TokenService";
+import HotPostsSkeleton from "../Skeleton/Hot";
 import * as S from "./style";
 
 function MainPageHotPosts() {
+  const [isLoad, setIsLoad] = useState<boolean>(true);
   const [logged] = useRecoilState(loggedAtom);
   const [list, setList] = useState<any[]>([]);
   useEffect(() => {
+    setIsLoad(true);
     const getHotPosts = async () => {
       try {
         const res: any = await feed.getHotPostsList(
           logged && TokenService.getLocalAccessToken()
         );
-
         setList(res.data.list);
+        setIsLoad(false);
       } catch (e: any) {
         console.log(e);
       }
@@ -28,9 +31,11 @@ function MainPageHotPosts() {
 
   return (
     <S.HotPostsLayout>
-      <S.CategoryBox>
-        <Category>🔥 HOT’</Category>
-      </S.CategoryBox>
+      {!isLoad && (
+        <S.CategoryBox>
+          <Category>🔥 HOT’</Category>
+        </S.CategoryBox>
+      )}
       <S.HotPostList>
         <>
           {list.map((idx) => (
@@ -49,6 +54,7 @@ function MainPageHotPosts() {
           ))}
         </>
       </S.HotPostList>
+      {isLoad && <HotPostsSkeleton />}
     </S.HotPostsLayout>
   );
 }

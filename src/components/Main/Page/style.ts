@@ -7,6 +7,34 @@ export const MainPageLayout = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @-webkit-keyframes skeleton-gradient {
+    0% {
+      background-color: rgba(165, 165, 165, 0.1);
+    }
+
+    50% {
+      background-color: rgba(165, 165, 165, 0.3);
+    }
+
+    100% {
+      background-color: rgba(165, 165, 165, 0.1);
+    }
+  }
+
+  @keyframes skeleton-gradient {
+    0% {
+      background-color: rgba(165, 165, 165, 0.1);
+    }
+
+    50% {
+      background-color: rgba(165, 165, 165, 0.3);
+    }
+
+    100% {
+      background-color: rgba(165, 165, 165, 0.1);
+    }
+  }
 `;
 
 export const MainPageNormalPosts = styled.div`
@@ -51,4 +79,13 @@ export const SearchResultIsNone = styled.div`
 export const SearchText = styled.p`
   color: #fa3830;
   font-weight: 400;
+`;
+
+export const SkeletonCategory = styled.div`
+  width: 83px;
+  height: 37px;
+  margin: 70px 0 15px 0;
+  border-radius: 8px;
+  -webkit-animation: skeleton-gradient 1.5s infinite ease-in-out;
+  animation: skeleton-gradient 1.5s infinite ease-in-out;
 `;

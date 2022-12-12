@@ -4,10 +4,10 @@ import feed from "data/request/feed";
 import { marked } from "marked";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import MainSkeleton from "../Skeleton";
 import * as S from "./style";
 import uuid from "react-uuid";
 import MainPageHotPosts from "../HotPost";
+import MainSkeleton from "../Skeleton/Main";
 
 export default function Main() {
   const page = useRef<number>(0);
@@ -72,9 +72,13 @@ export default function Main() {
       <Header isNeedSearch={true} onKeyPress={onSearch} />
       <MainPageHotPosts />
       <S.MainPageNormalPosts>
-        <S.CategoryBox>
-          <Category>💻 게시물’s</Category>
-        </S.CategoryBox>
+        {isLoad ? (
+          <S.SkeletonCategory />
+        ) : (
+          <S.CategoryBox>
+            <Category>💻 게시물’s</Category>
+          </S.CategoryBox>
+        )}
         <S.PostListSection>
           <>
             {list.map((idx) => (
@@ -101,7 +105,6 @@ export default function Main() {
           </S.SearchResultIsNone>
         )}
       </S.MainPageNormalPosts>
-
       {isLoad && <MainSkeleton />}
     </S.MainPageLayout>
   );
