@@ -5,14 +5,13 @@ import {
 } from "atoms";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./style";
 import * as I from "assets/svg";
 import Category from "components/Common/Category";
 import DeletePostModal from "components/Modal/DeletePostModal";
 import EditProfileModal from "components/Modal/EditProfileModal";
 import LogoutModal from "components/Modal/LogoutModal";
-import Page404 from "components/NotFound";
 import user from "data/request/user";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import UserPost from "../UserPost";
@@ -29,9 +28,9 @@ export default function UserPropfile() {
   const [profileImg, setProfileImg] = useState<string>(DEFAULT_PROFILE_IMAGE);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [, setPostsNull] = useState<boolean>(false);
-  const [is404, setIs404] = useState<boolean>(false);
   const [postType, setPostType] = useState<PostType>("내 게시물");
   const params = useParams();
+  const navigate = useNavigate();
 
   const [logoutModal, setLogoutModal] = useRecoilState(logoutModalAtom);
   const [deletePostModal] = useRecoilState(deletePostModalAtom);
@@ -57,12 +56,12 @@ export default function UserPropfile() {
         }
       } catch (e: any) {
         if (e.response.status === 404) {
-          setIs404(true);
+          navigate(`/notfound/${params.nickname}`);
         }
       }
     };
     getUserInfo();
-  }, [params.nickname, params.ninkname]);
+  }, [navigate, params.nickname]);
 
   const clickMyPost = () => {
     setPostType("내 게시물");
@@ -75,66 +74,57 @@ export default function UserPropfile() {
   return (
     <>
       <Header />
-      {is404 ? (
-        <Page404 />
-      ) : (
-        <>
-          <S.ProfileLayout>
-            {logoutModal && <LogoutModal />}
-            {deletePostModal && <DeletePostModal />}
-            {editProfileModal && (
-              <EditProfileModal
-                userImage={userInfo.profileImageUrl}
-                nickname={userInfo.nickname}
-              />
-            )}
-            <S.ProfileBox>
-              <S.ProfileImage src={profileImg} />
-              <S.ProfileName>{userInfo.nickname}</S.ProfileName>
-              {isMine && (
-                <>
-                  <S.EditProfileButton
-                    onClick={() => setEditProfileModal(true)}
-                  >
-                    프로필 변경하기
-                  </S.EditProfileButton>
-                  <S.Logout onClick={() => setLogoutModal(true)}>
-                    로그아웃
-                  </S.Logout>
-                </>
-              )}
-            </S.ProfileBox>
-          </S.ProfileLayout>
-          <S.UserPostsLayout>
-            <S.CategoryBox>
-              {isMine ? (
-                // 마이페이지일때
-                <S.MyCategoryBox>
-                  <S.MyCategory
-                    clicked={postType === "내 게시물"}
-                    onClick={clickMyPost}
-                  >
-                    💻내 게시물's
-                  </S.MyCategory>
-                  <S.MyCategory
-                    clicked={postType === "좋아요 한 게시물"}
-                    onClick={clickMyLike}
-                  >
-                    <I.Like /> 하트
-                  </S.MyCategory>
-                </S.MyCategoryBox>
-              ) : (
-                <Category>{`💻 ${
-                  userInfo.nickname ? userInfo.nickname : "익명의 개발자"
-                }님의 게시물's`}</Category>
-              )}
-            </S.CategoryBox>
-            {isLoading && <UserProfilePageSkeleton />}
-            {postType === "내 게시물" && <UserPost />}
-            {postType === "좋아요 한 게시물" && <MyLikePost />}
-          </S.UserPostsLayout>
-        </>
-      )}
+
+      <S.ProfileLayout>
+        {logoutModal && <LogoutModal />}
+        {deletePostModal && <DeletePostModal />}
+        {editProfileModal && (
+          <EditProfileModal
+            userImage={userInfo.profileImageUrl}
+            nickname={userInfo.nickname}
+          />
+        )}
+        <S.ProfileBox>
+          <S.ProfileImage src={profileImg} />
+          <S.ProfileName>{userInfo.nickname}</S.ProfileName>
+          {isMine && (
+            <>
+              <S.EditProfileButton onClick={() => setEditProfileModal(true)}>
+                프로필 변경하기
+              </S.EditProfileButton>
+              <S.Logout onClick={() => setLogoutModal(true)}>로그아웃</S.Logout>
+            </>
+          )}
+        </S.ProfileBox>
+      </S.ProfileLayout>
+      <S.UserPostsLayout>
+        <S.CategoryBox>
+          {isMine ? (
+            // 마이페이지일때
+            <S.MyCategoryBox>
+              <S.MyCategory
+                clicked={postType === "내 게시물"}
+                onClick={clickMyPost}
+              >
+                💻내 게시물's
+              </S.MyCategory>
+              <S.MyCategory
+                clicked={postType === "좋아요 한 게시물"}
+                onClick={clickMyLike}
+              >
+                <I.Like /> 하트
+              </S.MyCategory>
+            </S.MyCategoryBox>
+          ) : (
+            <Category>{`💻 ${
+              userInfo.nickname ? userInfo.nickname : "익명의 개발자"
+            }님의 게시물's`}</Category>
+          )}
+        </S.CategoryBox>
+        {isLoading && <UserProfilePageSkeleton />}
+        {postType === "내 게시물" && <UserPost />}
+        {postType === "좋아요 한 게시물" && <MyLikePost />}
+      </S.UserPostsLayout>
     </>
   );
 }

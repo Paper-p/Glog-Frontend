@@ -5,3 +5,4 @@ export { default as SetMain } from "./Signup/Main";
 export { default as Write } from "./Write/Page";
 export { default as DetailsPost } from "./DetailsPost/Page";
 export { default as Personal } from "./UserProfile/Page";
+export { default as Page404 } from "./NotFound";

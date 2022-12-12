@@ -13,6 +13,7 @@ import GlobalStyle from "shared/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotFoundPage from "pages/NotFoundPage";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/write" element={<WritePage />} />
             <Route path="/post/:postId" element={<DetailsPostPage />} />
             <Route path="/:nickname" element={<UserProfilePage />} />
+            <Route path="/*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
