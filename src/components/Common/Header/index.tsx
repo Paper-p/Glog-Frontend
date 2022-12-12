@@ -9,7 +9,7 @@ import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
 import user from "data/request/user";
 import Input from "../Input";
-import { searchAtom, userInfoAtom } from "atoms/AtomContainer";
+import { searchAtom, myInfoAtom } from "atoms/AtomContainer";
 import TokenService from "util/TokenService";
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
 function Header({ isNeedSearch, onKeyPress }: Props) {
   const { pathname } = useLocation();
   const [, setSearch] = useRecoilState(searchAtom);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+  const [myInfo, setMyInfo] = useRecoilState(myInfoAtom);
   const [logged, setLogged] = useRecoilState(loggedAtom);
 
   const select = (currentPath: string) =>
@@ -33,7 +33,7 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           TokenService.getLocalAccessToken()
         );
 
-        setUserInfo({
+        setMyInfo({
           nickname: res.data.nickname,
           profileUrl: res.data.profileImageUrl,
         });
@@ -94,11 +94,11 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           <S.HeaderBox className="right ">
             {logged ? (
               <>
-                <Link to={`/${userInfo.nickname}`}>
-                  <p className="user-name">{userInfo.nickname}</p>
+                <Link to={`/${myInfo.nickname}`}>
+                  <p className="user-name">{myInfo.nickname}</p>
                 </Link>
-                <Link to={`/${userInfo.nickname}`}>
-                  <S.Profile src={userInfo.profileUrl} alt="" />
+                <Link to={`/${myInfo.nickname}`}>
+                  <S.Profile src={myInfo.profileUrl} alt="" />
                 </Link>
               </>
             ) : (

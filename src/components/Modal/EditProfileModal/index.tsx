@@ -1,5 +1,5 @@
 import { Edit } from "assets/svg";
-import { editProfileModalAtom, userInfoAtom } from "atoms/AtomContainer";
+import { editProfileModalAtom, myInfoAtom } from "atoms/AtomContainer";
 import { ModalLayout } from "components/Common";
 import useInputs from "hooks/useInputs";
 import React, { useRef, useState } from "react";
@@ -16,7 +16,7 @@ interface Props {
 }
 
 function EditProfileModal({ userImage, nickname }: Props) {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+  const [userInfo, setUserInfo] = useRecoilState(myInfoAtom);
   const [profileImage, setProfileImage] = useState<string>(userImage);
   const [loading, setLoading] = useState<boolean>(false);
   const setImage = useRef<any>(null);

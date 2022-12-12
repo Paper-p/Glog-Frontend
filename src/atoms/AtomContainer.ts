@@ -1,4 +1,4 @@
-import { UserInfoInterface } from "interfaces/UserInterface";
+import { UserInfoInterface } from "interfaces/UserInfoInterface";
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 import { DEFAULT_PROFILE_IMAGE } from "shared/config";
@@ -71,8 +71,8 @@ export const searchAtom = atom({
   default: "",
 });
 
-export const userInfoAtom = atom<UserInfoInterface>({
-  key: "userInfo",
+export const myInfoAtom = atom<UserInfoInterface>({
+  key: "myInfo",
   default: {
     nickname: "",
     profileUrl: DEFAULT_PROFILE_IMAGE,

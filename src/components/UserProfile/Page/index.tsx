@@ -2,7 +2,7 @@ import {
   deletePostModalAtom,
   editProfileModalAtom,
   logoutModalAtom,
-  userInfoAtom,
+  myInfoAtom,
 } from "atoms";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -19,6 +19,8 @@ import MyLikePost from "../MyLikePost";
 import UserProfilePageSkeleton from "../Skeleton";
 import TokenService from "util/TokenService";
 import Header from "components/Common/Header";
+import { UserInfoInterface } from "interfaces/UserInfoInterface";
+import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 
 type PostType = "내 게시물" | "좋아요 한 게시물";
 
@@ -27,8 +29,11 @@ export default function UserPropfile() {
   const [isMine, setIsMine] = useState<boolean>(false);
   const [, setPostsNull] = useState<boolean>(false);
   const [postType, setPostType] = useState<PostType>("내 게시물");
-  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
-  const [anotherPersons, setAnotherPersons] = useState<any>({});
+  const [myInfo, setMyInfo] = useRecoilState(myInfoAtom);
+  const [anotherPersons, setAnotherPersons] = useState<UserInfoInterface>({
+    nickname: "익명의 개발자",
+    profileUrl: DEFAULT_PROFILE_IMAGE,
+  });
   const params = useParams();
   const navigate = useNavigate();
 
@@ -45,13 +50,15 @@ export default function UserPropfile() {
         String(params.nickname)
       );
 
+      const userData: UserInfoInterface = {
+        nickname: res.data.nickname,
+        profileUrl: res.data.profileImageUrl,
+      };
+
       if (res.data.isMine) {
-        setUserInfo({
-          nickname: res.data.nickname,
-          profileUrl: res.data.profileImageUrl,
-        });
+        setMyInfo(userData);
       } else {
-        setAnotherPersons(res.data);
+        setAnotherPersons(userData);
       }
 
       setIsMine(res.data.isMine);
@@ -87,16 +94,16 @@ export default function UserPropfile() {
         {deletePostModal && <DeletePostModal />}
         {editProfileModal && (
           <EditProfileModal
-            userImage={userInfo.profileUrl}
-            nickname={userInfo.nickname}
+            userImage={myInfo.profileUrl}
+            nickname={myInfo.nickname}
           />
         )}
         <S.ProfileBox>
           <S.ProfileImage
-            src={isMine ? userInfo.profileUrl : anotherPersons.profileImageUrl}
+            src={isMine ? myInfo.profileUrl : anotherPersons.profileUrl}
           />
           <S.ProfileName>
-            {isMine ? userInfo.nickname : anotherPersons.nickname}
+            {isMine ? myInfo.nickname : anotherPersons.nickname}
           </S.ProfileName>
           {isMine && (
             <>
@@ -127,11 +134,7 @@ export default function UserPropfile() {
               </S.MyCategory>
             </S.MyCategoryBox>
           ) : (
-            <Category>{`💻 ${
-              anotherPersons.nickname
-                ? anotherPersons.nickname
-                : "익명의 개발자"
-            }님의 게시물's`}</Category>
+            <Category>{`💻 ${anotherPersons.nickname}님의 게시물's`}</Category>
           )}
         </S.CategoryBox>
         {isLoading ? (
