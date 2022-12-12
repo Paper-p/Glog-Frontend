@@ -1,5 +1,7 @@
+import { UserInfoInterface } from "interfaces/UserInterface";
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
+import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import { TagType } from "types/WritePostType";
 const { persistAtom } = recoilPersist();
 
@@ -67,4 +69,12 @@ export const tagAtom = atom<TagType[]>({
 export const searchAtom = atom({
   key: "search",
   default: "",
+});
+
+export const userInfoAtom = atom<UserInfoInterface>({
+  key: "userInfo",
+  default: {
+    nickname: "",
+    profileUrl: DEFAULT_PROFILE_IMAGE,
+  },
 });
