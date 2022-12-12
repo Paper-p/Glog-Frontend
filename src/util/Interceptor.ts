@@ -1,8 +1,5 @@
-import { loggedAtom } from "atoms";
 import axios from "axios";
 import { getAuth } from "data/url/getUrl";
-import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import { REACT_APP_BASE_URL } from "shared/config";
 import TokenService from "./TokenService";
 

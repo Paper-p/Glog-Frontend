@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 import { instance } from "./Interceptor";
 
 const AxiosInstance = (data: AxiosRequestConfig, token?: string) => {
