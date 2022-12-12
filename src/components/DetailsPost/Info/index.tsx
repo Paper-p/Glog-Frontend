@@ -22,7 +22,11 @@ function DetailsPostInfo({ author, createdAt, like, hit }: Props) {
       <S.AuthorInfoSection>
         <S.Profile>
           <Link to={`/${author?.nickname}`}>
-            <img src={author?.profileImageUrl} alt="" />
+            <img
+              src={author?.profileImageUrl}
+              alt=""
+              style={{ objectFit: "cover" }}
+            />
           </Link>
         </S.Profile>
         <S.Author>
