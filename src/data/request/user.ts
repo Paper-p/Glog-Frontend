@@ -46,6 +46,23 @@ class User {
       return error;
     }
   }
+
+  editProfileNickname(nickname: string, token: string) {
+    try {
+      return AxiosInstance(
+        {
+          method: "PUT",
+          url: getUser.editProfile(),
+          data: {
+            nickname: nickname,
+          },
+        },
+        token
+      );
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new User();

@@ -4,14 +4,13 @@ import { useLocation } from "react-router-dom";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Logo from "../Logo";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { loggedAtom } from "atoms";
 import user from "data/request/user";
 import Input from "../Input";
-import { searchAtom } from "atoms/AtomContainer";
+import { searchAtom, userInfoAtom } from "atoms/AtomContainer";
 import TokenService from "util/TokenService";
-import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 
 interface Props {
   isNeedSearch?: boolean;
@@ -21,9 +20,8 @@ interface Props {
 function Header({ isNeedSearch, onKeyPress }: Props) {
   const { pathname } = useLocation();
   const [, setSearch] = useRecoilState(searchAtom);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
   const [logged, setLogged] = useRecoilState(loggedAtom);
-  const [nickname, setNickname] = useState<string>("");
-  const [profileImg, setprofileImg] = useState<string>(DEFAULT_PROFILE_IMAGE);
 
   const select = (currentPath: string) =>
     currentPath === pathname && css({ color: "#E0E0E0" });
@@ -34,8 +32,11 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
         const res: any = await user.getMiniProfile(
           TokenService.getLocalAccessToken()
         );
-        setNickname(res.data.nickname);
-        setprofileImg(res.data.profileImageUrl);
+
+        setUserInfo({
+          nickname: res.data.nickname,
+          profileUrl: res.data.profileImageUrl,
+        });
       } catch (e: any) {
         console.log(e);
       }
@@ -93,11 +94,11 @@ function Header({ isNeedSearch, onKeyPress }: Props) {
           <S.HeaderBox className="right ">
             {logged ? (
               <>
-                <Link to={`/${nickname}`}>
-                  <p className="user-name">{nickname}</p>
+                <Link to={`/${userInfo.nickname}`}>
+                  <p className="user-name">{userInfo.nickname}</p>
                 </Link>
-                <Link to={`/${nickname}`}>
-                  <S.Profile src={profileImg} alt="" />
+                <Link to={`/${userInfo.nickname}`}>
+                  <S.Profile src={userInfo.profileUrl} alt="" />
                 </Link>
               </>
             ) : (

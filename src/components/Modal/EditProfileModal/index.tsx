@@ -1,5 +1,5 @@
 import { Edit } from "assets/svg";
-import { editProfileModalAtom } from "atoms/AtomContainer";
+import { editProfileModalAtom, userInfoAtom } from "atoms/AtomContainer";
 import { ModalLayout } from "components/Common";
 import useInputs from "hooks/useInputs";
 import React, { useRef, useState } from "react";
@@ -16,6 +16,7 @@ interface Props {
 }
 
 function EditProfileModal({ userImage, nickname }: Props) {
+  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
   const [profileImage, setProfileImage] = useState<string>(userImage);
   const [loading, setLoading] = useState<boolean>(false);
   const setImage = useRef<any>(null);
@@ -56,7 +57,11 @@ function EditProfileModal({ userImage, nickname }: Props) {
         profileImage,
         TokenService.getLocalAccessToken()
       );
-      console.log(res);
+
+      setUserInfo({
+        ...userInfo,
+        profileUrl: profileImage,
+      });
 
       toast.success("프로필을 변경했어요", {
         autoClose: 2000,

@@ -2,6 +2,7 @@ import {
   deletePostModalAtom,
   editProfileModalAtom,
   logoutModalAtom,
+  userInfoAtom,
 } from "atoms";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -13,7 +14,6 @@ import DeletePostModal from "components/Modal/DeletePostModal";
 import EditProfileModal from "components/Modal/EditProfileModal";
 import LogoutModal from "components/Modal/LogoutModal";
 import user from "data/request/user";
-import { DEFAULT_PROFILE_IMAGE } from "shared/config";
 import UserPost from "../UserPost";
 import MyLikePost from "../MyLikePost";
 import UserProfilePageSkeleton from "../Skeleton";
@@ -23,12 +23,11 @@ import Header from "components/Common/Header";
 type PostType = "내 게시물" | "좋아요 한 게시물";
 
 export default function UserPropfile() {
-  const [userInfo, setUserInfo] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [profileImg, setProfileImg] = useState<string>(DEFAULT_PROFILE_IMAGE);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [, setPostsNull] = useState<boolean>(false);
   const [postType, setPostType] = useState<PostType>("내 게시물");
+  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
   const params = useParams();
   const navigate = useNavigate();
 
@@ -37,31 +36,35 @@ export default function UserPropfile() {
   const [editProfileModal, setEditProfileModal] =
     useRecoilState(editProfileModalAtom);
 
-  useEffect(() => {
-    const getUserInfo = async () => {
-      setIsLoading(true);
-      try {
-        const res: any = await user.getUserInfo(
-          TokenService.getLocalAccessToken(),
-          String(params.nickname)
-        );
+  const getUserInfo = async () => {
+    setIsLoading(true);
+    try {
+      const res: any = await user.getUserInfo(
+        TokenService.getLocalAccessToken(),
+        String(params.nickname)
+      );
 
-        setProfileImg(res.data.profileImageUrl);
-        setIsMine(res.data.isMine);
-        setUserInfo(res.data);
-        setIsLoading(false);
+      setUserInfo({
+        nickname: res.data.nickname,
+        profileUrl: res.data.profileImageUrl,
+      });
 
-        if (res.data.feedList.length === 0) {
-          setPostsNull(true);
-        }
-      } catch (e: any) {
-        if (e.response.status === 404) {
-          navigate(`/notfound/${params.nickname}`);
-        }
+      setIsMine(res.data.isMine);
+      setIsLoading(false);
+
+      if (res.data.feedList.length === 0) {
+        setPostsNull(true);
       }
-    };
+    } catch (e: any) {
+      if (e.response.status === 404) {
+        navigate(`/notfound/${params.nickname}`);
+      }
+    }
+  };
+
+  useEffect(() => {
     getUserInfo();
-  }, [navigate, params.nickname]);
+  }, [params.nickname]);
 
   const clickMyPost = () => {
     setPostType("내 게시물");
@@ -80,12 +83,12 @@ export default function UserPropfile() {
         {deletePostModal && <DeletePostModal />}
         {editProfileModal && (
           <EditProfileModal
-            userImage={userInfo.profileImageUrl}
+            userImage={userInfo.profileUrl}
             nickname={userInfo.nickname}
           />
         )}
         <S.ProfileBox>
-          <S.ProfileImage src={profileImg} />
+          <S.ProfileImage src={userInfo.profileUrl} />
           <S.ProfileName>{userInfo.nickname}</S.ProfileName>
           {isMine && (
             <>
@@ -121,9 +124,14 @@ export default function UserPropfile() {
             }님의 게시물's`}</Category>
           )}
         </S.CategoryBox>
-        {isLoading && <UserProfilePageSkeleton />}
-        {postType === "내 게시물" && <UserPost />}
-        {postType === "좋아요 한 게시물" && <MyLikePost />}
+        {isLoading ? (
+          <UserProfilePageSkeleton />
+        ) : (
+          <>
+            {postType === "내 게시물" && <UserPost />}
+            {postType === "좋아요 한 게시물" && <MyLikePost />}
+          </>
+        )}
       </S.UserPostsLayout>
     </>
   );
