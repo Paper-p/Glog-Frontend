@@ -30,7 +30,7 @@ export default function UserPropfile() {
   const [, setPostsNull] = useState<boolean>(false);
   const [postType, setPostType] = useState<PostType>("내 게시물");
   const [myInfo, setMyInfo] = useRecoilState(myInfoAtom);
-  const [anotherPersons, setAnotherPersons] = useState<UserInfoInterface>({
+  const [anotherPerson, setAnotherPerson] = useState<UserInfoInterface>({
     nickname: "익명의 개발자",
     profileUrl: DEFAULT_PROFILE_IMAGE,
   });
@@ -58,7 +58,7 @@ export default function UserPropfile() {
       if (res.data.isMine) {
         setMyInfo(userData);
       } else {
-        setAnotherPersons(userData);
+        setAnotherPerson(userData);
       }
 
       setIsMine(res.data.isMine);
@@ -100,10 +100,10 @@ export default function UserPropfile() {
         )}
         <S.ProfileBox>
           <S.ProfileImage
-            src={isMine ? myInfo.profileUrl : anotherPersons.profileUrl}
+            src={isMine ? myInfo.profileUrl : anotherPerson.profileUrl}
           />
           <S.ProfileName>
-            {isMine ? myInfo.nickname : anotherPersons.nickname}
+            {isMine ? myInfo.nickname : anotherPerson.nickname}
           </S.ProfileName>
           {isMine && (
             <>
@@ -134,7 +134,7 @@ export default function UserPropfile() {
               </S.MyCategory>
             </S.MyCategoryBox>
           ) : (
-            <Category>{`💻 ${anotherPersons.nickname}님의 게시물's`}</Category>
+            <Category>{`💻 ${anotherPerson.nickname}님의 게시물's`}</Category>
           )}
         </S.CategoryBox>
         {isLoading ? (

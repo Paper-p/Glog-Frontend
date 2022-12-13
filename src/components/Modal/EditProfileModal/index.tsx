@@ -16,7 +16,7 @@ interface Props {
 }
 
 function EditProfileModal({ userImage, nickname }: Props) {
-  const [userInfo, setUserInfo] = useRecoilState(myInfoAtom);
+  const [myInfo, setMyInfo] = useRecoilState(myInfoAtom);
   const [profileImage, setProfileImage] = useState<string>(userImage);
   const [loading, setLoading] = useState<boolean>(false);
   const setImage = useRef<any>(null);
@@ -58,8 +58,8 @@ function EditProfileModal({ userImage, nickname }: Props) {
         TokenService.getLocalAccessToken()
       );
 
-      setUserInfo({
-        ...userInfo,
+      setMyInfo({
+        ...myInfo,
         profileUrl: profileImage,
       });
 
