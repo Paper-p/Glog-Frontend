@@ -79,12 +79,6 @@ export default function Signin() {
           <S.ErrorText>{errors.password?.message}</S.ErrorText>
         </Input>
         <Button>로그인</Button>
-        <S.TextBox>
-          <S.TextUl>
-            <S.Text>비밀번호</S.Text>
-            <S.Text>를 잊어 버리셨나요?</S.Text>
-          </S.TextUl>
-        </S.TextBox>
       </AuthLayout>
     </>
   );
