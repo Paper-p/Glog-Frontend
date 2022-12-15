@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 export const EditProfileModal = styled.div`
-  width: 500px;
-  height: 400px;
+  width: 400px;
+  height: 340px;
   background: #252727;
   border-radius: 15px;
 `;
@@ -11,13 +11,13 @@ export const ProfileBox = styled.div`
   width: 90%;
   margin: auto;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
 `;
 
 export const ImageBox = styled.div`
   position: relative;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 
   input {
     display: none;
@@ -61,14 +61,15 @@ export const ProfileImage = styled.img`
   object-fit: cover;
 `;
 
-export const Nickname = styled.input`
+export const Nickname = styled.input<{ error: string }>`
   width: 80%;
   height: 35px;
   padding: 10px;
   border-radius: 5px;
   background: #252727;
-  color: white;
-  border: #cccccc 1px solid;
+  color: #eedfd2;
+  border: ${(e) => (e.error ? "#e83f28 1px solid" : "#cccccc 1px solid")};
+  filter: ${(e) => e.error && "drop-shadow(0px 1px 7px #e45b3c)"};
 
   &:focus {
     outline: none;
@@ -83,13 +84,13 @@ export const Nickname = styled.input`
   }
 `;
 
-export const MoveBox = styled.div`
+export const MoveBox = styled.div<{ error: string }>`
   width: 65%;
   cursor: pointer;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  margin-top: 60px;
+  margin-top: ${(e) => (e.error ? "22px" : "46px")};
 `;
 
 export const Exit = styled.div`
@@ -100,4 +101,11 @@ export const Exit = styled.div`
 export const Edit = styled.div`
   color: #18d570;
   font-size: 15px;
+`;
+
+export const ErrorMessage = styled.p`
+  text-align: center;
+  color: #e83f28;
+  margin-top: 14px;
+  font-size: 14px;
 `;

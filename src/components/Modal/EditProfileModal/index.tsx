@@ -2,13 +2,14 @@ import { Edit } from "assets/svg";
 import { editProfileModalAtom, myInfoAtom } from "atoms/AtomContainer";
 import { ModalLayout } from "components/Common";
 import useInputs from "hooks/useInputs";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import image from "data/request/image";
 import * as S from "./style";
 import user from "data/request/user";
 import TokenService from "util/TokenService";
 import { toast } from "react-toastify";
+import { UserInfoInterface } from "interfaces/UserInfoInterface";
 
 interface Props {
   userImage: string;
@@ -20,6 +21,8 @@ function EditProfileModal({ userImage, nickname }: Props) {
   const [profileImage, setProfileImage] = useState<string>(userImage);
   const [loading, setLoading] = useState<boolean>(false);
   const setImage = useRef<any>(null);
+  const [requested, setRequested] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const [{ name }, onChange] = useInputs({
     name: nickname,
@@ -37,7 +40,7 @@ function EditProfileModal({ userImage, nickname }: Props) {
       setLoading(true);
       const res: any = await image.uploadImage(
         formData,
-        JSON.parse(localStorage.getItem("token") || "{}").accessToken
+        TokenService.getLocalAccessToken()
       );
       setProfileImage(res.data.imageUrl);
       setLoading(false);
@@ -51,15 +54,46 @@ function EditProfileModal({ userImage, nickname }: Props) {
     setImage.current?.click();
   };
 
-  const onEdit = async () => {
+  const updateUser = async () => {
+    setRequested(false);
     try {
-      const res: any = await user.editProfileImage(
-        profileImage,
-        TokenService.getLocalAccessToken()
-      );
+      if (profileImage !== userImage) {
+        await user.editProfileImage(
+          profileImage,
+          TokenService.getLocalAccessToken()
+        );
+      }
+      if (myInfo.nickname !== name) {
+        await user.editProfileNickname(
+          name,
+          TokenService.getLocalAccessToken()
+        );
+      }
 
+      setRequested(true);
+      setError("");
+    } catch (e: any) {
+      setError("사용할 수 없는 이름입니다");
+      setRequested(true);
+    }
+  };
+
+  const onEdit = () => {
+    if (!loading) {
+      updateUser();
+    }
+  };
+
+  const onExit = () => {
+    setEditProfileModal(false);
+  };
+
+  useEffect(() => {
+    console.log(loading, error, requested);
+
+    if (error === "" && requested) {
       setMyInfo({
-        ...myInfo,
+        nickname: name,
         profileUrl: profileImage,
       });
 
@@ -67,14 +101,8 @@ function EditProfileModal({ userImage, nickname }: Props) {
         autoClose: 2000,
       });
       setEditProfileModal(false);
-    } catch (e: any) {
-      console.log(e);
     }
-  };
-
-  const onExit = () => {
-    setEditProfileModal(false);
-  };
+  }, [requested]);
 
   return (
     <ModalLayout setModal={setEditProfileModal}>
@@ -88,7 +116,7 @@ function EditProfileModal({ userImage, nickname }: Props) {
               <p>변경</p>
             </S.ImageChangeBox>
             {loading ? (
-              <S.ProfileImage src={userImage} />
+              <S.ProfileImage src="/images/loading.gif" />
             ) : (
               <S.ProfileImage src={profileImage} />
             )}
@@ -106,9 +134,11 @@ function EditProfileModal({ userImage, nickname }: Props) {
             value={name}
             onChange={onChange}
             name="name"
+            error={error}
           />
         </S.ProfileBox>
-        <S.MoveBox>
+        {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+        <S.MoveBox error={error}>
           <S.Exit onClick={onExit}>취소하기</S.Exit>
           <S.Edit onClick={onEdit}>수정완료</S.Edit>
         </S.MoveBox>
