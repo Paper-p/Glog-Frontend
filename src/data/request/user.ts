@@ -30,14 +30,14 @@ class User {
     }
   }
 
-  editProfileImage(url: string, token: string) {
+  editProfileImage(imageUrl: string, token: string) {
     try {
       return AxiosInstance(
         {
-          method: "PUT",
-          url: getUser.editProfile(),
+          method: "PATCH",
+          url: getUser.editProfile("profile-image"),
           data: {
-            imageUrl: url,
+            imageUrl: imageUrl,
           },
         },
         token
@@ -51,8 +51,8 @@ class User {
     try {
       return AxiosInstance(
         {
-          method: "PUT",
-          url: getUser.editProfile(),
+          method: "PATCH",
+          url: getUser.editProfile("nickname"),
           data: {
             nickname: nickname,
           },
