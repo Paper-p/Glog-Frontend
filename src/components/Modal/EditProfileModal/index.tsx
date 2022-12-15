@@ -9,8 +9,6 @@ import * as S from "./style";
 import user from "data/request/user";
 import TokenService from "util/TokenService";
 import { toast } from "react-toastify";
-import { UserInfoInterface } from "interfaces/UserInfoInterface";
-
 interface Props {
   userImage: string;
   nickname: string;
