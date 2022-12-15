@@ -45,6 +45,7 @@ function EditProfileModal({ userImage, nickname }: Props) {
       setProfileImage(res.data.imageUrl);
       setLoading(false);
     } catch (e: any) {
+      setError("잘못된 이미지에요");
       console.log(e);
     }
   };
