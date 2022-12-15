@@ -30,8 +30,8 @@ export const getUser = {
     return REACT_APP_BASE_URL + "/user/";
   },
 
-  editProfile: () => {
-    return REACT_APP_BASE_URL + "/user";
+  editProfile: (type: "profile-image" | "nickname") => {
+    return REACT_APP_BASE_URL + "/user/" + type;
   },
 };
 
