@@ -34,6 +34,7 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
   const [contentPreview, setContentPreiview] = useState<string>("");
   const [onlyNameList, setOnlyNameList] = useState<string[]>([]);
   const [isClick, setIsClick] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const setProfileImage = useRef<any>(null);
   const navigate = useNavigate();
 
@@ -109,11 +110,13 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
       setThumbnailUrl(URL.createObjectURL(blob));
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
+      setLoading(true);
       const res: any = await image.uploadImage(
         formData,
         TokenService.getLocalAccessToken()
       );
       setThumbnailUrl(res.data.imageUrl);
+      setLoading(false);
     } catch (e: any) {
       setErrorMessage("잘못된 이미지에요");
       setThumbnailUrl("");
@@ -124,6 +127,12 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
   const imgBtnClick = (e: any) => {
     e.preventDefault();
     setProfileImage.current?.click();
+  };
+
+  const write = () => {
+    if (!loading) {
+      saveTag();
+    }
   };
 
   return (
@@ -153,7 +162,7 @@ export function WriteModal({ mode, editPostId, editor }: Props) {
             name={"file"}
             onChange={imgHandler}
           />
-          <Button onClick={saveTag}>{mode}</Button>
+          <Button onClick={write}>{mode}</Button>
         </S.UploadThumbnail>
         <S.ErrorMessage>{errorMessage}</S.ErrorMessage>
       </S.WriteModal>
